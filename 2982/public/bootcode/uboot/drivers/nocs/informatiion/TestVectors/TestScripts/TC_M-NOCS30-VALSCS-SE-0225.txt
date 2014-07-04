@@ -1,0 +1,16 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv SCSPV -s 0x1 -id CSD_SCS_PV_VERSIONING_REF
+n3xt -cmp SCSPV CSD_SCS_PV_VERSIONING_REF 0x00
+# would be better to have a single command n3xt -wait_for_user
+n3xt -user "Please place another chipset on the board"
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv SCSPV -s 0x1 -id CSD_SCS_PV_VERSIONING_REF
+n3xt -cmp SCSPV CSD_SCS_PV_VERSIONING_REF 0x00
+# would be better to have a single command n3xt -wait_for_user
+n3xt -user "Please place another chipset on the board"
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv SCSPV -s 0x1 -id CSD_SCS_PV_VERSIONING_REF
+n3xt -cmp SCSPV CSD_SCS_PV_VERSIONING_REF 0x00

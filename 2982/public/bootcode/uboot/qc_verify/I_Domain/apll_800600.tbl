@@ -1,0 +1,19 @@
+	
+
+                rtd_outl(0xb8020100, 0x0305d10f);
+		rtd_outl(0xb8020104, 0x00050609);
+		rtd_outl(0xb8020108, 0x0000041f);
+		rtd_outl(0xb802010c, 0x00700008);
+		rtd_outl(0xb8020110, 0x00000020);
+		rtd_outl(0xb8020114, 0x00000030);
+		rtd_outl(0xb8020118, 0x00000002);
+		rtd_outl(0xb802011c, 0x000a3c00);
+		rtd_outl(0xb8020120, 0x000002a1);
+		rtd_outl(0xb8020124, 0x00000008);
+		rtd_outl(0xb8020128, 0x00000009);
+		rtd_outl(0xb802012c, 0x0000002e);
+		rtd_outl(0xb8020130, 0x00000162);
+		rtd_outl(0xb8020134, 0x00000000);
+		rtd_outl(0xb8020138, 0x00000000);
+		rtd_outl(0xb802013c, 0x00000040);
+		rtd_outl(0xb8020104, 0x00050608);	// enable APLL & dual clk

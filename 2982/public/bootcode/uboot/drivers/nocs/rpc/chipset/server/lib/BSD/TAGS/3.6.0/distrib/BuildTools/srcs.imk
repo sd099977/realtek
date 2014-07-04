@@ -1,0 +1,43 @@
+#
+# Applicable C files selection
+#   : This file was automatically generated
+#     Do not edit it manually
+#
+
+NHT_SRCS +=  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/TRACE_nhtbsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/_msgbuf_nhtbsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/nhtbsd_r2r_test_algo.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/nv_nhtbsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/rpc_server_nhtbsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server/src/rpc_server_nhtbsd_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/TRACE_nhcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/_msgbuf_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/_msgbuf_nhtreport.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/nv_nht_report.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/rpc_server_nhtreport.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/rpc_server_nhtreport_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/server/nht_term/TAGS/1.4.0/distrib/src/nht_rpc_term_server.c  \
+  $(NHT_ROOT)/chipset/server/lib/BSD/TAGS/3.6.0/distrib/src/nht_bsd_server.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/_msgbuf_rpcctrl.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_msgbuf_report.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_rpc_report.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/avlset.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/base_hndmng.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_alloc.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpack.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpc_service.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_size.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_strbuilder.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_sys_string.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_unpack.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/memAlloc.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/mempool_sys_malloc.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/null_sys_mutex.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/serial_hndmng.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/serial_rpc_service.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_ftrace.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl_serviceWrapper.c

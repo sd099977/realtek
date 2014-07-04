@@ -1,0 +1,5 @@
+bsd -cn NUID -oc
+# n3xt -cmp FILE CHECKFORPASS
+bsd -cn DINTEG -oc -tv /CSVInDirName/CTCut_CheckNumbers_3x.csv
+# n3xt -cmp FILE CHECKFORPASS
+bsd -reset

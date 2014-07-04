@@ -1,0 +1,25 @@
+
+		rtd_outl(0xb8020004, 0x00000000);  //
+		rtd_outl(0xb8020008, 0x03550095);  // VIN3P,VIN4P,VIN5P,G channel VIn4P/VD channel to GND,Negative Common in G
+
+                rtd_outl(0xb802000c, 0x01030000);  // LDO power1.05V(default1.1V)
+
+		rtd_outl(0xb8020010, 0x00210001);  // clock polarity, divider,SOY clock=APLL
+		rtd_outl(0xb8020018, 0x001f0038);  // DC Restore on 4,5,6;
+		rtd_outl(0xb802001c, 0x00420049);  // Enable negative clamper of G[4]-, set R,G,B clamper to DAC voltage
+		rtd_outl(0xb8020024, 0x44000000);  // SOG0 select to Vin4P, Clamp UP/DOWN disable
+		rtd_outl(0xb8020028, 0x00116000);  // negative clamp YPP 3 5  SOY bias current 60uA Vref=640mV
+		
+		rtd_outl(0xb8020038, 0x02200200);  // 10bit Voffset=0.4V(middle)
+		rtd_outl(0xb802003c, 0x00000200);  // Range:0~0.8V
+		
+		rtd_outl(0xb8020040, 0x01200120);   // 3bit Vmid=0.4V(only G work)
+		rtd_outl(0xb8020044, 0x01200120);   // 3bit Voffset(0.4V) + 10bit Voffset(0.4V)=0.8V   adjust 3bit Voffset=4(0.5V)
+
+		//rtd_outl(0xb8020064, 0x00000045);  // SMT    default smit trigger power on
+		rtd_outl(0xb8020068, 0x00000000);   //clk div=0 (1/1)
+		rtd_outl(0xb8020080, 0x00000270);   // clk polarity
+
+		rtd_outl(0xb8020000, 0x000000ff);  // ADC clock,SOG0,bandgap,RGB power
+
+                                                   //Postive Clamp enable after syncprocessor process 

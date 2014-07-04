@@ -1,0 +1,309 @@
+//-------- BUS/BUSH/ACPU clock source select to 27MHz ------------------------
+rtd_outl(0xb8060050,0x00000001);
+ScalerTimer_DelayXms(0x1);
+
+//-------- SPI clk -------------------------------------------------
+rtd_outl(0xb801a808,0x1f); // fdiv, clk_sf = clk_sys / (fdiv+1)
+ScalerTimer_DelayXms(0x1);
+rtd_outl(0xb801a814,0x1); // latch data at the rising edge
+rtd_outl(0xb801a80c,0x00202020);
+
+//-------- PLL ACPU -------------------------------------------------
+rtd_outl(0xb800010c,0x00000324); // PLLACPU power down, hold reset, output disable
+#if defined(CONFIG_PLL_ACPU_250MHz)
+rtd_outl(0xb8000108,0x001A3600); // max 850, set 27*37/4 = 249.75MHz
+#elif defined(CONFIG_PLL_ACPU_500MHz)
+rtd_outl(0xb8000108,0x000A3600); // max 850, set 27*37/2 = 499.5MHz
+#endif
+rtd_outl(0xb800010c,0x00000325); // PLLACPU power on
+rtd_outl(0xb800010c,0x00000327); // release PLLACPU reset
+
+//-------- PLL BUS -------------------------------------------------
+rtd_outl(0xb8000138,0x00000004); // PLLBUS power down, hold reset, output disable
+#if defined(CONFIG_PLL_BUS_381MHz)
+rtd_outl( 0xb8000130,0x17BD1B52); // max 405, set 27*113/2/4 = 381.375MHz
+#elif defined(CONFIG_PLL_BUS_202MHz)
+rtd_outl(0xb8000130,0x02351B52); // max 405, set 27*15/2 = 202.5MHz
+#elif defined(CONFIG_PLL_BUS_252MHz)
+rtd_outl(0xb8000130,0x04691B52); // max 405, set 27*28/3 = 252MHz
+#elif defined(CONFIG_PLL_BUS_270MHz)
+rtd_outl(0xb8000130,0x00211B52); // max 405, set 27*10 = 270MHz
+#elif defined(CONFIG_PLL_BUS_297MHz)
+rtd_outl(0xb8000130,0x00251B52); // max 405, set 27*11 = 297MHz
+#elif defined(CONFIG_PLL_BUS_351MHz)
+rtd_outl(0xb8000130,0x002D1B52); // max 405, set 27*13 = 351MHz
+#elif defined(CONFIG_PLL_BUS_405MHz)
+rtd_outl(0xb8000130,0x00351B52); // max 405, set 27*15 = 405MHz
+#endif
+
+rtd_outl(0xb8000138,0x00000005); // PLLBUS power on
+rtd_outl(0xb8000138,0x00000007); // release PLL reset
+
+//-------- PLL BUSH -------------------------------------------------
+rtd_outl(0xb8000148,0x00000004);  // PLLBUSH power down, hold reset, output disable
+#if defined(CONFIG_PLL_BUSH_381MHz)
+rtd_outl(0xb8000140,0x17BD1B52); // max 384, set 27*113/2/4 = 381.375MHz
+#elif defined(CONFIG_PLL_BUSH_202MHz)
+rtd_outl(0xb8000140,0x02351B52); // max 384, set 27*15/2 = 202.5MHz
+#elif defined(CONFIG_PLL_BUSH_252MHz)
+rtd_outl(0xb8000140,0x04691B52); // max 384, set 27*28/3 = 252MHz
+#elif defined(CONFIG_PLL_BUSH_270MHz)
+rtd_outl(0xb8000140,0x00211B52); // max 384, set 27*10 = 270MHz
+#elif defined(CONFIG_PLL_BUSH_297MHz)
+rtd_outl(0xb8000140,0x00251B52); // max 384, set 27*11 = 297MHz
+#elif defined(CONFIG_PLL_BUSH_351MHz)
+rtd_outl(0xb8000140,0x002D1B52); // max 384, set 27*13 = 351MHz
+#elif defined(CONFIG_PLL_BUSH_405MHz)
+rtd_outl(0xb8000140,0x00351B52); // max 384, set 27*15 = 405MHz
+#endif
+
+rtd_outl(0xb8000148,0x00000005);  // PLLBUSH power on
+rtd_outl(0xb8000148,0x00000007);  // release PLLBUSH reset
+
+ScalerTimer_DelayXms(0x1); // wait at least > 150us
+rtd_outl(0xb800010c,0x00000323); // PLLACPU output enable
+rtd_outl(0xb8000138,0x00000003); // PLLBUS output enable
+rtd_outl(0xb8000148,0x00000003); // PLLBUSH output enable
+
+//-------- BUS/BUSH/ACPU clock source select to PLLBUS/PLLBUSH/PLLACPU ------------------------
+rtd_outl(0xb8060050,0x00000000);
+ScalerTimer_DelayXms(0x1);
+
+#if defined(CONFIG_PLL_SCPU_603MHz)
+	rtd_outl(0xb8000100,0x00241400); //max 1000, set 27*67/3=603MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_702MHz)
+	rtd_outl(0xb8000100,0x00018400); //max 1000, set 27*26=702MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_810MHz)
+	rtd_outl(0xb8000100,0x0001C400); //max 1000, set 27*30=810MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_850MHz)
+	rtd_outl(0xb8000100,0x0013D400); //max 1000, set 850.5MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset	
+#elif defined(CONFIG_PLL_SCPU_855MHz)
+	rtd_outl(0xb8000100,0x00a5d400); //max 1000, set 855MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset	
+#elif defined(CONFIG_PLL_SCPU_900MHz)
+	rtd_outl(0xb8000100,0x00262400); // max 1000, set 27*100/3= 900MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_1000MHz)
+	rtd_outl(0xb8000100,0x00023400); // set 1000MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_1100MHz)
+	rtd_outl(0xb8000100,0x003a1400); // set 1100MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_1200MHz)
+	rtd_outl(0xb8000100,0x00157400); // set 1200MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_1300MHz)
+	rtd_outl(0xb8000100,0x003bf400); // set 1300MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#elif defined(CONFIG_PLL_SCPU_1400MHz)
+	rtd_outl(0xb8000100,0x00032400); // set 1400MHz
+	rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+	rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+#endif
+
+#if defined(CONFIG_PLL_GPU_202MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x0008D600); //max 450, set 27*15/2=202.5MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x0008D600); //max 450, set 27*15/2=202.5MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_252MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x0011a600); //max 450, set 27*28/3=252MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x0011a600); //max 450, set 27*28/3=252MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_297MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x00009600); //max 450, set 27*11=297MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x00009600); //max 450, set 27*11=297MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_351MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x00098600); // max 450, set 351MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x00098600); // max 450, set 351MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_400MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x00157680); // max 450, set 400MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x00157680); // max 450, set 400MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_450MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x00130600); // max 450, set 450MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x00130600); // max 450, set 450MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_500MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x000a3600); // max 450, set 500MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x000a3600); // max 450, set 500MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#elif defined(CONFIG_PLL_GPU_550MHz)
+	//-------- PLL GPU1-------------------------------------------------
+	rtd_outl(0xb80001e0,0x0013b600); // max 450, set 550MHz
+	rtd_outl(0xb80001e4,0x00000325); // PLLGPU1 power on
+	rtd_outl(0xb80001e4,0x00000327); // release PLLGPU1 reset
+	//-------- PLL GPU2-------------------------------------------------
+	rtd_outl(0xb80001e8,0x0013b600); // max 450, set 550MHz
+	rtd_outl(0xb80001ec,0x00000325); // PLLGPU2 power on
+	rtd_outl(0xb80001ec,0x00000327); // release PLLGPU2 reset
+#endif
+
+#if defined(CONFIG_PLL_VCPU_202MHz)
+	rtd_outl(0xb8000110,0x00346800); // target 472, set 27*15/2=202.5MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_297MHz)
+	rtd_outl(0xb8000110,0x00304800); // target 472, set 27*11=297MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_405MHz)
+	rtd_outl(0xb8000110,0x00306800); // target 472, set 27*15=405MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_472MHz)
+	rtd_outl(0xb8000110,0x00350A00); // target 472, set 27*37/2=472.5MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_500MHz)
+	rtd_outl(0xb8000110,0x003e4200); // target 472, set 500MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_550MHz)
+	rtd_outl(0xb8000110,0x0039da00); // target 472, set 550MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_600MHz)
+	rtd_outl(0xb8000110,0x003eba00); // target 472, set 600MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_650MHz)
+	rtd_outl(0xb8000110,0x003ef200); // target 472, set 650MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#elif defined(CONFIG_PLL_VCPU_700MHz)
+	rtd_outl(0xb8000110,0x00359200); // target 472, set 700MHz
+	rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+	rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+#endif
+
+//-------- PLL DISP -------------------------------------------------
+rtd_outl(0xb8000190,0x01901336);	// set 243MHz
+rtd_outl(0xb8000194,0x11020001);	// DPLL power on
+rtd_outl(0xb8000194,0x11020043);	// release DPLL reset
+
+//-------- vodma pll-------------------------------------------------
+ rtd_outl(0xb8000160,0x00222613);  // max 450, set 27*12 = 324MHz
+ rtd_outl(0xb8000164,0x00000005); // PLLVODMA power on
+ rtd_outl(0xb8000164,0x00000007); // release PLLVODMA reset
+ ScalerTimer_DelayXms(1); // at least > 5us
+ rtd_outl(0xb8000164,0x00000003); // PLLVODMA output enable
+
+//-------- PLL 27X -------------------------------------------------
+//rtd_outl(0xb8000240,0x0225000E); // max = 432, set 27*16 = 432MHz
+//rtd_outl(0xb8000244,0x00105401); // 1.1V LDO power on & output 1.0V, LDO XTAL power on & output 1.76V
+//rtd_outl(0xb8000248,0x00000001); // release PLL_27X & VCO reset & power on
+//rtd_outl(0xb8000248,0x00000007); // release PLL_27X & VCO reset & power on
+//ScalerTimer_DelayXms(0x1); // at least > 150us
+
+
+//-------- PLL ETN -------------------------------------------------
+//rtd_outl(0xb8016d00,0x0230370a); // 25M
+//rtd_outl(0xb8016d04,0x00008035); // power on
+//rtd_outl(0xb8016d04,0x00008037); // release reset
+
+ScalerTimer_DelayXms(0x1); // at least > 150us
+rtd_outl(0xb8000104,0x00000323); // PLLSCPU CKOUT enable
+rtd_outl(0xb8000114,0x00000323); // PLLVCPU CKOUT enable
+rtd_outl(0xb80001e4,0x00000323); // PLLGPU1 output enable
+rtd_outl(0xb80001ec,0x00000323); // PLLGPU2 output enable
+//rtd_outl(0xb8016d04,0x00008033); // PLLETN output enable
+
+rtd_maskl(0xb8000008,0x07FFFFFF,0x0);// set Nagxx reset low
+//-------- For Synchronous Reset Clk Input-------
+rtd_outl(0xb800000c,0xFFFFFFFF);
+rtd_outl(0xb8000010,0xFFFFFFCF);// except VCPU & ACPU clock
+rtd_outl(0xb8000014,0xFFFFFFFF);
+rtd_outl(0xb8060040,0xFFFFFFFF);
+rtd_outl(0xb8060044,0xFFFFFFFF);
+ScalerTimer_DelayXms(0x1);
+rtd_outl(0xb800000c,0x01BC0003);
+rtd_outl(0xb8000010,0x1000000A);
+rtd_outl(0xb8000014,0x00011007);// disable Nagxx clock
+rtd_outl(0xb8060040,0x00000027);
+rtd_outl(0xb8060044,0x00000000);
+
+//-------- Module Clock & Reset Enable ---------
+rtd_maskl(0xb8000014, 0x1effffc7, 0xE1000038);// enable TVSB1~3,APLL_ADC,I/M/D domain clock
+rtd_maskl(0xb8000014, 0x1effffc7, 0x00000000);// disable TVSB1~3,APLL_ADC,I/M/D domain clock
+rtd_maskl(0xb8000008, 0xffff8fe1, 0x00000000);// hold TVSB1~3,APLL_ADC,I/M/D domain reset
+rtd_maskl(0xb8000008, 0xffff8fe1, 0x0000701e);// release TVSB1~3,APLL_ADC,I/M/D domain reset
+ScalerTimer_DelayXms(0x1);
+rtd_maskl(0xb8000014, 0x1effffe7, 0xE1000038);// enable TVSB1~3,APLL_ADC,I/M/D domain clock
+
+//-------- Enable Thermal Sensor--------
+rtd_maskl(0xb8000004, 0xFFFBFFFF, 0x00040000); // Reset bit of Thermal Sensor (active low)
+rtd_maskl(0xb8000014, 0xEFFFFFFF, 0x10000000); // Clock enable bit for Thermal Sensor
+rtd_maskl(0xb8000054, 0xFEFFFFFF, 0x01000000); // invert the comparator output of analog block.
+rtd_maskl(0xb8000054, 0xF7FFFFFF, 0x08000000); // Enable the thermal meter
+
+//TVSB2_DCU1
+rtd_outl(0xb8038100, 0x00000007);
+rtd_outl(0xb8038108, 0x00000080);		// DIMW
+rtd_outl(0xb803810c, 0x00000070);		// DIMR
+rtd_outl(0xb8038110, 0x00000080);		// CAPM
+rtd_outl(0xb8038114, 0x00000080);		// DISPM
+rtd_outl(0xb8038118, 0x00000080);		// ODWR
+rtd_outl(0xb803811c, 0x00000080);		// ODRD
+rtd_outl(0xb8038120, 0x00000080);		// VO1_Y
+rtd_outl(0xb8038124, 0x00000080);		// VO1_C
+rtd_outl(0xb8038128, 0x00000080);		// OSD1
+rtd_outl(0xb803812c, 0x00000080);		// SUBT
+rtd_outl(0xb8038130, 0x00000080);		// IHDMI
+rtd_outl(0xb8038134, 0x00000080);		// VO2_Y
+rtd_outl(0xb8038138, 0x00000080);		// VO2_C
+rtd_outl(0xb803813c, 0x00000080);		// CAPS
+rtd_outl(0xb8038140, 0x00000080);		// DISPS
+rtd_outl(0xb8038144, 0x00000080);		// OSD2
+
+

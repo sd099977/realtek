@@ -1,0 +1,20 @@
+n3xt -cfg CC_M-NOCS30-0019
+n3xt -UPDATECHIPDATABASE
+DIF -frw write -fl /SCSTVDirname/TC_M-NOCS30-VALSCS-SE-0233FlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+DIF -rst
+N3XT -cmp CHECKFORBOOTPASS
+# would be better to have a single command n3xt -wait_for_user
+n3xt -user "Please place another chipset on the board"
+n3xt -wait 120
+n3xt -cfg CC_M-NOCS30-0019
+n3xt -UPDATECHIPDATABASE
+DIF -frw write -fl /SCSTVDirname/TC_M-NOCS30-VALSCS-SE-0233FlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+DIF -rst
+N3XT -cmp CHECKFORBOOTPASS
+# would be better to have a single command n3xt -wait_for_user
+n3xt -user "Please place another chipset on the board"
+n3xt -wait 120n3xt -cfg CC_M-NOCS30-0019
+n3xt -UPDATECHIPDATABASE
+DIF -frw write -fl /SCSTVDirname/TC_M-NOCS30-VALSCS-SE-0233FlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+DIF -rst
+N3XT -cmp CHECKFORBOOTPASS

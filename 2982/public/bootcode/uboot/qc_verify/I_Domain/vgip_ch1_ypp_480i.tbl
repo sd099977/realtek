@@ -1,0 +1,20 @@
+/////////////////////////////////////////////////
+// filename: VGIPCH1_480I_VIO.c
+// description: VGIP(channel1) for 480I(720x240) and VI/VO setting 
+// author: jeff
+// version: 1.1:  Del include
+// history: 1.0:  create version 
+/////////////////////////////////////////////////
+
+//for VGIP setting
+rtd_outl(0xb8022210, 0x90000001);	//001:ADC/YPbPr (incluing Pattern Generator),analog mode	=>bit1 set 0
+rtd_outl(0xb802221c, 0x000f00F0);	//27:16==>Ch1_iv_act_sta/11:0==>Ch1_iv_act_len		=> start from 30 to 10
+rtd_outl(0xb8022218, 0x007a02D0);	//27:16==>Ch1_ih_act_sta/11:0==>Ch1_ih_act_wid		=>bit31 set 1
+rtd_outl(0xb8022220, 0x00000000);	//27:16==>Ch1_IHS_DLY/11:0==>Ch1_IVS_DLY
+rtd_outl(0xb8022284, 0x00000008);	//from vgip/ch1
+rtd_outl(0xb8022290, 0x00000406);	//CTS FIFO 
+
+
+
+rtd_outl(0xb8022218, 0x007e02D0);	//edward-0110
+rtd_outl(0xb8022290, 0x00000606);	//edward-0110

@@ -1,0 +1,15 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+sec -r2r -enc -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym0_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym0_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -dec -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym0_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym0_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -enc -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym1_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym1_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -dec -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym1_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym1_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -enc -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym2_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym2_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -dec -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Sym2_Emi0x4027_sec.txt -numbruns 1 -tv /CSVInDirName/CTCut_AES_Sym2_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

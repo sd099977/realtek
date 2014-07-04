@@ -1,0 +1,3 @@
+bsd -hmac SHA256 -kf /SECInOutDirName/hmac_key.bin -if /SECInOutDirName/hmac_sha256_in.bin -of /SECInOutDirName/hmac_sha256_out_bsd.bin
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset

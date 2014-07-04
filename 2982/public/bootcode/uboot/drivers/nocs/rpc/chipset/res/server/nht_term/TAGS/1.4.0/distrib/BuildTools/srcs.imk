@@ -1,0 +1,8 @@
+#
+# Applicable C files selection
+#   : This file was automatically generated
+#     Do not edit it manually
+#
+
+NHT_SRCS +=  \
+  $(NHT_ROOT)/chipset/res/server/nht_term/TAGS/1.4.0/distrib/src/nht_rpc_term_server.c

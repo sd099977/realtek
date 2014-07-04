@@ -1,0 +1,23 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+ctd -mrw write -cl RAMREADWRITEVAL -a RAMWRITEADDRESS -s 0x4
+ctd -suspend
+dif -masternuid
+dif -wuc
+ctd -mrw read -cl -a RAMREADADDRESS -s 0x4
+n3xt -cmp VAL RAMREADWRITEVAL CHECKFORPASS
+#for Set in Sets:
+#    for dintf in Set:
+#        dif -did <dintf> -ra <IntReg> -vw 0x0A1B2C3D
+#        n3xt -dif CHECKFORPASS
+#        dif -did <dintf> -ra <IntReg> -vr
+#        n3xt -dif CHECKFORPASS
+n3xt -GETALLDIFANDVMID
+n3xt -INSERTDIFCMDFORALLDIFS DIFWRITE
+n3xt -INSERTDIFCMDFORALLDIFS DIFREAD
+n3xt -DIFLOOPCMD CHECKFORPASS
+n3xt -MULTIDIFCMDLOOP 1
+n3xt -EXECUTEMULTIDIFCMD
+dif -rst
+ctd -mrw read -cl -a RAMREADADDRESS -s 0x4
+n3xt -cmp VAL RAMREADWRITEVAL CHECKFORPASS

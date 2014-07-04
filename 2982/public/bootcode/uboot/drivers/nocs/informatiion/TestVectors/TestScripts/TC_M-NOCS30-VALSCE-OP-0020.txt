@@ -1,0 +1,7 @@
+N3XT -cfg CC_M-NOCS30-0003
+N3XT -UPDATECHIPDATABASE
+sec -dsc -emi 0x0010 -if /StreamInDirName/NoP_TunerType_DS_DSC_Emi0x0010_01.01.ts -of /StreamOutDirName/NoP_TunerType_DS_Recorded_EMI0x0010_SvPid0x1130CERTKLD.ts -videoPid 0x1130 -audioPid 0x1132 -pcrPid 0x1130 -ecmPid 0x1136 -pecm TRUE -tv /CSVInDirName/CERT_EMI0x0010_Svc13_DSC_3x.csv -key  CERT 
+N3XT -cmp FILE CHECKFORPASS
+sec -dsc -emi 0x0010 -if /StreamInDirName/NoP_TunerType_DS_DSC_Emi0x0010_01.01.ts -of /StreamOutDirName/NoP_TunerType_DS_Recorded_EMI0x0010_SvPid0x1160CERTKLD.ts -videoPid 0x1160 -audioPid 0x1162 -pcrPid 0x1160 -ecmPid 0x1166 -pecm TRUE -tv /CSVInDirName/CERT_EMI0x0010_Svc16_DSC_3x.csv -key  CERT 
+N3XT -cmp FILE CHECKFORPASS
+CTD -rst HW

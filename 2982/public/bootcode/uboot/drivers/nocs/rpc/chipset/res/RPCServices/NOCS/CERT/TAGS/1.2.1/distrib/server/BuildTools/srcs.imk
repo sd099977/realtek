@@ -1,0 +1,11 @@
+#
+# Applicable C files selection
+#   : This file was automatically generated
+#     Do not edit it manually
+#
+
+NHT_SRCS +=  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/TRACE_nhcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/_msgbuf_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert_serviceWrapper.c

@@ -1,0 +1,2 @@
+rtd_outl(0xb8006130,0x50000000);//SPDIF from HDMI
+rtd_outl(0xb8006554,0x00000002);//DSFIFO

@@ -1,0 +1,5 @@
+N3XT -cfg CC_M-NOCS30-0003
+N3XT -UPDATECHIPDATABASE
+csd -scr -dec  -key KL -emi 0x4041 -if /StreamInDirName/NoPzDT_SCR_Emi0x4041_01.01.ts -of /StreamOutDirName/NoPzDU_SCR_Recorded_EMI0x4041_KL_VOD_PB.ts -tv /CSVInDirName/CTCut_TDES_SCR1_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

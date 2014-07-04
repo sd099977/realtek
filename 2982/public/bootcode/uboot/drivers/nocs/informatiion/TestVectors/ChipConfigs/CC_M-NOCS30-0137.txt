@@ -1,0 +1,3 @@
+Boot Mode Selection=BMDEFAULT
+Patch Ext SCS FW patch size=SET
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT

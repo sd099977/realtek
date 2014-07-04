@@ -1,0 +1,3 @@
+Boot Mode Selection=BMDEFAULT
+Full Ext SCS FW upgrade address=SET
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT

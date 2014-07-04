@@ -1,0 +1,2 @@
+Market Segment ID=0x00005555
+STB_CA_SN=0x00005555

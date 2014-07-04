@@ -1,0 +1,332 @@
+// -------- PLLDDR--------  //
+rtd_outl(0xb80002dc, 0x000001ff);       // reg_dpi_pll_dum[0] go HIGH (PLL LDO reset)//4.LDO reset--1400~1700MHz
+ScalerTimer_DelayXms(0x100);
+rtd_outl(0xb80002e4, 0x00000000);     //ckref_sel
+rtd_outl(0xb80002C4,0xFFDBFAA9);  // pll PI_RL_BIAS
+rtd_outl(0xb80002C8,0x3D3D003B);  // ddr tx phase sel
+rtd_outl(0xb80002CC,0x28001414);  // ddr tx phase sel
+rtd_outl(0xb80002D0,0x00000879);
+rtd_maskl(0xb8000000, 0xfe7fffff, 0x01800000);       //DCU&DC_phy reset
+ScalerTimer_DelayXms(0x5);
+rtd_maskl(0xb800000c, 0xfffbffff, 0x00040000);       //DCU&DC_phy_ck_en on
+ScalerTimer_DelayXms(0x5);
+ //-------- OE Sync ---------
+rtd_maskl(0xB80002C0,0xC00FFFFF,0x03D00000);
+rtd_maskl(0xB80002C0, 0xFFFFFF00, 0x000000FF);       // enable reg_dpi_mck_clk_en
+ScalerTimer_DelayXms(0x5);
+rtd_maskl(0xB80002C0, 0xFFFF80FF, 0x00007F00); // enable reg_dpi_mck_clk_oe
+ //-------- DQS Mux ---------
+rtd_outl(0xB801E524,0x0000003C);    // dqs_mux / WR LVL
+rtd_outl(0xB801E6A0,0x10000000);    // freq. ratio between PHY&MC
+rtd_maskl(0xB801E6A0,0xF0FFFFFF,0x00000000);    // dqs_mux
+ScalerTimer_DelayXms(0x100);
+// -------- DC SYS--------  //
+#if defined(CONFIG_DDRx1)
+rtd_outl(0xb8008004,0x08620000);
+rtd_outl(0xb8008690, 0x00000000);            //QFP 4Gb
+rtd_outl(0xb8008694, 0x20000000);
+rtd_maskl(0xb8008e00, 0xFDFFFFFF, 0x00000000);// [25] 0: mem_num from DC_SYS reg
+#else
+#if defined(CONFIG_2G)
+rtd_outl(0xb8008004,0x086b0000);  // DDR x 2
+rtd_outl(0xb8008690, 0x00000041); //BGA 4Gb+2Gb
+rtd_outl(0xb8008694, 0x20000000);
+rtd_maskl(0xb8008e00, 0xFDFFFFFF, 0x02000000);// [25] 1: mem_num from DC_SYS cmd
+#elif defined(CONFIG_4G)
+rtd_outl(0xb8008004,0x086b0000);  // DDR x 2
+rtd_outl(0xb8008690, 0x00000000); //BGA 4Gb+4Gb
+rtd_outl(0xb8008694, 0x40000000);
+rtd_maskl(0xb8008e00, 0xFDFFFFFF, 0x00000000);// [25] 0: mem_num from DC_SYS reg
+#elif defined(CONFIG_8G)
+rtd_outl(0xb8008004,0x086b0000);  // DDR x 2
+rtd_outl(0xb8008690, 0x00000081); //BGA 4Gb+8Gb
+rtd_outl(0xb8008694, 0x40000000);
+rtd_maskl(0xb8008e00, 0xFDFFFFFF, 0x02000000);// [25] 1: mem_num from DC_SYS cmd
+#endif
+#endif
+//---------- Arbitration Setting-------------
+rtd_maskl(0xb8008004, 0xfeffffff, 0x01000000);//new pre-arbitration
+rtd_outl(0xb8008028, 0x88620080);              // pre-arb merge
+//Close GPU CTI mode
+rtd_maskl(0xb800802c, 0xfffffffe, 0x00000001);
+//DCU1 Arbitration
+rtd_outl(0xb8008080, 0x00000000);// TVSB2
+rtd_outl(0xb8008084, 0x00100020);// TVSB1
+rtd_outl(0xb8008088, 0x00100020);// SB1
+rtd_outl(0xb800808c, 0x00100040);// SB2
+rtd_outl(0xb8008090, 0x00180040);// SB3
+rtd_outl(0xb8008094, 0x00100020);// VE
+rtd_outl(0xb8008098, 0x00100020);// TVSB3
+rtd_outl(0xb800809c, 0x00180020);// GPU1
+rtd_outl(0xb80080a0, 0x00000020);// DTV Demod
+rtd_outl(0xb80080a4, 0x00100020);// VE2
+rtd_outl(0xb80080a8, 0x00180020);// GPU2
+rtd_outl(0xb80080b0, 0x07ff0007);
+rtd_outl(0xb8008698, 0x00000000);
+rtd_outl(0xb80082D0, 0x0000000F);  // enable error command swap, Enable error command detection
+rtd_outl(0xb80082D4, 0x00000000);  // clear error command status register
+rtd_outl(0xb80082D8, 0x00000000);  // clear error command status register
+//-------- Disable write merge, enable Read Bypass ----------- 
+rtd_outl(0xb8008f04, 0x00000001);// dsiable SCPU write merge, enable bypass read
+//-------- Disable write merger, Multi write, Bypass Read -----------
+//rtd_outl(0xb801a018, 0x00002888); // disable A/VCPU write merge, bypass read
+rtd_outl(0xb801a018, 0x00002000); // disable bit12:Dbus request will issue regardless of previous request is done or not. It will let KCPU hang!
+// -------- DDR PHY--------  //
+ //-------- DDR Timing Setting ---------
+rtd_outl(0xb8008800,0x001CB819);
+rtd_outl(0xb8008804,0x060A0A22);
+rtd_outl(0xb8008808,0x0206070C);
+rtd_outl(0xb800880C,0x2000B0C7);
+rtd_outl(0xb8008810,0x03030D02);
+rtd_outl(0xb8008814,0x00200400);
+rtd_outl(0xb8008818,0x00240080);
+rtd_outl(0xb8008840,0x00003000);  // zq cal. - short
+rtd_outl(0xb8008844,0x00060D71);
+rtd_outl(0xb8008848,0x00000018);
+rtd_outl(0xb800887C,0x00000007);  // short zq cal. enable
+rtd_outl(0xb8008f00,0x00000002);  // 2T, Pin Mux
+// -------- DPI--------  //
+ //-------- addr/cmd tx delay chain ---------
+rtd_outl(0xb801E500,0x44444444);  // addr tx dly chain
+rtd_outl(0xb801E504,0x44444444);  // addr tx dly chain
+rtd_outl(0xb801E508,0x00044400);  // addr tx dly chain
+rtd_outl(0xb801E50C,0x10444444);  // cmd tx dly chain
+rtd_outl(0xb801E61C,0x00000003);// update tx dly
+ //-------- ZQ Calibration ---------
+rtd_outl(0xb801e600,0x00000000);  //ZQ pad PD[4]:0   power on
+rtd_outl(0xb801e51c,0x04010000);//R480 calibration enable
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e688); // [0] R480 calibration done
+rtd_outl(0xb801E51C,0x0C000000);  // zq ctrl / zprog[13:0]
+//rtd_maskl(0xb801e51c,0xFFF7FFFF, 0x00080000);    // [19] 1: ext. zq, 0: int. zq
+ScalerTimer_DelayXms(0x5);
+// zq cal. for SET0 for dqs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x0000067F);    // [30:28] SET = 0, [13:0]  OCD:34,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F74,0x8FFFC000, 0x0000067F);    // dmy reg.:  [30:28] SET = 0, [13:0]  OCD:34,ODT:60
+// zq cal. for SET1 for pupd3 dqs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x10000AFF);    // [30:28] SET = 1, [13:0]  OCD:34,ODT:80
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F78,0x8FFFC000, 0x10000AFF);    // dmy reg.:  [30:28] SET = 1, [13:0]  OCD:34,ODT:80
+// zq cal. for SET2 for ext. cs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x2000067F);    // [30:28] SET = 2, [13:0]  OCD:34,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F7C,0x8FFFC000, 0x2000067F);    // dmy reg.:  [30:28] SET = 2, [13:0]  OCD:34,ODT:60
+// Force Driving
+rtd_maskl(0xb801E674,0xFFFFF0FF,0x00000F00);     // Force OCDP SET2 Driving
+rtd_maskl(0xb801E678,0xFFFFF0FF,0x00000F00);     // Force OCDN SET2 Driving
+// zq cal. for SET3 for qfp addr/cmd
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x30000661);    // [30:28] SET = 3, [13:0]  OCD:60,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee0,0x8FFFC000, 0x30000661);    // dmy reg.:  [30:28] SET = 3, [13:0]  OCD:60,ODT:60
+// zq cal. for SET4 
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x4000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee4,0x8FFFC000, 0x4000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET5
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x5000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee8,0x8FFFC000, 0x5000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET6
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x6000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008eec,0x8FFFC000, 0x6000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET7
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x7000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ef0,0x8FFFC000, 0x7000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+ScalerTimer_DelayXms(0x5);
+ //-------- dqs/dq tx delay chain ---------
+rtd_outl(0xb801E530,0x44444444);  // dq dly chain
+rtd_outl(0xb801e534,0x44444444);
+rtd_outl(0xb801e538,0x44444444);
+rtd_outl(0xb801e53c,0x44444444);
+rtd_outl(0xb801E540,0x44444444);  // dqs/dm dly chain
+rtd_outl(0xb801E680,0x00004444);  // dqs oe dly chain
+rtd_outl(0xb801E61C,0x00000003);// update tx dly
+ //-------- tmcl_rd ---------
+rtd_outl(0xb801E544,0x0000C018);  // dqs0 tmcl_rd
+rtd_outl(0xb801E548,0x0000C018);  // dqs1 tmcl_rd
+rtd_outl(0xb801E54C,0x0000C01A);  // dqs2 tmcl_rd
+rtd_outl(0xb801E550,0x0000C01A);  // dqs3 tmcl_rd
+rtd_outl(0xb801E554,0x00010012);  // fifo to dbus timing
+rtd_outl(0xb801E558,0x00007FFF);  // odt en
+//-------- 3-point Calibration Range ---------
+rtd_outl(0xb801E568,0x11117777);  // rd cal. shift ctrl
+rtd_outl(0xb801E56c,0x11111111); // rd cal. right range - dqs0
+rtd_outl(0xb801E570,0x11111111);
+rtd_outl(0xb801E574,0x11111111);
+rtd_outl(0xb801E578,0x11111111);
+rtd_outl(0xb801E57C,0x11111111);  // rd cal. left range - dqs0
+rtd_outl(0xb801E580,0x11111111);
+rtd_outl(0xb801E584,0x11111111);
+rtd_outl(0xb801E588,0x11111111);
+rtd_outl(0xB801E61C,0x00000030); // update rd cal. Range
+ //-------- DQ RX Phase ---------
+rtd_outl(0xb801e58c,0x07070707);//dqs0p[3:0]
+rtd_outl(0xb801e5ac,0x0A0A0A0A);//dqs0n[3:0]
+rtd_outl(0xb801e59c,0x07070707);//dqs0p[7:4]
+rtd_outl(0xb801e5bc,0x0A0A0A0A);//dqs0n[7:4]
+rtd_outl(0xb801e590,0x07070707);//dqs1p[3:0]
+rtd_outl(0xb801e5b0,0x0A0A0A0A);//dqs1n[3:0]
+rtd_outl(0xb801e5a0,0x07070707);//dqs1p[7:4]
+rtd_outl(0xb801e5c0,0x0A0A0A0A);//dqs1n[7:4]
+rtd_outl(0xb801e594,0x0B0C0B0F);//dqs2p[3:0]
+rtd_outl(0xb801e5b4,0x0A0C0A0E);//dqs2n[3:0]
+rtd_outl(0xb801e5a4,0x0A0C0A0C);//dqs2p[7:4]
+rtd_outl(0xb801e5c4,0x090C090B);//dqs2n[7:4]
+rtd_outl(0xb801e598,0x0B0B0E0A);//dqs3p[3:0]
+rtd_outl(0xb801e5b8,0x0A090D09);//dqs3n[3:0]
+rtd_outl(0xb801e5a8,0x0C0A0E0A);//dqs3p[7:4]
+rtd_outl(0xb801e5c8,0x0B080D0A);//dqs3n[7:4]
+rtd_outl(0xB801E61C,0x0000000C);        // update the Rx dly chain
+ //-------- ZQ Calibration Result ---------
+ //-------- DQ ODT set sel ---------
+rtd_outl(0xb801E564,0x00000000);  // DQ ODT set sel
+rtd_outl(0xb801E5D4,0x00000000);  // DQ OCD set sel
+rtd_outl(0xb801E5D8,0x00110011);  // DQS ODT set sel
+rtd_outl(0xb801E5DC,0x11001100);  // DQS ODT set sel
+rtd_outl(0xb801E5F0,0x00000000);  // DQS OCD set sel
+rtd_outl(0xb801E5F4,0x00000000);  // Addr/Cmd OCD set sel
+rtd_outl(0xb801E5F8,0x00000000);  // CK OCD set sel
+rtd_outl(0xb801E6CC,0x00002200);
+//-------- PAD Power Control ---------
+rtd_outl(0xb801e510,0x3ef);//cmd&add_OE
+rtd_outl(0xb801e514,0x0);//PAD_IDDQ
+rtd_outl(0xb801E600,0x00000010);  // zq pad[4] 0:on/1:off
+rtd_outl(0xb801E618,0x00EF2042);
+//============================DDR_initial==================//
+rtd_maskl(0xB8008F80,0xFFF00000,0x000b0617);
+rtd_outl(0xb8008840, 0x00000003);       //DRAM init
+ScalerTimer_DelayXms(0x30);
+rtd_outl(0xb8008840, 0x03000000);       //end 200us
+ScalerTimer_DelayXms(0x60);
+rtd_outl(0xb8008840, 0x0c000000);       //end 500us
+ScalerTimer_DelayXms(0x5); 
+//==========================DDR_initail_end==================//
+rtd_maskl(0xb8008ff8,0xFFFFFFFB, 0x00000004);    // Disable Ext. CS
+rtd_outl(0xb8008844,0x00040F71);        // KGD MR0/MR1
+rtd_outl(0xb8008848,0x00000058);        // KGD MR2/MR3
+rtd_outl(0xb8008840, 0x0000000C);       // Enable MRS for MR0
+ScalerTimer_DelayXms(0x1);
+rtd_outl(0xb8008840, 0x00000030);       // Enable MRS for MR1
+ScalerTimer_DelayXms(0x1);
+rtd_outl(0xb8008840, 0x000000C0);       // Enable MRS for MR2
+ScalerTimer_DelayXms(0x1);
+rtd_outl(0xb8008840, 0x00000300);       // Enable MRS for MR3
+ScalerTimer_DelayXms(0x1);
+rtd_maskl(0xb8008ff8,0xFFFFFFFB, 0x00000000);    // Disable Ext. CS
+//===================== For STR  ==================//
+#if defined(CONFIG_STR)
+// IF 0xb8060010[3]=0x1(DDR_ISO is enable), then do STR flow
+rtd_outl(0xffffff08,0xb8060010);//address for check
+rtd_outl(0xffffff68,0x00000008);//mask value bit3
+rtd_outl(0xffffff88,0x00000008);//Expected Value
+rtd_outl(0xffffffa8,0xbad0c0de);//magic word for conditional hw setting start 
+//-------- Enter Self Refresh -------- 
+rtd_outl(0xb8008828,0x00000008);
+ScalerTimer_DelayXms(0x5);
+//-------- Disable DDR ISO -------- 
+rtd_outl(0xb8060010,0x00000006);
+rtd_outl(0xb80600e8,0x00000000);
+ScalerTimer_DelayXms(0x5);
+ //-------- ZQ Calibration ---------
+rtd_outl(0xb801e600,0x00000000);  //ZQ pad PD[4]:0   power on
+rtd_outl(0xb801e51c,0x04010000);//R480 calibration enable
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e688); // [0] R480 calibration done
+rtd_outl(0xb801E51C,0x0C000000);  // zq ctrl / zprog[13:0]
+/``/ [19] 1: ext. zq, 0: int. zq
+ScalerTimer_DelayXms(0x5);
+// zq cal. for SET0 for dqs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x0000067F);    // [30:28] SET = 0, [13:0]  OCD:34,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F74,0x8FFFC000, 0x0000067F);    // dmy reg.:  [30:28] SET = 0, [13:0]  OCD:34,ODT:60
+// zq cal. for SET1 for pupd3 dqs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x10000AFF);    // [30:28] SET = 1, [13:0]  OCD:34,ODT:80
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F78,0x8FFFC000, 0x10000AFF);    // dmy reg.:  [30:28] SET = 1, [13:0]  OCD:34,ODT:80
+// zq cal. for SET2 for ext. cs
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x2000067F);    // [30:28] SET = 2, [13:0]  OCD:34,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008F7C,0x8FFFC000, 0x2000067F);    // dmy reg.:  [30:28] SET = 2, [13:0]  OCD:34,ODT:60
+// Force Driving
+rtd_maskl(0xb801E674,0xFFFFF0FF,0x00000F00);     // Force OCDP SET2 Driving
+rtd_maskl(0xb801E678,0xFFFFF0FF,0x00000F00);     // Force OCDN SET2 Driving
+// zq cal. for SET3 for qfp addr/cmd
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x30000661);    // [30:28] SET = 3, [13:0]  OCD:60,ODT:60
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee0,0x8FFFC000, 0x30000661);    // dmy reg.:  [30:28] SET = 3, [13:0]  OCD:60,ODT:60
+// zq cal. for SET4 
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x4000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee4,0x8FFFC000, 0x4000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET5
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x5000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ee8,0x8FFFC000, 0x5000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET6
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x6000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008eec,0x8FFFC000, 0x6000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+// zq cal. for SET7
+rtd_maskl(0xb801e51c,0x8FFFC000, 0x7000217F);    // [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x01000000);    // Calibration Start
+ScalerTimer_DelayXms(0x5);
+rtd_inl(0xb801e520);//wait[31]=1,wait calibration done
+rtd_maskl(0xb801e51c,0xFEFFFFFF, 0x00000000);    // Disable Calibration 
+rtd_maskl(0xb8008ef0,0x8FFFC000, 0x7000217F);    // dmy reg.:  [30:28] SET = 4, [13:0]  OCD:34,ODT:55
+ScalerTimer_DelayXms(0x5);
+//-------- Exit Self Refresh -------- 
+rtd_outl(0xb8008828,0x00000004);
+rtd_outl(0xb8060100,0x2379beef);
+ScalerTimer_DelayXms(0x5);
+rtd_outl(0xffffffc8,0xbad0c0de);//magic word for conditional hw setting end
+// ENDIF
+//===================== For STR End ==================//
+#endif

@@ -1,0 +1,20 @@
+# This script contains examples of command for the BSD App.
+# It does not replace any part of the NOCS3 validation. It is provided as an example of syntax for the BSD App.
+# Together with the Nagra test infrastruture (BSD App, communication, RPC server), it can be used as stimulus generator for BSD API and extended API test.
+#
+# If this script is not executed with N3XT, the following pattern shall be replaced before executing the command
+#   RootDirName = path to the root directory 
+#   CTCut = <chipset name><chipset cut>
+#   bsd = the leading one shall be replaced by the BSD App name 
+#
+bsd -status -oc
+bsd -reset
+bsd -rand -n 0x40 -of RootDirName/Otuput/Bin/rand_out_bsd.bin
+bsd -sha SHA256 -if RootDirName/TestVectors/BinIn/sha256_in.bin -of RootDirName/Outputs/Bin/sha256_out_bsd.bin
+bsd -rsa -pub -dec -keysize 0x80 -expE 0x11 -modN RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of RootDirName/Output/Bin/rsa_padding_pkcs1_v1_5_pub_dec_out_bsd.bin
+bsd -r2r -enc -key SW -emi 0x4021 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4021_SWenc_bsd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4043 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4043_SWdec_bsd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+bsd -r2r -enc -key KL -emi 0x4041 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4041_KLenc_bsd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4026 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4026_KLdec_bsd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+
+

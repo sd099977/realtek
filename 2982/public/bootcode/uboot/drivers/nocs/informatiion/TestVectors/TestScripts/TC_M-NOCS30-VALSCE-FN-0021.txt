@@ -1,0 +1,9 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+csd -scr -enc  -key KL -emi 0x0022 -if /StreamInDirName/NoPzDU_ScrClearRef_Clear_01.01.ts -of /StreamOutDirName/NoPzDA_SCR_Recorded_EMI0x0022_KL_PVR_REC.ts -tv /CSVInDirName/CTCut_AES_SCR1_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+csd -scr -dec  -key KL -emi 0x0022 -if /StreamOutDirName/NoPzDA_SCR_Recorded_EMI0x0022_KL_PVR_REC.ts -of /StreamOutDirName/NoPzDU_SCR_Recorded_EMI0x0022_KL_PVR_PB1.ts -tv /CSVInDirName/CTCut_AES_SCR1_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+csd -scr -dec  -key KL -emi 0x0022 -if /StreamOutDirName/NoPzDA_SCR_Recorded_EMI0x0022_KL_PVR_REC.ts -of /StreamOutDirName/NoPzDU_SCR_Recorded_EMI0x0022_KL_PVR_PB2.ts -tv /CSVInDirName/CTCut_AES_SCR2_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

@@ -1,0 +1,5 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+ctd -sce -dec -keyemi 0x0001 -sceemi 0x0020 -if /StreamInDirName/NoPzDA_SCR_Emi0x0020_01.02.ts -of /StreamOutDirName/NoPzDU_CTD_SCE_SCR_dec_Recorded_EMI0x0020.ts -pecm FALSE -tv /CSVInDirName/CTCut_DVBv3RK_AES_SCR1_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

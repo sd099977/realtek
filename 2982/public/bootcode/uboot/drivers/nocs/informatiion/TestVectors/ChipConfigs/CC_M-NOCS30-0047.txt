@@ -1,0 +1,6 @@
+Market Segment ID=MSID_PROD
+Versioning=VER_PROD
+Boot Mode Selection=eMMC
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT
+Flash Protection Activation Flag=SET
+SCS Activation Flag=SET

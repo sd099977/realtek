@@ -1,0 +1,1164 @@
+															0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F	EOC!
+						Pin Share with Digital signal?	reset value							default	0000	0001	0010	0011	0100	0101	0110	0111	1000	1001	1010	1011	1100	1101	1110	1111	EOC!
+																															EOC!
+IP List	RTL PAD Instance	PMM?	5V Tolerance	lqfp128 no	lqfp-216-1 no	Pin Share with Digital signal?	default PS Reset Value	Pin Share Function	pin share register	Input MUX Setting	Output MUX Setting	"GPIO setting
+IO_Set: Setting GPI or GPO  In=0, Out=1
+GPO_Set: Output data  Low=0, High=1
+GPI_Read: Read intput data"	"PWM setting  200Hz, 50% duty cycle  
+Duty_Set:  Setting duty cycle and total cycle 
+                Duty=[27:16], Total=[11:0]
+Div_Set:    Setting divider  1'st=[13:12], 2'nd=[11:0]  
+EN_Set:    Output enable"	default	LVDS(include mini-LVDS)/EPI/NAND FLASH	RSDS/TP/PCMCIA/SPI	TTL/CLK	TCON/S.C/DTV_AGC	TCON/DDC/VS_OUT/ATV_AGC	I2C	Special	irrx/IRTX	uart	SPDIF	EJTAG/USB	I2S	ANA1	ANA2	Debug	GPIO	EOC!
+GPIO	PAD_GPIO_0	NO	YES			YES	F	"3: DEMOD_AGC_RF,<OD>
+4: ATV_RF_AGC,<OD>
+6: ATV_IF_AGC,<OD>
+D: misc_pwm_0_out,<O>
+F: MIS_GPIO_bit0,<I/O>
+def: MIS_GPIO_bit0,<I/O>"	0x1800_0800[31:28]			"IO_Set:         0x1801BC00[0]  
+GPO_Set:      0x1801BC14[0]  
+GPI_Read:    0x1801BC28[0]  "	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit0,<I/O>"	X	X	X	"DEMOD_AGC_RF,<OD>"	"ATV_RF_AGC,<OD>"	X	"ATV_IF_AGC,<OD>"	X	X	X	X	X	X	"misc_pwm_0_out,<O>"	X	"MIS_GPIO_bit0,<I/O>"	EOC!
+GPIO	PAD_GPIO_1	NO	YES			YES	F	"3: DEMOD_AGC_IF,<OD>
+4: ATV_IF_AGC,<OD>
+6: ATV_RF_AGC,<OD>
+D: misc_pwm_1_out,<O>
+F: MIS_GPIO_bit1,<I/O>
+def: MIS_GPIO_bit1,<I/O>"	0x1800_0800[23:20]			"IO_Set:         0x1801BC00[1]  
+GPO_Set:      0x1801BC14[1]  
+GPI_Read:    0x1801BC28[1]  "	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit1,<I/O>"	X	X	X	"DEMOD_AGC_IF,<OD>"	"ATV_IF_AGC,<OD>"	X	"ATV_RF_AGC,<OD>"	X	X	X	X	X	X	"misc_pwm_1_out,<O>"	X	"MIS_GPIO_bit1,<I/O>"	EOC!
+GPIO	PAD_GPIO_2	NO	YES			YES	F	"1: TP0_Data_bit2,<I>,<HS>
+D: misc_pwm_2_out,<O>
+F: MIS_GPIO_bit2,<I/O>
+def: MIS_GPIO_bit2,<I/O>"	0x1800_0800[15:12]			"IO_Set:         0x1801BC00[2]  
+GPO_Set:      0x1801BC14[2]  
+GPI_Read:    0x1801BC28[2]  "	"Duty_Set:  0x1801BCA4 = 0x00320063  
+Div_Set:    0x1801BCA0 = 0x800030A8  
+EN_Set:     0x1801BC9C = 0x60000000"	"MIS_GPIO_bit2,<I/O>"	X	"TP0_Data_bit2,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_2_out,<O>"	X	"MIS_GPIO_bit2,<I/O>"	EOC!
+GPIO	PAD_GPIO_3	NO	YES			YES	F	"1: TP0_Data_bit1,<I>,<HS>
+D: misc_pwm_3_out,<O>
+F: MIS_GPIO_bit3,<I/O>
+def: MIS_GPIO_bit3,<I/O>"	0x1800_0800[7:4]			"IO_Set:         0x1801BC00[3]  
+GPO_Set:      0x1801BC14[3]  
+GPI_Read:    0x1801BC28[3]  "	"Duty_Set:  0x1801BCB0 = 0x00320063  
+Div_Set:    0x1801BCAC = 0x800030A8  
+EN_Set:     0x1801BCA8 = 0x60000000"	"MIS_GPIO_bit3,<I/O>"	X	"TP0_Data_bit1,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_3_out,<O>"	X	"MIS_GPIO_bit3,<I/O>"	EOC!
+GPIO	PAD_GPIO_4	NO	YES			YES	F	"1: TP0_Data_bit0,<I>,<HS>
+D: misc_pwm_4_out,<O>
+F: MIS_GPIO_bit4,<I/O>
+def: MIS_GPIO_bit4,<I/O>"	0x1800_0804[31:28]			"IO_Set:         0x1801BC00[4]  
+GPO_Set:      0x1801BC14[4]  
+GPI_Read:    0x1801BC28[4]  "	"Duty_Set:  0x1801BCBC = 0x00320063  
+Div_Set:    0x1801BCB8 = 0x800030A8  
+EN_Set:     0x1801BCB4 = 0x60000000"	"MIS_GPIO_bit4,<I/O>"	X	"TP0_Data_bit0,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_4_out,<O>"	X	"MIS_GPIO_bit4,<I/O>"	EOC!
+GPIO	PAD_GPIO_5	NO	YES			YES	F	"1: TP0_SYNC,<I>,<HS>
+D: misc_pwm_5_out,<O>
+F: MIS_GPIO_bit5,<I/O>
+def: MIS_GPIO_bit5,<I/O>"	0x1800_0804[23:20]			"IO_Set:         0x1801BC00[5]  
+GPO_Set:      0x1801BC14[5]  
+GPI_Read:    0x1801BC28[5]  "	"Duty_Set:  0x1801BCC8 = 0x00320063  
+Div_Set:    0x1801BCC4 = 0x800030A8  
+EN_Set:     0x1801BCC0 = 0x60000000"	"MIS_GPIO_bit5,<I/O>"	X	"TP0_SYNC,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_5_out,<O>"	X	"MIS_GPIO_bit5,<I/O>"	EOC!
+GPIO	PAD_GPIO_6	NO	YES			YES	F	"1: TP0_VAL,<I>,<HS>
+D: misc_pwm_6_out,<O>
+F: MIS_GPIO_bit6,<I/O>
+def: MIS_GPIO_bit6,<I/O>"	0x1800_0804[15:12]			"IO_Set:         0x1801BC00[6]  
+GPO_Set:      0x1801BC14[6]  
+GPI_Read:    0x1801BC28[6]  "	"Duty_Set:  0x1801BCD4 = 0x00320063  
+Div_Set:    0x1801BCD0 = 0x800030A8  
+EN_Set:     0x1801BCCC = 0x60000000"	"MIS_GPIO_bit6,<I/O>"	X	"TP0_VAL,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_6_out,<O>"	X	"MIS_GPIO_bit6,<I/O>"	EOC!
+GPIO	PAD_GPIO_7	NO	YES			YES	F	"1: CLK_TP0_en,<I>,<HS>
+D: misc_pwm_7_out,<O>
+E: test_extend_bit0,<I/O>
+F: MIS_GPIO_bit7,<I/O>
+def: MIS_GPIO_bit7,<I/O>"	0x1800_0804[7:4]			"IO_Set:         0x1801BC00[7]  
+GPO_Set:      0x1801BC14[7]  
+GPI_Read:    0x1801BC28[7]  "	"Duty_Set:  0x1801BCE0 = 0x00320063  
+Div_Set:    0x1801BCDC = 0x800030A8  
+EN_Set:     0x1801BCD8 = 0x60000000 "	"MIS_GPIO_bit7,<I/O>"	X	"CLK_TP0_en,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_7_out,<O>"	"test_extend_bit0,<I/O>"	"MIS_GPIO_bit7,<I/O>"	EOC!
+GPIO	PAD_GPIO_8	NO	YES			YES	F	"0: TP2_Data_bit7,<I>,<HS>
+1: TPO_dato_bit7_pad,<O>,<HS>
+D: misc_pwm_0_out,<O>
+E: test_extend_bit1,<I/O>
+F: MIS_GPIO_bit8,<I/O>
+def: MIS_GPIO_bit8,<I/O>"	0x1800_0808[31:28]			"IO_Set:         0x1801BC00[8]  
+GPO_Set:      0x1801BC14[8]  
+GPI_Read:    0x1801BC28[8]  "	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit8,<I/O>"	"TP2_Data_bit7,<I>,<HS>"	"TPO_dato_bit7_pad,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_0_out,<O>"	"test_extend_bit1,<I/O>"	"MIS_GPIO_bit8,<I/O>"	EOC!
+GPIO	PAD_GPIO_9	NO	YES		47	YES	F	"0: TP2_Data_bit6,<I>,<HS>
+1: TPO_dato_bit6_pad,<O>,<HS>
+3: DEMOD_I2C_SDA_RELAY_SRC0,<I/O>
+5: I2C1_SDA_SRC0,<I/O>
+9: SPDIF_OUT,<O>
+D: misc_pwm_1_out,<O>
+E: test_extend_bit2,<I/O>
+F: MIS_GPIO_bit9,<I/O>
+def: MIS_GPIO_bit9,<I/O>"	0x1800_0808[23:20]	"4: 0xb800_08C4[11] = 0x0
+5: 0xb800_08C0[9:6] = 0x0"		"IO_Set:         0x1801BC00[9]  
+GPO_Set:      0x1801BC14[9]  
+GPI_Read:    0x1801BC28[9]  "	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit9,<I/O>"	"TP2_Data_bit6,<I>,<HS>"	"TPO_dato_bit6_pad,<O>,<HS>"	X	"DEMOD_I2C_SDA_RELAY_SRC0,<I/O>"	X	"I2C1_SDA_SRC0,<I/O>"	X	X	X	"SPDIF_OUT,<O>"	X	X	X	"misc_pwm_1_out,<O>"	"test_extend_bit2,<I/O>"	"MIS_GPIO_bit9,<I/O>"	EOC!
+GPIO	PAD_GPIO_10	NO	YES		48	YES	F	"0: CLK_TP2_en,<I>,<HS>
+1: TPO_CLK_pad,<O>,<HS>
+3: DEMOD_I2C_SCL_RELAY,<OD>
+5: I2C1_SCL_SRC0,<I/O>
+D: misc_pwm_2_out,<O>
+E: test_extend_bit3,<I/O>
+F: MIS_GPIO_bit10,<I/O>
+def: MIS_GPIO_bit10,<I/O>"	0x1800_0808[15:12]	5: 0xb800_08C0[9:6] = 0x0		"IO_Set:         0x1801BC00[10]  
+GPO_Set:      0x1801BC14[10]  
+GPI_Read:    0x1801BC28[10]  "	"Duty_Set:  0x1801BCA4 = 0x00320063  
+Div_Set:    0x1801BCA0 = 0x800030A8  
+EN_Set:     0x1801BC9C = 0x60000000"	"MIS_GPIO_bit10,<I/O>"	"CLK_TP2_en,<I>,<HS>"	"TPO_CLK_pad,<O>,<HS>"	X	"DEMOD_I2C_SCL_RELAY,<OD>"	X	"I2C1_SCL_SRC0,<I/O>"	X	X	X	X	X	X	X	"misc_pwm_2_out,<O>"	"test_extend_bit3,<I/O>"	"MIS_GPIO_bit10,<I/O>"	EOC!
+GPIO	PAD_GPIO_11	NO	YES	30	49	YES	F	"0: TP2_Data_bit5,<I>,<HS>
+1: TPO_dato_bit5_pad,<O>,<HS>
+3: DEMOD_AGC_RF,<OD>
+4: ATV_RF_AGC,<OD>
+6: ATV_IF_AGC,<OD>
+D: misc_pwm_3_out,<O>
+E: test_en_bit24,<I/O>
+F: MIS_GPIO_bit11,<I/O>
+def: MIS_GPIO_bit11,<I/O>"	0x1800_0808[7:4]			"IO_Set:         0x1801BC00[11]
+GPO_Set:      0x1801BC14[11]
+GPI_Read:    0x1801BC28[11]"	"Duty_Set:  0x1801BCB0 = 0x00320063  
+Div_Set:    0x1801BCAC = 0x800030A8  
+EN_Set:     0x1801BCA8 = 0x60000000"	"MIS_GPIO_bit11,<I/O>"	"TP2_Data_bit5,<I>,<HS>"	"TPO_dato_bit5_pad,<O>,<HS>"	X	"DEMOD_AGC_RF,<OD>"	"ATV_RF_AGC,<OD>"	X	"ATV_IF_AGC,<OD>"	X	X	X	X	X	X	"misc_pwm_3_out,<O>"	"test_en_bit24,<I/O>"	"MIS_GPIO_bit11,<I/O>"	EOC!
+GPIO	PAD_GPIO_12	NO	YES	31	50	YES	F	"0: TP2_Data_bit4,<I>,<HS>
+1: TPO_dato_bit4_pad,<O>,<HS>
+3: DEMOD_AGC_IF,<OD>
+4: ATV_IF_AGC,<OD>
+6: ATV_RF_AGC,<OD>
+D: misc_pwm_4_out,<O>
+E: test_en_bit25,<I/O>
+F: MIS_GPIO_bit12,<I/O>
+def: MIS_GPIO_bit12,<I/O>"	 0x1800_080C[31:28]			"IO_Set:         0x1801BC00[12]
+GPO_Set:      0x1801BC14[12]
+GPI_Read:    0x1801BC28[12]"	"Duty_Set:  0x1801BCBC = 0x00320063  
+Div_Set:    0x1801BCB8 = 0x800030A8  
+EN_Set:     0x1801BCB4 = 0x60000000"	"MIS_GPIO_bit12,<I/O>"	"TP2_Data_bit4,<I>,<HS>"	"TPO_dato_bit4_pad,<O>,<HS>"	X	"DEMOD_AGC_IF,<OD>"	"ATV_IF_AGC,<OD>"	X	"ATV_RF_AGC,<OD>"	X	X	X	X	X	X	"misc_pwm_4_out,<O>"	"test_en_bit25,<I/O>"	"MIS_GPIO_bit12,<I/O>"	EOC!
+GPIO	PAD_GPIO_13	NO	NO		51	YES	F	"0: TP2_VAL,<I>,<HS>
+1: TPO_VAL_pad,<O>,<HS>
+3: TCON_bit0,<O>
+B: I2S_out_Data0,<O>
+C: misc_uni_pwm0,<O>
+D: misc_pwm_5_out,<O>
+F: MIS_GPIO_bit13,<I/O>
+def: MIS_GPIO_bit13,<I/O>"	0x1800_080C[23:20]		C: 0xb800_08CC[2:0] = 0x0~7	"IO_Set:         0x1801BC00[13]
+GPO_Set:      0x1801BC14[13]
+GPI_Read:    0x1801BC28[13]"	"Duty_Set:  0x1801BCC8 = 0x00320063  
+Div_Set:    0x1801BCC4 = 0x800030A8  
+EN_Set:     0x1801BCC0 = 0x60000000"	"MIS_GPIO_bit13,<I/O>"	"TP2_VAL,<I>,<HS>"	"TPO_VAL_pad,<O>,<HS>"	X	"TCON_bit0,<O>"	X	X	X	X	X	X	X	"I2S_out_Data0,<O>"	"misc_uni_pwm0,<O>"	"misc_pwm_5_out,<O>"	X	"MIS_GPIO_bit13,<I/O>"	EOC!
+GPIO	PAD_GPIO_14	NO	NO			YES	F	"0: TP2_Data_bit3,<I>,<HS>
+1: TPO_dato_bit3_pad,<O>,<HS>
+D: misc_pwm_6_out,<O>
+F: MIS_GPIO_bit14,<I/O>
+def: MIS_GPIO_bit14,<I/O>"	0x1800_080C[15:12]			"IO_Set:         0x1801BC00[14]
+GPO_Set:      0x1801BC14[14]
+GPI_Read:    0x1801BC28[14]"	"Duty_Set:  0x1801BCD4 = 0x00320063  
+Div_Set:    0x1801BCD0 = 0x800030A8  
+EN_Set:     0x1801BCCC = 0x60000000"	"MIS_GPIO_bit14,<I/O>"	"TP2_Data_bit3,<I>,<HS>"	"TPO_dato_bit3_pad,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_6_out,<O>"	X	"MIS_GPIO_bit14,<I/O>"	EOC!
+GPIO	PAD_GPIO_15	NO	NO			YES	F	"0: TP2_Data_bit2,<I>,<HS>
+1: TPO_dato_bit2_pad,<O>,<HS>
+D: misc_pwm_7_out,<O>
+F: MIS_GPIO_bit15,<I/O>
+def: MIS_GPIO_bit15,<I/O>"	0x1800_080C[7:4]			"IO_Set:         0x1801BC00[15]
+GPO_Set:      0x1801BC14[15]
+GPI_Read:    0x1801BC28[15]"	"Duty_Set:  0x1801BCE0 = 0x00320063  
+Div_Set:    0x1801BCDC = 0x800030A8  
+EN_Set:     0x1801BCD8 = 0x60000000 "	"MIS_GPIO_bit15,<I/O>"	"TP2_Data_bit2,<I>,<HS>"	"TPO_dato_bit2_pad,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_7_out,<O>"	X	"MIS_GPIO_bit15,<I/O>"	EOC!
+GPIO	PAD_GPIO_16	NO	NO			YES	F	"0: TP2_Data_bit1,<I>,<HS>
+1: TPO_dato_bit1_pad,<O>,<HS>
+D: misc_pwm_0_out,<O>
+F: MIS_GPIO_bit16,<I/O>
+def: MIS_GPIO_bit16,<I/O>"	0x1800_0810[31:28]			"IO_Set:         0x1801BC00[16]
+GPO_Set:      0x1801BC14[16]
+GPI_Read:    0x1801BC28[16]"	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit16,<I/O>"	"TP2_Data_bit1,<I>,<HS>"	"TPO_dato_bit1_pad,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_0_out,<O>"	X	"MIS_GPIO_bit16,<I/O>"	EOC!
+GPIO	PAD_GPIO_17	NO	NO		54	YES	F	"0: TP2_Data_bit0,<I>,<HS>
+1: TPO_dato_bit0_pad,<O>,<HS>
+3: ATV_VSYNC_OUT,<O>
+B: I2S_out_SCLK,<O>
+D: misc_pwm_1_out,<O>
+F: MIS_GPIO_bit17,<I/O>
+def: MIS_GPIO_bit17,<I/O>"	0x1800_0810[23:20]			"IO_Set:         0x1801BC00[17]
+GPO_Set:      0x1801BC14[17]
+GPI_Read:    0x1801BC28[17]"	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit17,<I/O>"	"TP2_Data_bit0,<I>,<HS>"	"TPO_dato_bit0_pad,<O>,<HS>"	X	"ATV_VSYNC_OUT,<O>"	X	X	X	X	X	X	X	"I2S_out_SCLK,<O>"	X	"misc_pwm_1_out,<O>"	X	"MIS_GPIO_bit17,<I/O>"	EOC!
+GPIO	PAD_GPIO_18	NO	NO	34	55	YES	F	"0: TP2_SYNC,<I>,<HS>
+1: TPO_SYNC_pad,<O>,<HS>
+2: TTL_denout,<O>,<HS>
+3: TCON_bit1,<O>
+6: P_HIF_en,<I>
+8: uart3_txdo,<O>
+9: SPDIF_OUT,<O>
+A: USB_PWR_FLAG0_SRC0,<I>
+B: I2S_out_WCLK,<O>
+C: misc_uni_pwm1,<O>
+D: misc_pwm_6_out,<O>
+E: test_en_bit26,<I/O>
+F: MIS_GPIO_bit18,<I/O>
+def: MIS_GPIO_bit18,<I/O>"	0x1800_0810[15:12]	"8: 0xb800_08C0[5:4] = 0x0
+A: 0xb800_08C4[23:22] = 0x0"	C: 0xb800_08CC[6:4] = 0x0~7	"IO_Set:         0x1801BC00[18]
+GPO_Set:      0x1801BC14[18]
+GPI_Read:    0x1801BC28[18]"	"Duty_Set:  0x1801BCD4 = 0x00320063  
+Div_Set:    0x1801BCD0 = 0x800030A8  
+EN_Set:     0x1801BCCC = 0x60000000"	"MIS_GPIO_bit18,<I/O>"	"TP2_SYNC,<I>,<HS>"	"TPO_SYNC_pad,<O>,<HS>"	"TTL_denout,<O>,<HS>"	"TCON_bit1,<O>"	X	X	"P_HIF_en,<I>"	X	"uart3_txdo,<O>"	"SPDIF_OUT,<O>"	"USB_PWR_FLAG0_SRC0,<I>"	"I2S_out_WCLK,<O>"	"misc_uni_pwm1,<O>"	"misc_pwm_6_out,<O>"	"test_en_bit26,<I/O>"	"MIS_GPIO_bit18,<I/O>"	EOC!
+GPIO	PAD_GPIO_19	NO	NO	35	56	YES	F	"1: PCMCIA_IOWR_N,<O>,<HS>
+2: TTL_vsout,<O>,<HS>
+3: TCON_bit2,<O>
+4: DEMOD_ANT_TX_SRC0, <I/O>
+5: I2C1_SDA_SRC1,<I/O>
+D: misc_pwm_7_out,<O>
+E: test_en_bit27,<I/O>
+F: MIS_GPIO_bit19,<I/O>
+def: MIS_GPIO_bit19,<I/O>"	0x1800_0810[7:4]	"4: 0xb800_08C4[12] = 0x0
+5: 0xb800_08C0[9:6] = 0x1"		"IO_Set:         0x1801BC00[19]
+GPO_Set:      0x1801BC14[19]
+GPI_Read:    0x1801BC28[19]"	"Duty_Set:  0x1801BCE0 = 0x00320063  
+Div_Set:    0x1801BCDC = 0x800030A8  
+EN_Set:     0x1801BCD8 = 0x60000000 "	"MIS_GPIO_bit19,<I/O>"	X	"PCMCIA_IOWR_N,<O>,<HS>"	"TTL_vsout,<O>,<HS>"	"TCON_bit2,<O>"	"DEMOD_ANT_TX_SRC0, <I/O>"	"I2C1_SDA_SRC1,<I/O>"	X	X	X	X	X	X	X	"misc_pwm_7_out,<O>"	"test_en_bit27,<I/O>"	"MIS_GPIO_bit19,<I/O>"	EOC!
+GPIO	PAD_GPIO_20	NO	NO	36	57	YES	F	"1: PCMCIA_IORD_N,<O>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit3,<O>
+4: DEMOD_ANT_OE_SRC0, <I/O>
+5: I2C1_SCL_SRC1,<I/O>
+8: uart3_rxdi_src0,<I>
+D: misc_pwm_0_out,<O>
+E: test_en_bit0,<I/O>
+F: MIS_GPIO_bit20,<I/O>
+def: MIS_GPIO_bit20,<I/O>"	0x1800_0814[31:28]	"4: 0xb800_08C4[13] = 0x0
+5: 0xb800_08C0[9:6] = 0x1
+8: 0xb800_08C0[5:4] = 0x0"		"IO_Set:         0x1801BC00[20]
+GPO_Set:      0x1801BC14[20]
+GPI_Read:    0x1801BC28[20]"	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit20,<I/O>"	X	"PCMCIA_IORD_N,<O>,<HS>"	"TTL_hsout,<O>,<HS>"	"TCON_bit3,<O>"	"DEMOD_ANT_OE_SRC0, <I/O>"	"I2C1_SCL_SRC1,<I/O>"	X	X	"uart3_rxdi_src0,<I>"	X	X	X	X	"misc_pwm_0_out,<O>"	"test_en_bit0,<I/O>"	"MIS_GPIO_bit20,<I/O>"	EOC!
+GPIO	PAD_GPIO_21	NO	YES	37	58	YES	F	"0: TP2_ERR,<I>,<HS>
+1: TP0_Data_bit7,<I>,<HS>
+2: TTL_CLK,<O>,<HS>
+3: DEMOD_I2C_SDA_RELAY_SRC1,<I/O>
+4: DEMOD_ANT_RX_SRC0,<I>
+5: I2C1_SDA_SRC2,<I/O>
+6: ETN_LED0,<O>
+C: misc_uni_pwm2,<O>
+D: misc_pwm_1_out,<O>
+E: test_en_bit1,<I/O>
+F: MIS_GPIO_bit21,<I/O>
+def: MIS_GPIO_bit21,<I/O>"	0x1800_0814[23:20]	"3: 0xb800_08C4[11] = 0x1
+4: 0xb800_08C4[14] = 0x0"	C: 0xb800_08CC[10:8] = 0x0~7	"IO_Set:         0x1801BC00[21]
+GPO_Set:      0x1801BC14[21]
+GPI_Read:    0x1801BC28[21]"	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit21,<I/O>"	"TP2_ERR,<I>,<HS>"	"TP0_Data_bit7,<I>,<HS>"	"TTL_CLK,<O>,<HS>"	"DEMOD_I2C_SDA_RELAY_SRC1,<I/O>"	"DEMOD_ANT_RX_SRC0,<I>"	"I2C1_SDA_SRC2,<I/O>"	"ETN_LED0,<O>"	X	X	X	X	X	"misc_uni_pwm2,<O>"	"misc_pwm_1_out,<O>"	"test_en_bit1,<I/O>"	"MIS_GPIO_bit21,<I/O>"	EOC!
+GPIO	PAD_GPIO_22	NO	YES	38	59	YES	F	"1: PCMCIA_CE1_1_N,<O>,<HS>
+3: DEMOD_I2C_SCL_RELAY,<OD>
+5: I2C1_SCL_SRC2,<I/O>
+6: ETN_LED1,<O>
+9: SPDIF_OUT,<O>
+B: I2S_out_MCLK,<O>
+D: misc_pwm_2_out,<O>
+E: test_en_bit2,<I/O>
+F: MIS_GPIO_bit22,<I/O>
+def: MIS_GPIO_bit22,<I/O>"	0x1800_0814[15:12]			"IO_Set:         0x1801BC00[22]
+GPO_Set:      0x1801BC14[22]
+GPI_Read:    0x1801BC28[22]"	"Duty_Set:  0x1801BCA4 = 0x00320063  
+Div_Set:    0x1801BCA0 = 0x800030A8  
+EN_Set:     0x1801BC9C = 0x60000000"	"MIS_GPIO_bit22,<I/O>"	X	"PCMCIA_CE1_1_N,<O>,<HS>"	X	"DEMOD_I2C_SCL_RELAY,<OD>"	X	"I2C1_SCL_SRC2,<I/O>"	"ETN_LED1,<O>"	X	X	"SPDIF_OUT,<O>"	X	"I2S_out_MCLK,<O>"	X	"misc_pwm_2_out,<O>"	"test_en_bit2,<I/O>"	"MIS_GPIO_bit22,<I/O>"	EOC!
+GPIO	PAD_GPIO_23	NO	NO	39	60	YES	F	"1: TP0_Data_bit6,<I>,<HS>
+2: ETN_CLK_OUT,<O>,<HS>
+3: TCON_bit4,<O>
+9: SPDIF_IN_SRC0,<I>
+A: USB_PWR_FLAG1_SRC0,<I>
+B: I2S_in_Data0_SRC0,<I>
+D: misc_pwm_3_out,<O>
+F: MIS_GPIO_bit23,<I/O>
+def: MIS_GPIO_bit23,<I/O>"	0x1800_0814[7:4]	"9: 0xb800_08C0[1:0] = 0x0
+A: 0xb800_08C4[21:20] = 0x0
+B: 0xb800_08C4[31] = 0x0"		"IO_Set:         0x1801BC00[23]
+GPO_Set:      0x1801BC14[23]
+GPI_Read:    0x1801BC28[23]"	"Duty_Set:  0x1801BCB0 = 0x00320063  
+Div_Set:    0x1801BCAC = 0x800030A8  
+EN_Set:     0x1801BCA8 = 0x60000000"	"MIS_GPIO_bit23,<I/O>"	X	"TP0_Data_bit6,<I>,<HS>"	"ETN_CLK_OUT,<O>,<HS>"	"TCON_bit4,<O>"	X	X	X	X	X	"SPDIF_IN_SRC0,<I>"	"USB_PWR_FLAG1_SRC0,<I>"	"I2S_in_Data0_SRC0,<I>"	X	"misc_pwm_3_out,<O>"	X	"MIS_GPIO_bit23,<I/O>"	EOC!
+GPIO	PAD_SPI_SCK	NO	NO	40	61	YES	1	"0: nf_tmx_cle,<O>,<HS>
+1: SPI_SCLK,<O>,<HS>
+def: SPI_SCLK,<O>,<HS>"	0x1800_085c[23:20]					"SPI_SCLK,<O>,<HS>"	"nf_tmx_cle,<O>,<HS>"	"SPI_SCLK,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	X	EOC!
+GPIO	PAD_SPI_DI	NO	NO	41	62	YES	1	"0: nf_tmx_wr_n,<O>,<HS>
+1: SPI_DI,<I/O>,<HS>
+def: SPI_DI,<I/O>,<HS>"	0x1800_085c[7:4]					"SPI_DI,<I/O>,<HS>"	"nf_tmx_wr_n,<O>,<HS>"	"SPI_DI,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	X	EOC!
+GPIO	PAD_SPI_CS_N	NO	NO	42	63	YES	1	"1: SPI_CS_N,<O>,<HS>
+def: SPI_CS_N,<O>,<HS>"	0x1800_085c[31:28]					"SPI_CS_N,<O>,<HS>"	X	"SPI_CS_N,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	X	EOC!
+GPIO	PAD_SPI_DO	NO	NO	43	64	YES	1	"0: nf_tmx_ale,<O>,<HS>
+1: SPI_DO,<I/O>,<HS>
+def: SPI_DO,<I/O>,<HS>"	0x1800_085c[15:12]					"SPI_DO,<I/O>,<HS>"	"nf_tmx_ale,<O>,<HS>"	"SPI_DO,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	X	EOC!
+GPIO	PAD_GPIO_24	NO	YES		65	YES	F	"0: nf_tmx_cle,<O>,<HS>
+1: TP0_Data_bit5,<I>,<HS>
+3: TCON_bit5,<O>
+B: I2S_in_SCLK_SRC0,<I>
+D: misc_pwm_4_out,<O>
+E: test_extend_bit4,<I/O>
+F: MIS_GPIO_bit24,<I/O>
+def: MIS_GPIO_bit24,<I/O>"	0x1800_0818[31:28]	B: 0xb800_08C4[31] = 0x0		"IO_Set:         0x1801BC00[24]
+GPO_Set:      0x1801BC14[24]
+GPI_Read:    0x1801BC28[24]"	"Duty_Set:  0x1801BCBC = 0x00320063  
+Div_Set:    0x1801BCB8 = 0x800030A8  
+EN_Set:     0x1801BCB4 = 0x60000000"	"MIS_GPIO_bit24,<I/O>"	"nf_tmx_cle,<O>,<HS>"	"TP0_Data_bit5,<I>,<HS>"	X	"TCON_bit5,<O>"	X	X	X	X	X	X	X	"I2S_in_SCLK_SRC0,<I>"	X	"misc_pwm_4_out,<O>"	"test_extend_bit4,<I/O>"	"MIS_GPIO_bit24,<I/O>"	EOC!
+GPIO	PAD_GPIO_25	NO	YES		66	YES	F	"0: nf_tmx_wr_n,<O>,<HS>
+1: TP0_Data_bit4,<I>,<HS>
+3: TCON_bit6,<O>
+6: ETN_LED0,<O>
+8: uart1_rxdi_src0,<I>
+9: uart3_rxdi_src1,<I>
+A: USB_PWR_FLAG0_SRC1,<I>
+B: I2S_in_WCLK_SRC0,<I>
+E: test_extend_bit5,<I/O>
+F: MIS_GPIO_bit25,<I/O>
+def: MIS_GPIO_bit25,<I/O>"	0x1800_0818[23:20]	"5: 0xb800_08C0[9:6] = 0x2
+8: 0xb800_08C0[3:2] = 0x0
+9: 0xb800_08C0[5:4] = 0x1
+A: 0xb800_08C4[23:22] = 0x1
+B: 0xb800_08C4[31] = 0x0"		"IO_Set:         0x1801BC00[25]
+GPO_Set:      0x1801BC14[25]
+GPI_Read:    0x1801BC28[25]"		"MIS_GPIO_bit25,<I/O>"	"nf_tmx_wr_n,<O>,<HS>"	"TP0_Data_bit4,<I>,<HS>"	X	"TCON_bit6,<O>"	X	X	"ETN_LED0,<O>"	X	"uart1_rxdi_src0,<I>"	"uart3_rxdi_src1,<I>"	"USB_PWR_FLAG0_SRC1,<I>"	"I2S_in_WCLK_SRC0,<I>"	X	X	"test_extend_bit5,<I/O>"	"MIS_GPIO_bit25,<I/O>"	EOC!
+GPIO	PAD_GPIO_26	NO	YES		67	YES	F	"0: nf_tmx_ale,<O>,<HS>
+1: TP0_Data_bit3,<I>,<HS>
+3: TCON_bit7,<O>
+6: ETN_LED1,<O>
+8: uart1_txdo,<O>
+9: uart3_txdo,<O>
+A: USB_PWR_FLAG1_SRC1,<I>
+B: I2S_in_MCLK_SRC0,<I>
+D: misc_pwm_5_out,<O>
+E: test_extend_bit6,<I/O>
+F: MIS_GPIO_bit26,<I/O>
+def: MIS_GPIO_bit26,<I/O>"	0x1800_0818[15:12]	"5: 0xb800_08C0[9:6] = 0x2
+9: 0xb800_08C0[5:4] = 0x1
+A: 0xb800_08C4[21:20] = 0x1
+B: 0xb800_08C4[31] = 0x0"		"IO_Set:         0x1801BC00[26]
+GPO_Set:      0x1801BC14[26]
+GPI_Read:    0x1801BC28[26]"	"Duty_Set:  0x1801BCC8 = 0x00320063  
+Div_Set:    0x1801BCC4 = 0x800030A8  
+EN_Set:     0x1801BCC0 = 0x60000000"	"MIS_GPIO_bit26,<I/O>"	"nf_tmx_ale,<O>,<HS>"	"TP0_Data_bit3,<I>,<HS>"	X	"TCON_bit7,<O>"	X	X	"ETN_LED1,<O>"	X	"uart1_txdo,<O>"	"uart3_txdo,<O>"	"USB_PWR_FLAG1_SRC1,<I>"	"I2S_in_MCLK_SRC0,<I>"	X	"misc_pwm_5_out,<O>"	"test_extend_bit6,<I/O>"	"MIS_GPIO_bit26,<I/O>"	EOC!
+GPIO	PAD_GPIO_27	NO	YES		75	YES	F	"0: nf_tmx_bit0,<I/O>,<HS>
+1: PCMCIA_bit0,<I/O>,<HS>
+E: test_extend_bit7,<I/O>
+F: MIS_GPIO_bit27,<I/O>
+def: MIS_GPIO_bit27,<I/O>"	0x1800_0818[7:4]			"IO_Set:         0x1801BC00[27]
+GPO_Set:      0x1801BC14[27]
+GPI_Read:    0x1801BC28[27]"		"MIS_GPIO_bit27,<I/O>"	"nf_tmx_bit0,<I/O>,<HS>"	"PCMCIA_bit0,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"test_extend_bit7,<I/O>"	"MIS_GPIO_bit27,<I/O>"	EOC!
+GPIO	PAD_GPIO_28	NO	YES		77	YES	F	"0: nf_tmx_bit1,<I/O>,<HS>
+1: PCMCIA_bit1,<I/O>,<HS>
+D: misc_pwm_6_out,<O>
+E: test_extend_bit8,<I/O>
+F: MIS_GPIO_bit28,<I/O>
+def: MIS_GPIO_bit28,<I/O>"	0x1800_081C[31:28]			"IO_Set:         0x1801BC00[28]
+GPO_Set:      0x1801BC14[28]
+GPI_Read:    0x1801BC28[28]"	"Duty_Set:  0x1801BCD4 = 0x00320063  
+Div_Set:    0x1801BCD0 = 0x800030A8  
+EN_Set:     0x1801BCCC = 0x60000000"	"MIS_GPIO_bit28,<I/O>"	"nf_tmx_bit1,<I/O>,<HS>"	"PCMCIA_bit1,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_6_out,<O>"	"test_extend_bit8,<I/O>"	"MIS_GPIO_bit28,<I/O>"	EOC!
+GPIO	PAD_GPIO_29	NO	YES		78	YES	F	"0: nf_tmx_bit2,<I/O>,<HS>
+1: PCMCIA_bit2,<I/O>,<HS>
+E: test_extend_bit9,<I/O>
+F: MIS_GPIO_bit29,<I/O>
+def: MIS_GPIO_bit29,<I/O>"	0x1800_081C[23:20]			"IO_Set:         0x1801BC00[29]
+GPO_Set:      0x1801BC14[29]
+GPI_Read:    0x1801BC28[29]"		"MIS_GPIO_bit29,<I/O>"	"nf_tmx_bit2,<I/O>,<HS>"	"PCMCIA_bit2,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"test_extend_bit9,<I/O>"	"MIS_GPIO_bit29,<I/O>"	EOC!
+GPIO	PAD_GPIO_30	NO	YES		79	YES	F	"0: nf_tmx_bit3,<I/O>,<HS>
+1: PCMCIA_bit3,<I/O>,<HS>
+D: misc_pwm_7_out,<O>
+E: test_extend_bit10,<I/O>
+F: MIS_GPIO_bit30,<I/O>
+def: MIS_GPIO_bit30,<I/O>"	0x1800_081C[15:12]			"IO_Set:         0x1801BC00[30]
+GPO_Set:      0x1801BC14[30]
+GPI_Read:    0x1801BC28[30]"	"Duty_Set:  0x1801BCE0 = 0x00320063  
+Div_Set:    0x1801BCDC = 0x800030A8  
+EN_Set:     0x1801BCD8 = 0x60000000 "	"MIS_GPIO_bit30,<I/O>"	"nf_tmx_bit3,<I/O>,<HS>"	"PCMCIA_bit3,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_7_out,<O>"	"test_extend_bit10,<I/O>"	"MIS_GPIO_bit30,<I/O>"	EOC!
+GPIO	PAD_GPIO_31	NO	YES		80	YES	F	"0: nf_tmx_bit4,<I/O>,<HS>
+1: PCMCIA_bit4,<I/O>,<HS>
+E: test_extend_bit11,<I/O>
+F: MIS_GPIO_bit31,<I/O>
+def: MIS_GPIO_bit31,<I/O>"	0x1800_081C[7:4]			"IO_Set:         0x1801BC00[31]
+GPO_Set:      0x1801BC14[31]
+GPI_Read:    0x1801BC28[31]"		"MIS_GPIO_bit31,<I/O>"	"nf_tmx_bit4,<I/O>,<HS>"	"PCMCIA_bit4,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"test_extend_bit11,<I/O>"	"MIS_GPIO_bit31,<I/O>"	EOC!
+GPIO	PAD_GPIO_32	NO	YES		82	YES	F	"0: nf_tmx_bit5,<I/O>,<HS>
+1: PCMCIA_bit5,<I/O>,<HS>
+E: test_extend_bit12,<I/O>
+F: MIS_GPIO_bit32,<I/O>
+def: MIS_GPIO_bit32,<I/O>"	0x1800_0820[31:28]			"IO_Set:         0x1801BC04[0]  
+GPO_Set:      0x1801BC18[0]  
+GPI_Read:    0x1801BC2C[0] "		"MIS_GPIO_bit32,<I/O>"	"nf_tmx_bit5,<I/O>,<HS>"	"PCMCIA_bit5,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"test_extend_bit12,<I/O>"	"MIS_GPIO_bit32,<I/O>"	EOC!
+GPIO	PAD_GPIO_33	NO	YES		84	YES	F	"0: nf_tmx_bit6,<I/O>,<HS>
+1: PCMCIA_bit6,<I/O>,<HS>
+E: test_extend_bit13,<I/O>
+F: MIS_GPIO_bit33,<I/O>
+def: MIS_GPIO_bit33,<I/O>"	0x1800_0820[31:28]			"IO_Set:         0x1801BC04[1]  
+GPO_Set:      0x1801BC18[1]  
+GPI_Read:    0x1801BC2C[1] "		"MIS_GPIO_bit33,<I/O>"	"nf_tmx_bit6,<I/O>,<HS>"	"PCMCIA_bit6,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"test_extend_bit13,<I/O>"	"MIS_GPIO_bit33,<I/O>"	EOC!
+GPIO	PAD_GPIO_34	NO	YES		85	YES	F	"0: nf_tmx_bit7,<I/O>,<HS>
+1: PCMCIA_bit7,<I/O>,<HS>
+D: misc_pwm_0_out,<O>
+F: MIS_GPIO_bit34,<I/O>
+def: MIS_GPIO_bit34,<I/O>"	0x1800_0820[15:12]			"IO_Set:         0x1801BC04[2]  
+GPO_Set:      0x1801BC18[2]  
+GPI_Read:    0x1801BC2C[2] "	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit34,<I/O>"	"nf_tmx_bit7,<I/O>,<HS>"	"PCMCIA_bit7,<I/O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_0_out,<O>"	X	"MIS_GPIO_bit34,<I/O>"	EOC!
+GPIO	PAD_GPIO_35	NO	YES		86	YES	F	"0: nf_tmx_rd_n,<O>,<HS>
+D: misc_pwm_1_out,<O>
+F: MIS_GPIO_bit35,<I/O>
+def: MIS_GPIO_bit35,<I/O>"	0x1800_0820[7:4]			"IO_Set:         0x1801BC04[3]  
+GPO_Set:      0x1801BC18[3]  
+GPI_Read:    0x1801BC2C[3] "	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit35,<I/O>"	"nf_tmx_rd_n,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_1_out,<O>"	X	"MIS_GPIO_bit35,<I/O>"	EOC!
+GPIO	PAD_GPIO_36	NO	YES		87	YES	F	"0: nf_tmx_ce_n_bit1,<O>,<HS>
+F: MIS_GPIO_bit36,<I/O>
+def: MIS_GPIO_bit36,<I/O>"	0x1800_0824[31:28]			"IO_Set:         0x1801BC04[4]  
+GPO_Set:      0x1801BC18[4]  
+GPI_Read:    0x1801BC2C[4] "		"MIS_GPIO_bit36,<I/O>"	"nf_tmx_ce_n_bit1,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	X	"MIS_GPIO_bit36,<I/O>"	EOC!
+GPIO	PAD_GPIO_37	NO	YES		88	YES	F	"0: nf_tmx_ce_n_bit0,<O>,<HS>
+D: misc_pwm_2_out,<O>
+F: MIS_GPIO_bit37,<I/O>
+def: MIS_GPIO_bit37,<I/O>"	0x1800_0824[23:20]			"IO_Set:         0x1801BC04[5]  
+GPO_Set:      0x1801BC18[5]  
+GPI_Read:    0x1801BC2C[5] "	"Duty_Set:  0x1801BCA4 = 0x00320063  
+Div_Set:    0x1801BCA0 = 0x800030A8  
+EN_Set:     0x1801BC9C = 0x60000000"	"MIS_GPIO_bit37,<I/O>"	"nf_tmx_ce_n_bit0,<O>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_2_out,<O>"	X	"MIS_GPIO_bit37,<I/O>"	EOC!
+GPIO	PAD_GPIO_38	NO	YES		89	YES	F	"0: tmx_nf_rdy,<I>,<HS>
+D: misc_pwm_3_out,<O>
+F: MIS_GPIO_bit38,<I/O>
+def: MIS_GPIO_bit38,<I/O>"	0x1800_0824[15:12]			"IO_Set:         0x1801BC04[6]  
+GPO_Set:      0x1801BC18[6]  
+GPI_Read:    0x1801BC2C[6] "	"Duty_Set:  0x1801BCB0 = 0x00320063  
+Div_Set:    0x1801BCAC = 0x800030A8  
+EN_Set:     0x1801BCA8 = 0x60000000"	"MIS_GPIO_bit38,<I/O>"	"tmx_nf_rdy,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_3_out,<O>"	X	"MIS_GPIO_bit38,<I/O>"	EOC!
+LVDS	LVDSA_FP_APAD	NO	X		96	YES	F	"0: LVDSA_FP,<AO>,<HS>
+2: TTL_denout,<O>,<HS>
+3: TCON_bit8,<O>
+8: uart1_rxdi_src1,<I>
+9: SPDIF_OUT,<O>
+B: I2S_out_Data0,<O>
+D: misc_pwm_4_out,<O>
+E: test_extend_bit14,<I/O>
+F: MIS_GPIO_bit39,<I/O>
+def: MIS_GPIO_bit39,<I/O>"	0x1800_0890[31:28]	8: 0xb800_08C0[3:2] = 0x1		"IO_Set:         0x1801BC04[7]  
+GPO_Set:      0x1801BC18[7]  
+GPI_Read:    0x1801BC2C[7] "	"Duty_Set:  0x1801BCBC = 0x00320063  
+Div_Set:    0x1801BCB8 = 0x800030A8  
+EN_Set:     0x1801BCB4 = 0x60000000"	"MIS_GPIO_bit39,<I/O>"	"LVDSA_FP,<AO>,<HS>"	X	"TTL_denout,<O>,<HS>"	"TCON_bit8,<O>"	X	X	X	X	"uart1_rxdi_src1,<I>"	"SPDIF_OUT,<O>"	X	"I2S_out_Data0,<O>"	X	"misc_pwm_4_out,<O>"	"test_extend_bit14,<I/O>"	"MIS_GPIO_bit39,<I/O>"	EOC!
+LVDS	LVDSA_FN_APAD	NO	X		97	YES	F	"0: LVDSA_FN,<AO>,<HS>
+2: TTL_vsout,<O>,<HS>
+3: TCON_bit9,<O>
+8: uart1_txdo,<O>
+B: I2S_out_SCLK,<O>
+D: misc_pwm_5_out,<O>
+F: MIS_GPIO_bit40,<I/O>
+def: MIS_GPIO_bit40,<I/O>"	0x1800_0890[23:20]	8: 0xb800_08C0[3:2] = 0x1		"IO_Set:         0x1801BC04[8]  
+GPO_Set:      0x1801BC18[8]  
+GPI_Read:    0x1801BC2C[8] "	"Duty_Set:  0x1801BCC8 = 0x00320063  
+Div_Set:    0x1801BCC4 = 0x800030A8  
+EN_Set:     0x1801BCC0 = 0x60000000"	"MIS_GPIO_bit40,<I/O>"	"LVDSA_FN,<AO>,<HS>"	X	"TTL_vsout,<O>,<HS>"	"TCON_bit9,<O>"	X	X	X	X	"uart1_txdo,<O>"	X	X	"I2S_out_SCLK,<O>"	X	"misc_pwm_5_out,<O>"	X	"MIS_GPIO_bit40,<I/O>"	EOC!
+LVDS	LVDSA_EP_APAD	NO	X	54	98	YES	F	"0: LVDSA_EP,<AO>,<HS>
+2: TTL_bout_bit5,<O>,<HS>
+3: TCON_bit10,<O>
+6: p_hif_clk_en,<I>,<HS>
+E: test_en_bit3,<I/O>
+F: MIS_GPIO_bit41,<I/O>
+def: MIS_GPIO_bit41,<I/O>"	0x1800_0890[15:12]			"IO_Set:         0x1801BC04[9]  
+GPO_Set:      0x1801BC18[9]  
+GPI_Read:    0x1801BC2C[9] "		"MIS_GPIO_bit41,<I/O>"	"LVDSA_EP,<AO>,<HS>"	X	"TTL_bout_bit5,<O>,<HS>"	"TCON_bit10,<O>"	X	X	"p_hif_clk_en,<I>,<HS>"	X	X	X	X	X	X	X	"test_en_bit3,<I/O>"	"MIS_GPIO_bit41,<I/O>"	EOC!
+LVDS	LVDSA_EN_APAD	NO	X	55	99	YES	F	"0: LVDSA_EN,<AO>,<HS>
+2: TTL_bout_bit4,<O>,<HS>
+3: TCON_bit11,<O>
+6: P_HIF_RDY,<O>
+E: test_en_bit4,<I/O>
+F: MIS_GPIO_bit42,<I/O>
+def: MIS_GPIO_bit42,<I/O>"	0x1800_0890[11:8]			"IO_Set:         0x1801BC04[10]  
+GPO_Set:      0x1801BC18[10]  
+GPI_Read:    0x1801BC2C[10] "		"MIS_GPIO_bit42,<I/O>"	"LVDSA_EN,<AO>,<HS>"	X	"TTL_bout_bit4,<O>,<HS>"	"TCON_bit11,<O>"	X	X	"P_HIF_RDY,<O>"	X	X	X	X	X	X	X	"test_en_bit4,<I/O>"	"MIS_GPIO_bit42,<I/O>"	EOC!
+LVDS	LVDSA_DP_APAD	NO	X	56	100	YES	F	"0: LVDSA_DP,<AO>,<HS>
+2: TTL_bout_bit3,<O>,<HS>
+3: TCON_bit12,<O>
+6: P_HIF_Data_bit0,<I/O>
+E: test_en_bit5,<I/O>
+F: MIS_GPIO_bit43,<I/O>
+def: MIS_GPIO_bit43,<I/O>"	0x1800_0890[7:4]			"IO_Set:         0x1801BC04[11]  
+GPO_Set:      0x1801BC18[11]  
+GPI_Read:    0x1801BC2C[11] "		"MIS_GPIO_bit43,<I/O>"	"LVDSA_DP,<AO>,<HS>"	X	"TTL_bout_bit3,<O>,<HS>"	"TCON_bit12,<O>"	X	X	"P_HIF_Data_bit0,<I/O>"	X	X	X	X	X	X	X	"test_en_bit5,<I/O>"	"MIS_GPIO_bit43,<I/O>"	EOC!
+LVDS	LVDSA_DN_APAD	NO	X	57	101	YES	F	"0: LVDSA_DN,<AO>,<HS>
+2: TTL_bout_bit2,<O>,<HS>
+3: TCON_bit13,<O>
+6: P_HIF_Data_bit1,<I/O>
+E: test_en_bit6,<I/O>
+F: MIS_GPIO_bit44,<I/O>
+def: MIS_GPIO_bit44,<I/O>"	0x1800_0890[3:0]			"IO_Set:         0x1801BC04[12]  
+GPO_Set:      0x1801BC18[12]  
+GPI_Read:    0x1801BC2C[12] "		"MIS_GPIO_bit44,<I/O>"	"LVDSA_DN,<AO>,<HS>"	X	"TTL_bout_bit2,<O>,<HS>"	"TCON_bit13,<O>"	X	X	"P_HIF_Data_bit1,<I/O>"	X	X	X	X	X	X	X	"test_en_bit6,<I/O>"	"MIS_GPIO_bit44,<I/O>"	EOC!
+LVDS	LVDSA_CP_APAD	NO	X	58	102	YES	F	"0: LVDSA_CP,<AO>,<HS>
+2: TTL_bout_bit1,<O>,<HS>
+3: TCON_bit14,<O>
+6: P_HIF_Data_bit2,<I/O>
+E: test_en_bit7,<I/O>
+F: MIS_GPIO_bit45,<I/O>
+def: MIS_GPIO_bit45,<I/O>"	0x1800_0894[31:28]			"IO_Set:         0x1801BC04[13]  
+GPO_Set:      0x1801BC18[13]  
+GPI_Read:    0x1801BC2C[13] "		"MIS_GPIO_bit45,<I/O>"	"LVDSA_CP,<AO>,<HS>"	X	"TTL_bout_bit1,<O>,<HS>"	"TCON_bit14,<O>"	X	X	"P_HIF_Data_bit2,<I/O>"	X	X	X	X	X	X	X	"test_en_bit7,<I/O>"	"MIS_GPIO_bit45,<I/O>"	EOC!
+LVDS	LVDSA_CN_APAD	NO	X	59	103	YES	F	"0: LVDSA_CN,<AO>,<HS>
+2: TTL_bout_bit0,<O>,<HS>
+3: TCON_bit15,<O>
+6: P_HIF_Data_bit3,<I/O>
+E: test_en_bit8,<I/O>
+F: MIS_GPIO_bit46,<I/O>
+def: MIS_GPIO_bit46,<I/O>"	0x1800_0894[27:24]			"IO_Set:         0x1801BC04[14]  
+GPO_Set:      0x1801BC18[14]  
+GPI_Read:    0x1801BC2C[14] "		"MIS_GPIO_bit46,<I/O>"	"LVDSA_CN,<AO>,<HS>"	X	"TTL_bout_bit0,<O>,<HS>"	"TCON_bit15,<O>"	X	X	"P_HIF_Data_bit3,<I/O>"	X	X	X	X	X	X	X	"test_en_bit8,<I/O>"	"MIS_GPIO_bit46,<I/O>"	EOC!
+LVDS	LVDSA_BP_APAD	NO	X	60	104	YES	F	"0: LVDSA_BP,<AO>,<HS>
+2: TTL_gout_bit5,<O>,<HS>
+3: TCON_bit16,<O>
+6: P_HIF_Data_bit4,<I/O>
+E: test_en_bit9,<I/O>
+F: MIS_GPIO_bit47,<I/O>
+def: MIS_GPIO_bit47,<I/O>"	0x1800_0894[23:20]			"IO_Set:         0x1801BC04[15]  
+GPO_Set:      0x1801BC18[15]  
+GPI_Read:    0x1801BC2C[15] "		"MIS_GPIO_bit47,<I/O>"	"LVDSA_BP,<AO>,<HS>"	X	"TTL_gout_bit5,<O>,<HS>"	"TCON_bit16,<O>"	X	X	"P_HIF_Data_bit4,<I/O>"	X	X	X	X	X	X	X	"test_en_bit9,<I/O>"	"MIS_GPIO_bit47,<I/O>"	EOC!
+LVDS	LVDSA_BN_APAD	NO	X	61	105	YES	F	"0: LVDSA_BN,<AO>,<HS>
+2: TTL_gout_bit4,<O>,<HS>
+3: TCON_bit17,<O>
+6: P_HIF_Data_bit5,<I/O>
+E: test_en_bit10,<I/O>
+F: MIS_GPIO_bit48,<I/O>
+def: MIS_GPIO_bit48,<I/O>"	0x1800_0894[19:16]			"IO_Set:         0x1801BC04[16]  
+GPO_Set:      0x1801BC18[16]  
+GPI_Read:    0x1801BC2C[16] "		"MIS_GPIO_bit48,<I/O>"	"LVDSA_BN,<AO>,<HS>"	X	"TTL_gout_bit4,<O>,<HS>"	"TCON_bit17,<O>"	X	X	"P_HIF_Data_bit5,<I/O>"	X	X	X	X	X	X	X	"test_en_bit10,<I/O>"	"MIS_GPIO_bit48,<I/O>"	EOC!
+LVDS	LVDSA_AP_APAD	NO	X	62	106	YES	F	"0: LVDSA_AP,<AO>,<HS>
+2: TTL_gout_bit3,<O>,<HS>
+3: TCON_bit18,<O>
+6: P_HIF_Data_bit6,<I/O>
+E: test_en_bit11,<I/O>
+F: MIS_GPIO_bit49,<I/O>
+def: MIS_GPIO_bit49,<I/O>"	0x1800_0894[15:12]			"IO_Set:         0x1801BC04[17]  
+GPO_Set:      0x1801BC18[17]  
+GPI_Read:    0x1801BC2C[17] "		"MIS_GPIO_bit49,<I/O>"	"LVDSA_AP,<AO>,<HS>"	X	"TTL_gout_bit3,<O>,<HS>"	"TCON_bit18,<O>"	X	X	"P_HIF_Data_bit6,<I/O>"	X	X	X	X	X	X	X	"test_en_bit11,<I/O>"	"MIS_GPIO_bit49,<I/O>"	EOC!
+LVDS	LVDSA_AN_APAD	NO	X	63	107	YES	F	"0: LVDSA_AN,<AO>,<HS>
+2: TTL_gout_bit2,<O>,<HS>
+3: TCON_bit19,<O>
+6: P_HIF_Data_bit7,<I/O>
+E: test_en_bit12,<I/O>
+F: MIS_GPIO_bit50,<I/O>
+def: MIS_GPIO_bit50,<I/O>"	0x1800_0894[11:8]			"IO_Set:         0x1801BC04[18]  
+GPO_Set:      0x1801BC18[18]  
+GPI_Read:    0x1801BC2C[18] "		"MIS_GPIO_bit50,<I/O>"	"LVDSA_AN,<AO>,<HS>"	X	"TTL_gout_bit2,<O>,<HS>"	"TCON_bit19,<O>"	X	X	"P_HIF_Data_bit7,<I/O>"	X	X	X	X	X	X	X	"test_en_bit12,<I/O>"	"MIS_GPIO_bit50,<I/O>"	EOC!
+LVDS	LVDSB_FP_APAD	NO	X		109	YES	F	"0: LVDSB_FP,<AO>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit0,<O>
+5: I2C1_SCL_SRC3,<I/O>
+B: I2S_out_WCLK,<O>
+D: misc_pwm_6_out,<O>
+F: MIS_GPIO_bit51,<I/O>
+def: MIS_GPIO_bit51,<I/O>"	0x1800_0898[23:20]	5: 0xb800_08C0[9:6] = 0x3		"IO_Set:         0x1801BC04[19]  
+GPO_Set:      0x1801BC18[19]  
+GPI_Read:    0x1801BC2C[19] "	"Duty_Set:  0x1801BCD4 = 0x00320063  
+Div_Set:    0x1801BCD0 = 0x800030A8  
+EN_Set:     0x1801BCCC = 0x60000000"	"MIS_GPIO_bit51,<I/O>"	"LVDSB_FP,<AO>,<HS>"	X	"TTL_hsout,<O>,<HS>"	"TCON_bit0,<O>"	X	"I2C1_SCL_SRC3,<I/O>"	X	X	X	X	X	"I2S_out_WCLK,<O>"	X	"misc_pwm_6_out,<O>"	X	"MIS_GPIO_bit51,<I/O>"	EOC!
+LVDS	LVDSB_FN_APAD	NO	X		110	YES	F	"0: LVDSB_FN,<AO>,<HS>
+2: TTL_CLK,<O>,<HS>
+3: TCON_bit1,<O>
+5: I2C1_SDA_SRC3,<I/O>
+9: SPDIF_OUT,<O>
+B: I2S_out_MCLK,<O>
+D: misc_pwm_7_out,<O>
+F: MIS_GPIO_bit52,<I/O>
+def: MIS_GPIO_bit52,<I/O>"	0x1800_0898[19:16]	5: 0xb800_08C0[9:6] = 0x3		"IO_Set:         0x1801BC04[20]  
+GPO_Set:      0x1801BC18[20]  
+GPI_Read:    0x1801BC2C[20] "	"Duty_Set:  0x1801BCE0 = 0x00320063  
+Div_Set:    0x1801BCDC = 0x800030A8  
+EN_Set:     0x1801BCD8 = 0x60000000 "	"MIS_GPIO_bit52,<I/O>"	"LVDSB_FN,<AO>,<HS>"	X	"TTL_CLK,<O>,<HS>"	"TCON_bit1,<O>"	X	"I2C1_SDA_SRC3,<I/O>"	X	X	X	"SPDIF_OUT,<O>"	X	"I2S_out_MCLK,<O>"	X	"misc_pwm_7_out,<O>"	X	"MIS_GPIO_bit52,<I/O>"	EOC!
+LVDS	LVDSB_EP_APAD	NO	X	65	111	YES	F	"0: LVDSB_EP,<AO>,<HS>
+2: TTL_gout_bit1,<O>,<HS>
+3: TCON_bit2,<O>
+6: P_HIF_Data_bit8,<I/O>
+E: test_en_bit13,<I/O>
+F: MIS_GPIO_bit53,<I/O>
+def: MIS_GPIO_bit53,<I/O>"	0x1800_0898[15:12]			"IO_Set:         0x1801BC04[21]  
+GPO_Set:      0x1801BC18[21]  
+GPI_Read:    0x1801BC2C[21] "		"MIS_GPIO_bit53,<I/O>"	"LVDSB_EP,<AO>,<HS>"	X	"TTL_gout_bit1,<O>,<HS>"	"TCON_bit2,<O>"	X	X	"P_HIF_Data_bit8,<I/O>"	X	X	X	X	X	X	X	"test_en_bit13,<I/O>"	"MIS_GPIO_bit53,<I/O>"	EOC!
+LVDS	LVDSB_EN_APAD	NO	X	66	112	YES	F	"0: LVDSB_EN,<AO>,<HS>
+2: TTL_gout_bit0,<O>,<HS>
+3: TCON_bit3,<O>
+6: P_HIF_Data_bit9,<I/O>
+E: test_en_bit14,<I/O>
+F: MIS_GPIO_bit54,<I/O>
+def: MIS_GPIO_bit54,<I/O>"	0x1800_0898[11:8]			"IO_Set:         0x1801BC04[22]  
+GPO_Set:      0x1801BC18[22]  
+GPI_Read:    0x1801BC2C[22] "		"MIS_GPIO_bit54,<I/O>"	"LVDSB_EN,<AO>,<HS>"	X	"TTL_gout_bit0,<O>,<HS>"	"TCON_bit3,<O>"	X	X	"P_HIF_Data_bit9,<I/O>"	X	X	X	X	X	X	X	"test_en_bit14,<I/O>"	"MIS_GPIO_bit54,<I/O>"	EOC!
+LVDS	LVDSB_DP_APAD	NO	X		113	YES	F	"0: LVDSB_DP,<AO>,<HS>
+3: TCON_bit4,<O>
+F: MIS_GPIO_bit55,<I/O>
+def: MIS_GPIO_bit55,<I/O>"	0x1800_0898[7:4]			"IO_Set:         0x1801BC04[23]  
+GPO_Set:      0x1801BC18[23]  
+GPI_Read:    0x1801BC2C[23] "		"MIS_GPIO_bit55,<I/O>"	"LVDSB_DP,<AO>,<HS>"	X	X	"TCON_bit4,<O>"	X	X	X	X	X	X	X	X	X	X	X	"MIS_GPIO_bit55,<I/O>"	EOC!
+LVDS	LVDSB_DN_APAD	NO	X		114	YES	F	"0: LVDSB_DN,<AO>,<HS>
+3: TCON_bit5,<O>
+F: MIS_GPIO_bit56,<I/O>
+def: MIS_GPIO_bit56,<I/O>"	0x1800_0898[3:0]			"IO_Set:         0x1801BC04[24]  
+GPO_Set:      0x1801BC18[24]  
+GPI_Read:    0x1801BC2C[24] "		"MIS_GPIO_bit56,<I/O>"	"LVDSB_DN,<AO>,<HS>"	X	X	"TCON_bit5,<O>"	X	X	X	X	X	X	X	X	X	X	X	"MIS_GPIO_bit56,<I/O>"	EOC!
+LVDS	LVDSB_CP_APAD	NO	X	67	115	YES	F	"0: LVDSB_CP,<AO>,<HS>
+2: TTL_rout_bit5,<O>,<HS>
+3: TCON_bit6,<O>
+6: P_HIF_Data_bit10,<I/O>
+E: test_en_bit15,<I/O>
+F: MIS_GPIO_bit57,<I/O>
+def: MIS_GPIO_bit57,<I/O>"	0x1800_089c[31:28]			"IO_Set:         0x1801BC04[25]  
+GPO_Set:      0x1801BC18[25]  
+GPI_Read:    0x1801BC2C[25] "		"MIS_GPIO_bit57,<I/O>"	"LVDSB_CP,<AO>,<HS>"	X	"TTL_rout_bit5,<O>,<HS>"	"TCON_bit6,<O>"	X	X	"P_HIF_Data_bit10,<I/O>"	X	X	X	X	X	X	X	"test_en_bit15,<I/O>"	"MIS_GPIO_bit57,<I/O>"	EOC!
+LVDS	LVDSB_CN_APAD	NO	X	68	116	YES	F	"0: LVDSB_CN,<AO>,<HS>
+2: TTL_rout_bit4,<O>,<HS>
+3: TCON_bit7,<O>
+6: P_HIF_Data_bit11,<I/O>
+E: test_en_bit16,<I/O>
+F: MIS_GPIO_bit58,<I/O>
+def: MIS_GPIO_bit58,<I/O>"	0x1800_089c[27:24]			"IO_Set:         0x1801BC04[26]  
+GPO_Set:      0x1801BC18[26]  
+GPI_Read:    0x1801BC2C[26] "		"MIS_GPIO_bit58,<I/O>"	"LVDSB_CN,<AO>,<HS>"	X	"TTL_rout_bit4,<O>,<HS>"	"TCON_bit7,<O>"	X	X	"P_HIF_Data_bit11,<I/O>"	X	X	X	X	X	X	X	"test_en_bit16,<I/O>"	"MIS_GPIO_bit58,<I/O>"	EOC!
+LVDS	LVDSB_BP_APAD	NO	X	69	117	YES	F	"0: LVDSB_BP,<AO>,<HS>
+2: TTL_rout_bit3,<O>,<HS>
+3: TCON_bit8,<O>
+6: P_HIF_Data_bit12,<I/O>
+E: test_en_bit17,<I/O>
+F: MIS_GPIO_bit59,<I/O>
+def: MIS_GPIO_bit59,<I/O>"	0x1800_089c[23:20]			"IO_Set:         0x1801BC04[27]  
+GPO_Set:      0x1801BC18[27]  
+GPI_Read:    0x1801BC2C[27] "		"MIS_GPIO_bit59,<I/O>"	"LVDSB_BP,<AO>,<HS>"	X	"TTL_rout_bit3,<O>,<HS>"	"TCON_bit8,<O>"	X	X	"P_HIF_Data_bit12,<I/O>"	X	X	X	X	X	X	X	"test_en_bit17,<I/O>"	"MIS_GPIO_bit59,<I/O>"	EOC!
+LVDS	LVDSB_BN_APAD	NO	X	70	118	YES	F	"0: LVDSB_BN,<AO>,<HS>
+2: TTL_rout_bit2,<O>,<HS>
+3: TCON_bit9,<O>
+6: P_HIF_Data_bit13,<I/O>
+E: test_en_bit18,<I/O>
+F: MIS_GPIO_bit60,<I/O>
+def: MIS_GPIO_bit60,<I/O>"	0x1800_089c[19:16]			"IO_Set:         0x1801BC04[28]  
+GPO_Set:      0x1801BC18[28]  
+GPI_Read:    0x1801BC2C[28] "		"MIS_GPIO_bit60,<I/O>"	"LVDSB_BN,<AO>,<HS>"	X	"TTL_rout_bit2,<O>,<HS>"	"TCON_bit9,<O>"	X	X	"P_HIF_Data_bit13,<I/O>"	X	X	X	X	X	X	X	"test_en_bit18,<I/O>"	"MIS_GPIO_bit60,<I/O>"	EOC!
+LVDS	LVDSB_AP_APAD	NO	X	71	119	YES	F	"0: LVDSB_AP,<AO>,<HS>
+2: TTL_rout_bit1,<O>,<HS>
+3: TCON_bit10,<O>
+6: P_HIF_Data_bit14,<I/O>
+E: test_en_bit19,<I/O>
+F: MIS_GPIO_bit61,<I/O>
+def: MIS_GPIO_bit61,<I/O>"	0x1800_089c[15:12]			"IO_Set:         0x1801BC04[29]  
+GPO_Set:      0x1801BC18[29]  
+GPI_Read:    0x1801BC2C[29] "		"MIS_GPIO_bit61,<I/O>"	"LVDSB_AP,<AO>,<HS>"	X	"TTL_rout_bit1,<O>,<HS>"	"TCON_bit10,<O>"	X	X	"P_HIF_Data_bit14,<I/O>"	X	X	X	X	X	X	X	"test_en_bit19,<I/O>"	"MIS_GPIO_bit61,<I/O>"	EOC!
+LVDS	LVDSB_AN_APAD	NO	X	72	120	YES	F	"0: LVDSB_AN,<AO>,<HS>
+2: TTL_rout_bit0,<O>,<HS>
+3: TCON_bit11,<O>
+6: P_HIF_Data_bit15,<I/O>
+E: test_en_bit20,<I/O>
+F: MIS_GPIO_bit62,<I/O>
+def: MIS_GPIO_bit62,<I/O>"	0x1800_089c[11:8]			"IO_Set:         0x1801BC04[30]  
+GPO_Set:      0x1801BC18[30]  
+GPI_Read:    0x1801BC2C[30] "		"MIS_GPIO_bit62,<I/O>"	"LVDSB_AN,<AO>,<HS>"	X	"TTL_rout_bit0,<O>,<HS>"	"TCON_bit11,<O>"	X	X	"P_HIF_Data_bit15,<I/O>"	X	X	X	X	X	X	X	"test_en_bit20,<I/O>"	"MIS_GPIO_bit62,<I/O>"	EOC!
+GPIO	PAD_GPIO_63	NO	NO		121	YES	F	"1: PCMCIA_ADDR_bit10,<OD>,<HS>
+3: TCON_bit12,<O>
+5: I2C1_SCL_SRC4,<I/O>
+6: SC_SCLK,<O>
+8: uart1_rxdi_src2,<I>
+9: uart3_rxdi_src2,<I>
+B: I2S_out_Data0,<O>
+C: misc_uni_pwm3,<O>
+F: MIS_GPIO_bit63,<I/O>
+def: MIS_GPIO_bit63,<I/O>"	0x1800_0840[31:28]	"5: 0xb800_08C0[9:6] = 0x4
+8: 0xb800_08C0[3:2] = 0x2
+9: 0xb800_08C0[5:4] = 0x2"	C: 0xb800_08CC[14:12] = 0x0~7	"IO_Set:         0x1801BC04[31]  
+GPO_Set:      0x1801BC18[31]  
+GPI_Read:    0x1801BC2C[31] "		"MIS_GPIO_bit63,<I/O>"	X	"PCMCIA_ADDR_bit10,<OD>,<HS>"	X	"TCON_bit12,<O>"	X	"I2C1_SCL_SRC4,<I/O>"	"SC_SCLK,<O>"	X	"uart1_rxdi_src2,<I>"	"uart3_rxdi_src2,<I>"	X	"I2S_out_Data0,<O>"	"misc_uni_pwm3,<O>"	X	X	"MIS_GPIO_bit63,<I/O>"	EOC!
+GPIO	PAD_GPIO_64	NO	NO		122	YES	F	"1: PCMCIA_ADDR_bit11,<OD>,<HS>
+3: TCON_bit13,<O>
+5: I2C1_SDA_SRC4,<I/O>
+6: SC_CD_SRC0,<I>
+8: uart1_txdo,<O>
+9: uart3_txdo,<O>
+B: I2S_out_SCLK,<O>
+F: MIS_GPIO_bit64,<I/O>
+def: MIS_GPIO_bit64,<I/O>"	0x1800_0840[23:20]	"5: 0xb800_08C0[9:6] = 0x4
+6: 0xb800_08C4[27:24] = 0x0
+8: 0xb800_08C0[3:2] = 0x2
+9: 0xb800_08C0[5:4] = 0x2
+"		"IO_Set:        0x1801BC08[0]  
+GPO_Set:     0x1801BC1C[0]  
+GPI_Read:   0x1801BC30[0] "		"MIS_GPIO_bit64,<I/O>"	X	"PCMCIA_ADDR_bit11,<OD>,<HS>"	X	"TCON_bit13,<O>"	X	"I2C1_SDA_SRC4,<I/O>"	"SC_CD_SRC0,<I>"	X	"uart1_txdo,<O>"	"uart3_txdo,<O>"	X	"I2S_out_SCLK,<O>"	X	X	X	"MIS_GPIO_bit64,<I/O>"	EOC!
+GPIO	PAD_GPIO_65	NO	NO		124	YES	F	"1: PCMCIA_ADDR_bit9,<OD>,<HS>
+3: TCON_bit14,<O>
+6: SC_DATA_SRC0,<I/O>
+9: uart3_cts_n,<I>
+B: I2S_out_WCLK,<O>
+F: MIS_GPIO_bit65,<I/O>
+def: MIS_GPIO_bit65,<I/O>"	0x1800_0840[15:12]	6: 0xb800_08C4[27:24] = 0x0		"IO_Set:        0x1801BC08[1]  
+GPO_Set:     0x1801BC1C[1]  
+GPI_Read:   0x1801BC30[1] "		"MIS_GPIO_bit65,<I/O>"	X	"PCMCIA_ADDR_bit9,<OD>,<HS>"	X	"TCON_bit14,<O>"	X	X	"SC_DATA_SRC0,<I/O>"	X	X	"uart3_cts_n,<I>"	X	"I2S_out_WCLK,<O>"	X	X	X	"MIS_GPIO_bit65,<I/O>"	EOC!
+GPIO	PAD_GPIO_66	NO	NO		125	YES	F	"1: PCMCIA_ADDR_bit8,<OD>,<HS>
+3: TCON_bit15,<O>
+6: SC_RST,<O>
+9: uart3_rts_n,<O>
+B: I2S_out_MCLK,<O>
+F: MIS_GPIO_bit66,<I/O>
+def: MIS_GPIO_bit66,<I/O>"	0x1800_0840[7:4]			"IO_Set:        0x1801BC08[2]  
+GPO_Set:     0x1801BC1C[2]  
+GPI_Read:   0x1801BC30[2] "		"MIS_GPIO_bit66,<I/O>"	X	"PCMCIA_ADDR_bit8,<OD>,<HS>"	X	"TCON_bit15,<O>"	X	X	"SC_RST,<O>"	X	X	"uart3_rts_n,<O>"	X	"I2S_out_MCLK,<O>"	X	X	X	"MIS_GPIO_bit66,<I/O>"	EOC!
+GPIO	PAD_GPIO_67	NO	NO		126	YES	F	"1: PCMCIA_ADDR_bit13,<OD>,<HS>
+3: TCON_bit16,<O>
+9: SPDIF_OUT,<O>
+F: MIS_GPIO_bit67,<I/O>
+def: MIS_GPIO_bit67,<I/O>"	0x1800_0844[31:28]			"IO_Set:        0x1801BC08[3]  
+GPO_Set:     0x1801BC1C[3]  
+GPI_Read:   0x1801BC30[3] "		"MIS_GPIO_bit67,<I/O>"	X	"PCMCIA_ADDR_bit13,<OD>,<HS>"	X	"TCON_bit16,<O>"	X	X	X	X	X	"SPDIF_OUT,<O>"	X	X	X	X	X	"MIS_GPIO_bit67,<I/O>"	EOC!
+GPIO	PAD_GPIO_68	NO	NO		127	YES	F	"1: PCMCIA_ADDR_bit14,<OD>,<HS>
+3: TCON_bit17,<O>
+6: ETN_LED0,<O>
+A: USB_PWR_CTRL0,<O>
+F: MIS_GPIO_bit68,<I/O>
+def: MIS_GPIO_bit68,<I/O>"	0x1800_0844[23:20]			"IO_Set:        0x1801BC08[4]  
+GPO_Set:     0x1801BC1C[4]  
+GPI_Read:   0x1801BC30[4] "		"MIS_GPIO_bit68,<I/O>"	X	"PCMCIA_ADDR_bit14,<OD>,<HS>"	X	"TCON_bit17,<O>"	X	X	"ETN_LED0,<O>"	X	X	X	"USB_PWR_CTRL0,<O>"	X	X	X	X	"MIS_GPIO_bit68,<I/O>"	EOC!
+GPIO	PAD_GPIO_69	NO	NO		128	YES	F	"1: PCMCIA_ADDR_bit12,<OD>,<HS>
+3: TCON_bit18,<O>
+6: ETN_LED1,<O>
+A: USB_PWR_CTRL1,<O>
+F: MIS_GPIO_bit69,<I/O>
+def: MIS_GPIO_bit69,<I/O>"	0x1800_0844[15:12]			"IO_Set:        0x1801BC08[5]  
+GPO_Set:     0x1801BC1C[5]  
+GPI_Read:   0x1801BC30[5] "		"MIS_GPIO_bit69,<I/O>"	X	"PCMCIA_ADDR_bit12,<OD>,<HS>"	X	"TCON_bit18,<O>"	X	X	"ETN_LED1,<O>"	X	X	X	"USB_PWR_CTRL1,<O>"	X	X	X	X	"MIS_GPIO_bit69,<I/O>"	EOC!
+GPIO	PAD_GPIO_70	NO	NO			YES	F	"1: PCMCIA_ADDR_bit7,<OD>,<HS>
+D: misc_pwm_0_out,<O>
+F: MIS_GPIO_bit70,<I/O>
+def: MIS_GPIO_bit70,<I/O>"	0x1800_0844[7:4]			"IO_Set:        0x1801BC08[6]  
+GPO_Set:     0x1801BC1C[6]  
+GPI_Read:   0x1801BC30[6] "	"Duty_Set:  0x1801BC8C = 0x00320063  
+Div_Set:    0x1801BC88 = 0x800030A8  
+EN_Set:     0x1801BC84 = 0x60000000"	"MIS_GPIO_bit70,<I/O>"	X	"PCMCIA_ADDR_bit7,<OD>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_0_out,<O>"	X	"MIS_GPIO_bit70,<I/O>"	EOC!
+GPIO	PAD_GPIO_71	NO	NO			YES	F	"1: PCMCIA_ADDR_bit6,<OD>,<HS>
+D: misc_pwm_1_out,<O>
+F: MIS_GPIO_bit71,<I/O>
+def: MIS_GPIO_bit71,<I/O>"	0x1800_0848[31:28]			"IO_Set:        0x1801BC08[7]  
+GPO_Set:     0x1801BC1C[7]  
+GPI_Read:   0x1801BC30[7] "	"Duty_Set:  0x1801BC98 = 0x00320063  
+Div_Set:    0x1801BC94 = 0x800030A8  
+EN_Set:     0x1801BC90 = 0x60000000"	"MIS_GPIO_bit71,<I/O>"	X	"PCMCIA_ADDR_bit6,<OD>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_1_out,<O>"	X	"MIS_GPIO_bit71,<I/O>"	EOC!
+GPIO	PAD_GPIO_72	NO	NO			YES	F	"1: PCMCIA_ADDR_bit5,<OD>,<HS>
+D: misc_pwm_2_out,<O>
+F: MIS_GPIO_bit72,<I/O>
+def: MIS_GPIO_bit72,<I/O>"	0x1800_0848[23:20]			"IO_Set:        0x1801BC08[8]  
+GPO_Set:     0x1801BC1C[8]  
+GPI_Read:   0x1801BC30[8] "	"Duty_Set:  0x1801BCA4 = 0x00320063  
+Div_Set:    0x1801BCA0 = 0x800030A8  
+EN_Set:     0x1801BC9C = 0x60000000"	"MIS_GPIO_bit72,<I/O>"	X	"PCMCIA_ADDR_bit5,<OD>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_2_out,<O>"	X	"MIS_GPIO_bit72,<I/O>"	EOC!
+GPIO	PAD_GPIO_73	NO	NO			YES	F	"1: PCMCIA_ADDR_bit4,<OD>,<HS>
+D: misc_pwm_3_out,<O>
+F: MIS_GPIO_bit73,<I/O>
+def: MIS_GPIO_bit73,<I/O>"	0x1800_0848[15:12]			"IO_Set:        0x1801BC08[9]  
+GPO_Set:     0x1801BC1C[9]  
+GPI_Read:   0x1801BC30[9] "	"Duty_Set:  0x1801BCB0 = 0x00320063  
+Div_Set:    0x1801BCAC = 0x800030A8  
+EN_Set:     0x1801BCA8 = 0x60000000"	"MIS_GPIO_bit73,<I/O>"	X	"PCMCIA_ADDR_bit4,<OD>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	"misc_pwm_3_out,<O>"	X	"MIS_GPIO_bit73,<I/O>"	EOC!
+GPIO	PAD_GPIO_74	NO	NO			YES	F	"1: PCMCIA_ADDR_bit3,<OD>,<HS>
+6: SC_SCLK,<O>
+F: MIS_GPIO_bit74,<I/O>
+def: MIS_GPIO_bit74,<I/O>"	0x1800_0848[7:4]			"IO_Set:        0x1801BC08[10]  
+GPO_Set:     0x1801BC1C[10]  
+GPI_Read:   0x1801BC30[10] "		"MIS_GPIO_bit74,<I/O>"	X	"PCMCIA_ADDR_bit3,<OD>,<HS>"	X	X	X	X	"SC_SCLK,<O>"	X	X	X	X	X	X	X	X	"MIS_GPIO_bit74,<I/O>"	EOC!
+GPIO	PAD_GPIO_75	NO	NO			YES	F	"1: PCMCIA_ADDR_bit2,<OD>,<HS>
+6: SC_CD_SRC1,<I>
+F: MIS_GPIO_bit75,<I/O>
+def: MIS_GPIO_bit75,<I/O>"	0x1800_084C[31:28]			"IO_Set:        0x1801BC08[11]  
+GPO_Set:     0x1801BC1C[11]  
+GPI_Read:   0x1801BC30[11] "		"MIS_GPIO_bit75,<I/O>"	X	"PCMCIA_ADDR_bit2,<OD>,<HS>"	X	X	X	X	"SC_CD_SRC1,<I>"	X	X	X	X	X	X	X	X	"MIS_GPIO_bit75,<I/O>"	EOC!
+GPIO	PAD_GPIO_76	NO	NO			YES	F	"1: PCMCIA_ADDR_bit1,<OD>,<HS>
+6: SC_DATA_SRC1,<I/O>
+F: MIS_GPIO_bit76,<I/O>
+def: MIS_GPIO_bit76,<I/O>"	0x1800_084C[23:20]			"IO_Set:        0x1801BC08[12]  
+GPO_Set:     0x1801BC1C[12]  
+GPI_Read:   0x1801BC30[12] "		"MIS_GPIO_bit76,<I/O>"	X	"PCMCIA_ADDR_bit1,<OD>,<HS>"	X	X	X	X	"SC_DATA_SRC1,<I/O>"	X	X	X	X	X	X	X	X	"MIS_GPIO_bit76,<I/O>"	EOC!
+GPIO	PAD_GPIO_77	NO	NO			YES	F	"1: PCMCIA_ADDR_bit0,<OD>,<HS>
+6: SC_RST,<O>
+F: MIS_GPIO_bit77,<I/O>
+def: MIS_GPIO_bit77,<I/O>"	0x1800_084C[15:12]			"IO_Set:        0x1801BC08[13]  
+GPO_Set:     0x1801BC1C[13]  
+GPI_Read:   0x1801BC30[13] "		"MIS_GPIO_bit77,<I/O>"	X	"PCMCIA_ADDR_bit0,<OD>,<HS>"	X	X	X	X	"SC_RST,<O>"	X	X	X	X	X	X	X	X	"MIS_GPIO_bit77,<I/O>"	EOC!
+GPIO	PAD_GPIO_78	NO	YES			YES	F	"1: PCMCIA_INPACK_N,<I>,<HS>
+F: MIS_GPIO_bit78,<I/O>
+def: MIS_GPIO_bit78,<I/O>"	0x1800_084C[7:4]			"IO_Set:        0x1801BC08[14]  
+GPO_Set:     0x1801BC1C[14]  
+GPI_Read:   0x1801BC30[14] "		"MIS_GPIO_bit78,<I/O>"	X	"PCMCIA_INPACK_N,<I>,<HS>"	X	X	X	X	X	X	X	X	X	X	X	X	X	"MIS_GPIO_bit78,<I/O>"	EOC!
+JD_TOP	LSADC4_APAD	YES	X		153	YES	F	"3: TCON_bit3,<O>
+C: LSADC4,<AI>
+F: ISO_MIS_GPIO_bit18,<I/O>
+def: ISO_MIS_GPIO_bit18,<I/O>"	0x1800_0208[19:16]			"IO_Set:        0x18061100[18]
+GPO_Set:     0x18061108[18]
+GPI_Read:   0x18061110[18]"		"ISO_MIS_GPIO_bit18,<I/O>"	X	X	X	"TCON_bit3,<O>"	X	X	X	X	X	X	X	X	"LSADC4,<AI>"	X	X	"ISO_MIS_GPIO_bit18,<I/O>"	EOC!
+JD_TOP	LSADC2_APAD	YES	X	88	154	YES	F	"3: TCON_bit2,<O>
+B: I2S_in_Data0_SRC1,<I>
+C: LSADC2,<AI>
+F: ISO_MIS_GPIO_bit17,<I/O>
+def: ISO_MIS_GPIO_bit17,<I/O>"	0x1800_0208[11:8]			"IO_Set:        0x18061100[17]
+GPO_Set:     0x18061108[17]
+GPI_Read:   0x18061110[17]"		"ISO_MIS_GPIO_bit17,<I/O>"	X	X	X	"TCON_bit2,<O>"	X	X	X	X	X	X	X	"I2S_in_Data0_SRC1,<I>"	"LSADC2,<AI>"	X	X	"ISO_MIS_GPIO_bit17,<I/O>"	EOC!
+JD_TOP	LSADC1_APAD	YES	X	89	155	YES	F	"3: TCON_bit1,<O>
+C: LSADC1,<AI>
+F: ISO_MIS_GPIO_bit16,<I/O>
+def: ISO_MIS_GPIO_bit16,<I/O>"	0x1800_0208[7:4]			"IO_Set:        0x18061100[16]
+GPO_Set:     0x18061108[16]
+GPI_Read:   0x18061110[16]"		"ISO_MIS_GPIO_bit16,<I/O>"	X	X	X	"TCON_bit1,<O>"	X	X	X	X	X	X	X	X	"LSADC1,<AI>"	X	X	"ISO_MIS_GPIO_bit16,<I/O>"	EOC!
+JD_TOP	LSADC0_APAD	YES	X	90	156	YES	F	"3: TCON_bit0,<O>
+C: LSADC0,<AI>
+F: ISO_MIS_GPIO_bit15,<I/O>
+def: ISO_MIS_GPIO_bit15,<I/O>"	0x1800_0208[3:0]			"IO_Set:        0x18061100[15]
+GPO_Set:     0x18061108[15]
+GPI_Read:   0x18061110[15]"		"ISO_MIS_GPIO_bit15,<I/O>"	X	X	X	"TCON_bit0,<O>"	X	X	X	X	X	X	X	X	"LSADC0,<AI>"	X	X	"ISO_MIS_GPIO_bit15,<I/O>"	EOC!
+JD_TOP	LSADC_REF_APAD	YES	X	91	157	YES	F	"3: TCON_bit19,<O>
+C: LSADC_REF,<AI>
+F: ISO_MIS_GPIO_bit14,<I/O>
+def: ISO_MIS_GPIO_bit14,<I/O>"	0x1800_0210[31:28]			"IO_Set:        0x18061100[14]
+GPO_Set:     0x18061108[14]
+GPI_Read:   0x18061110[14]"		"ISO_MIS_GPIO_bit14,<I/O>"	X	X	X	"TCON_bit19,<O>"	X	X	X	X	X	X	X	X	"LSADC_REF,<AI>"	X	X	"ISO_MIS_GPIO_bit14,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_0	YES	NO	95	161	YES	F	"2: ST_dbg_bit0,<I/O>
+3: TCON_bit4,<O>
+9: SPDIF_OUT,<O>
+C: iso_misc_uni_pwm0,<O>
+D: iso_misc_pwm_0,<O>
+E: test_en_bit28,<I/O>
+F: ISO_MIS_GPIO_bit0,<I/O>
+def: ISO_MIS_GPIO_bit0,<I/O>"	0x1806_0230[31:28]		C: 0xb806_02A8[0] = 0x0~1	"IO_Set:        0x18061100[0]
+GPO_Set:     0x18061108[0]
+GPI_Read:   0x18061110[0]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit0,<I/O>"	X	X	"ST_dbg_bit0,<I/O>"	"TCON_bit4,<O>"	X	X	X	X	X	"SPDIF_OUT,<O>"	X	X	"iso_misc_uni_pwm0,<O>"	"iso_misc_pwm_0,<O>"	"test_en_bit28,<I/O>"	"ISO_MIS_GPIO_bit0,<I/O>"	EOC!
+ST_GPIO	PAD_HDDC0_SDA	YES	YES	96	162	YES	F	"2: ST_dbg_bit1,<I/O>
+3: DEMOD_I2C_DBG_SDA,<I/O>
+4: HDDC0_SDA,<I/O>
+5: I2C0_SDA_SRC0,<I/O>
+8: uart0_txdo,<O>
+9: uart1_txdo,<O>
+D: iso_misc_pwm_1,<O>
+E: test_en_bit21,<I/O>
+F: ISO_MIS_GPIO_bit1,<I/O>
+def: ISO_MIS_GPIO_bit1,<I/O>"	0x1806_0200[23:20]	5: 0xb806_02A0[5:2] = 0x0		"IO_Set:        0x18061100[1]  
+GPO_Set:     0x18061108[1]  
+GPI_Read:   0x18061110[1] "	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit1,<I/O>"	X	X	"ST_dbg_bit1,<I/O>"	"DEMOD_I2C_DBG_SDA,<I/O>"	"HDDC0_SDA,<I/O>"	"I2C0_SDA_SRC0,<I/O>"	X	X	"uart0_txdo,<O>"	"uart1_txdo,<O>"	X	X	X	"iso_misc_pwm_1,<O>"	"test_en_bit21,<I/O>"	"ISO_MIS_GPIO_bit1,<I/O>"	EOC!
+ST_GPIO	PAD_HDDC0_SCL	YES	YES	97	163	YES	F	"2: ST_dbg_bit2,<I/O>
+3: DEMOD_I2C_DBG_SCL,<I>
+4: HDDC0_SCL,<I>
+5: I2C0_SCL_SRC0,<I/O>
+8: uart0_rxdi_src0,<I>
+9: uart1_rxdi_src3,<I>
+D: iso_misc_pwm_0,<O>
+E: test_en_bit22,<I/O>
+F: ISO_MIS_GPIO_bit2,<I/O>
+def: ISO_MIS_GPIO_bit2,<I/O>"	0x1806_0200[31:28]	"5: 0xb806_02A0[5:2] = 0x0
+8: 0xb806_02A0[10:9] = 0x0
+9: 0xb800_08C0[3:2] = 0x3 / 0xb806_02A0[15:14] = 0x0"		"IO_Set:        0x18061100[2]
+GPO_Set:     0x18061108[2]
+GPI_Read:   0x18061110[2]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit2,<I/O>"	X	X	"ST_dbg_bit2,<I/O>"	"DEMOD_I2C_DBG_SCL,<I>"	"HDDC0_SCL,<I>"	"I2C0_SCL_SRC0,<I/O>"	X	X	"uart0_rxdi_src0,<I>"	"uart1_rxdi_src3,<I>"	X	X	X	"iso_misc_pwm_0,<O>"	"test_en_bit22,<I/O>"	"ISO_MIS_GPIO_bit2,<I/O>"	EOC!
+ST_GPIO	PAD_VDDC_SDA	YES	YES	99	165	YES	F	"2: ST_dbg_bit3,<I/O>
+3: TCON_bit5,<O>
+4: VDDC_SDA,<I/O>
+5: I2C0_SDA_SRC1,<I/O>
+8: uart0_txdo,<O>
+9: uart1_txdo,<O>
+D: iso_misc_pwm_1,<O>
+E: test_en_bit23,<I/O>
+F: ISO_MIS_GPIO_bit3,<I/O>
+def: ISO_MIS_GPIO_bit3,<I/O>"	0x1806_0200[7:4]	5: 0xb806_02A0[5:2] = 0x1		"IO_Set:        0x18061100[2]
+GPO_Set:     0x18061108[2]
+GPI_Read:   0x18061110[3]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit3,<I/O>"	X	X	"ST_dbg_bit3,<I/O>"	"TCON_bit5,<O>"	"VDDC_SDA,<I/O>"	"I2C0_SDA_SRC1,<I/O>"	X	X	"uart0_txdo,<O>"	"uart1_txdo,<O>"	X	X	X	"iso_misc_pwm_1,<O>"	"test_en_bit23,<I/O>"	"ISO_MIS_GPIO_bit3,<I/O>"	EOC!
+ST_GPIO	PAD_VDDC_SCL	YES	YES	100	166	YES	F	"2: ST_dbg_bit4,<I/O>
+3: TCON_bit6,<O>
+4: VDDC_SCL,<I>
+5: I2C0_SCL_SRC1,<I/O>
+8: uart0_rxdi_src1,<I>
+9: uart1_rxdi_src4,<I>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit4,<I/O>
+def: ISO_MIS_GPIO_bit4,<I/O>"	0x1806_0200[15:12]	"5: 0xb806_02A0[5:2] = 0x1
+8: 0xb806_02A0[10:9] = 0x1
+9: 0xb800_08C0[3:2] = 0x3 / 0xb806_02A0[15:14] = 0x1"		"IO_Set:        0x18061100[4]
+GPO_Set:     0x18061108[4]
+GPI_Read:   0x18061110[4]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit4,<I/O>"	X	X	"ST_dbg_bit4,<I/O>"	"TCON_bit6,<O>"	"VDDC_SCL,<I>"	"I2C0_SCL_SRC1,<I/O>"	X	X	"uart0_rxdi_src1,<I>"	"uart1_rxdi_src4,<I>"	X	X	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit4,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_5	YES	NO	101	167	YES	F	"2: TTL_denout,<O>,<HS>
+3: TCON_bit7,<O>
+9: SPDIF_IN_SRC1,<I>
+B: I2S_out_SCLK,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit5,<I/O>
+def: ISO_MIS_GPIO_bit5,<I/O>"	0x1806_0230[31:28]	9: 0xb800_08C0[1:0] = 0x1		"IO_Set:        0x18061100[5]
+GPO_Set:     0x18061108[5]
+GPI_Read:   0x18061110[5]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit5,<I/O>"	X	X	"TTL_denout,<O>,<HS>"	"TCON_bit7,<O>"	X	X	X	X	X	"SPDIF_IN_SRC1,<I>"	X	"I2S_out_SCLK,<O>"	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit5,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_6	YES	YES	102	168	YES	F	"1: PCMCIA_CE1_N,<O>,<HS>
+2: TTL_vsout,<O>,<HS>
+3: TCON_bit8,<O>
+B: I2S_out_WCLK,<O>
+C: iso_misc_uni_pwm1,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit6,<I/O>
+def: ISO_MIS_GPIO_bit6,<I/O>"	0x1806_022c[7:4]		C: 0xb806_02A8[1] = 0x0~1	"IO_Set:        0x18061100[6]
+GPO_Set:     0x18061108[6]
+GPI_Read:   0x18061110[6]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit6,<I/O>"	X	"PCMCIA_CE1_N,<O>,<HS>"	"TTL_vsout,<O>,<HS>"	"TCON_bit8,<O>"	X	X	X	X	X	X	X	"I2S_out_WCLK,<O>"	"iso_misc_uni_pwm1,<O>"	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit6,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_7	YES	YES		169	YES	F	"1: PCMCIA_RST0,<OD>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit9,<O>
+6: SC_SCLK,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit7,<I/O>
+def: ISO_MIS_GPIO_bit7,<I/O>"	 0x1806_022c[15:12]			"IO_Set:        0x18061100[7]
+GPO_Set:     0x18061108[7]
+GPI_Read:   0x18061110[7]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit7,<I/O>"	X	"PCMCIA_RST0,<OD>,<HS>"	"TTL_hsout,<O>,<HS>"	"TCON_bit9,<O>"	X	X	"SC_SCLK,<O>"	X	X	X	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit7,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_8	YES	YES	103	170	YES	F	"1: PCMCIA_OE_N,<O>,<HS>
+2: TTL_CLK,<O>,<HS>
+3: TCON_bit10,<O>
+6: SC_CD_SRC2,<I>
+7: irrx_src0,<I>
+9: SPDIF_OUT,<O>
+A: USB_PWR_FLAG0_SRC2,<I>
+B: I2S_out_MCLK,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit8,<I/O>
+def: ISO_MIS_GPIO_bit8,<I/O>"	0x1806_022c[23:20]	"6: 0xb800_08C4[27:24] = 0x2
+7: 0xb806_02A0[8:6] = 0x0
+A: 0xb800_08C4[23:22] = 0x2"		"IO_Set:        0x18061100[8]
+GPO_Set:     0x18061108[8]
+GPI_Read:   0x18061110[8]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit8,<I/O>"	X	"PCMCIA_OE_N,<O>,<HS>"	"TTL_CLK,<O>,<HS>"	"TCON_bit10,<O>"	X	X	"SC_CD_SRC2,<I>"	"irrx_src0,<I>"	X	"SPDIF_OUT,<O>"	"USB_PWR_FLAG0_SRC2,<I>"	"I2S_out_MCLK,<O>"	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit8,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_9	YES	YES	104	171	YES	F	"1: PCMCIA_CD0_N,<I>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit11,<O>
+6: SC_DATA_SRC2,<I/O>
+A: USB_PWR_FLAG1_SRC2,<I>
+B: I2S_out_Data0,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit9,<I/O>
+def: ISO_MIS_GPIO_bit9,<I/O>"	0x1806_022c[31:28]	"6: 0xb800_08C4[27:24] = 0x2
+A: 0xb800_08C4[21:20] = 0x2"		"IO_Set:        0x18061100[9]
+GPO_Set:     0x18061108[9]
+GPI_Read:   0x18061110[9]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit9,<I/O>"	X	"PCMCIA_CD0_N,<I>,<HS>"	"TTL_hsout,<O>,<HS>"	"TCON_bit11,<O>"	X	X	"SC_DATA_SRC2,<I/O>"	X	X	X	"USB_PWR_FLAG1_SRC2,<I>"	"I2S_out_Data0,<O>"	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit9,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_10	YES	YES		172	YES	F	"1: PCMCIA_IREQ0_N,<I>,<HS>
+2: TTL_vsout,<O>,<HS>
+3: TCON_bit12,<O>
+6: SC_RST,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit10,<I/O>
+def: ISO_MIS_GPIO_bit10,<I/O>"	 0x1806_0228[7:4]			"IO_Set:        0x18061100[10]
+GPO_Set:     0x18061108[10]
+GPI_Read:   0x18061110[10]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit10,<I/O>"	X	"PCMCIA_IREQ0_N,<I>,<HS>"	"TTL_vsout,<O>,<HS>"	"TCON_bit12,<O>"	X	X	"SC_RST,<O>"	X	X	X	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit10,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_11	YES	YES		173	YES	F	"0: HSYNC_IN,<I>
+1: PCMCIA_WAIT_N,<I>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit13,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit11,<I/O>
+def: ISO_MIS_GPIO_bit11,<I/O>"	 0x1806_0228[15:12]			"IO_Set:        0x18061100[11]
+GPO_Set:     0x18061108[11]
+GPI_Read:   0x18061110[11]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit11,<I/O>"	"HSYNC_IN,<I>"	"PCMCIA_WAIT_N,<I>,<HS>"	"TTL_hsout,<O>,<HS>"	"TCON_bit13,<O>"	X	X	X	X	X	X	X	X	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit11,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_12	YES	NO		174	YES	F	"0: VSYNC_IN,<I>
+1: PCMCIA_WE_N,<O>,<HS>
+2: TTL_CLK,<O>,<HS>
+3: TCON_bit14,<O>
+7: irrx_src1,<I>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit12,<I/O>
+def: ISO_MIS_GPIO_bit12,<I/O>"	 0x1806_0228[23:20]	7: 0xb806_02A0[8:6] = 0x1		"IO_Set:        0x18061100[12]
+GPO_Set:     0x18061108[12]
+GPI_Read:   0x18061110[12]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit12,<I/O>"	"VSYNC_IN,<I>"	"PCMCIA_WE_N,<O>,<HS>"	"TTL_CLK,<O>,<HS>"	"TCON_bit14,<O>"	X	X	X	"irrx_src1,<I>"	X	X	X	X	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit12,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_13	YES	NO		175	YES	F	"1: PCMCIA_REG_N,<O>,<HS>
+2: TTL_hsout,<O>,<HS>
+3: TCON_bit15,<O>
+9: SPDIF_IN_SRC2,<I>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit13,<I/O>
+def: ISO_MIS_GPIO_bit13,<I/O>"	 0x1806_0228[31:28]	9: 0xb800_08C0[1:0] = 0x2		"IO_Set:        0x18061100[13]
+GPO_Set:     0x18061108[13]
+GPI_Read:   0x18061110[13]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit13,<I/O>"	X	"PCMCIA_REG_N,<O>,<HS>"	"TTL_hsout,<O>,<HS>"	"TCON_bit15,<O>"	X	X	X	X	X	"SPDIF_IN_SRC2,<I>"	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit13,<I/O>"	EOC!
+ST_GPIO	PAD_HDDC1_SDA	YES	YES		176	YES	F	"2: ST_dbg_bit5,<I/O>
+4: HDDC1_SDA,<I/O>
+5: I2C0_SDA_SRC2,<I/O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit19,<I/O>
+def: ISO_MIS_GPIO_bit19,<I/O>"	 0x1806_0204[7:4]	5: 0xb806_02A0[5:2] = 0x2		"IO_Set:        0x18061100[19]
+GPO_Set:     0x18061108[19]
+GPI_Read:   0x18061110[19]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit19,<I/O>"	X	X	"ST_dbg_bit5,<I/O>"	X	"HDDC1_SDA,<I/O>"	"I2C0_SDA_SRC2,<I/O>"	X	X	X	X	X	X	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit19,<I/O>"	EOC!
+ST_GPIO	PAD_HDDC1_SCL	YES	YES		177	YES	F	"2: ST_dbg_bit6,<I/O>
+4: HDDC1_SCL,<I>
+5: I2C0_SCL_SRC2,<I/O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit20,<I/O>
+def: ISO_MIS_GPIO_bit20,<I/O>"	 0x1806_0204[15:12]	5: 0xb806_02A0[5:2] = 0x2		"IO_Set:        0x18061100[20]
+GPO_Set:     0x18061108[20]
+GPI_Read:   0x18061110[20]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit20,<I/O>"	X	X	"ST_dbg_bit6,<I/O>"	X	"HDDC1_SCL,<I>"	"I2C0_SCL_SRC2,<I/O>"	X	X	X	X	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit20,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_21	YES	NO		178	YES	F	"2: ST_dbg_bit7,<I/O>
+3: TCON_bit16,<O>
+4: DEMOD_ANT_TX_SRC1, <I/O>
+6: ETN_LED0,<O>
+7: irrx_src2,<I>
+9: SPDIF_OUT,<O>
+A: USB_PWR_CTRL0,<O>
+B: I2S_in_SCLK_SRC1,<I>
+C: iso_misc_uni_pwm2,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit21,<I/O>
+def: ISO_MIS_GPIO_bit21,<I/O>"	0x1806_0224 [23:20]	"4: 0xb800_08C4[12] = 0x1
+7: 0xb806_02A0[8:6] = 0x2
+B: 0xb800_08C4[31] = 0x1"	C: 0xb806_02A8[2] = 0x0~1	"IO_Set:        0x18061100[21]
+GPO_Set:     0x18061108[21]
+GPI_Read:   0x18061110[21]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit21,<I/O>"	X	X	"ST_dbg_bit7,<I/O>"	"TCON_bit16,<O>"	"DEMOD_ANT_TX_SRC1, <I/O>"	X	"ETN_LED0,<O>"	"irrx_src2,<I>"	X	"SPDIF_OUT,<O>"	"USB_PWR_CTRL0,<O>"	"I2S_in_SCLK_SRC1,<I>"	"iso_misc_uni_pwm2,<O>"	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit21,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_22	YES	NO		179	YES	F	"2: ST_dbg_bit8,<I/O>
+3: ATV_VSYNC_OUT,<O>
+4: DEMOD_ANT_OE_SRC1, <I/O>
+6: ETN_LED1,<O>
+A: USB_PWR_CTRL1,<O>
+B: I2S_in_WCLK_SRC1,<I>
+C: iso_misc_uni_pwm3,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit22,<I/O>
+def: ISO_MIS_GPIO_bit22,<I/O>"	0x1806_0224 [31:28]	"4: 0xb800_08C4[13] = 0x1
+B: 0xb800_08C4[31] = 0x1"	C: 0xb806_02A8[3] = 0x0~1	"IO_Set:        0x18061100[22]
+GPO_Set:     0x18061108[22]
+GPI_Read:   0x18061110[22]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit22,<I/O>"	X	X	"ST_dbg_bit8,<I/O>"	"ATV_VSYNC_OUT,<O>"	"DEMOD_ANT_OE_SRC1, <I/O>"	X	"ETN_LED1,<O>"	X	X	X	"USB_PWR_CTRL1,<O>"	"I2S_in_WCLK_SRC1,<I>"	"iso_misc_uni_pwm3,<O>"	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit22,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_23	YES	NO		180	YES	F	"2: ST_dbg_bit9,<I/O>
+3: TCON_bit17,<O>
+4: DEMOD_ANT_RX_SRC1,<I>
+9: SPDIF_OUT,<O>
+A: USB_PWR_FLAG0_SRC3,<I>
+B: I2S_in_MCLK_SRC1,<I>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit23,<I/O>
+def: ISO_MIS_GPIO_bit23,<I/O>"	0x1806_0220[7:4]	"4: 0xb800_08C4[14] = 0x1
+A: 0xb800_08C4[23:22] = 0x3
+B: 0xb800_08C4[31] = 0x1"		"IO_Set:        0x18061100[23]
+GPO_Set:     0x18061108[23]
+GPI_Read:   0x18061110[23]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit23,<I/O>"	X	X	"ST_dbg_bit9,<I/O>"	"TCON_bit17,<O>"	"DEMOD_ANT_RX_SRC1,<I>"	X	X	X	X	"SPDIF_OUT,<O>"	"USB_PWR_FLAG0_SRC3,<I>"	"I2S_in_MCLK_SRC1,<I>"	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit23,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_24	YES	NO			YES	F	"2: ST_dbg_bit10,<I/O>
+7: irrx_src3,<I>
+8: uart0_rxdi_src2,<I>
+9: uart1_rxdi_src5,<I>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit24,<I/O>
+def: ISO_MIS_GPIO_bit24,<I/O>"	0x1806_0220[15:12]	"7: 0xb806_02A0[8:6] = 0x3
+8: 0xb806_02A0[10:9] = 0x2
+9: 0xb800_08C0[3:2] = 0x3 / 0xb806_02A0[15:14] = 0x2"		"IO_Set:        0x18061100[24]
+GPO_Set:     0x18061108[24]
+GPI_Read:   0x18061110[24]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit24,<I/O>"	X	X	"ST_dbg_bit10,<I/O>"	X	X	X	X	"irrx_src3,<I>"	"uart0_rxdi_src2,<I>"	"uart1_rxdi_src5,<I>"	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit24,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_25	YES	NO			YES	F	"2: ST_dbg_bit11,<I/O>
+8: uart0_txdo,<O>
+9: uart1_txdo,<O>
+A: USB_PWR_FLAG1_SRC3,<I>
+B: I2S_out_SCLK,<O>
+C: iso_misc_uni_pwm4,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit25,<I/O>
+def: ISO_MIS_GPIO_bit25,<I/O>"	0x1806_0220[23:20]	A: 0xb800_08C4[21:20] = 0x3	C: 0xb806_02A8[4] = 0x0~1	"IO_Set:        0x18061100[25]
+GPO_Set:     0x18061108[25]
+GPI_Read:   0x18061110[25]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit25,<I/O>"	X	X	"ST_dbg_bit11,<I/O>"	X	X	X	X	X	"uart0_txdo,<O>"	"uart1_txdo,<O>"	"USB_PWR_FLAG1_SRC3,<I>"	"I2S_out_SCLK,<O>"	"iso_misc_uni_pwm4,<O>"	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit25,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_26	YES	NO			YES	F	"2: ST_dbg_bit12,<I/O>
+B: I2S_out_WCLK,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit26,<I/O>
+def: ISO_MIS_GPIO_bit26,<I/O>"	0x1806_0220[31:28]			"IO_Set:        0x18061100[26]
+GPO_Set:     0x18061108[26]
+GPI_Read:   0x18061110[26]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit26,<I/O>"	X	X	"ST_dbg_bit12,<I/O>"	X	X	X	X	X	X	X	X	"I2S_out_WCLK,<O>"	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit26,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_27	YES	NO			YES	F	"2: ST_dbg_bit13,<I/O>
+B: I2S_out_MCLK,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit27,<I/O>
+def: ISO_MIS_GPIO_bit27,<I/O>"	 0x1806_021C[7:4]			"IO_Set:        0x18061100[27]
+GPO_Set:     0x18061108[27]
+GPI_Read:   0x18061110[27]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit27,<I/O>"	X	X	"ST_dbg_bit13,<I/O>"	X	X	X	X	X	X	X	X	"I2S_out_MCLK,<O>"	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit27,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_28	YES	NO			YES	F	"2: ST_dbg_bit14,<I/O>
+B: I2S_out_Data0,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit28,<I/O>
+def: ISO_MIS_GPIO_bit28,<I/O>"	 0x1806_021C[15:12]			"IO_Set:        0x18061100[28]
+GPO_Set:     0x18061108[28]
+GPI_Read:   0x18061110[28]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit28,<I/O>"	X	X	"ST_dbg_bit14,<I/O>"	X	X	X	X	X	X	X	X	"I2S_out_Data0,<O>"	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit28,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_29	YES	NO			YES	F	"2: ST_dbg_bit15,<I/O>
+5: I2C0_SCL_SRC3,<I/O>
+6: ETN_LED0,<O>
+D: iso_misc_pwm_0,<O>
+F: ISO_MIS_GPIO_bit29,<I/O>
+def: ISO_MIS_GPIO_bit29,<I/O>"	 0x1806_021C[23:20]	5: 0xb806_02A0[5:2] = 0x3		"IO_Set:        0x18061100[29]
+GPO_Set:     0x18061108[29]
+GPI_Read:   0x18061110[29]"	"Duty_Set:  0x1806118C = 0x00320063  
+Div_Set:    0x18061188 = 0x800030A8  
+EN_Set:     0x18061184 = 0x60000000 "	"ISO_MIS_GPIO_bit29,<I/O>"	X	X	"ST_dbg_bit15,<I/O>"	X	X	"I2C0_SCL_SRC3,<I/O>"	"ETN_LED0,<O>"	X	X	X	X	X	X	"iso_misc_pwm_0,<O>"	X	"ISO_MIS_GPIO_bit29,<I/O>"	EOC!
+ST_GPIO	PAD_ST_GPIO_30	YES	NO			YES	F	"5: I2C0_SDA_SRC3,<I/O>
+6: ETN_LED1,<O>
+D: iso_misc_pwm_1,<O>
+F: ISO_MIS_GPIO_bit30,<I/O>
+def: ISO_MIS_GPIO_bit30,<I/O>"	 0x1806_021C[31:28]	5: 0xb806_02A0[5:2] = 0x3		"IO_Set:        0x18061100[30]
+GPO_Set:     0x18061108[30]
+GPI_Read:   0x18061110[30]"	"Duty_Set:  0x18061198 = 0x00320063  
+Div_Set:    0x18061194 = 0x800030A8  
+EN_Set:     0x18061190 = 0x60000000"	"ISO_MIS_GPIO_bit30,<I/O>"	X	X	X	X	X	"I2C0_SDA_SRC3,<I/O>"	"ETN_LED1,<O>"	X	X	X	X	X	X	"iso_misc_pwm_1,<O>"	X	"ISO_MIS_GPIO_bit30,<I/O>"	EOC!
+IFD_ADC_DAC	Scart_FSW_0_APAD	NO	NO		211	YES	F	"C: LSADC3,<AI>
+D: SCART_FSW_0,<AI>
+F: MIS_GPIO_bit79,<I/O>
+def: MIS_GPIO_bit79,<I/O>"	0x1800_08B0[31:28]			"IO_Set:        0x1801BC08[15]  
+GPO_Set:     0x1801BC1C[15]  
+GPI_Read:   0x1801BC30[15] "		"MIS_GPIO_bit79,<I/O>"	X	X	X	X	X	X	X	X	X	X	X	X	"LSADC3,<AI>"	"SCART_FSW_0,<AI>"	X	"MIS_GPIO_bit79,<I/O>"	EOC!
+IFD_ADC_DAC	AV_OUT_1_APAD	NO	NO	126	213	YES	F	"3: TCON_bit18,<O>
+C: AV_OUT_1,<AO>
+F: MIS_GPIO_bit80,<O>
+def: MIS_GPIO_bit80,<O>"	0x1800_08B0[27:24]			"IO_Set:        0x1801BC08[16]  
+GPO_Set:     0x1801BC1C[16]  "		"MIS_GPIO_bit80,<O>"	X	X	X	"TCON_bit18,<O>"	X	X	X	X	X	X	X	X	"AV_OUT_1,<AO>"	X	X	"MIS_GPIO_bit80,<O>"	EOC!
+IFD_ADC_DAC	AV_OUT_2_APAD	NO	NO		214	YES	F	"3: TCON_bit19,<O>
+C: AV_OUT_2,<AO>
+F: MIS_GPIO_bit81,<O>
+def: MIS_GPIO_bit81,<O>"	0x1800_08B0[23:20]			"IO_Set:        0x1801BC08[17]  
+GPO_Set:     0x1801BC1C[17]  "		"MIS_GPIO_bit81,<O>"	X	X	X	"TCON_bit19,<O>"	X	X	X	X	X	X	X	X	"AV_OUT_2,<AO>"	X	X	"MIS_GPIO_bit81,<O>"	EOC!
+																															

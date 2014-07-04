@@ -1,0 +1,4 @@
+n3xt -cfg CC_M-NOCS30-0000
+bsd -rand -n 0x40 -oc
+bsd -rand -n 0x400 -of /SECInOutDirName/CTCut_rng_out.bin
+bsd -reset

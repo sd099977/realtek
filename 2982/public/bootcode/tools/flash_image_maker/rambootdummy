@@ -1,0 +1,21 @@
+.text
+.globl	_ram_boot
+
+_ram_boot:
+	/*
+	 * r4, r5, r6
+	 */
+	LDR     r4, =__bss_start
+	LDR     r5, =__bss_end
+	MOV     r6, #0x00000000		/* clear */
+
+clear_loop:
+	CMP     r4, r5
+	BHS     clear_end			/* if reached end of bss, exit */
+	STR     r6, [r4]
+	ADD     r4, r4, #4
+	B       clear_loop
+
+clear_end:
+	B       dvrmain				/* C entry */
+

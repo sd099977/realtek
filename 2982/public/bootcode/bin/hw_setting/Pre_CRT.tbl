@@ -1,0 +1,20 @@
+ //-------- HDMI bandgap power---------
+ rtd_maskl(0xb800000c, 0xfffffffd, 0x00000002);       //enable HDMI clock
+ rtd_maskl(0xb800000c, 0xfffffffd, 0x00000000);       //disable HDMI clock
+ rtd_maskl(0xb8000008, 0xfffdffff, 0x00000000);       //hold HDMI reset
+ rtd_maskl(0xb8000008, 0xfffdffff, 0x00020000);       //release HDMI reset
+ScalerTimer_DelayXms(0x1);
+ rtd_maskl(0xb800000c, 0xfffffffd, 0x00000002);       //enable HDMI clock
+ScalerTimer_DelayXms(0x1);
+ rtd_maskl(0xb8007b40, 0xfdffffff, 0x02000000);       //HDMI bandgap power 1:on 0:off
+ScalerTimer_DelayXms(0x1);
+ //-------- IFADC Bias Current---------
+ rtd_maskl(0xb8000014, 0xfffeffff, 0x00010000);       // enable IFADC clock
+ rtd_maskl(0xb8000014, 0xfffeffff, 0x00000000);       // disable IFADC clock
+ rtd_maskl(0xb8000008, 0xffffffdf, 0x00000000);       // hold IFADC reset
+ rtd_maskl(0xb8000008, 0xffffffdf, 0x00000020);       // release IFADC reset
+ScalerTimer_DelayXms(0x1);
+ rtd_maskl(0xb8000014, 0xfffeffff, 0x00010000);       // enable IFADC clock
+ScalerTimer_DelayXms(0x1);
+ rtd_maskl(0xb8033110, 0xfffffeff, 0x00000100);       // IFD MBIAS power on
+ScalerTimer_DelayXms(0x1);

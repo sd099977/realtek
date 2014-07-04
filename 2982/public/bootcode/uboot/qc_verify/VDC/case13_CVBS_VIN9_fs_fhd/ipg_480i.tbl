@@ -1,0 +1,27 @@
+
+rtd_outl(0xb8020000 , 0x000001ff);  // global power on
+rtd_outl(0xb8022100, 0x035a0106);   // Total pixel = 1688*1066
+rtd_outl(0xb8022104, 0x004a02d0);   // Horizontal active start = 0x81, active width = 720
+rtd_outl(0xb8022108, 0x001000f0);   // Vertical active start = 21, active width = 1024
+rtd_outl(0xb802210c, 0x40000003);   // Enable timing generator
+
+// 0xb8022110 status read
+rtd_outl(0xb8022114, 0x008102d0);   // Pattern Gen display Hstart & Hactive 
+rtd_outl(0xb8022118, 0x001000f0);   // Pattern Gen display Vstart & Vactive
+rtd_outl(0xb802211C, 0x00000003);   // PTG control, select pattern = veritcal color bar
+//rtd_outl(0xb802211C, 0x00000080);   // PTG control, select pattern = Random generator
+//rtd_outl(0xb802211C, 0x00000004);   // PTG control, select pattern = horizontal color bar
+//rtd_outl(0xb802211C, 0x00000006);   // PTG control, select pattern = horizontal & vertical gradient
+
+
+
+rtd_outl(0xb8022120, 0x00000059);   // Color bar width  =59
+//rtd_outl(0xb8022124, 0x00FFFFFF);   // color set 0 W: White
+//rtd_outl(0xb8022128, 0x0000FF00);   // color set 1 R: Red
+//rtd_outl(0xb802212C, 0x00FF0000);   // color set 2 G: Green
+//rtd_outl(0xb8022130, 0x0000FF00);   // color set 3 B: Blue
+//rtd_outl(0xb8022134, 0xFF00FF00);   // color set 4 C: Cyan
+//rtd_outl(0xb8022138, 0x00FFFF00);   // color set 5 M: Megnta
+//rtd_outl(0xb802213C, 0xFFFF00AA);   // color set 6 Y: Yellow
+//rtd_outl(0xb8022140, 0x00000000);   // color set 7 K: Black
+rtd_outl(0xb8022144, 0x00000fff);   // color set (copy from defualt value)

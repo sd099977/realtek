@@ -1,0 +1,4 @@
+
+
+rtd_outl(0xb8027328, 0x00030044);	// combine fifo enable, 444, 10bit mode
+rtd_outl(0xb8027334, 0x00000007);	// load in double buffer

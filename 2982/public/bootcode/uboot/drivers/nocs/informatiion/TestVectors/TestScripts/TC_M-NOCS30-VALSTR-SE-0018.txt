@@ -1,0 +1,14 @@
+# TC_M-NOCS30-VALSTR-OP-0018
+n3xt -cfg CC_M-NOCS30-0004
+n3xt -UPDATECHIPDATABASE
+dif -frw write -fl /SCSTVDirname/CC_M-NOCS30-0004CorrectFlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+dif -rst
+n3xt -cmp CHECKFORBOOTPASS
+dif -frw write -fl /SCSTVDirname/TC_M-NOCS30-VALSTR-SE-0018FlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+ctd -suspend
+dif -wuc
+n3xt -user "Please press the Wake-up button on the board now if the chipset doesn't support wake up through DIF"
+n3xt -cmp CHECKFORBOOTFAIL
+dif -frw write -fl /SCSTVDirname/CC_M-NOCS30-0004CorrectFlashImg.bin -a DEFAULTFLASH_PROG_ADDR -s SCS_TOTALAREA_DEFAULT -ft BMDEFAULT -e DEFAULTENDIANESS
+dif -rst
+n3xt -cmp CHECKFORBOOTPASS

@@ -1,0 +1,3 @@
+bsd -sha SHA256 -if /SECInOutDirName/sha256_in.bin -of /SECInOutDirName/sha256_out_bsd.bin
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset

@@ -1,0 +1,36 @@
+LOAD 0x0000  0x00100000
+{
+  READONLY 0x0000 0x00010000
+  {
+    ca7_power_indicative.o(Init, +FIRST)
+    * (InRoot$$Sections)      ; Selects all sections that must be in a root region
+    * (+RO)
+  }
+
+  PAGETABLES0 0x00010000 FIXED 0x0004000
+  {
+    ca7_power_indicative.o(TT0)
+  }
+;  PAGETABLES1 0x00014000 FIXED 0x0004000
+;  {
+;    ca7_power_indicative.o(TT1)
+;  }
+;  PAGETABLES2 0x00018000 FIXED 0x0004000
+;  {
+;    ca7_power_indicative.o(TT2)
+;  }
+;  PAGETABLES3 0x0001c000 FIXED 0x0004000
+;  {
+;    ca7_power_indicative.o(TT3)
+;  }
+
+;ca7 local sim: add NOCOMPRESS
+;or hangs on decompress when boot
+  READWRITE 0x00100000  NOCOMPRESS
+  {
+    * (+RW,+ZI)
+  }
+
+  ARM_LIB_STACKHEAP 0x001FC000 EMPTY 0x2000 {}
+
+}

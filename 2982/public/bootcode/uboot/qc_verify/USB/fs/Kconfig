@@ -1,0 +1,29 @@
+menu "FileSystem setting"
+
+config BOOT_FS
+    bool "FileSystem support"	
+    ---help---
+      Say Y here if you want Filesystem support.
+      
+config BOOT_FS_FAT
+    bool "MS FAT Filesystem support"  
+    depends on BOOT_FS 
+    ---help---
+      Say Y here if you want MS FAT Filesystem support.    
+
+config SUPPORT_VFAT
+    bool "MS VFAT Filesystem support"
+    depends on BOOT_FS
+    ---help---
+      Say Y here if you want MS VFAT Filesystem support.
+
+config DOS_PARTITION 
+	bool
+        default y if BOOT_FS_FAT
+
+config SUPPORT_VFAT
+	bool
+	default y if BOOT_FS_FAT
+
+endmenu
+

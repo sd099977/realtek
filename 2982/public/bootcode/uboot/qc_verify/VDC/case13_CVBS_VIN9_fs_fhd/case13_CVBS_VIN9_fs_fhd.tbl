@@ -1,0 +1,22 @@
+//#include "mac2_crt.tbl"
+
+//// choose VIN path ////
+//	#include "VDAC_VIN4P.tbl" 
+#include "VDAC_VIN9P.tbl" 
+
+//#include "apll_ypp480i.tbl" 
+//#include "sp_480i.tbl"
+#include "vgip_ch1_vd.tbl"
+//--
+//#include "di_en_ch1_1080i_2d.tbl"	//????
+#include "m_ch1_frc_1080i10b444.tbl"	//????
+#include "uzu_main_444_bypass480i.tbl"
+//--
+#include "DPLL_297MHz.tbl"
+#include "dtg_fhd_fs.tbl"
+#include "mtg_fhd.tbl"
+#include "ivs2dvs_480i_fhd.tbl"		// ivs2dvs delay for ipg1080p to FHD
+#include "m_ch1_frc_to_fs.tbl"		// mdomain change to fs mode
+#include "LVDS_FHD_1Seg_2Port.tbl"	// SFG, PIF, TX_PHY
+
+rtd_outl(0xb800DB40, 0x02800202);	//HDMI Bandgap Enable

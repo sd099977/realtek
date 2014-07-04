@@ -1,0 +1,14 @@
+n3xt -cfg CC_M-NOCS30-0000
+ctd -spv RAM -s 0x1 -v 0x1 -m 0x1
+ctd -rst SW
+n3xt -UPDATECHIPDATABASE
+csd -gpv RAM
+n3xt -cmp PV RAM SET
+ctd -rst SW
+ctd -spv RAM -s 0x1 -v 0x0 -m 0x1
+n3xt -cmd CHECKFORFAIL
+csd -gpv RAM
+n3xt -cmp PV RAM SET
+ctd -rst HW
+csd -gpv RAM
+n3xt -cmp PV RAM SET

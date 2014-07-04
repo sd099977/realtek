@@ -1,0 +1,11 @@
+# TC_M-NOCS30-VALHDW-SE-0003
+# Configuration
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+sec -rand -n 0x40 -of RandomData0.bin
+ctd -rst HW
+sec -rand -n 0x40 -of RandomData1.bin
+ctd -rst HW
+sec -rand -n 0x40 -of RandomData2.bin
+ctd -rst HW
+sec -rand -n 0x40 -of RandomData3.bin

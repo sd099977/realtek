@@ -1,0 +1,16 @@
+#
+# Source compilation mandatory include pathes
+#
+#  This file contains all include pathes required for well compiling
+#  C-files associated to this module
+#
+#  PS: This file was automatically generated. Do not edit it by hand
+#
+
+NHT_CC_INC_DIRS +=  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/BSD/TAGS/3.4.2/distrib/server  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server  \
+  $(NHT_ROOT)/chipset/res/server/nht_term/TAGS/1.4.0/distrib  \
+  $(NHT_ROOT)/chipset/server/lib/BSD/TAGS/3.6.0/distrib  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server

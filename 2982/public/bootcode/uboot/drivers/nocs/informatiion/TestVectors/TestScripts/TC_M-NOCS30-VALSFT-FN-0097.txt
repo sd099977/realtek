@@ -1,0 +1,3 @@
+bsd -r2r -dec -key CERT -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_CERTdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset

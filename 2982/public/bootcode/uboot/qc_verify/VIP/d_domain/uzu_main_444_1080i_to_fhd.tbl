@@ -1,0 +1,18 @@
+//公式： Factor = (In_size / Out_size ) * 2^20
+//範圍：0 ～ 2^20-1
+rtd_outl(0xb8029008, 0x00000000);		// HOR_FAC
+rtd_outl(0xb802900C, 0x00080000);		// VER_FAC, 2^20*540/1080
+rtd_outl(0xb8029024, 0x0000FFFF);		// HOR/VER_INI
+
+//說明：out_width = 2(segment1+segment2)+segment3
+//For linear scaling case, delta1 & delta2 & segment1 &segment2 都設成0
+rtd_outl(0xb8029010, 0x00000000);		// HOR_DELTA1
+rtd_outl(0xb8029014, 0x00000000);		// HOR_DELTA2
+rtd_outl(0xb8029018, 0x00000000);		// SEGMENT1
+rtd_outl(0xb802901C, 0x00000000);		// SEGMENT2
+rtd_outl(0xb8029020, 0x00000500);		// SEGMENT3
+
+//DM_UZU(_Input_Size)
+rtd_outl(0xb8029028, 0x0780021C);		// Input Size (1920x540)
+
+rtd_outl(0xb8029004, 0x00000002);		// V UZU enable

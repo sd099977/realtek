@@ -1,0 +1,5 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+sec -hmac SHA256 -kf /SECInOutDirName/hmac_key.bin -if /SECInOutDirName/hmac_sha256_in.bin -of /SECInOutDirName/hmac_sha256_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW

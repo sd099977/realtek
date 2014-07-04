@@ -1,0 +1,10 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+sec -rand -n 0x40 -of /SECInOutDirName/rand_out_1.bin
+ctd -rst HW
+sec -rand -n 0x40 -of /SECInOutDirName/rand_out_2.bin
+ctd -rst HW
+sec -rand -n 0x40 -of /SECInOutDirName/rand_out_3.bin
+ctd -rst HW
+sec -rand -n 0x40 -of /SECInOutDirName/rand_out_4.bin
+ctd -rst HW

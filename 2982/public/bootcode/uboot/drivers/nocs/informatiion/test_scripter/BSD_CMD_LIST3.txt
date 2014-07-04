@@ -1,0 +1,126 @@
+This List is command line for RTK only
+if want to run test loop, reference "BSD_CMD_LIST"
+
+../TestVectors/TestVectors/BinIn/
+../TestVectors/TestVectors/CSVIn/
+../TestVectors/TestVectors/BinOut/
+../TestVectors/TestVectors/CSVOut/
+../TestVectors/TestVectors/TxtOut/
+./TestOut
+
+=====================================================================
+./bsd -status -oc	==>PASS
+./bsd -reset
+
+=====================================================================
+./bsd -gpv MSID		==>PASS
+./bsd -gpv STBCASN	==>PASS
+
+=====================================================================
+./bsd -spv MSID -v 0x00005555		==>PASS
+./bsd -spv MSID -v 0xAAAA0000
+./bsd -spv STBCASN -v 0x00005555	==>PASS
+./bsd -spv STBCASN -v 0xAAAA0000
+
+=====================================================================
+./bsd -rand -n 0x40 -oc
+./bsd -rand -n 0x400 -of ./TestOut/rand_out_bsd_0x400.bin
+./bsd -rand -n 0x40  -of ./TestOut/rand_out_bsd_0x40.bin
+
+=====================================================================
+./bsd -cn NUID -oc
+./bsd -cn DINTEG -oc -tv /CSVInDirName/siriusA0_CheckNumbers_3x.csv
+
+=====================================================================
+/***/
+./bsd -r2r -enc -key CERT -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_CERTenc_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_CERTdec_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_CERTenc_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_CERTdec_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_CERTenc_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_CERTdec_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_CERTenc_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_CERTdec_bsd.txt -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+/***/
+./bsd -r2r -enc -key KL -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_KLenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key KL -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_KLdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key KL -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_KLenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key KL -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_KLdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key KL -emi 0x4027 -of ./TestOut/siriusA0_R2R_Emi0x4027_KLenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key KL -emi 0x4027 -of ./TestOut/siriusA0_R2R_Emi0x4027_KLdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key KL -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_KLenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key KL -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_KLdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key KL -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_KLenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key KL -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_KLdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+
+/***/
+./bsd -r2r -enc -key SW -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_SWenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key SW -emi 0x4021 -of ./TestOut/siriusA0_R2R_Emi0x4021_SWdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key SW -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_SWenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key SW -emi 0x4026 -of ./TestOut/siriusA0_R2R_Emi0x4026_SWdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key SW -emi 0x4027 -of ./TestOut/siriusA0_R2R_Emi0x4027_SWenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key SW -emi 0x4027 -of ./TestOut/siriusA0_R2R_Emi0x4027_SWdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key SW -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_SWenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key SW -emi 0x4041 -of ./TestOut/siriusA0_R2R_Emi0x4041_SWdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key SW -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_SWenc_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -r2r -dec -key SW -emi 0x4043 -of ./TestOut/siriusA0_R2R_Emi0x4043_SWdec_bsd.txt -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+=====================================================================
+./bsd -fp DATA -enc -emi 0x4021 -of ./TestOut/siriusA0_bsd_fp_enc_0x4021_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -fp DATA -dec -emi 0x4021 -of ./TestOut/siriusA0_bsd_fp_dec_0x4021_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -fp DATA -enc -emi 0x4026 -of ./TestOut/siriusA0_bsd_fp_enc_0x4026_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -fp DATA -dec -emi 0x4026 -of ./TestOut/siriusA0_bsd_fp_dec_0x4026_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -fp DATA -enc -emi 0x4027 -of ./TestOut/siriusA0_bsd_fp_enc_0x4027_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+./bsd -fp DATA -dec -emi 0x4027 -of ./TestOut/siriusA0_bsd_fp_dec_0x4027_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+./bsd -fp DATA -enc -emi 0x4041 -of ./TestOut/siriusA0_bsd_fp_enc_0x4041_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+./bsd -fp DATA -dec -emi 0x4041 -of ./TestOut/siriusA0_bsd_fp_dec_0x4041_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+./bsd -fp DATA -enc -emi 0x4043 -of ./TestOut/siriusA0_bsd_fp_enc_0x4043_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+./bsd -fp DATA -dec -emi 0x4043 -of ./TestOut/siriusA0_bsd_fp_dec_0x4043_data_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+./bsd -fp KEY  -enc -of ./TestOut/siriusA0_bsd_fp_enc_key_out.bin -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+=====================================================================
+./bsd -sha SHA256 -if ../TestVectors/TestVectors/BinIn/sha256_in.bin -of ./TestOut/sha256_out_bsd.bin
+==>PASS
+
+=====================================================================
+./bsd -hmac SHA256 -kf ../TestVectors/TestVectors/BinIn/hmac_key.bin -if ../TestVectors/TestVectors/BinIn/hmac_sha256_in.bin -of ./TestOut/hmac_sha256_out_bsd.bin
+
+=========================================================================
+./bsd -rsa -pub -dec -keysize 0x80 -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of ./TestOut/Output/Bin/rsa_padding_pkcs1_v1_5_pub_dec_out_bsd.bin
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_n.bin   -pad NO          -if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_in.bin   -of ./TestOut/rsa_padding_no_padding_pub_enc_out.bin
+==>PASS
+
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_n.bin   -pad NO          -if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_in.bin   -of ./TestOut/rsa_padding_no_padding_pub_dec_out.bin
+==>PASS
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_n.bin   -pad PKCS1_5     -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_in.bin   -of ./TestOut/rsa_padding_pkcs1_v1_5_pub_enc_out.bin
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin   -pad PKCS1_5     -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin   -of ./TestOut/rsa_padding_pkcs1_v1_5_pub_dec_out.bin
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_n.bin   -pad OAEP_SHA1   -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_in.bin   -of ./TestOut/rsa_padding_oaep_sha_1_pub_enc_out.bin
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_n.bin   -pad OAEP_SHA1   -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_in.bin   -of ./TestOut/rsa_padding_oaep_sha_1_pub_dec_out.bin
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_n.bin -pad OAEP_SHA256 -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_in.bin -of ./TestOut/rsa_padding_oaep_sha_256_pub_enc_out.bin
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_n.bin -pad OAEP_SHA256 -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_in.bin -of ./TestOut/rsa_padding_oaep_sha_256_pub_dec_out.bin
+
+
+
+

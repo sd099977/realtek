@@ -1,0 +1,9 @@
+n3xt -cfg CC_M-NOCS30-0037
+dif -masternuid
+n3xt ACTIVEDIF 1
+dif -did 1 -dpv DIPPASSWORD -ra DIPREADWRITEADDRESS -vw DIPREADWRITEVAL
+n3xt -dif CHECKFORPASS
+dif -did 1 -ra DIPREADWRITEADDRESS -vr
+n3xt -dif CHECKFORPASS
+dif -masternuid
+n3xt -dif CHECKFORPASS

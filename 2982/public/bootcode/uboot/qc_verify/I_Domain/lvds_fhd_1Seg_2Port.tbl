@@ -1,0 +1,157 @@
+//---------------------------------------------------------------------------------------------------------------------------------
+//DCLK DIV
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8028294, 0x00000001);	// DCLK = DPLL_Clock div 2
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//SFG, 1 Pixel Mode, DH_ST_END = 0x008C080C, DTG_HS_Width = 16, DTG_VS_Width = 6
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb802D100, 0x00001840);	// 8-bit Mode, Dout Enable
+rtd_outl(0xb802D104, 0x4000FFFF);	// PIF_Clock = Dclk/2, Force to background enable
+rtd_outl(0xb802D108, 0x01234567);	// Port A~H mapping
+rtd_outl(0xb802D12C, 0x00000000);	// NO sub-Pixel shift
+rtd_outl(0xb802D130, 0x00000000);	// SEG 0, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D134, 0x00000000);	// SEG 0, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D138, 0x00000000);	// SEG 1, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D13C, 0x00000000);	// SEG 1, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D140, 0x00000000);	// SEG 2, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D144, 0x00000000);	// SEG 2, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D148, 0x00000000);	// SEG 3, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D14C, 0x00000000);	// SEG 3, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D150, 0x00000000);	// SEG 4, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D154, 0x00000000);	// SEG 4, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D158, 0x00000000);	// SEG 5, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D15C, 0x00000000);	// SEG 5, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D160, 0x00000000);	// SEG 6, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D164, 0x00000000);	// SEG 6, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D168, 0x00000000);	// SEG 7, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D16C, 0x00000000);	// SEG 7, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D170, 0x00000001);	// Normal Data Mapping, 1-SEG, 2-Port, No H-Flip
+rtd_outl(0xb802D174, 0x00000000);	// start address of SEG 0/1 , residue of SEG 0/1 
+rtd_outl(0xb802D178, 0x00000000);	// start address of SEG 2/3 , residue of SEG 2/3 
+rtd_outl(0xb802D17C, 0x00000000);	// start address of SEG 4/5 , residue of SEG 4/5 
+rtd_outl(0xb802D180, 0x00000000);	// start address of SEG 6/7 , residue of SEG 6/7 
+rtd_outl(0xb802D188, 0x40000000);	// Disable ByPass Mode, Auto config mode enable
+rtd_outl(0xb802D18C, 0x000F088B);	// HS_Width = 16 dclk; hsync_delay = DH_Total  - 13 = 2187;
+rtd_outl(0xb802D190, 0x00050000);	// VS_ST = 0; VS_END = 6;
+rtd_outl(0xb802D194, 0x008C0086);	// sfg_dh_den_sta = DH_DEN_ST = 140;
+					// req_st = hs_back_porch - 6 = 134;
+rtd_outl(0xb802D198, 0x00000000);	// Hs_distance for DRD Mode (no USE); Seg0 Not Flip;
+rtd_outl(0xb802D19C, 0x07800000);	// final_line_length = 1920, hsync_threshold = 0
+rtd_outl(0xb802D1A0, 0x00000000);	// Residue_pix_div_12_split_mode &
+					// Final_addr_split_mode for Tri-gate Mode (no USE)
+//---------------------------------------------------------------------------------------------------------------------------------
+//DCLK DIV
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8028294, 0x00000001);	// DCLK = DPLL_Clock div 2
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//SFG, 1 Pixel Mode, DH_ST_END = 0x008C080C, DTG_HS_Width = 16, DTG_VS_Width = 6
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb802D100, 0x000018C0);	// 8-bit Mode, Dout Enable, delay chain inverse + 0ns
+rtd_outl(0xb802D104, 0x4000FFFF);	// PIF_Clock = Dclk/2, Force to background enable
+rtd_outl(0xb802D108, 0x01234567);	// Port A~H mapping
+rtd_outl(0xb802D12C, 0x00000000);	// NO sub-Pixel shift
+rtd_outl(0xb802D130, 0x00000000);	// SEG 0, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D134, 0x00000000);	// SEG 0, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D138, 0x00000000);	// SEG 1, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D13C, 0x00000000);	// SEG 1, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D140, 0x00000000);	// SEG 2, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D144, 0x00000000);	// SEG 2, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D148, 0x00000000);	// SEG 3, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D14C, 0x00000000);	// SEG 3, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D150, 0x00000000);	// SEG 4, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D154, 0x00000000);	// SEG 4, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D158, 0x00000000);	// SEG 5, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D15C, 0x00000000);	// SEG 5, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D160, 0x00000000);	// SEG 6, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D164, 0x00000000);	// SEG 6, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D168, 0x00000000);	// SEG 7, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D16C, 0x00000000);	// SEG 7, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D170, 0x00000001);	// Normal Data Mapping, 1-SEG, 2-Port, No H-Flip
+rtd_outl(0xb802D174, 0x00000000);	// start address of SEG 0/1 , residue of SEG 0/1 
+rtd_outl(0xb802D178, 0x00000000);	// start address of SEG 2/3 , residue of SEG 2/3 
+rtd_outl(0xb802D17C, 0x00000000);	// start address of SEG 4/5 , residue of SEG 4/5 
+rtd_outl(0xb802D180, 0x00000000);	// start address of SEG 6/7 , residue of SEG 6/7 
+rtd_outl(0xb802D188, 0x40000000);	// Disable ByPass Mode, Auto config mode enable
+rtd_outl(0xb802D18C, 0x000F088B);	// HS_Width = 16 dclk; hsync_delay = DH_Total  - 13 = 2187;
+rtd_outl(0xb802D190, 0x00050000);	// VS_ST = 0; VS_END = 6;
+rtd_outl(0xb802D194, 0x008C0086);	// sfg_dh_den_sta = DH_DEN_ST = 140;
+					// req_st = hs_back_porch - 6 = 134;
+rtd_outl(0xb802D198, 0x00000000);	// Hs_distance for DRD Mode (no USE); Seg0 Not Flip;
+rtd_outl(0xb802D19C, 0x07800000);	// final_line_length = 1920, hsync_threshold = 0
+rtd_outl(0xb802D1A0, 0x00000000);	// Residue_pix_div_12_split_mode &
+					// Final_addr_split_mode for Tri-gate Mode (no USE)
+rtd_outl(0xb802D1A4, 0x0008C891);	// hs_den_io_dist = req_st + 6 = 140; (for EPI)
+					// hs_io_dist = hs_delay + 6 = 2187 + 6 = 2193; (for EPI)
+rtd_outl(0xb802D1B8, 0x00000000);	// Line 4N/4N+1/4N+2/4N+3 => G_0/G_last select original data, 
+					// data not inverse
+rtd_outl(0xb802D1EC, 0x00000000);	// SEG 0/1, middle, no dummy pixel
+rtd_outl(0xb802D1F0, 0x00000000);	// SEG 2/3, middle, no dummy pixel
+rtd_outl(0xb802D1F4, 0x00000000);	// SEG 4/5, middle, no dummy pixel
+rtd_outl(0xb802D1F8, 0x00000000);	// SEG 6/7, middle, no dummy pixel
+rtd_outl(0xb802D1FC, 0x00000000);	// Active_pixel_RGB & Last_ext_pixel for DRD
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//PIF
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb802D000, 0x00000000);	// PIF LVDS Mode
+rtd_outl(0xb802D010, 0x000050C0);	// LVDS Port Enable, LVDS select Table 1
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//LVDS Pin Share
+//---------------------------------------------------------------------------------------------------------------------------------
+//rtd_outl(0xb80008B8, 0x00000000);	// LVDS A-Port F/G/H Pair PinShare
+rtd_outl(0xb80008BC, 0x00000000);	// LVDS A-Port C/D/E Pair PinShare
+rtd_outl(0xb80008C0, 0x00000000);	// LVDS A-Port A/B, LVDS B-Port G Pair PinShare
+rtd_outl(0xb80008C4, 0x00000000);	// LVDS B-Port D/E/F Pair PinShare
+rtd_outl(0xb80008C8, 0x00000000);	// LVDS B-Port A/B/C Pair PinShare
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//LVDS/mini-LVDS/EPI/VBy1 TXPHY
+//---------------------------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8000C00, 0x03001810);	// PI_A1 = Phase0, PI_A2 = Phase0, CK7X = 1X Current, PI_Clock = 300~600MHz,
+rtd_outl(0xb8000C04, 0x03001810);	// PI_B1 = Phase0, PI_B2 = Phase0, CK7X = 1X Current, PI_Clock = 300~600MHz,
+rtd_outl(0xb8000C08, 0x03040000);	// PI_AB = Phase0, CK7X = 1X Current, CK5X Duty Adjust Disable, PI_Clock = 300~600MHz,
+rtd_outl(0xb8000C0C, 0x04153700);	// Choose legacy charge-pump, DIV248 = 2, VCO = 74.25*7*DIV248 = 1.0395GHz,
+					// Small Kvco, CK1X Not Inverse, PLL_VCO = 2V,
+					// Icp = 12.5uA, Cp = 9.5pF, Rs = 12Kohm,
+					// PI_A Disble, PI_B Disable ==> PI_AB Disble
+rtd_outl(0xb8000C10, 0x90040000);	// P0 A-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C14, 0x90040000);	// P0 B-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C18, 0x90040000);	// P0 C-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C1C, 0x91040000);	// P0 D-Pair LVDS, Use PI_A2, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C20, 0x90040000);	// P0 E-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C24, 0x90040000);	// P0 F-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C28, 0x90040000);	// P0 G-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+//rtd_outl(0xb8000C2C, 0x90040000);	// P0 H-Pair LVDS, Use PI_A1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C30, 0x00000000);	// P0 Not Adjudt CK7X Delay, CK7X Not Inverse, PI Not Lag 0.5UI,
+					// P0 Double Driving disable,
+rtd_outl(0xb8000C34, 0x90040000);	// P1 A-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C38, 0x90040000);	// P1 B-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C3C, 0x90040000);	// P1 C-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C40, 0x91040000);	// P1 D-Pair LVDS, Use PI_B2, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C44, 0x90040000);	// P1 E-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C48, 0x90040000);	// P1 F-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C4C, 0x90040000);	// P1 G-Pair LVDS, Use PI_B1, SR Disable, internal resistor 100ohm,
+rtd_outl(0xb8000C50, 0x00000000);	// P1 Not Adjudt CK7X Delay, CK7X Not Inverse, PI Not Lag 0.5UI,
+					// P1 Double Driving disable,
+rtd_outl(0xb8000C54, 0x09ECD000);	// ISOURCE = IBHX, Select LVDS/mLVDS/EPI TXPHY, 
+					// LDO_CML Enable & 2V, LDO_DPLL/LVDSPLL Enable & 1.05V,
+					// Swing = 4mA. VCM = 1.25V,
+rtd_outl(0xb8000C58, 0x00000000);	// P0 Pre-emphasis disable, internal resistor disable, TTL 2mA,
+					// P0 Not Adjudt CK1X Delay, CML 1.2mA (PLL<1.2GHz),
+rtd_outl(0xb8000C5C, 0x00000000);	// P0 CMOS Mode, SR 1-buffer delay,
+rtd_outl(0xb8000C60, 0x00000000);	// P1 Pre-emphasis disable, internal resistor disable, TTL 2mA,
+					// P1 Not Adjudt CK1X Delay, CML 1.2mA (PLL<1.2GHz),
+rtd_outl(0xb8000C64, 0x00000000);	// P1 CMOS Mode, SR 1-buffer delay,
+//rtd_outl(0xb8000C78, 0xFFFF0000);	// Lane Power Enable for non-Vby1-Mode
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//VBy1 A-PHY
+//---------------------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//VBy1 A-PHY
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

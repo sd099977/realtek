@@ -1,0 +1,38 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+sec -ecdh -com -params /CSVInDirName/ecdh_p_160_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_160_comp_priv_key.bin -pubkx /SECInOutDirName/ecdh_p_160_comp_pub_key_x.bin -pubky /SECInOutDirName/ecdh_p_160_comp_pub_key_y.bin -ssx /SECInOutDirName/ecdh_p_160_comp_shared_secret_x_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_160_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_160_priv_key_01out.bin -opubkx /SECInOutDirName/ecdh_p_160_pub_key_x_01out.bin -opubky /SECInOutDirName/ecdh_p_160_pub_key_y_01out.bin
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_160_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_160_priv_key_02out.bin -opubkx /SECInOutDirName/ecdh_p_160_pub_key_x_02out.bin -opubky /SECInOutDirName/ecdh_p_160_pub_key_y_02out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_160_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_160_priv_key_01out.bin -pubkx /SECInOutDirName/ecdh_p_160_pub_key_x_02out.bin -pubky /SECInOutDirName/ecdh_p_160_pub_key_y_02out.bin -ssx /SECInOutDirName/ecdh_p_160_comp_shared_secret_x_01out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_160_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_160_priv_key_02out.bin -pubkx /SECInOutDirName/ecdh_p_160_pub_key_x_01out.bin -pubky /SECInOutDirName/ecdh_p_160_pub_key_y_01out.bin -ssx /SECInOutDirName/ecdh_p_160_comp_shared_secret_x_02out.bin
+N3XT -COMPARETWOFILEs CHECKFORPASS -ref /SECInOutDirName/ecdh_p_160_comp_shared_secret_x_01out.bin -of /SECInOutDirName/ecdh_p_160_comp_shared_secret_x_02out.bin 
+ctd -rst HW
+sec -ecdh -com -params /CSVInDirName/ecdh_p_224_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_224_comp_priv_key.bin -pubkx /SECInOutDirName/ecdh_p_224_comp_pub_key_x.bin -pubky /SECInOutDirName/ecdh_p_224_comp_pub_key_y.bin -ssx /SECInOutDirName/ecdh_p_224_comp_shared_secret_x_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_224_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_224_priv_key_01out.bin -opubkx /SECInOutDirName/ecdh_p_224_pub_key_x_01out.bin -opubky /SECInOutDirName/ecdh_p_224_pub_key_y_01out.bin
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_224_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_224_priv_key_02out.bin -opubkx /SECInOutDirName/ecdh_p_224_pub_key_x_02out.bin -opubky /SECInOutDirName/ecdh_p_224_pub_key_y_02out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_224_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_224_priv_key_01out.bin -pubkx /SECInOutDirName/ecdh_p_224_pub_key_x_02out.bin -pubky /SECInOutDirName/ecdh_p_224_pub_key_y_02out.bin -ssx /SECInOutDirName/ecdh_p_224_comp_shared_secret_x_01out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_224_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_224_priv_key_02out.bin -pubkx /SECInOutDirName/ecdh_p_224_pub_key_x_01out.bin -pubky /SECInOutDirName/ecdh_p_224_pub_key_y_01out.bin -ssx /SECInOutDirName/ecdh_p_224_comp_shared_secret_x_02out.bin
+N3XT -COMPARETWOFILEs CHECKFORPASS -ref /SECInOutDirName/ecdh_p_224_comp_shared_secret_x_01out.bin -of /SECInOutDirName/ecdh_p_224_comp_shared_secret_x_02out.bin 
+ctd -rst HW
+sec -ecdh -com -params /SECInOutDirName/ecdh_p_256_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_256_comp_priv_key.bin -pubkx /SECInOutDirName/ecdh_p_256_comp_pub_key_x.bin -pubky /SECInOutDirName/ecdh_p_256_comp_pub_key_y.bin -ssx /SECInOutDirName/ecdh_p_256_comp_shared_secret_x_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_256_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_256_priv_key_01out.bin -opubkx /SECInOutDirName/ecdh_p_256_pub_key_x_01out.bin -opubky /SECInOutDirName/ecdh_p_256_pub_key_y_01out.bin
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_256_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_256_priv_key_02out.bin -opubkx /SECInOutDirName/ecdh_p_256_pub_key_x_02out.bin -opubky /SECInOutDirName/ecdh_p_256_pub_key_y_02out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_256_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_256_priv_key_01out.bin -pubkx /SECInOutDirName/ecdh_p_256_pub_key_x_02out.bin -pubky /SECInOutDirName/ecdh_p_256_pub_key_y_02out.bin -ssx /SECInOutDirName/ecdh_p_256_comp_shared_secret_x_01out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_256_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_256_priv_key_02out.bin -pubkx /SECInOutDirName/ecdh_p_256_pub_key_x_01out.bin -pubky /SECInOutDirName/ecdh_p_256_pub_key_y_01out.bin -ssx /SECInOutDirName/ecdh_p_256_comp_shared_secret_x_02out.bin
+N3XT -COMPARETWOFILEs CHECKFORPASS -ref /SECInOutDirName/ecdh_p_256_comp_shared_secret_x_01out.bin -of /SECInOutDirName/ecdh_p_256_comp_shared_secret_x_02out.bin 
+ctd -rst HW
+sec -ecdh -com -params /CSVInDirName/ecdh_p_384_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_384_comp_priv_key.bin -pubkx /SECInOutDirName/ecdh_p_384_comp_pub_key_x.bin -pubky /SECInOutDirName/ecdh_p_384_comp_pub_key_y.bin -ssx /SECInOutDirName/ecdh_p_384_comp_shared_secret_x_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_384_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_384_priv_key_01out.bin -opubkx /SECInOutDirName/ecdh_p_384_pub_key_x_01out.bin -opubky /SECInOutDirName/ecdh_p_384_pub_key_y_01out.bin
+sec -ecdh -gen -params /CSVInDirName/ecdh_p_384_gen_params.csv -opvtk /SECInOutDirName/ecdh_p_384_priv_key_02out.bin -opubkx /SECInOutDirName/ecdh_p_384_pub_key_x_02out.bin -opubky /SECInOutDirName/ecdh_p_384_pub_key_y_02out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_384_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_384_priv_key_01out.bin -pubkx /SECInOutDirName/ecdh_p_384_pub_key_x_02out.bin -pubky /SECInOutDirName/ecdh_p_384_pub_key_y_02out.bin -ssx /SECInOutDirName/ecdh_p_384_comp_shared_secret_x_01out.bin
+sec -ecdh -com -params /CSVInDirName/ecdh_p_384_comp_params.csv -ipvtk /SECInOutDirName/ecdh_p_384_priv_key_02out.bin -pubkx /SECInOutDirName/ecdh_p_384_pub_key_x_01out.bin -pubky /SECInOutDirName/ecdh_p_384_pub_key_y_01out.bin -ssx /SECInOutDirName/ecdh_p_384_comp_shared_secret_x_02out.bin
+N3XT -COMPARETWOFILEs CHECKFORPASS -ref /SECInOutDirName/ecdh_p_384_comp_shared_secret_x_01out.bin -of /SECInOutDirName/ecdh_p_384_comp_shared_secret_x_02out.bin 
+ctd -rst HW

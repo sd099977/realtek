@@ -1,0 +1,2 @@
+Boot Mode Selection=NAND
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT

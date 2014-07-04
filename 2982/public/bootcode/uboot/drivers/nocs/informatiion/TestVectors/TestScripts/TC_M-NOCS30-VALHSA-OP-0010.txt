@@ -1,0 +1,54 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+# ECDSA Verify with reference key for all Hash
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_160_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_160_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_160_SHA1_verify_pub_key_y.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_160_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_160_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_160_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_160_SHA256_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_160_SHA256_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_160_SHA256_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_160_SHA256_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_160_SHA256_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_160_SHA256_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_160_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_160_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_160_SHA1_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_160_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_160_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_160_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORFAIL
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_256_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_256_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_256_SHA1_verify_pub_key_y.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_256_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_256_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_256_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_256_SHA256_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_256_SHA256_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_256_SHA256_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_256_SHA256_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_256_SHA256_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_256_SHA256_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_256_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_256_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_256_SHA1_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_256_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_256_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_256_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORFAIL
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_224_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_224_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_224_SHA1_verify_pub_key_y.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_224_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_224_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_224_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_224_SHA256_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_224_SHA256_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_224_SHA256_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_224_SHA256_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_224_SHA256_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_224_SHA256_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_224_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_224_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_224_SHA1_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_224_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_224_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_224_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORFAIL
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_384_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_384_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_384_SHA1_verify_pub_key_y.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_384_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_384_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_384_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_384_SHA256_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_384_SHA256_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_384_SHA256_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_384_SHA256_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_384_SHA256_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_384_SHA256_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_384_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_384_SHA1_verify_pub_key_x.bin -pubky /SECInOutDirName/ecdsa_p_384_SHA1_verify_pub_key_y.bin -ht SHA256 -in /SECInOutDirName/ecdsa_p_384_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_384_SHA1_verify_signature_r.bin -sSif /SECInOutDirName/ecdsa_p_384_SHA1_verify_signature_s.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORFAIL
+##ECDSA Generate Key
+sec -ecdsa -gen -params /CSVInDirName/ecdsa_p_160_gen_params.csv -opvtk /SECInOutDirName/ecdsa_p_160_gen_priv_key_out.bin -pubkx /SECInOutDirName/ecdsa_p_160_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_160_gen_pub_key_y_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -gen -params /CSVInDirName/ecdsa_p_224_gen_params.csv -opvtk /SECInOutDirName/ecdsa_p_224_gen_priv_key_out.bin -pubkx /SECInOutDirName/ecdsa_p_224_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_224_gen_pub_key_y_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -gen -params /CSVInDirName/ecdsa_p_256_gen_params.csv -opvtk /SECInOutDirName/ecdsa_p_256_gen_priv_key_out.bin -pubkx /SECInOutDirName/ecdsa_p_256_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_256_gen_pub_key_y_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -gen -params /CSVInDirName/ecdsa_p_384_gen_params.csv -opvtk /SECInOutDirName/ecdsa_p_384_gen_priv_key_out.bin -pubkx /SECInOutDirName/ecdsa_p_384_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_384_gen_pub_key_y_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+##ECDSA Sign with generated key
+sec -ecdsa -sign -params /CSVInDirName/ecdsa_p_160_SHA1_sign_params.csv -ipvtk /SECInOutDirName/ecdsa_p_160_gen_priv_key_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_160_SHA1_sign_in.bin -ms 0x400 -sRof /SECInOutDirName/ecdsa_p_160_SHA1_sign_signature_r_out.bin -sSof /SECInOutDirName/ecdsa_p_160_SHA1_sign_signature_s_out.bin 
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -sign -params /CSVInDirName/ecdsa_p_224_SHA1_sign_params.csv -ipvtk /SECInOutDirName/ecdsa_p_224_gen_priv_key_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_224_SHA1_sign_in.bin -ms 0x400 -sRof /SECInOutDirName/ecdsa_p_224_SHA1_sign_signature_r_out.bin -sSof /SECInOutDirName/ecdsa_p_224_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -sign -params /CSVInDirName/ecdsa_p_256_SHA1_sign_params.csv -ipvtk /SECInOutDirName/ecdsa_p_256_gen_priv_key_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_256_SHA1_sign_in.bin -ms 0x400 -sRof /SECInOutDirName/ecdsa_p_256_SHA1_sign_signature_r_out.bin -sSof /SECInOutDirName/ecdsa_p_256_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+sec -ecdsa -sign -params /CSVInDirName/ecdsa_p_384_SHA1_sign_params.csv -ipvtk /SECInOutDirName/ecdsa_p_384_gen_priv_key_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_384_SHA1_sign_in.bin -ms 0x400 -sRof /SECInOutDirName/ecdsa_p_384_SHA1_sign_signature_r_out.bin -sSof /SECInOutDirName/ecdsa_p_384_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS
+##ECDSA Verify with generated key
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_160_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_160_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_160_gen_pub_key_y_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_160_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_160_SHA1_sign_signature_r_out.bin -sSif /SECInOutDirName/ecdsa_p_160_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS                                                                                                                                                      
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_224_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_224_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_224_gen_pub_key_y_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_224_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_224_SHA1_sign_signature_r_out.bin -sSif /SECInOutDirName/ecdsa_p_224_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS                                                                                                                                                      
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_384_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_384_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_384_gen_pub_key_y_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_384_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_384_SHA1_sign_signature_r_out.bin -sSif /SECInOutDirName/ecdsa_p_384_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS                                                                                                                                                      
+sec -ecdsa -verify -params /CSVInDirName/ecdsa_p_256_SHA1_verify_params.csv -pubkx /SECInOutDirName/ecdsa_p_256_gen_pub_key_x_out.bin -pubky /SECInOutDirName/ecdsa_p_256_gen_pub_key_y_out.bin -ht SHA1 -in /SECInOutDirName/ecdsa_p_256_SHA1_verify_in.bin -ms 0x400 -sRif /SECInOutDirName/ecdsa_p_256_SHA1_sign_signature_r_out.bin -sSif /SECInOutDirName/ecdsa_p_256_SHA1_sign_signature_s_out.bin
+N3XT -CHECKCMDRETURNSTATUS CHECKFORPASS

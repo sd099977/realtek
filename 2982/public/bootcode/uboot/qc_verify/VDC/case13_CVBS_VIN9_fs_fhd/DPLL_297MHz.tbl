@@ -1,0 +1,4 @@
+rtd_outl(0xb8000490, 0x0210142A);	// VCO = 297MHz
+rtd_outl(0xb8000494, 0x01720042);	// DPLL_Clock DIV=1 , DPLL power on
+rtd_outl(0xb8000640, 0x07500001);	// DPLL offset = 1872
+rtd_outl(0xb8000640, 0x07500005);	// Load in

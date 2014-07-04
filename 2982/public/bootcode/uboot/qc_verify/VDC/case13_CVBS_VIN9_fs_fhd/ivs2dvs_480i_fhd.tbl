@@ -1,0 +1,7 @@
+rtd_outl(0xb802804C, 0x00000008);	// IV2DV_Delay Toggle Enable
+rtd_outl(0xb8028050, 0x00000000);	// iv2dv_pixel, iv2dv_pixel2
+rtd_outl(0xb8028058, 0x000F000F);	// iv2dv_line, iv2dv_line2
+
+rtd_outl(0xb8000490, 0x0220142A);	// M, N
+rtd_outl(0xb8000640, 0x04DC0001);	// OFFSET
+rtd_outl(0xb8000640, 0x04DC0005);	// Load in

@@ -1,0 +1,28 @@
+#
+# Distribution information
+#   This file was automatically generated.
+#   Do not edit it manually!!!
+#
+
+#
+# THIS distrib package relative path
+
+NHT_DISTRIB_RELPATH = \
+  chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server
+
+#
+# NHT component version
+
+NHT_COMPONENT_VERSION_STR = "05.04.00"
+
+#
+# Package root directory
+#
+#  : If not already defined, compute the package root directory based on the
+#    relative path of this distrib.
+#
+#  PS: Assumption is done here that the makefile is executed
+#  in the distrib current directory
+
+NHT_ROOT ?= \
+  $(subst /$(NHT_DISTRIB_RELPATH)__,,$(CURDIR)__)

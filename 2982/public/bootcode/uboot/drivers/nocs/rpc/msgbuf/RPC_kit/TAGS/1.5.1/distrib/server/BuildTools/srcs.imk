@@ -1,0 +1,115 @@
+#
+# Applicable C files setting
+#
+# : C files selection that effectivelly enters in a server library dependent
+#   of the targeted OS and RPC topological means of the server.
+#
+#   This file is provided as a C-file selector for building an
+#   OS/RPC specific server library.
+#
+#    - NHT_OS variable hold the OS identifier
+#      : current supported values are: {'posix', 'none'}
+#
+#    - NHT_RPC variable hold the RPC topology identifier
+#      : current supported values are: {'tcpip', 'term'}
+#
+#   PS: note that the RPC that applies in an OS-free server
+#   (NHT_OS=none) is implicitely a CM's specific terminal.
+#
+#  Note that as a server support one and only one RPC topology type
+#  at a time.
+#
+
+#-------------------------------------------------------------
+#  Simple configuration check
+#-------------------------------------------------------------
+
+ifeq ($(strip $(NHT_OS)),none)
+  ifneq ($(strip $(NHT_RPC)),term)
+    $(error "Illegal msgbuf server configuration NHT_OS=$(NHT_OS) NHT_RPC=$(NHT_RPC) !")
+  endif
+endif
+
+#-------------------------------------------------------------
+#  OS-independent / RPC-topology independent : C files
+#-------------------------------------------------------------
+
+NHT_SRCS +=  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/_msgbuf_rpcctrl.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_msgbuf_report.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_rpc_report.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/avlset.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/base_hndmng.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_alloc.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpack.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpc_service.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_size.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_strbuilder.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_sys_string.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_unpack.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_ftrace.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl_serviceWrapper.c
+
+#-------------------------------------------------------------
+#  OS-independent / RPC tcpip-topology specific : C files
+#-------------------------------------------------------------
+ifeq ($(strip $(NHT_RPC)),tcpip)
+  NHT_SRCS     += 
+else
+
+#-------------------------------------------------------------
+#  OS-independent / RPC term-topology specific: C files
+#-------------------------------------------------------------
+ifeq ($(strip $(NHT_RPC)),term)
+	NHT_SRCS     += 
+else
+ $(error "Not supported NHT_RPC=$(NHT_RPC)")
+endif
+endif
+
+
+#-------------------------------------------------------------
+#  posix-OS / RPC topology indepedent: C files
+#-------------------------------------------------------------
+ifeq ($(strip $(NHT_OS)),posix)
+  NHT_SRCS     +=  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_hndmng.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_rpc_service.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_rpc_stdout_stderr_redirection.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_sys_mutex.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/os_sys_malloc.c
+
+  #-------------------------------------------------------------
+  #  posix-OS / RPC tcpip-topology specific: C files
+  #-------------------------------------------------------------
+  ifeq ($(NHT_RPC),tcpip)
+    NHT_SRCS     +=  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/tcpip/posix/posix_rpc_tcpip_server.c
+  else
+
+  #-------------------------------------------------------------
+  #  posix-OS / RPC term-topology specific: C files
+  #-------------------------------------------------------------
+  ifeq ($(NHT_RPC),term)
+    NHT_SRCS     +=  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/term/posix/posix_rpc_term_server.c
+  endif
+  endif
+else
+
+#-------------------------------------------------------------
+#  OS-free / RPC topology (not applicable): C files
+#-------------------------------------------------------------
+
+ifeq ($(strip $(NHT_OS)),none)
+    NHT_SRCS +=  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/memAlloc.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/mempool_sys_malloc.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/null_sys_mutex.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/serial_hndmng.c  \
+      $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/none/serial_rpc_service.c
+else
+  $(error "Not supported NHT_OS=$(NHT_OS)!)
+endif
+endif

@@ -1,0 +1,9 @@
+N3XT -cfg CC_M-NOCS30-0003
+N3XT -UPDATECHIPDATABASE
+sec -r2r -enc -key CERT -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4026_AKLenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+sec -r2r -dec -key CERT -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4026_AKLdec_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+sec -r2r -enc -key CERT -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4026_AKLenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+CTD -rst HW

@@ -1,0 +1,7 @@
+Market Segment ID=MSID_PROD
+Versioning=VER_PROD
+Boot Mode Selection=NAND
+SCS Total Area Size=SCS_TOTALAREA_B
+Ram Scrambling Activation Flag=SET
+Flash Protection Activation Flag=SET
+SCS Activation Flag=SET

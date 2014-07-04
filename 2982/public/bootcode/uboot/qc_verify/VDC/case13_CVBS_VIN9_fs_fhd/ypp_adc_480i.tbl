@@ -1,0 +1,16 @@
+
+		rtd_outl(0xb8020004, 0x00000000);  //
+		rtd_outl(0xb8020008, 0x00150095);  // VIN3P,VIN4P,VIN5P,Y0N,Y0N,Y0N, input range 0.25~1.25 ,2nd LPF=1   0x0015b015    new 0x00150c95  00150095  open G channel VIn4P
+
+		rtd_outl(0xb8020010, 0x00210001);  // clock polarity, divider
+		rtd_outl(0xb8020018, 0x001f0038);	// DC Restore on 4,5,6; set ADC LPF to 10Mhz; SH gain = 1.45
+		rtd_outl(0xb802001c, 0x00420049);	// Enable negative clamper of G[4]-, set R,G,B clamper to DAC voltage
+		rtd_outl(0xb8020024, 0x44000000);	// SOG0 select to Vin4P, Clamp UP/DOWN disable
+		//rtd_outl(0xb8020028, 0xe80056d0);	// offset independence,vrefNP from current mirror,VDC DAC from BGR_V21, G neg [3] clamp on 
+		rtd_outl(0xb8020040,0x03b80398);//R+-=800 G+=400,G-=800
+		rtd_outl(0xb8020044,0x000003b8);//B+-=800
+		//rtd_outl(0xb8020064, 0x00000045);  // SMT    default smit trigger power on
+		rtd_outl(0xb8020068,0x00000000);   //clk div=0
+		rtd_outl(0xb8020080, 0x00000270);  // clk polarity
+
+		rtd_outl(0xb8020000, 0x000001ff);  // ADC clock,SOG0,bandgap,RGB power

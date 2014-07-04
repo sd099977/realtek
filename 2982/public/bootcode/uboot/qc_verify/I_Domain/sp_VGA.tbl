@@ -1,0 +1,19 @@
+
+rtd_outl(0xb8021000, 0x80a10002);	// ADC HS source = HSFB , CS source = SOY0
+rtd_outl(0xb8021010, 0x00001109);	// capture window = +-8clk , stable period torlance = +-8clk
+rtd_outl(0xb8021028, 0x000020ee);	// Debounce = 4clk , VS counter = 365 (HS/8 + 150)
+rtd_outl(0xb802106c, 0x00000000);	// SP output = ADC data , HS/VS/Field source = ADC
+
+rtd_outl(0xb8021000, 0x80a10402);	// enable SP auto run
+udelay(10000);
+
+rtd_outl(0xb802103c, 0x04100410);	// Clamp start & end
+rtd_outl(0xb8021040, 0x00000000);	// Clamp mask enable
+rtd_outl(0xb8021064, 0x00000280);	// Clamp source select
+rtd_outl(0xb8021038, 0x00000010);	// Clamp enable
+rtd_outl(0xb8021038, 0x00000090);	// dben
+
+
+udelay(16000);
+//rtd_outl(0xb8020020, 0x00010007);	// ADC Clamp on
+//rtd_outl(0xb8020018, 0x4ead0000);	// ADC DC Restore off

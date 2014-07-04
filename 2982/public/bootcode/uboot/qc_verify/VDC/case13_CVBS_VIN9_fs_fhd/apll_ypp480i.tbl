@@ -1,0 +1,30 @@
+/////////////////////////////////////////////////
+// filename: apll_480i.c
+// description: YPbPr 480i to SXGA panel APLL setting 
+// author: adams
+// version: 1.2:  enable dual clock
+// history: 1.1:  Del include 
+/////////////////////////////////////////////////
+
+
+rtd_outl(0xb800db40, 0x02800202);       //HDMI bandgap power 
+rtd_outl(0xb802005c, 0x00130003);	//LDO power on 
+
+rtd_outl(0xb8020100, 0x03030103);	// M=6,N=3,K=0
+rtd_outl(0xb8020108, 0x00000359);	// Divider=858
+rtd_outl(0xb802010c, 0x00530040);	// ADC clk=(1/4)*VCO clk
+rtd_outl(0xb8020110, 0x00000020);	// PLL phase interpolation control load
+rtd_outl(0xb8020114, 0x00000010);	// G value=1, P code no over flow 
+rtd_outl(0xb8020118, 0x00000002);	// Adaptive Tracking (Default value)
+rtd_outl(0xb802011c, 0x3009a733);	// P code max=316321 and new mode disable
+rtd_outl(0xb8020120, 0x000002a0);	// Delay chain select (Default value)
+rtd_outl(0xb8020124, 0x00000008);	// DDS tracking HS positive edge (Default value)
+rtd_outl(0xb8020128, 0x0000000f);	// I code=79
+rtd_outl(0xb802012c, 0x000000f7);	// P code=31632, no over flow 
+rtd_outl(0xb8020130, 0x00000000);	// Calibration disable (Default value)
+rtd_outl(0xb8020134, 0x00000000);	// PE measure disable (Default value)
+rtd_outl(0xb8020138, 0x00000000);	// PE Max measure disable (Default value)
+
+rtd_outl(0xb802013c, 0x00000040);	// enable double buffer load
+rtd_outl(0xb8020104, 0x00050608);	// enable APLL & dual clk
+

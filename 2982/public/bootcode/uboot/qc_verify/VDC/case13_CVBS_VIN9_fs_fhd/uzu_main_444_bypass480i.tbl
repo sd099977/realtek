@@ -1,0 +1,25 @@
+//rtd_outl(0xb8029004, 0x02000282);	//444,bypass scale UP for v
+rtd_outl(0xb8029004, 0x02000283);	// UZU enable
+//HOR/VER_factor：0x1802_9008 & 0x1802_900c
+//公式： (In_size / Out_size ) * 2^20
+//範圍：0 ～ 2^20-1
+rtd_outl(0xb8029008, 0x00060000);//HOR_FAC 1x
+//rtd_outl(0xb802900C, 0x00087000);//VER_FAC 1x
+rtd_outl(0xb802900C, 0x00038e38);//VER_FAC 1x
+rtd_outl(0xb8029024, 0x0000ffff);//HOR/VER_INI
+//rtd_outl(0xb8027328, 0x00000004);//combine fifo enable 
+//rtd_outl(0xb8027330, 0x00000001);//double buffer
+
+//Delta1/2：0x1802_9010 & 0x1802_9014
+//SEGMENT1/2：0x1802_9018 & 0x1802_901c
+//SEGMENT3：0x1802_9020
+//說明：out_width = 2(segment1+segment2)+segment3
+//For linear scaling case, delta1 & delta2 & segment1 &segment2 都設成0
+rtd_outl(0xb8029010, 0x00000000);//12:0==>HOR_DELTA1
+rtd_outl(0xb8029014, 0x00000000);//12:0==>HOR_DELTA2
+rtd_outl(0xb8029018, 0x00000000);//10:0==>SEGMENT1
+rtd_outl(0xb802901C, 0x00000000);//10:0==>SEGMENT2
+rtd_outl(0xb8029020, 0x00000500);//10:0==>SEGMENT3
+
+//DM_UZU(_Input_Size)  	0x1802_9028
+rtd_outl(0xb8029028, 0x02d000f0);//Input Size (720x480)

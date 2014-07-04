@@ -1,0 +1,11 @@
+rtd_outl(0xb8000280, 0x0000000c);//psaud_psen=1, psaud_en=1
+rtd_outl(0xb8000284, 0x0000000B);//coef C=(11+2)*2,PSAUD_DIV
+rtd_outl(0xb8006010, 0x2100c11D);//digital tracking, 2fs/4, coef D=1, coef E=1, coef A=29
+rtd_outl(0xb8006008, 0x85400000);//tcon0 tracking source
+rtd_outl(0xb800600c, 0x85400000);//tcon1 tracking source
+//PLL64 512
+rtd_outl(0xb8000204, 0x00000003); //PLL512FS POW on ,OEB on
+rtd_outl(0xb8000200, 0x63e22024);//N=(6+2), M=(62+2)*2 O=(0+2)*2
+//Audio global clock
+rtd_outl(0xb8006004, 0xF00d0808);//ds->pll_audio ts->pll_64_512
+rtd_outl(0xb8006000, 0x02aa0004);//else: 192k use down 4 //jerry

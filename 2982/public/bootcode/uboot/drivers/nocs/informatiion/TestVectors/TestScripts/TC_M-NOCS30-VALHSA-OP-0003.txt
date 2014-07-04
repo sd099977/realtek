@@ -1,0 +1,11 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+sec -sha SHA1 -if /SECInOutDirName/sha1_in.bin -of /SECInOutDirName/sha1_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -sha SHA256 -if /SECInOutDirName/sha256_in.bin -of /SECInOutDirName/sha256_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -sha SHA384 -if /SECInOutDirName/sha384_in.bin -of /SECInOutDirName/sha384_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW

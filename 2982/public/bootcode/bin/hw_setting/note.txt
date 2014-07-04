@@ -1,0 +1,42 @@
+
+//tbl syntax points for attention
+1. All digits in .tbl file must use hexadecimal notation,just like in c code.
+   ex. 0a0a0a08 --> wrong, 0x0a0a0a08 --> OK !
+2. registers addr must start with 0xb8;
+   ex. 0x180002C0 --> wrong, 0xb80002C0 --> OK !
+
+3. Each tbl statement must end with a semicolon.
+4. comments starts with //;
+   ex. rtd_outl(0xb80002d4,0x15151515) 854MHz  --> wrong, 
+   and rtd_outl(0xb80002d4,0x15151515);//854MHZ
+
+5. ifdef must be paired
+
+
+//how to add new tbl file
+you can add new tbl file using statement like below at the end of sirrus_hw_setting.makefile
+
+ifeq ($(CONFIG_DDR_QFP_512MB_x32_),y)
+HW_SETTING_FILE += DDR_QFP_512MB_x32_.tbl
+endif
+
+//how to add ifdef in Kconfig
+if you wanna add a brand-new ifdef, you can refer to below syntax in Kconfig
+
+choice
+    prompt "DDR QFP file select"
+    ---help---
+        Select Specific DDR QFP config file
+
+    config DDR_QFP_512MB_x16_
+        bool "DDR_QFP_512MB_x16_"
+        ---help---
+            DDR_QFP_512MB_x16_
+
+    config DDR_QFP_512MB_x32_
+        bool "DDR_QFP_512MB_x32_"
+        ---help---
+            DDR_QFP_512MB_x32_
+
+endchoice
+

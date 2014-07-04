@@ -1,0 +1,62 @@
+#! /usr/bin/perl -w
+if( defined(@ARGV) )
+{
+	foreach $arg (@ARGV) {
+		($type, $file) = split(/=/, $arg);
+		if ($type eq "builtin_otp_map") {
+			$builtin_otp_map = $file;
+		}
+	}
+	if(defined $builtin_otp_map)
+    {
+		open BINARY, $builtin_otp_map or die $!;
+
+		# in the for();
+		# (map ord, split //, $bytes) will generate a list
+		# $byte is stream data read from file
+		# (split //, $byte) will separate $byte into char list (maybe)
+		# map will apply ord (to number) to each one in char list
+		# then each result after map will put in "$_"
+
+		my $bytes;
+		$current = 0;
+		$size = -s BINARY;
+		($size>>=2); # word number -1
+		print ".data\n.globl builtin_otp_map\n.globl builtin_otp_map_end\nbuiltin_otp_map:\n.word \\\n";
+		while ($current < $size)
+		{
+			read(BINARY, $bytes, 1);
+			@a = map ord, split //, $bytes;
+			read(BINARY, $bytes, 1);
+			@b = map ord, split //, $bytes;
+			read(BINARY, $bytes, 1);
+			@c = map ord, split //, $bytes;
+			read(BINARY, $bytes, 1);
+			@d = map ord, split //, $bytes;
+			
+			printf "0x%02x", @d;
+			printf "%02x", @c;
+			printf "%02x", @b;
+			printf "%02x", @a;
+
+			$current++;
+			if($current < $size)
+			{ print ","}
+			else
+			{ last }
+
+			if($current%4==0)
+			{ print "\\\n";}
+		}
+		print "\nbuiltin_otp_map_end:\n.word 0\n";
+    }
+	else
+	{
+		print ".data\n.globl builtin_otp_map\n.globl builtin_otp_map_end\nbuiltin_otp_map:\n.word \\\n";
+        print "\nbuiltin_otp_map_end:\n.word 0\n";
+	}
+}
+else
+{
+    print "binary image file need!! \n";
+}

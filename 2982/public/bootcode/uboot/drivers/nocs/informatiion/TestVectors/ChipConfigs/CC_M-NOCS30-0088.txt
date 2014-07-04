@@ -1,0 +1,6 @@
+Market Segment ID=MSID_PROD
+Versioning=VER_PROD
+Boot Mode Selection=SPI
+SCS Total Area Size=SCS_TOTALAREA_C
+Flash Protection Activation Flag=SET
+SCS Activation Flag=SET

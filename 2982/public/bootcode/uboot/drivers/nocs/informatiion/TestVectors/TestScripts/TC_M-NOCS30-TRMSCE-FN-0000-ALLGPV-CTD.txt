@@ -1,0 +1,17 @@
+n3xt -cfg CC_M-NOCS30-0000
+ctd -gpv DIF
+n3xt -cmp PV DIF OPEN
+ctd -gpv MSID
+n3xt -cmp PV MSID 0x00000000
+ctd -gpv STBCASN
+n3xt -cmp PV STBCASN 0x00000000
+ctd -gpv BOOTMODE
+n3xt -cmp PV BOOTMODE BMDEFAULT
+ctd -gpv KLD
+n3xt -cmp PV KLD NOT SET
+ctd -gpv FLASH
+n3xt -cmp PV FLASH NOT SET
+ctd -gpv SCS
+n3xt -cmp PV SCS NOT SET
+ctd -gpv RAM
+n3xt -cmp PV RAM NOT SET

@@ -1,0 +1,27 @@
+#if defined(CONFIG_DDR_405MHz)
+	rtd_outl(0xb80002D4,0x01b00000);  // N code 405MHz
+#elif defined(CONFIG_DDR_513MHz)
+	rtd_outl(0xb80002D4,0x02300000);  // N code 513MHz
+#elif defined(CONFIG_DDR_594MHz)
+	rtd_outl(0xb80002D4,0x02900000);  // N code 594MHz			
+#elif defined(CONFIG_DDR_675MHz)
+	rtd_outl(0xb80002D4,0x02F00000);  // N code 675MHz
+#elif defined(CONFIG_DDR_702MHz)
+	rtd_outl(0xb80002D4,0x03100000);  // N code 702MHz
+#elif defined(CONFIG_DDR_715MHz)
+	rtd_outl(0xb80002D4,0x03200000);  // N code 715MHz
+#elif defined(CONFIG_DDR_729MHz)
+	rtd_outl(0xb80002D4,0x03300000);  // N code 729MHz
+#elif defined(CONFIG_DDR_756MHz)
+	rtd_outl(0xb80002D4,0x03500000);  // N code 756MHz
+#elif defined(CONFIG_DDR_769MHz)
+	rtd_outl(0xb80002D4,0x03600000);  // N code 769.5MHz
+#elif defined(CONFIG_DDR_796MHz)
+	rtd_outl(0xb80002D4,0x03800000);  // N code 796MHz
+#elif defined(CONFIG_DDR_810MHz)
+	rtd_outl(0xb80002D4,0x03900000);  // N code 810MHz
+#elif defined(CONFIG_DDR_823MHz)
+	rtd_outl(0xb80002D4,0x03A00000);  // N code 823.5MHz
+#elif defined(CONFIG_DDR_850MHz)
+	rtd_outl(0xb80002D4,0x03C00000);  // N code 850.5MHz
+#endif

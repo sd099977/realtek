@@ -1,0 +1,2 @@
+n3xt -cfg CC_M-NOCS30-0000
+csd -cn NUID -oc

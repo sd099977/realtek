@@ -1,0 +1,5 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+ctd -sce -dec -keyemi 0x0001 -sceemi 0x0041 -if /StreamInDirName/NoP_TunerType_DT_DSC_Emi0x0041_01.00.ts -of /StreamOutDirName/CTCut_CTD_SCE_NoP_TunerType_DT_Recorded_EMI0x0041_SvPid0x1130.ts -videoPid 0x1130 -audioPid 0x1132 -pcrPid 0x1130 -ecmPid 0x1136 -pecm TRUE -tv /CSVInDirName/CTCut_DVBv3RK_TDES_DSC_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

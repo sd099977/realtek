@@ -1,0 +1,60 @@
+n3xt -cfg CC_M-NOCS30-0000
+csd -spv BOOTMODE NAND
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -spv MSID -v 0x12345678
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv MSID
+n3xt -cmp PV MSID 0x12345678 CHECKFORPASS
+n3xt NEXTCMDSHOULDFAIL
+csd -spv MSID -v 0xaaaaaaaa
+ctd -rst HW
+csd -gpv MSID
+n3xt -cmp PV MSID 0x12345678 CHECKFORPASS
+csd -spv STBCASN -v 0x87654321
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv STBCASN
+n3xt -cmp PV STBCASN 0x87654321 CHECKFORPASS
+n3xt NEXTCMDSHOULDFAIL
+csd -spv STBCASN -v 0xaaaaaaaa
+ctd -rst HW
+csd -gpv STBCASN
+n3xt -cmp PV STBCASN 0x87654321 CHECKFORPASS
+csd -spv KLD
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv KLD
+n3xt -cmp PV KLD SET
+csd -spv RAM
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv RAM
+n3xt -cmp PV RAM SET
+csd -spv SCSPV -v 0x01 -s 0x1 -id CSD_SCS_PV_VERSIONING_REF
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv SCSPV -s 0x1 -id CSD_SCS_PV_VERSIONING_REF
+n3xt -cmp SCSPV CSD_SCS_PV_VERSIONING_REF 0x01
+csd -spv FLASH
+dif -frw write -fl /SCSTVDirname/TC_M-NOCS30-VALSCS-SE-0302FlashImg.bin -a NANDFLASH_PROG_ADDR -s SCS_TOTALAREA_B -ft NAND -e DEFAULTENDIANESS
+dif -rst
+n3xt -cmp CHECKFORBOOTPASS
+csd -gpv FLASH
+n3xt -cmp PV FLASH SET
+csd -spv SCS
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv SCS
+n3xt -cmp PV SCS SET
+csd -spv DIFPWD
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv DIF
+n3xt -cmp PV DIF PWD
+csd -spv DIFCLOSE
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv DIF
+n3xt -cmp PV DIF CLOSE

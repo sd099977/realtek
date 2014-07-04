@@ -1,0 +1,9 @@
+rtd_outl(0xb802804C, 0x00000008);		// IV2DV_Delay Toggle Enable, For interlance
+rtd_outl(0xb8028050, 0x00000000);		// iv2dv_pixel, iv2dv_pixel2
+rtd_outl(0xb8028058, 0x000F000F);		// iv2dv_line, iv2dv_line2
+
+rtd_maskl(0xb8000190,0xF00F8FFF,0x02201000);	// DPLL M, N
+rtd_maskl(0xb8000194,0xFFCFCFFE,0x00300001);	// DPLL DIV_A/1
+rtd_maskl(0xb8028294,0xFFFFFFFC,0x00000001);	// DPLL DIV_D/2
+rtd_maskl(0xb8000300,0xF000FFFA,0x04DC0001);	// DPLL OFFSET
+rtd_maskl(0xb8000300,0xF000FFFA,0x04DC0005);	// DPLL OFFSET Load in

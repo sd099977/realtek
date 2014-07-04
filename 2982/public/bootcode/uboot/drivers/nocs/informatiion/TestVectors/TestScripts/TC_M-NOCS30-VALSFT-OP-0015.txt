@@ -1,0 +1,32 @@
+# TC_M-NOCS30-VALFE-SE-0001
+n3xt -cfg CC_M-NOCS30-0000
+bsd -fp DATA -enc -emi 0x4021 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4021_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -dec -emi 0x4021 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4021_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -enc -emi 0x4026 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4026_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -dec -emi 0x4026 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4026_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -enc -emi 0x4027 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4027_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -dec -emi 0x4027 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4027_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -enc -emi 0x4041 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4041_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -dec -emi 0x4041 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4041_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -enc -emi 0x4043 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4043_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset
+bsd -fp DATA -dec -emi 0x4043 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4043_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+bsd -reset

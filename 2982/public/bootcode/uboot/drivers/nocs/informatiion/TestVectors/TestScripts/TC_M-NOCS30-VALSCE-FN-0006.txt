@@ -1,0 +1,9 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+csd -dsc -emi 0x0041 -if /StreamInDirName/NoP_TunerType_DT_DSC_Emi0x0041_01.00.ts -of /StreamOutDirName/NoP_TunerType_DT_Recorded_EMI0x0041_SvPid0x1120FN.ts -videoPid 0x1120 -audioPid 0x1122 -pcrPid 0x1120 -ecmPid 0x1126 -pecm TRUE -tv /CSVInDirName/CTCut_TDES_DSC_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+csd -dsc -emi 0x0041 -if /StreamInDirName/NoP_TunerType_DT_DSC_Emi0x0041_01.00.ts -of /StreamOutDirName/NoP_TunerType_DT_Recorded_EMI0x0041_SvPid0x1130FN.ts -videoPid 0x1130 -audioPid 0x1132 -pcrPid 0x1130 -ecmPid 0x1136 -pecm TRUE -tv /CSVInDirName/CTCut_TDES_DSC_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+csd -dsc -emi 0x0041 -if /StreamInDirName/NoP_TunerType_DT_DSC_Emi0x0041_01.00.ts -of /StreamOutDirName/NoP_TunerType_DT_Recorded_EMI0x0041_SvPid0x1160FN.ts -videoPid 0x1160 -audioPid 0x1162 -pcrPid 0x1160 -ecmPid 0x1166 -pecm TRUE -tv /CSVInDirName/CTCut_TDES_DSC_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+CTD -rst HW

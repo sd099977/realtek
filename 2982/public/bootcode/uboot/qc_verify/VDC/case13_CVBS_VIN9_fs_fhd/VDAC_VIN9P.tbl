@@ -1,0 +1,91 @@
+
+/////HDMI Bandgap////
+rtd_outl(0xb800db40,0x02800202);		// HDMI power on, HDMI bandgap power, related: YPP/VD ADC 2.5V power,DAC power
+rtd_outl(0xb800db44,0x00030800);		// HDMI bandgap power, related: YPP/VD ADC 2.5V power,DAC power
+
+///// VD power /////
+rtd_outl(0xb8020000,0x000000FF);		// ADC power on						// ADC_POWER
+rtd_outl(0xb802005C,0x00130003);		// VDADC power on					// VDADC_POW_CTL
+
+///// CRT /////
+rtd_outl(0xb8000104,0xFB9F9DEF);		// reset VD clock						// SYS_SRST1
+rtd_outl(0xb8000104,0xFBFF9DEF);		// stop reset VD clock					// SYS_SRST1
+rtd_outl(0xb8000108,0xFFFFFFFF);		// Reset all system RS for UART				// SYS_SRST2
+rtd_outl(0xb8000114,0xFFFFFDFF);		// enable VD clock						// SYS_CLKEN1
+rtd_outl(0xb8000118,0x3FE4FFFF);		// enable ATV input control of VD				// SYS_CLKEN2
+
+///// PLL27X /////
+rtd_outl(0xb8000204,0x00020001);		// SYS_CLKSEL [17] ATV in ck sel = 1: VD; [0] uart ck src = 1: 27MHz (XTAL)
+rtd_outl(0xb80004D0,0x02250012);		// SYS_PLL_27X1 (CRT.doc) [12] PLL27x_M_SEL = 0: programmable divider; [9:8] PLL27X_N = 00:1; [6:0] PLL27X_M = 0x12
+rtd_outl(0xb80004D4,0x00036631);		// SYS_PLL_27X2 (CRT.doc) [9:8] PLL27X_LDO_SEL = 10:1.76V; [5:4] PLL27X_PS_54M_DELAY = 11: use when VCO=540M; [0] PLL27X_PS_DUTY_SEL = 1: larger duty cycle
+rtd_outl(0xb80004D8,0x00000117);		// SYS_PLL_27X3 (CRT.doc) [17:8] PLL27X_ RESERVE = 1; [4] PLL27X_PS_EN = 1:enable; [2] PLL27X_VCORSTB; [1] PLL27X reset control = 1: normal; [0] PLL27X_POW = 1: power on
+rtd_outl(0xb80004DC,0x0200F501);		// SYS_PLL_27X4 (CRT.doc) [25]=1 L2H_POW [17:16] PLL27X_CK108M_DIV = 00: divide by 5 (use when VCO=540MHz); [15:14] PLL27X_YPPADC_CKO_SEL = 11:108M; [13] PLL27X_YPPADC_CKO_ENPLL27x = 1; 
+//	[12] PLL27X_YPPADC_CK54M_EN = 1; [11:10] PLL27X_IFADC_CKO_SEL = 01:54M; [9] PLL27X_IFADC_DIV = 0: divide by 4 (use when VCO=648M or 540M or 432M to generate 162M, 135M and 108M); [0] CK_IFADC_MUX = 1:PLL27X
+rtd_outl(0xb8019764,0x0008017F);		// MISC_CONTROL (Video.doc) [9:8] Swallow_freq_sel = 1:540Mhz
+rtd_outl(0xb8018094,0x00000010);		// input_filter_set (IFD_input.doc) [5:4] adc_clk_sel = 1:108M
+/////IFD_TOP////
+rtd_outl(0xb8033080,0x00100001);    // for PLL27X 2.5V LDO, MBias&Global power should enable
+rtd_outl(0xb80330ac,0x00000152);    // for PLL27X 2.5V LDO, IFD ADC_LDO power
+
+///// IFD /////	(setting decimation filter, from PacificPrime script, BW = 6.5MHz)
+rtd_outl(0xb80180D4,0x00000100);		// vd_fifo_clr = 1						// VD_INPUT_FIFO_STATUS1
+rtd_outl(0xb80180D4,0x00000000);		// vd_fifo_clr = 0						// VD_INPUT_FIFO_STATUS1
+
+rtd_outl(0xb8018000,0x00000030);		// tap1~4: 3,44,124,169 (0x03,0x2c,0x7c,0xa9)x16		// input_flt_tap_0_1
+rtd_outl(0xb8018004,0x02C007C0);		// tap1~4: 3,44,124,169 (0x030,0x2c0,0x7c0,0xa90)		// input_flt_tap_2_3
+rtd_outl(0xb8018008,0x0A901FDB);		// [12:0] = tap5						// input_flt_tap_4_5
+rtd_outl(0xb801800c,0x00120026);									// input_flt_tap_6_7
+rtd_outl(0xb8018010,0x00310022);									// input_flt_tap_8_9
+rtd_outl(0xb8018014,0x1FFA1FCF);									// input_flt_tap_10_11
+rtd_outl(0xb8018018,0x1FC21FE3);									// input_flt_tap_12_13
+rtd_outl(0xb801801C,0x0025005D);									// input_flt_tap_14_15
+rtd_outl(0xb8018020,0x005C0014);									// input_flt_tap_16_17
+rtd_outl(0xb8018024,0x1FA91F66);									// input_flt_tap_18_19
+rtd_outl(0xb8018028,0x1F890012);									// input_flt_tap_20_21
+rtd_outl(0xb801802C,0x00B400FA);									// input_flt_tap_22_23
+rtd_outl(0xb8018030,0x008F1F8C);									// input_flt_tap_24_25
+rtd_outl(0xb8018034,0x1E821E40);									// input_flt_tap_26_27
+rtd_outl(0xb8018038,0x1F6101E1);									// input_flt_tap_28_29
+rtd_outl(0xb801803C,0x050607A2);									// input_flt_tap_30_31
+rtd_outl(0xb8018040,0x08A50000);									// input_flt_tap_32_33
+
+rtd_outl(0xb80180A4,0x00000000);		// disable sv_yc_switch					// VD_IN_DELAY_SEL2
+rtd_outl(0xb80180AC,0x00000030);		// decimation filter [6:4] BW [0] 0: data from DF; 1: direct from ADC	// VD_INOUT_CTRL
+
+///// VD /////
+rtd_outl(0xb8019004,0x00000000);		// set AV							// VIDEO_CONTROL1
+rtd_outl(0xb8019080,0x00000000);		// decimation filter has been changed				// INOUT_CTRL
+rtd_outl(0xb8019094,0x140203B9);		// [10:9] blank level kill 01: white_pulse or sync gate, blank gate kill	// AGC_PEAK_AND_GATE_CTRL
+rtd_outl(0xb801909C,0x00000047);		// set bgate_raw_sel enable					// VIDEO_CONTROL2
+rtd_outl(0xb801934C,0x00000000);		// [7:6] new vdetect template select; 0: use start serration		// SYNC_MIDPT_V2
+rtd_outl(0xb801934C,0x00030000);		// [17]New V min = sync level; [16]New V max = blank level	// SYNC_MIDPT_V2
+rtd_outl(0xb8019418,0x00000091);		// if chroma unlock, chage cstate to chromalock_cstate		// CKILL_LB_SEL
+rtd_outl(0xb8019608,0x000000C9);		// select Y path (often sets C9 or 1B)				// AD_SW_CTRL0
+rtd_outl(0xb801960C,0x00000000);		// set Y							// CLAMP_UPDN_EN
+rtd_outl(0xb8019610,0x000000FF);		// enable AD1~AD4 clamp up/dn				// CLAMP_RGB_UPDN_EN
+rtd_outl(0xb8019620,0x00000108);		// set VDC 444 output					// FSW_CTRL2
+rtd_outl(0xb8019764,0x0008017F);		// bit[9:8]=01, select Select the VCO freq = 540M			// MISC_CONTROL
+rtd_outl(0xb8019794,0x00000000);		// disable pattern generator					// PATTERN_CONTROL
+rtd_outl(0xb80197FC,0x00000000);		// Disable clamp test mode					// ADC_UPDN_CTRL
+
+////ENABLE VD PTG/////
+//rtd_outl(0xb8019608,0x0000001c);		// select Y path (often sets C9 or 1B)				// AD_SW_CTRL0
+//rtd_outl(0xb8019794,0x00000001);		// disable pattern generator					// PATTERN_CONTROL
+
+///// VD ADC /////
+rtd_outl(0xb8020048,0x00BB0300);		// A0N; 1st LPF input = VIN9P; VOFFSET 4b-DAC ~= 0.75V	// VD_ADC_CLAMP_CTL_1
+rtd_outl(0xb802004C,0x00000540);		// VD analog ADC path MUX setting; ADC test signal output	// VD_ADC_CLAMP_CTL_2
+rtd_outl(0xb8020050,0x00000121);		// A0N UP/DN Nclamp, V0 UP/DN clamp			// VD_ADC_UPDN_CTL
+rtd_outl(0xb8020054,0x23700003);		// SHA=1.67; VRT/VRB=1.0V; VRTBG=*1; PGA=*1/2		// VDADC_CORE_LPF_CTRL
+rtd_outl(0xb8020058,0x00008940);		// en PLL27X_CK54M; select VDC Channel Clock Source		// VDADC_CK_CTL
+
+///// for IC verify plan /////
+rtd_outl(0xb801907C,0x00000080);		// controls the blue screen mode = 00: disable			// OUTPUT_CONTROLrtd_outl(0xb8019094,0x140203B9);		// [10:9] blank level kill 01: white_pulse or sync gate, blank gate kill	// AGC_PEAK_AND_GATE_CTRL
+rtd_outl(0xb801934C,0x00000000);		// [7:6] new vdetect template select; 0: use start serration		// SYNC_MIDPT_V2
+rtd_outl(0xb801934C,0x00030000);		// [17]New V min = sync level; [16]New V max = blank level	// SYNC_MIDPT_V2
+rtd_outl(0xb8019418,0x00000091);		// if chroma unlock, chage cstate to chromalock_cstate		// CKILL_LB_SEL
+
+///// VD DAC /////
+//	rtd_outl(0xb8033004,0x00000111);		// [8] power control of VDBS buffer; [4] power control of line driver	// VDAC_POW	(VDACIFADC_AIF_TOP.doc)
+rtd_outl(0xb8033004,0x00001011);		// [12] power control of  VDAC; [4] power control of line driver	// VDAC_POW	(VDACIFADC_AIF_TOP.doc)
+rtd_outl(0xb8019084,0x00000000);		// [8:5] avout_mixer_sel = 0000: Clamped AV data w/o fe_fil & agc	// AVOUT_FIFO_STATUS

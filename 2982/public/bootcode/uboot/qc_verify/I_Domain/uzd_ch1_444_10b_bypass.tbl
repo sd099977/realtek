@@ -1,0 +1,17 @@
+
+rtd_outl(0xb8025204, 0x00000300);	// 444,10-bit, UZD disable
+//rtd_outl(0xb8025204, 0x000000CC);	// UZD disable
+//rtd_outl(0xb8025204, 0x00000001);
+//HOR/VER_factor
+//FAC=(input/output)*2^20
+//rtd_outl(0xb802520c, 0x00180000);//HOR_FAC 
+//rtd_outl(0xb8025210, 0x0010D000);//VER_FAC 1.0546875x
+//rtd_outl(0xb8025214, 0x0000ffff);//HOR/VER_INI
+
+//說明：out_width = 2*segment1+segment2
+//For linear scaling case, delta1 & segment1 都設成0
+//Delta1：0x1802_5218
+//SEGMENT1：0x1802521C:bit21:11
+//SEGMENT2：0x1802521C:bit10:0
+//rtd_outl(0xb8025218, 0x00000000);//13:0==>Delta
+//rtd_outl(0xb802521c, 0x00000500);//H_SIZE

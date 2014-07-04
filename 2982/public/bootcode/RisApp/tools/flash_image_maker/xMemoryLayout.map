@@ -1,0 +1,797 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x01500000         0x00200000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD atoi.o
+LOAD cache_v7.o
+LOAD ctype.o
+LOAD doprntx.o
+LOAD dvrload.o
+LOAD dvrmain.o
+LOAD encrypt_AES.o
+LOAD errno.o
+LOAD flashdev_e.o
+LOAD flashdev_n.o
+LOAD flashdev_sn.o
+LOAD flashdev_s.o
+LOAD mcp.o
+LOAD memchr.o
+LOAD otp.o
+LOAD pinmux_rtd298x.o
+LOAD printf.o
+LOAD ram_boot.o
+LOAD sprintf.o
+LOAD strcmp.o
+LOAD strlen.o
+LOAD strstr.o
+LOAD strtol.o
+LOAD strtoul.o
+LOAD timer.o
+LOAD tolower.o
+LOAD toupper.o
+LOAD util.o
+
+.text           0x01500000    0x1b61c
+                0x01500000                _ftext = .
+ ram_boot.o(.text)
+ .text          0x01500000       0x2c ram_boot.o
+                0x01500000                _ram_boot
+ *(.rodata)
+ .rodata        0x0150002c       0x30 doprntx.o
+ .rodata        0x0150005c     0x15e0 dvrmain.o
+ .rodata        0x0150163c       0x28 encrypt_AES.o
+ .rodata        0x01501664      0x21c flashdev_e.o
+                0x01501760                state_tlb
+                0x015017a4                bit_tlb
+                0x015017e4                clk_tlb
+ .rodata        0x01501880      0xd7c flashdev_n.o
+ .rodata        0x015025fc      0x760 flashdev_sn.o
+ .rodata        0x01502d5c      0x55c flashdev_s.o
+ .rodata        0x015032b8      0x1ec mcp.o
+ .rodata        0x015034a4       0xcc pinmux_rtd298x.o
+ .rodata        0x01503570       0x84 util.o
+ dvrmain.o(.text)
+ .text          0x015035f4     0x2764 dvrmain.o
+                0x015035f4                dump_memroy
+                0x01503684                dvrmain
+                0x01505d58                etext = .
+ .text          0x01505d58       0x30 atoi.o
+                0x01505d58                atoi
+ .text          0x01505d88      0x7ac cache_v7.o
+                0x01506384                invalidate_dcache_all
+                0x0150639c                flush_dcache_all
+                0x015063b4                invalidate_dcache_range
+                0x015063ec                flush_dcache_range
+                0x01506424                arm_init_before_mmu
+                0x0150643c                flush_cache
+                0x01506470                invalidate_icache_all
+                0x015064a4                __v7_outer_cache_enable
+                0x015064a4                v7_outer_cache_enable
+                0x015064b8                v7_outer_cache_disable
+                0x015064b8                __v7_outer_cache_disable
+                0x015064cc                __v7_outer_cache_flush_all
+                0x015064cc                v7_outer_cache_flush_all
+                0x015064e0                v7_outer_cache_inval_all
+                0x015064e0                __v7_outer_cache_inval_all
+                0x015064f4                v7_outer_cache_flush_range
+                0x015064f4                __v7_outer_cache_flush_range
+                0x01506514                __v7_outer_cache_inval_range
+                0x01506514                v7_outer_cache_inval_range
+ .text          0x01506534        0x0 ctype.o
+ .text          0x01506534      0xc14 doprntx.o
+                0x01506534                _doprntx
+ .text          0x01507148       0x14 dvrload.o
+                0x01507148                dummy
+ .text          0x0150715c      0x228 encrypt_AES.o
+                0x0150715c                encrypt_image_CBC
+ .text          0x01507384        0x0 errno.o
+ .text          0x01507384     0x3c78 flashdev_e.o
+                0x015073b8                mmccr_reset_cr_state
+                0x01507970                romcr_get_rsp_len
+                0x015079d0                get_rsp_type
+                0x015081d4                ini_cmd_pkt
+                0x01508268                endian_chg
+                0x0150a83c                do_erase_e
+                0x0150a868                do_write_e
+                0x0150a9cc                do_read_e
+                0x0150ab28                do_identify_e
+                0x0150af2c                do_init_e
+                0x0150af90                do_exit_e
+                0x0150afac                get_env_e
+                0x0150afd4                save_env_e
+ .text          0x0150affc     0x6df8 flashdev_n.o
+                0x0150bdb0                do_erase_n
+                0x0150c09c                do_erase_map
+                0x0150d450                NF_dump_flash
+                0x0150d4b8                do_write_n
+                0x0150d9a8                do_write_map
+                0x0150dd14                do_identify_n
+                0x0150e380                do_init_n
+                0x0150e828                write_bbt
+                0x0150e9c0                check_build_bbt
+                0x0150ea8c                do_exit_n
+                0x0150fc14                get_env_n
+                0x0150fcd0                save_env_n
+                0x01510f68                do_read_n
+ .text          0x01511df4     0x4fac flashdev_sn.o
+                0x01511df4                SFC_dump_spi_nand_flash
+                0x015123dc                sn_write_byte
+                0x01512448                sn_write_word
+                0x01513468                do_erase_sn
+                0x01513760                do_erase_map_sn
+                0x01513870                do_write_sn
+                0x01513db8                do_write_map_sn
+                0x01514158                do_identify_sn
+                0x01514494                do_init_sn
+                0x01514b18                check_build_bbt_sn
+                0x01514c1c                do_exit_sn
+                0x01515578                get_env_sn
+                0x01515634                save_env_sn
+                0x01516364                do_read_sn
+                0x01516d84                test_oob
+ .text          0x01516da0      0xdcc flashdev_s.o
+                0x01516e24                do_erase_s
+                0x01517498                do_write_s
+                0x015176f0                do_identify_s
+                0x01517a40                do_init_s
+                0x01517b50                do_exit_s
+ .text          0x01517b6c     0x116c mcp.o
+                0x01517b6c                AES_CBC_decrypt
+                0x01517c68                AES_CBC_encrypt
+                0x01517d64                AES_ECB_decrypt
+                0x01517e60                AES_ECB_encrypt
+                0x01517f5c                AES_hash_one
+                0x01518018                AES_hash
+                0x015181a8                SHA1_hash
+                0x01518c18                AES_ECB_decrypt_key_in_CW
+ .text          0x01518cd8       0x84 memchr.o
+                0x01518cd8                memchr
+ .text          0x01518d5c      0x300 otp.o
+                0x01518e2c                get_boot_flash_type
+                0x01519040                get_secure_boot_type
+ .text          0x0151905c      0xcc8 pinmux_rtd298x.o
+                0x01519920                get_tv176_others_check_value
+                0x015199ec                get_nand_emmc_type_select
+                0x01519af8                set_pin_mux
+                0x01519bac                set_uart_rx_pin_mux
+                0x01519c50                set_recovery_uart
+ .text          0x01519d24       0x78 printf.o
+                0x01519d50                printf
+ .text          0x01519d9c        0x0 sprintf.o
+ .text          0x01519d9c       0x98 strcmp.o
+                0x01519d9c                strcmp
+ .text          0x01519e34       0x54 strlen.o
+                0x01519e34                strlen
+ .text          0x01519e88      0x108 strstr.o
+                0x01519e88                strstr
+ .text          0x01519f90      0x2f0 strtol.o
+                0x01519f90                strtol
+ .text          0x0151a280      0x330 strtoul.o
+                0x0151a280                strtoul
+ .text          0x0151a5b0      0x248 timer.o
+                0x0151a5b0                InitTimer
+                0x0151a738                mdelay
+                0x0151a7a0                sys_wait_us
+ .text          0x0151a7f8       0x54 tolower.o
+                0x0151a7f8                tolower
+ .text          0x0151a84c       0x54 toupper.o
+                0x0151a84c                toupper
+ .text          0x0151a8a0      0xd7c util.o
+                0x0151a8a0                init_uart
+                0x0151aa0c                sync
+                0x0151aa30                print_uart
+                0x0151aaa4                puts
+                0x0151ac90                set_memory
+                0x0151acf4                copy_memory
+                0x0151ad64                compare_memory
+                0x0151ae1c                memcmp
+                0x0151aed4                memcpy
+                0x0151af58                compare_str
+                0x0151b004                print_val
+                0x0151b094                mask_register
+                0x0151b0d8                sys_dcache_flush
+                0x0151b100                sys_dcache_flush_all
+                0x0151b110                sys_dcache_flush_invalidate_range
+                0x0151b138                sys_dcache_flush_invalidate_all
+                0x0151b148                put_char
+                0x0151b1a8                hexstr2int
+                0x0151b1d8                simple_malloc
+                0x0151b290                is_hex_digit
+                0x0151b318                prints
+                0x0151b390                print_hex
+                0x0151b3b4                hexdump
+                0x0151b4c8                memset
+                0x0151b5c0                swap_endian
+
+.glue_7         0x0151b61c        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x0151b61c        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x0151b61c        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x0151b61c        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x0151b61c        0x0
+ .iplt          0x00000000        0x0 atoi.o
+
+.rel.dyn        0x0151b61c        0x0
+ .rel.iplt      0x00000000        0x0 atoi.o
+
+.data           0x0151b61c     0x66dc
+                0x0151b61c                _fdata = .
+ *(.data)
+ .data          0x0151b61c        0x0 atoi.o
+ .data          0x0151b61c        0x0 cache_v7.o
+ .data          0x0151b61c      0x100 ctype.o
+                0x0151b61c                _ctype
+ .data          0x0151b71c        0x0 doprntx.o
+ .data          0x0151b71c        0x0 dvrload.o
+ .data          0x0151b71c       0x14 dvrmain.o
+                0x0151b71c                kimg_seed
+                0x0151b72c                gdst_data_addr
+ .data          0x0151b730        0x0 encrypt_AES.o
+ .data          0x0151b730        0x0 errno.o
+ .data          0x0151b730        0x0 flashdev_e.o
+ .data          0x0151b730        0x8 flashdev_n.o
+                0x0151b730                dst_data_addr
+                0x0151b734                dst_spare_addr
+ .data          0x0151b738        0x0 flashdev_sn.o
+ .data          0x0151b738        0x0 flashdev_s.o
+ .data          0x0151b738        0x0 mcp.o
+ .data          0x0151b738        0x0 memchr.o
+ .data          0x0151b738        0x0 otp.o
+ .data          0x0151b738        0x0 pinmux_rtd298x.o
+ .data          0x0151b738        0x0 printf.o
+ .data          0x0151b738       0x48 ram_boot.o
+                0x0151b738                resetrom
+                0x0151b738                resetrom_end
+                0x0151b73c                hwsetting_end
+                0x0151b73c                hwsetting
+                0x0151b740                hasharray_end
+                0x0151b740                hasharray
+                0x0151b744                signature
+                0x0151b744                signature_end
+                0x0151b748                ecbarray_end
+                0x0151b748                ecbarray
+                0x0151b74c                rescuelinux
+                0x0151b74c                rescuelinux_end
+                0x0151b750                linux_signature_end
+                0x0151b750                linux_signature
+                0x0151b754                cbc_linux
+                0x0151b754                cbc_linux_end
+                0x0151b758                hwsetting_sig_image_end
+                0x0151b758                hwsetting_sig_image
+                0x0151b75c                dcas_key_sig_image_end
+                0x0151b75c                dcas_key_sig_image
+                0x0151b760                logo_end
+                0x0151b760                logo
+                0x0151b764                logo2
+                0x0151b764                logo2_end
+                0x0151b768                logo3_end
+                0x0151b768                logo3
+                0x0151b76c                logo4
+                0x0151b76c                logo4_end
+                0x0151b770                logo5_end
+                0x0151b770                logo5
+                0x0151b774                logo6
+                0x0151b774                logo6_end
+                0x0151b778                logo7
+                0x0151b778                logo7_end
+                0x0151b77c                logo8
+                0x0151b77c                logo8_end
+ .data          0x0151b780        0x0 sprintf.o
+ .data          0x0151b780        0x0 strcmp.o
+ .data          0x0151b780        0x0 strlen.o
+ .data          0x0151b780        0x0 strstr.o
+ .data          0x0151b780        0x0 strtol.o
+ .data          0x0151b780        0x0 strtoul.o
+ .data          0x0151b780        0x0 timer.o
+ .data          0x0151b780        0x0 tolower.o
+ .data          0x0151b780        0x0 toupper.o
+ .data          0x0151b780       0x10 util.o
+                0x0151b788                UartReg
+ *(.sdata)
+ *(.lit4)
+ *(.lit8)
+                0x0151b790                _edata = .
+                0x0151b790                _f_scs_nocs_cert_tdb = .
+ dvrload.o(.scs_nocs_cert_tdb)
+ .scs_nocs_cert_tdb
+                0x0151b790      0x11c dvrload.o
+                0x0151b8ac                _e_scs_nocs_cert_tdb = .
+                0x0151b8ac                _f_scs_nocs_cert_em = .
+ dvrload.o(.scs_nocs_cert_em)
+ .scs_nocs_cert_em
+                0x0151b8ac      0x100 dvrload.o
+                0x0151b9ac                _e_scs_nocs_cert_em = .
+                0x0151b9ac                _f_scs_nocs_cert_sig = .
+ dvrload.o(.scs_nocs_cert_sig)
+ .scs_nocs_cert_sig
+                0x0151b9ac      0x100 dvrload.o
+                0x0151baac                _e_scs_nocs_cert_sig = .
+                0x0151baac                _f_scs_params_area_tdb = .
+ dvrload.o(.scs_params_area_tdb)
+ .scs_params_area_tdb
+                0x0151baac       0x54 dvrload.o
+                0x0151bb00                _e_scs_params_area_tdb = .
+                0x0151bb00                _f_scs_params_area_em = .
+ dvrload.o(.scs_params_area_em)
+ .scs_params_area_em
+                0x0151bb00      0x100 dvrload.o
+                0x0151bc00                _e_scs_params_area_em = .
+                0x0151bc00                _f_scs_params_area_sig = .
+ dvrload.o(.scs_params_area_sig)
+ .scs_params_area_sig
+                0x0151bc00      0x100 dvrload.o
+                0x0151bd00                _e_scs_params_area_sig = .
+                0x0151bd00                _f_scs_aux_code_tdb = .
+ dvrload.o(.scs_aux_code_tdb)
+ .scs_aux_code_tdb
+                0x0151bd00     0x5be4 dvrload.o
+                0x015218e4                _e_scs_aux_code_tdb = .
+                0x015218e4                _f_scs_aux_code_em = .
+ dvrload.o(.scs_aux_code_em)
+ .scs_aux_code_em
+                0x015218e4      0x100 dvrload.o
+                0x015219e4                _e_scs_aux_code_em = .
+                0x015219e4                _f_scs_aux_code_sig = .
+ dvrload.o(.scs_aux_code_sig)
+ .scs_aux_code_sig
+                0x015219e4      0x100 dvrload.o
+                0x01521ae4                _e_scs_aux_code_sig = .
+                0x01521ae4                _f_scs_dte_bootcode_tdb = .
+ dvrload.o(.scs_dte_bootcode_tdb)
+ .scs_dte_bootcode_tdb
+                0x01521ae4       0x14 dvrload.o
+                0x01521af8                _e_scs_dte_bootcode_tdb = .
+                0x01521af8                _f_scs_dte_bootcode_em = .
+ dvrload.o(.scs_dte_bootcode_em)
+ .scs_dte_bootcode_em
+                0x01521af8      0x100 dvrload.o
+                0x01521bf8                _e_scs_dte_bootcode_em = .
+                0x01521bf8                _f_scs_dte_bootcode_sig = .
+ dvrload.o(.scs_dte_bootcode_sig)
+ .scs_dte_bootcode_sig
+                0x01521bf8      0x100 dvrload.o
+                0x01521cf8                _e_scs_dte_bootcode_sig = .
+
+.igot.plt       0x01521cf8        0x0
+ .igot.plt      0x00000000        0x0 atoi.o
+
+.bss            0x01521cf8      0x948
+                0x01521cf8                . = ALIGN (0x4)
+                0x01521cf8                __bss_start = .
+ *(.sbss)
+ *(.bss)
+ .bss           0x01521cf8        0x0 atoi.o
+ .bss           0x01521cf8        0x0 cache_v7.o
+ .bss           0x01521cf8        0x0 ctype.o
+ .bss           0x01521cf8        0x0 doprntx.o
+ .bss           0x01521cf8        0x0 dvrload.o
+ .bss           0x01521cf8       0x3c dvrmain.o
+                0x01521cf8                verify_after_write
+                0x01521cf9                force_secure
+                0x01521cfa                test_secure
+                0x01521cfb                preserve_original_param
+                0x01521cfc                input_kh_key
+                0x01521d00                Kh_key
+                0x01521d10                noreset
+ .bss           0x01521d34        0x0 encrypt_AES.o
+ .bss           0x01521d34        0x4 errno.o
+                0x01521d34                errno
+ .bss           0x01521d38       0x80 flashdev_e.o
+                0x01521d38                emmc_card
+ .bss           0x01521db8       0x3c flashdev_n.o
+ .bss           0x01521df4       0x34 flashdev_sn.o
+ .bss           0x01521e28        0x0 flashdev_s.o
+ .bss           0x01521e28        0x4 mcp.o
+ .bss           0x01521e2c        0x0 memchr.o
+ .bss           0x01521e2c        0x0 otp.o
+ .bss           0x01521e2c        0x0 pinmux_rtd298x.o
+ .bss           0x01521e2c        0x0 printf.o
+ .bss           0x01521e2c        0x0 ram_boot.o
+ .bss           0x01521e2c        0x0 sprintf.o
+ .bss           0x01521e2c        0x0 strcmp.o
+ .bss           0x01521e2c        0x0 strlen.o
+ .bss           0x01521e2c        0x0 strstr.o
+ .bss           0x01521e2c        0x0 strtol.o
+ .bss           0x01521e2c        0x0 strtoul.o
+ .bss           0x01521e2c        0x0 timer.o
+ .bss           0x01521e2c        0x0 tolower.o
+ .bss           0x01521e2c        0x0 toupper.o
+ .bss           0x01521e2c      0x814 util.o
+                0x01521e2c                sys_l2cache_enabled
+ *(.scommon)
+                0x01522640                . = ALIGN (0x4)
+                0x01522640                __bss_end = .
+                0x00000020                __cache_line_size = 0x20
+                0x01522640                __heap_start_addr = ((((ADDR (.bss) + SIZEOF (.bss)) + __cache_line_size) - 0x1) & ~ ((__cache_line_size - 0x1)))
+OUTPUT(/home/alexkh/nfs/kernel/sirius/bootcode/RisApp/tools/flash_image_maker/dvrboot.exe elf32-littlearm)
+
+.debug_info     0x00000000     0xa356
+ .debug_info    0x00000000       0x98 atoi.o
+ .debug_info    0x00000098      0x599 cache_v7.o
+ .debug_info    0x00000631       0x4d ctype.o
+ .debug_info    0x0000067e      0x2a6 doprntx.o
+ .debug_info    0x00000924       0x37 dvrload.o
+ .debug_info    0x0000095b     0x14c8 dvrmain.o
+ .debug_info    0x00001e23      0x12c encrypt_AES.o
+ .debug_info    0x00001f4f       0x36 errno.o
+ .debug_info    0x00001f85     0x1fb7 flashdev_e.o
+ .debug_info    0x00003f3c     0x20ee flashdev_n.o
+ .debug_info    0x0000602a     0x2367 flashdev_sn.o
+ .debug_info    0x00008391      0x36a flashdev_s.o
+ .debug_info    0x000086fb      0x601 mcp.o
+ .debug_info    0x00008cfc       0xd2 memchr.o
+ .debug_info    0x00008dce      0x14a otp.o
+ .debug_info    0x00008f18      0x3bc pinmux_rtd298x.o
+ .debug_info    0x000092d4      0x128 printf.o
+ .debug_info    0x000093fc       0x7a ram_boot.o
+ .debug_info    0x00009476       0x5d sprintf.o
+ .debug_info    0x000094d3       0xab strcmp.o
+ .debug_info    0x0000957e       0xa9 strlen.o
+ .debug_info    0x00009627       0xc9 strstr.o
+ .debug_info    0x000096f0      0x113 strtol.o
+ .debug_info    0x00009803      0x146 strtoul.o
+ .debug_info    0x00009949      0x150 timer.o
+ .debug_info    0x00009a99       0x70 tolower.o
+ .debug_info    0x00009b09       0x70 toupper.o
+ .debug_info    0x00009b79      0x7dd util.o
+
+.debug_abbrev   0x00000000     0x1b39
+ .debug_abbrev  0x00000000       0x5e atoi.o
+ .debug_abbrev  0x0000005e      0x160 cache_v7.o
+ .debug_abbrev  0x000001be       0x3e ctype.o
+ .debug_abbrev  0x000001fc      0x110 doprntx.o
+ .debug_abbrev  0x0000030c       0x2c dvrload.o
+ .debug_abbrev  0x00000338      0x27b dvrmain.o
+ .debug_abbrev  0x000005b3       0x9d encrypt_AES.o
+ .debug_abbrev  0x00000650       0x2c errno.o
+ .debug_abbrev  0x0000067c      0x294 flashdev_e.o
+ .debug_abbrev  0x00000910      0x286 flashdev_n.o
+ .debug_abbrev  0x00000b96      0x2bc flashdev_sn.o
+ .debug_abbrev  0x00000e52      0x176 flashdev_s.o
+ .debug_abbrev  0x00000fc8      0x164 mcp.o
+ .debug_abbrev  0x0000112c       0x86 memchr.o
+ .debug_abbrev  0x000011b2       0xde otp.o
+ .debug_abbrev  0x00001290      0x142 pinmux_rtd298x.o
+ .debug_abbrev  0x000013d2       0xd0 printf.o
+ .debug_abbrev  0x000014a2       0x14 ram_boot.o
+ .debug_abbrev  0x000014b6       0x26 sprintf.o
+ .debug_abbrev  0x000014dc       0x65 strcmp.o
+ .debug_abbrev  0x00001541       0x74 strlen.o
+ .debug_abbrev  0x000015b5       0x74 strstr.o
+ .debug_abbrev  0x00001629       0xa2 strtol.o
+ .debug_abbrev  0x000016cb       0xb1 strtoul.o
+ .debug_abbrev  0x0000177c       0xb9 timer.o
+ .debug_abbrev  0x00001835       0x74 tolower.o
+ .debug_abbrev  0x000018a9       0x74 toupper.o
+ .debug_abbrev  0x0000191d      0x21c util.o
+
+.debug_aranges  0x00000000      0x368
+ .debug_aranges
+                0x00000000       0x20 atoi.o
+ .debug_aranges
+                0x00000020       0x20 cache_v7.o
+ .debug_aranges
+                0x00000040       0x18 ctype.o
+ .debug_aranges
+                0x00000058       0x20 doprntx.o
+ .debug_aranges
+                0x00000078       0x20 dvrload.o
+ .debug_aranges
+                0x00000098       0x20 dvrmain.o
+ .debug_aranges
+                0x000000b8       0x20 encrypt_AES.o
+ .debug_aranges
+                0x000000d8       0x18 errno.o
+ .debug_aranges
+                0x000000f0       0x20 flashdev_e.o
+ .debug_aranges
+                0x00000110       0x20 flashdev_n.o
+ .debug_aranges
+                0x00000130       0x20 flashdev_sn.o
+ .debug_aranges
+                0x00000150       0x20 flashdev_s.o
+ .debug_aranges
+                0x00000170       0x20 mcp.o
+ .debug_aranges
+                0x00000190       0x20 memchr.o
+ .debug_aranges
+                0x000001b0       0x20 otp.o
+ .debug_aranges
+                0x000001d0       0x20 pinmux_rtd298x.o
+ .debug_aranges
+                0x000001f0       0x20 printf.o
+ .debug_aranges
+                0x00000210       0x20 ram_boot.o
+ .debug_aranges
+                0x00000230       0x18 sprintf.o
+ .debug_aranges
+                0x00000248       0x20 strcmp.o
+ .debug_aranges
+                0x00000268       0x20 strlen.o
+ .debug_aranges
+                0x00000288       0x20 strstr.o
+ .debug_aranges
+                0x000002a8       0x20 strtol.o
+ .debug_aranges
+                0x000002c8       0x20 strtoul.o
+ .debug_aranges
+                0x000002e8       0x20 timer.o
+ .debug_aranges
+                0x00000308       0x20 tolower.o
+ .debug_aranges
+                0x00000328       0x20 toupper.o
+ .debug_aranges
+                0x00000348       0x20 util.o
+
+.debug_line     0x00000000     0x383d
+ .debug_line    0x00000000       0x38 atoi.o
+ .debug_line    0x00000038      0x14b cache_v7.o
+ .debug_line    0x00000183       0x28 ctype.o
+ .debug_line    0x000001ab      0x255 doprntx.o
+ .debug_line    0x00000400       0x38 dvrload.o
+ .debug_line    0x00000438      0x452 dvrmain.o
+ .debug_line    0x0000088a       0x74 encrypt_AES.o
+ .debug_line    0x000008fe       0x28 errno.o
+ .debug_line    0x00000926      0x9f8 flashdev_e.o
+ .debug_line    0x0000131e      0xce2 flashdev_n.o
+ .debug_line    0x00002000      0x935 flashdev_sn.o
+ .debug_line    0x00002935      0x220 flashdev_s.o
+ .debug_line    0x00002b55      0x269 mcp.o
+ .debug_line    0x00002dbe       0x9c memchr.o
+ .debug_line    0x00002e5a       0x76 otp.o
+ .debug_line    0x00002ed0      0x130 pinmux_rtd298x.o
+ .debug_line    0x00003000       0xa6 printf.o
+ .debug_line    0x000030a6       0x44 ram_boot.o
+ .debug_line    0x000030ea       0x1d sprintf.o
+ .debug_line    0x00003107       0x4b strcmp.o
+ .debug_line    0x00003152       0x42 strlen.o
+ .debug_line    0x00003194       0x63 strstr.o
+ .debug_line    0x000031f7      0x106 strtol.o
+ .debug_line    0x000032fd      0x12d strtoul.o
+ .debug_line    0x0000342a       0x7f timer.o
+ .debug_line    0x000034a9       0x95 tolower.o
+ .debug_line    0x0000353e       0x95 toupper.o
+ .debug_line    0x000035d3      0x26a util.o
+
+.debug_str      0x00000000     0x2e52
+ .debug_str     0x00000000      0x1be atoi.o
+                                0x1ee (size before relaxing)
+ .debug_str     0x000001be      0x29e cache_v7.o
+                                0x45c (size before relaxing)
+ .debug_str     0x0000045c       0x18 ctype.o
+                                0x17f (size before relaxing)
+ .debug_str     0x00000474       0x8c doprntx.o
+                                0x2a7 (size before relaxing)
+ .debug_str     0x00000500       0x57 dvrload.o
+                                0x16d (size before relaxing)
+ .debug_str     0x00000557     0x1075 dvrmain.o
+                               0x12c6 (size before relaxing)
+ .debug_str     0x000015cc       0x4e encrypt_AES.o
+                                0x23b (size before relaxing)
+ .debug_str     0x0000161a        0xe errno.o
+                                0x170 (size before relaxing)
+ .debug_str     0x00001628      0x58e flashdev_e.o
+                                0x7f6 (size before relaxing)
+ .debug_str     0x00001bb6      0x8cb flashdev_n.o
+                                0xc9a (size before relaxing)
+ .debug_str     0x00002481      0x3cd flashdev_sn.o
+                                0xbfe (size before relaxing)
+ .debug_str     0x0000284e       0x56 flashdev_s.o
+                                0x2f0 (size before relaxing)
+ .debug_str     0x000028a4      0x148 mcp.o
+                                0x392 (size before relaxing)
+ .debug_str     0x000029ec       0x17 memchr.o
+                                0x1f9 (size before relaxing)
+ .debug_str     0x00002a03       0x92 otp.o
+                                0x281 (size before relaxing)
+ .debug_str     0x00002a95       0xd5 pinmux_rtd298x.o
+                                0x310 (size before relaxing)
+ .debug_str     0x00002b6a        0xb printf.o
+                                0x214 (size before relaxing)
+ .debug_str     0x00002b75        0xa sprintf.o
+                                0x1e7 (size before relaxing)
+ .debug_str     0x00002b7f       0x10 strcmp.o
+                                0x1f2 (size before relaxing)
+ .debug_str     0x00002b8f        0x9 strlen.o
+                                0x1f2 (size before relaxing)
+ .debug_str     0x00002b98        0x9 strstr.o
+                                0x1f2 (size before relaxing)
+ .debug_str     0x00002ba1       0x17 strtol.o
+                                0x214 (size before relaxing)
+ .debug_str     0x00002bb8       0x20 strtoul.o
+                                0x21b (size before relaxing)
+ .debug_str     0x00002bd8       0x56 timer.o
+                                0x25d (size before relaxing)
+ .debug_str     0x00002c2e       0x12 tolower.o
+                                0x180 (size before relaxing)
+ .debug_str     0x00002c40       0x12 toupper.o
+                                0x180 (size before relaxing)
+ .debug_str     0x00002c52      0x200 util.o
+                                0x443 (size before relaxing)
+
+.comment        0x00000000       0x42
+ .comment       0x00000000       0x42 atoi.o
+                                 0x43 (size before relaxing)
+ .comment       0x00000000       0x43 cache_v7.o
+ .comment       0x00000000       0x43 ctype.o
+ .comment       0x00000000       0x43 doprntx.o
+ .comment       0x00000000       0x43 dvrload.o
+ .comment       0x00000000       0x43 dvrmain.o
+ .comment       0x00000000       0x43 encrypt_AES.o
+ .comment       0x00000000       0x43 errno.o
+ .comment       0x00000000       0x43 flashdev_e.o
+ .comment       0x00000000       0x43 flashdev_n.o
+ .comment       0x00000000       0x43 flashdev_sn.o
+ .comment       0x00000000       0x43 flashdev_s.o
+ .comment       0x00000000       0x43 mcp.o
+ .comment       0x00000000       0x43 memchr.o
+ .comment       0x00000000       0x43 otp.o
+ .comment       0x00000000       0x43 pinmux_rtd298x.o
+ .comment       0x00000000       0x43 printf.o
+ .comment       0x00000000       0x43 sprintf.o
+ .comment       0x00000000       0x43 strcmp.o
+ .comment       0x00000000       0x43 strlen.o
+ .comment       0x00000000       0x43 strstr.o
+ .comment       0x00000000       0x43 strtol.o
+ .comment       0x00000000       0x43 strtoul.o
+ .comment       0x00000000       0x43 timer.o
+ .comment       0x00000000       0x43 tolower.o
+ .comment       0x00000000       0x43 toupper.o
+ .comment       0x00000000       0x43 util.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 atoi.o
+ .note.GNU-stack
+                0x00000000        0x0 cache_v7.o
+ .note.GNU-stack
+                0x00000000        0x0 ctype.o
+ .note.GNU-stack
+                0x00000000        0x0 doprntx.o
+ .note.GNU-stack
+                0x00000000        0x0 dvrload.o
+ .note.GNU-stack
+                0x00000000        0x0 dvrmain.o
+ .note.GNU-stack
+                0x00000000        0x0 encrypt_AES.o
+ .note.GNU-stack
+                0x00000000        0x0 errno.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_e.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_n.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_sn.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_s.o
+ .note.GNU-stack
+                0x00000000        0x0 mcp.o
+ .note.GNU-stack
+                0x00000000        0x0 memchr.o
+ .note.GNU-stack
+                0x00000000        0x0 otp.o
+ .note.GNU-stack
+                0x00000000        0x0 pinmux_rtd298x.o
+ .note.GNU-stack
+                0x00000000        0x0 printf.o
+ .note.GNU-stack
+                0x00000000        0x0 sprintf.o
+ .note.GNU-stack
+                0x00000000        0x0 strcmp.o
+ .note.GNU-stack
+                0x00000000        0x0 strlen.o
+ .note.GNU-stack
+                0x00000000        0x0 strstr.o
+ .note.GNU-stack
+                0x00000000        0x0 strtol.o
+ .note.GNU-stack
+                0x00000000        0x0 strtoul.o
+ .note.GNU-stack
+                0x00000000        0x0 timer.o
+ .note.GNU-stack
+                0x00000000        0x0 tolower.o
+ .note.GNU-stack
+                0x00000000        0x0 toupper.o
+ .note.GNU-stack
+                0x00000000        0x0 util.o
+
+.ARM.attributes
+                0x00000000       0x3b
+ .ARM.attributes
+                0x00000000       0x39 atoi.o
+ .ARM.attributes
+                0x00000039       0x39 cache_v7.o
+ .ARM.attributes
+                0x00000072       0x39 ctype.o
+ .ARM.attributes
+                0x000000ab       0x39 doprntx.o
+ .ARM.attributes
+                0x000000e4       0x39 dvrload.o
+ .ARM.attributes
+                0x0000011d       0x39 dvrmain.o
+ .ARM.attributes
+                0x00000156       0x39 encrypt_AES.o
+ .ARM.attributes
+                0x0000018f       0x39 errno.o
+ .ARM.attributes
+                0x000001c8       0x39 flashdev_e.o
+ .ARM.attributes
+                0x00000201       0x39 flashdev_n.o
+ .ARM.attributes
+                0x0000023a       0x39 flashdev_sn.o
+ .ARM.attributes
+                0x00000273       0x39 flashdev_s.o
+ .ARM.attributes
+                0x000002ac       0x39 mcp.o
+ .ARM.attributes
+                0x000002e5       0x39 memchr.o
+ .ARM.attributes
+                0x0000031e       0x39 otp.o
+ .ARM.attributes
+                0x00000357       0x39 pinmux_rtd298x.o
+ .ARM.attributes
+                0x00000390       0x39 printf.o
+ .ARM.attributes
+                0x000003c9       0x21 ram_boot.o
+ .ARM.attributes
+                0x000003ea       0x39 sprintf.o
+ .ARM.attributes
+                0x00000423       0x39 strcmp.o
+ .ARM.attributes
+                0x0000045c       0x39 strlen.o
+ .ARM.attributes
+                0x00000495       0x39 strstr.o
+ .ARM.attributes
+                0x000004ce       0x39 strtol.o
+ .ARM.attributes
+                0x00000507       0x39 strtoul.o
+ .ARM.attributes
+                0x00000540       0x39 timer.o
+ .ARM.attributes
+                0x00000579       0x39 tolower.o
+ .ARM.attributes
+                0x000005b2       0x39 toupper.o
+ .ARM.attributes
+                0x000005eb       0x39 util.o
+
+.debug_frame    0x00000000     0x23c4
+ .debug_frame   0x00000000       0x30 atoi.o
+ .debug_frame   0x00000030      0x324 cache_v7.o
+ .debug_frame   0x00000354       0x34 doprntx.o
+ .debug_frame   0x00000388       0x30 dvrload.o
+ .debug_frame   0x000003b8      0x114 dvrmain.o
+ .debug_frame   0x000004cc       0x34 encrypt_AES.o
+ .debug_frame   0x00000500      0x3e0 flashdev_e.o
+ .debug_frame   0x000008e0      0x828 flashdev_n.o
+ .debug_frame   0x00001108      0x89c flashdev_sn.o
+ .debug_frame   0x000019a4       0xdc flashdev_s.o
+ .debug_frame   0x00001a80      0x1b8 mcp.o
+ .debug_frame   0x00001c38       0x30 memchr.o
+ .debug_frame   0x00001c68       0x90 otp.o
+ .debug_frame   0x00001cf8      0x114 pinmux_rtd298x.o
+ .debug_frame   0x00001e0c       0x68 printf.o
+ .debug_frame   0x00001e74       0x30 strcmp.o
+ .debug_frame   0x00001ea4       0x30 strlen.o
+ .debug_frame   0x00001ed4       0x30 strstr.o
+ .debug_frame   0x00001f04       0x34 strtol.o
+ .debug_frame   0x00001f38       0x34 strtoul.o
+ .debug_frame   0x00001f6c       0x90 timer.o
+ .debug_frame   0x00001ffc       0x30 tolower.o
+ .debug_frame   0x0000202c       0x30 toupper.o
+ .debug_frame   0x0000205c      0x368 util.o
+
+.debug_ranges   0x00000000       0x18
+ .debug_ranges  0x00000000       0x18 doprntx.o

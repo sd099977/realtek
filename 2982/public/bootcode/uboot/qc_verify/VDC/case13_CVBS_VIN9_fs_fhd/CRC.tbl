@@ -1,0 +1,322 @@
+rtd_outl(0xb8060050,0x00000001); //ST_BUS = 27 MHz
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000200,0x00000001); //ACPU_clk=27 MHz
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000204,0x00000001); //Main UART Clock Source Select = 27 MHz
+ScalerTimer_DelayXms(1);
+
+rtd_outl(0xB801A808,0xF);//fdiv, clk_sf = clk_sys / (fdiv+1)
+
+//rtd_outl(0xb801a674,0x000000ff); 
+//rtd_inl(0xb801a60c);	//0x00000000
+//rtd_outl(0xb801a60c,0xb801a60c); 
+//rtd_outl(0xb801a070,0x00000001); 
+//rtd_outl(0xb801a808,0x00000006); 
+//rtd_outl(0xb801a814,0x00000000); 
+
+//-------- PLL ACPU -------------------------------------------------
+rtd_outl(0xb8000408,0x00123613); //max 500, set 27*37/2 = 499.5MHz
+rtd_outl(0xb800040c,0x00000005); //PLLACPU power on
+rtd_outl(0xb800040c,0x00000007);//release PLLACPU reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb800040c,0x00000003);// release PLL reset & enable PLLACPU power
+
+//-------- PLL BUS -------------------------------------------------
+rtd_outl(0xb8000420,0x00350B52);	//max 405, set 27*15 = 405MHz
+//rtd_outl(0xb8000420,0x06191b52);	//27MHz  
+//rtd_outl(0xb8000420,0x00411b52);	//test  
+rtd_outl(0xb8000424,0x0001102b);
+rtd_outl(0xb8000428,0x00000005);// PLL power on
+rtd_outl(0xb8000428,0x00000007);// release PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000428,0x00000003);// CLK_PLLBUS output enable
+
+//-------- PLL BUSH -------------------------------------------------
+rtd_outl(0xb8000430,0x001D1B52);  //max 250, set 27*9 = 243MHz
+rtd_outl(0xb8000434,0x0001102b);
+rtd_outl(0xb8000438,0x00000005);// PLLH power on
+rtd_outl(0xb8000438,0x00000007);// release PLLH reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000438,0x00000003);  // CLK_PLLBUSH output enable
+
+//-------- PLL BUS2 -------------------------------------------------
+//rtd_outl(0xb8000440,0x04a91352);	//396MHz 
+//rtd_outl(0xb8000444,0x0001102b);
+//rtd_outl(0xb8000448,0x00000005);
+//rtd_outl(0xb8000448,0x00000007);
+//ScalerTimer_DelayXms(1);
+//rtd_outl(0xb8000448,0x00000003); 
+
+//-------- PLL SCPU -------------------------------------------------
+rtd_outl(0xb8000400,0x00935413);// max 750, set 27*55/2= 742.5MHz
+rtd_outl(0xb8000404,0x00000005);// SCPU PLL power on
+rtd_outl(0xb8000404,0x00000007);// release SCPU PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000404,0x00000003);// PLLSCPU CKOUT enable
+
+//-------- PLL VCPU -------------------------------------------------
+rtd_outl(0xb8000410,0x00008613);// max 270, set 270MHz
+rtd_outl(0xb8000414,0x00000005);// PLLVCPU power on
+rtd_outl(0xb8000414,0x00000007);// release VCPU PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000414,0x00000003);// PLLVCPU CKOUT enable
+
+//-------- PLL DISP -------------------------------------------------
+//rtd_outl(0xb8000490,0x01f0142a);// default setting 
+//rtd_outl(0xb8000494,0x0000000d);// use plldds clock divide by 16 for PCR tracking as clock source
+//DPLL Output Freeze, hold VCO reset
+
+//rtd_outl(0xb8000494,0x0152000F);// 0152(default setting),release VCO reset
+rtd_outl(0xb8000494,0x01520007);// 0152(default setting),release VCO reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000494,0x01520003);// DPLL Output dis-freeze, use crystal as clock source
+rtd_outl(0xb8000494,0x01520042);// release DPLL reset, Power on DPLL
+
+//-------- PLL DIF -------------------------------------------------
+//rtd_outl(0xb80004c0,0x00e5a000);// SYS 172.8MHz	ADC 28.8MHz
+//rtd_outl(0xb80004c4,0x00000001);// PLLDIF DIV_ADC division = 15
+//maintain default setting
+rtd_outl(0xb80004c8,0x0000000e);// PLLDIF VCO D2S power down, release PLLDIF & VCO reset
+rtd_outl(0xb80004c8,0x00000007);// PLLDIF VCO D2S power on, Power-on PLLDIF
+
+//-------- PLL VODMA -------------------------------------------------
+rtd_outl(0xb8000464,0x00000005);// PLLVODMA power on
+rtd_outl(0xb8000464,0x00000007);// release PLLVODMA reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb8000464,0x00000003);// PLLVODMA CKOUT enable
+
+//-------- PLL DDS -------------------------------------------------
+//rtd_outl(0xb8000478,0x02080005);// Phase shifter enable, release PSAUD1&2 reset, 
+//rtd_outl(0xb8000478,0x02000005);// Phase shifter enable, release PSAUD1&2 reset,
+rtd_outl(0xb8000478,0x22800005);// Phase shifter enable, release PSAUD1&2 reset,
+rtd_outl(0xb800047c,0x00000005);// PLLDDS power on
+rtd_outl(0xb800047c,0x00000007);// release PLLDDS reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb800047c,0x00000003);// CLK_PLLDDS output enable
+
+//-------- PLL 512FS -------------------------------------------------
+rtd_outl(0xb80004b4,0x00000005);// PLL512FS power on
+rtd_outl(0xb80004b4,0x00000007);// release PLL512FS reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb80004b4,0x00000003);// CKOUT output enable 
+
+//-------- PLL AUD -------------------------------------------------
+rtd_outl(0xb80004e4,0x00000008);// release PLLAUD reset, PLLAUD_CK196&295M output enable, Audio PLL on
+
+//-------- PLL 27X -------------------------------------------------
+rtd_outl(0xb80004d0,0x02250010);// max = 432, set 27*16 = 432MHz 
+//rtd_outl(0xb80004d4,0x00006500);// 1.1V LDO power on & output 1.04V, LDO power on & output 1.6V
+rtd_outl(0xb80004d4,0x00005500);// 1.1V LDO power on & output 1.04V, LDO power on & output 1.6V
+//rtd_outl(0xb80004dc,0x00000000);// as default setting
+rtd_outl(0xb80004d8,0x00000007);// release PLL_27X & VCO reset & power on
+
+//-------- Module Clock & Reset --------------------------------------
+rtd_outl(0xb8000104,0x02000000); // why release DCPHY only
+//rtd_outl(0xb8000104,0x00000000);
+//rtd_outl(0xb800010c,0x02000000); 
+rtd_outl(0xb800010c,0x00000000);// default setting
+rtd_outl(0xb8000114,0x02000000);// why enable DCPHY only
+//rtd_outl(0xb800011c,0x02000000);// default setting
+rtd_outl(0xb800011c,0x00000000);// default setting
+//rtd_outl(0xb8000100,0x0000008b); 
+rtd_outl(0xb8000100,0x0000000B);// default setting
+
+//-------- ACPU clock source select to PLLACPU ------------------------
+rtd_outl(0xb8000200,0x00000000); 
+//-------- BUS/H clock source select to PLLBUS ------------------------
+rtd_outl(0xb8060050,0x00000000); 
+
+//-------- DDR clock source select to PLLDDR ------------------------
+rtd_outl(0xb8000500,0x000000fc);// PLLDDR disable
+rtd_outl(0xb8000504,0xfe013018); 
+rtd_outl(0xb8000508,0x03081810); 
+rtd_outl(0xb800050c,0x23001803); 
+//rtd_outl(0xb8000514,0x01e00000);	//432MHz 
+//rtd_outl(0xb8000514,0x01c00000);	//405MHz 
+//rtd_outl(0xb8000514,0x01800000);	//351MHz 
+//rtd_outl(0xb8000514,0x01600000);	//324MHz 
+rtd_outl(0xb8000514,0x01400000);	//297MHz 
+rtd_outl(0xb8000518,0x030d00c0); 
+rtd_outl(0xb8000500,0x000000fe);// release PLLDDR, 
+rtd_outl(0xb8000500,0x000000ff);// PLL ENABLE,
+rtd_outl(0xb8000500,0x00000003);// disable 'Output enable for CLK[0~5]', whats this for?
+
+//-------- Module Clock Enable --------------------------------------
+rtd_outl(0xb8000110,0x00000331); 
+rtd_outl(0xb8000114,0xffffffff); 
+rtd_outl(0xb8000118,0xffffffff); 
+rtd_outl(0xb800011c,0xffffffff); 
+rtd_outl(0xb8000110,0x00000001); 
+rtd_outl(0xb8000114,0x00000000); 
+rtd_outl(0xb8000118,0x00000000); 
+rtd_outl(0xb800011c,0x00000000); 
+rtd_outl(0xb8000100,0xffffffff); 
+rtd_outl(0xb8000104,0xffffffff); 
+rtd_outl(0xb8000108,0xffffffff); 
+rtd_outl(0xb800010c,0xffffffff); 
+rtd_outl(0xb8060044,0xffffffff); 
+rtd_outl(0xb8000114,0xffffffff); 
+rtd_outl(0xb8000118,0xffffffff); 
+rtd_outl(0xb800011c,0xffffffff); 
+rtd_outl(0xb8000110,0xffffffff); 
+
+//-----------------release ST_SRST0 & enable ST_CLKEN0
+rtd_inl(0xb8060040);	//0x00000000
+rtd_inl(0xb8060030);	//0x00000000 
+rtd_outl(0xb8060040,0x000007F);
+rtd_outl(0xb8060030,0x0000007F); 
+
+///// VD power /////
+rtd_outl(0xb8020000,0x000000FF);		// ADC power on						// ADC_POWER
+rtd_outl(0xb802005C,0x00000001);		// VDADC power on					// VDADC_POW_CTL
+
+///// CRT /////
+rtd_outl(0xb8000104,0xFB9F9DEF);		// reset VD clock						// SYS_SRST1
+rtd_outl(0xb8000104,0xFBFF9DEF);		// stop reset VD clock					// SYS_SRST1
+rtd_outl(0xb8000108,0xFFFFFFFF);		// Reset all system RS for UART				// SYS_SRST2
+rtd_outl(0xb8000114,0xFFFFFDFF);		// enable VD clock						// SYS_CLKEN1
+rtd_outl(0xb8000118,0x3FE4FFFF);		// enable ATV input control of VD				// SYS_CLKEN2
+
+///// PLL27X /////
+rtd_outl(0xb8000204,0x00020001);		// SYS_CLKSEL [17] ATV in ck sel = 1: VD; [0] uart ck src = 1: 27MHz (XTAL)
+rtd_outl(0xb80004D0,0x02250012);		// SYS_PLL_27X1 (CRT.doc) [12] PLL27x_M_SEL = 0: programmable divider; [9:8] PLL27X_N = 00:1; [6:0] PLL27X_M = 0x12
+rtd_outl(0xb80004D4,0x00036631);		// SYS_PLL_27X2 (CRT.doc) [9:8] PLL27X_LDO_SEL = 10:1.76V; [5:4] PLL27X_PS_54M_DELAY = 11: use when VCO=540M; [0] PLL27X_PS_DUTY_SEL = 1: larger duty cycle
+rtd_outl(0xb80004D8,0x00000117);		// SYS_PLL_27X3 (CRT.doc) [17:8] PLL27X_ RESERVE = 1; [4] PLL27X_PS_EN = 1:enable; [2] PLL27X_VCORSTB; [1] PLL27X reset control = 1: normal; [0] PLL27X_POW = 1: power on
+rtd_outl(0xb80004DC,0x0000F501);		// SYS_PLL_27X4 (CRT.doc) [17:16] PLL27X_CK108M_DIV = 00: divide by 5 (use when VCO=540MHz); [15:14] PLL27X_YPPADC_CKO_SEL = 11:108M; [13] PLL27X_YPPADC_CKO_ENPLL27x = 1; 
+//	[12] PLL27X_YPPADC_CK54M_EN = 1; [11:10] PLL27X_IFADC_CKO_SEL = 01:54M; [9] PLL27X_IFADC_DIV = 0: divide by 4 (use when VCO=648M or 540M or 432M to generate 162M, 135M and 108M); [0] CK_IFADC_MUX = 1:PLL27X
+rtd_outl(0xb8019764,0x0008017F);		// MISC_CONTROL (Video.doc) [9:8] Swallow_freq_sel = 1:540Mhz
+rtd_outl(0xb8018094,0x00000010);		// input_filter_set (IFD_input.doc) [5:4] adc_clk_sel = 1:108M
+
+///// IFD /////	(setting decimation filter, from PacificPrime script, BW = 6.5MHz)
+rtd_outl(0xb80180D4,0x00000100);		// vd_fifo_clr = 1						// VD_INPUT_FIFO_STATUS1
+rtd_outl(0xb80180D4,0x00000000);		// vd_fifo_clr = 0						// VD_INPUT_FIFO_STATUS1
+
+rtd_outl(0xb8018000,0x00000030);		// tap1~4: 3,44,124,169 (0x03,0x2c,0x7c,0xa9)x16		// input_flt_tap_0_1
+rtd_outl(0xb8018004,0x02C007C0);		// tap1~4: 3,44,124,169 (0x030,0x2c0,0x7c0,0xa90)		// input_flt_tap_2_3
+rtd_outl(0xb8018008,0x0A901FDB);		// [12:0] = tap5						// input_flt_tap_4_5
+rtd_outl(0xb801800c,0x00120026);									// input_flt_tap_6_7
+rtd_outl(0xb8018010,0x00310022);									// input_flt_tap_8_9
+rtd_outl(0xb8018014,0x1FFA1FCF);									// input_flt_tap_10_11
+rtd_outl(0xb8018018,0x1FC21FE3);									// input_flt_tap_12_13
+rtd_outl(0xb801801C,0x0025005D);									// input_flt_tap_14_15
+rtd_outl(0xb8018020,0x005C0014);									// input_flt_tap_16_17
+rtd_outl(0xb8018024,0x1FA91F66);									// input_flt_tap_18_19
+rtd_outl(0xb8018028,0x1F890012);									// input_flt_tap_20_21
+rtd_outl(0xb801802C,0x00B400FA);									// input_flt_tap_22_23
+rtd_outl(0xb8018030,0x008F1F8C);									// input_flt_tap_24_25
+rtd_outl(0xb8018034,0x1E821E40);									// input_flt_tap_26_27
+rtd_outl(0xb8018038,0x1F6101E1);									// input_flt_tap_28_29
+rtd_outl(0xb801803C,0x050607A2);									// input_flt_tap_30_31
+rtd_outl(0xb8018040,0x08A50000);									// input_flt_tap_32_33
+
+rtd_outl(0xb80180A4,0x00000000);		// disable sv_yc_switch					// VD_IN_DELAY_SEL2
+rtd_outl(0xb80180AC,0x00000030);		// decimation filter [6:4] BW [0] 0: data from DF; 1: direct from ADC	// VD_INOUT_CTRL
+
+///// VD /////
+rtd_outl(0xb8019004,0x00000000);		// set AV							// VIDEO_CONTROL1
+rtd_outl(0xb8019080,0x00000000);		// decimation filter has been changed				// INOUT_CTRL
+rtd_outl(0xb801909C,0x00000047);		// set bgate_raw_sel enable					// VIDEO_CONTROL2
+rtd_outl(0xb8019608,0x000000C9);		// select Y path (often sets C9 or 1B)				// AD_SW_CTRL0
+rtd_outl(0xb801960C,0x00000000);		// set Y							// CLAMP_UPDN_EN
+rtd_outl(0xb8019610,0x000000FF);		// enable AD1~AD4 clamp up/dn				// CLAMP_RGB_UPDN_EN
+rtd_outl(0xb8019620,0x00000108);		// set VDC 444 output					// FSW_CTRL2
+rtd_outl(0xb8019764,0x0008017F);		// bit[9:8]=01, select Select the VCO freq = 540M			// MISC_CONTROL
+rtd_outl(0xb8019794,0x00000000);		// disable pattern generator					// PATTERN_CONTROL
+rtd_outl(0xb80197FC,0x00000000);		// Disable clamp test mode					// ADC_UPDN_CTRL
+
+///// CRC setting and testing part /////
+rtd_outl(0xb8020048,0x00880100);	// 20130520 Mark: prevent the front end signal go through VDADC
+rtd_outl(0xb802004c,0x00000140);	// 20130520 Mark: prevent the front end signal go through VDADC
+
+rtd_outl(0xb8019764, 0x2017f);	// bit[9:8]=01, select Select the VCO freq = 540M
+rtd_outl(0xb801985c, 0x03);		// 1_985c[1:0] CRC bypass memory enable; VD SRAM = on
+rtd_outl(0xb8019b28, 0x00);		// 1_9b28 D memory Off, test 1D (YC_SEP_MODE_CTRL PQ.doc)
+rtd_outl(0xb8019900, 0x03);		// 1_9900[2:0] 2D memory Off, test 1D; 
+//	select modes for the composite signal's luma (Y) and chroma I separation before color demodulation = 011: basic luma notch filter mode (for very noisy and unstable pictures)  (不經過line buffer的結果)
+
+// VDCReset
+rtd_outl(0xb8000104, 0xFBBF9DEF);	// 0_0104[22] RSTN_VDEC: Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[22] RSTN_VDEC: Reset bit of  Video Decode (active low)
+// SoftReset
+rtd_outl(0xb8000104, 0xFBDF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+
+rtd_outl(0xb8019794, 0x00);		//disable pattern gen.
+rtd_outl(0xb8019850, 0x04);		//frame buffer memory off.
+rtd_outl(0xb8019b28, 0x00);
+rtd_outl(0xb8019900, 0x03);		//notch-filter
+rtd_outl(0xb8019608, 0x00);
+rtd_outl(0xb801960c, 0x00);
+
+rtd_outl(0xb8019004, 0x00000001);	// Video Control, set input format: CVBS
+rtd_outl(0xb80194b4, 0x00000000);	// Auto Mode: basic register enable (default)
+rtd_outl(0xb8019900, 0x00000003);	// YC sep adaptive mode: 2D (default)
+rtd_outl(0xb8019304, 0x0000008a);	// VSYNC_TIME_CONST: set field polarity
+rtd_outl(0xb8019420, 0x000000a0);	// disable Fast lock when phase error
+
+// CASE 3 => PAL MP
+rtd_outl(0xb8019794, 0x13);		// enable PAL pattern gen.(MP)
+
+// clock disable
+rtd_outl(0xb8000114, 0xFFBFFDFF);	// 0_0114[22] = 0: VDC clock disable
+// SoftReset
+rtd_outl(0xb8000104, 0xFBDF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+// clock enable
+rtd_outl(0xb8000114, 0xFFFFFDFF);	// 0_0114[22] = 1: VDC clock enable
+ScalerTimer_DelayXms(100);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_inl(0xb8019798);		// 0xef7d6d8
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_outl(0xb8019794, 0x0);		// disable PG
+
+// CASE 2 => NTSC MP
+rtd_outl(0xb8019794, 0x11);		// enable NTSC pattern gen.(MP)
+
+// clock disable
+rtd_outl(0xb8000114, 0xFFBFFDFF);	// 0_0114[22] = 0: VDC clock disable
+// SoftReset
+rtd_outl(0xb8000104, 0xFBDF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+// clock enable
+rtd_outl(0xb8000114, 0xFFFFFDFF);	// 0_0114[22] = 1: VDC clock enable
+ScalerTimer_DelayXms(100);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_inl(0xb8019798);		// 0xf5a87a18
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_outl(0xb8019794, 0x0);		// disable PG
+
+
+// CASE 1 => PAL QC
+rtd_outl(0xb8019794, 0x03);		// enable PAL pattern gen.(QC)
+
+// clock disable
+rtd_outl(0xb8000114, 0xFFBFFDFF);	// 0_0114[22] = 0: VDC clock disable
+// SoftReset
+rtd_outl(0xb8000104, 0xFBDF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+// clock enable
+rtd_outl(0xb8000114, 0xFFFFFDFF);	// 0_0114[22] = 1: VDC clock enable
+ScalerTimer_DelayXms(100);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_inl(0xb8019798);		// 0x77c80d08
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_outl(0xb8019794, 0x0);		// disable PG
+
+
+
+// CASE 0 => NTSC QC
+rtd_outl(0xb8019794, 0x01);		// enable NTSC pattern gen.(QC)
+
+// clock disable
+rtd_outl(0xb8000114, 0xFFBFFDFF);	// 0_0114[22] = 0: VDC clock disable
+// SoftReset
+rtd_outl(0xb8000104, 0xFBDF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+rtd_outl(0xb8000104, 0xFBFF9DEF);	// 0_0104[21] RSTN_VDEC2: SW Reset bit of  Video Decode (active low)
+// clock enable
+rtd_outl(0xb8000114, 0xFFFFFDFF);	// 0_0114[22] = 1: VDC clock enable
+ScalerTimer_DelayXms(100);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_inl(0xb8019798);		// 0xc59b0c31
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rtd_outl(0xb8019794, 0x0);		// disable PG

@@ -1,0 +1,2 @@
+This tool is used to generate/print RSA key file and sign/verify data with RSA key.
+To build this tool, you need install OpenSSL on your platform first.

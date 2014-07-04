@@ -1,0 +1,1 @@
+rtd_outl(0xb8006b1c,0x000002f7);//HPout_L,HPout_R from DAC0

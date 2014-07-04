@@ -1,0 +1,8 @@
+rtd_outl(0xb8000280, 0x0000000c);//psaud_psen=1, psaud_en=1
+rtd_outl(0xb8000284, 0x00000001);//coef C=(1+2)*2,PSAUD_DIV
+rtd_outl(0xb8006010, 0x0100c000);//digital tracking, coef D=0, coef E=2, coef A=0
+rtd_outl(0xb8006004, 0xf0051818);//clock source spdif
+rtd_outl(0xb8006008, 0x05400000);//tcon tracking source
+rtd_outl(0xb800600c, 0x05400000);//tcon1 tracking source
+rtd_outl(0xb8006000, 0x02aa0004);//192k use down 4 //jerry
+

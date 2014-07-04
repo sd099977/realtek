@@ -1,0 +1,256 @@
+#include "sed_common.h"
+#include "sed_drv_otp.h"
+#include "sed_drv_gpio.h"
+
+#define OTP_NUID_LEN	8
+int sed_cmd_otp_get_nuid (uint8 *ibuf, uint8 *obuf) //TODO: check NUID order (endien)
+{
+	uint8 sts = NUID_READ_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	GPIO_pulse();
+
+	/* Read NUID and store in response */
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX, REG32(DP_NUID_H_REG));
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 4, REG32(DP_NUID_L_REG));
+
+	GPIO_pulse();
+
+	return sed_command_exit(obuf, C_GET_NUID, OTP_NUID_LEN, sts);
+}
+
+int sed_cmd_otp_set_stbcasn (uint8 *ibuf, uint8 *obuf) //TODO: how to know write otp done/fail?
+{
+	uint32 stbcasn = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX);
+	uint8 sts = OTP_WRITE_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	/* Check input parameters */
+
+	GPIO_pulse();
+
+	/* Write STBCASN to OTP */
+	REG32(OTP_STBCASN) = stbcasn;
+	sed_printf("STBCASN: 0x%08X\n", stbcasn);
+
+	GPIO_pulse();
+
+	return sed_command_exit(obuf, C_SET_STBCASN, 0, sts);
+}
+
+#define OTP_STBCASN_LEN	4
+int sed_cmd_otp_get_stbcasn (uint8 *ibuf, uint8 *obuf) //TODO: read ok?
+{
+	uint32 stbcasn = 0;
+	uint8 sts = OTP_READ_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	GPIO_pulse();
+
+	/* Get STBCASN from OTP */
+	stbcasn = REG32(OTP_STBCASN);
+
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX, stbcasn);
+
+	GPIO_pulse();
+
+	return sed_command_exit(obuf, C_GET_STBCASN, OTP_STBCASN_LEN, sts);
+}
+
+int sed_cmd_otp_set_msid (uint8 *ibuf, uint8 *obuf) //TODO: how to know write otp done/fail?
+{
+	uint32 msid = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX);
+	uint8 sts = OTP_WRITE_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	/* Check input parameters */
+
+	GPIO_pulse();
+
+	/* Write MSID to OTP */
+	REG32(OTP_MSID) = msid;
+	sed_printf("MSID: 0x%08X\n", msid);
+
+	GPIO_pulse();
+
+	return sed_command_exit(obuf, C_SET_MSID, 0, sts);
+}
+
+#define OTP_MSID_LEN	4
+int sed_cmd_otp_get_msid (uint8 *ibuf, uint8 *obuf) //TODO: read ok?
+{
+	uint32 msid;
+	uint8 sts = OTP_READ_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	GPIO_pulse();
+
+	/* Get MSID from OTP */
+	msid = REG32(OTP_MSID);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX, msid);
+
+	GPIO_pulse();
+
+	return sed_command_exit(obuf, C_GET_MSID, OTP_MSID_LEN, sts);
+}
+
+int sed_cmd_otp_dump (uint8 *ibuf, uint8 *obuf)
+{
+	uint16 dLen = get_cmd_data_len(ibuf);
+	addr64 offset = get_cmd_data_addr64(ibuf, CMD_DATA_IN_IDX + (dLen - 9));
+	volatile uint32 *ptr = (volatile uint32 *)(OTP_BASE + (uint32)offset);
+	uint8 numWord = get_cmd_data_uint8(ibuf, CMD_DATA_IN_IDX + dLen - 1), i;
+	uint8 sts = OTP_READ_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	/* Read numWord OTP value starting from offset */ //TODO: read ok?
+	sed_printf("Addr: 0x%08X, numWord: %d\n", (uint32)ptr, numWord);
+	for (i = 0; i < numWord; i++) {
+		set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + (i << 2), *(ptr + i));
+	}
+
+	/* Need EDC ??? */ // [Discard]
+
+	return sed_command_exit(obuf, C_HOST_OTP_DUMP, (numWord << 2), sts);
+}
+
+#define OTP_CPU_INTERNAL_REGS	5
+int sed_cmd_otp_read (uint8 *ibuf, uint8 *obuf)
+{
+	register uint32 reg1, reg2, reg3, reg4, reg5;
+	uint16 dLen = get_cmd_data_len(ibuf);
+	addr64 offset = get_cmd_data_addr64(ibuf, CMD_DATA_IN_IDX + (dLen - 8));
+	volatile uint32 *ptr = (volatile uint32 *)(OTP_BASE + (uint32)offset);
+	uint8 sts = OTP_READ_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	GPIO_pulse();
+
+	/* Read OTP values to internal registers (linear) */ //TODO: read ok?
+	sed_printf("Addr: 0x%08X\n", (uint32)ptr);
+#if defined (SIRIUS) || defined (FPGA)
+	__asm__ __volatile__ (
+		"lw    %1, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %2, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %3, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %4, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %5, 0(%6);"
+		: "=r" (ptr), "=r" (reg1), "=r" (reg2), "=r" (reg3), "=r" (reg4), "=r" (reg5)
+		: "0" (ptr)
+	);
+#else
+	reg1 = *(ptr++);
+	reg2 = *(ptr++);
+	reg3 = *(ptr++);
+	reg4 = *(ptr++);
+	reg5 = *(ptr);
+#endif
+	GPIO_pulse();
+
+	/* Copy from internal registers to response */
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX, reg1);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 4, reg2);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 8, reg3);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 12, reg4);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 16, reg5);
+
+	GPIO_toggle();
+
+	return sed_command_exit(obuf, C_HOST_OTP_READ, (OTP_CPU_INTERNAL_REGS << 2), sts);
+}
+
+int sed_cmd_otp_write (uint8 *ibuf, uint8 *obuf)
+{
+	register uint32 reg1, reg2, reg3, reg4, reg5;
+	uint16 dLen = get_cmd_data_len(ibuf);
+	uint16 oLen = dLen - (OTP_CPU_INTERNAL_REGS << 2); // len of offset
+	addr64 offset = get_cmd_data_addr64(ibuf, CMD_DATA_IN_IDX + (oLen - 8));
+	volatile uint32 *ptr = (volatile uint32 *)(OTP_BASE + (uint32)offset);
+	uint8 sts = OTP_WRITE_OK;
+
+	sed_command_entry(obuf, IO_BUF_MAX_LEN);
+
+	/* Check input parameters */
+	reg1 = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX + oLen);
+	reg2 = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX + oLen + 4);
+	reg3 = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX + oLen + 8);
+	reg4 = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX + oLen + 12);
+	reg5 = get_cmd_data_uint32(ibuf, CMD_DATA_IN_IDX + oLen + 16);
+
+	GPIO_pulse();
+
+	/* Write input values into OTP offset */ //TODO: write done/fail?
+	/* How to know has been programmed??? */
+	sed_printf("Addr: 0x%08X\n", (uint32)ptr);
+#if defined (SIRIUS) || defined (FPGA)
+	__asm__ __volatile__ (
+		"sw    %2, 0(%1);"
+		"addiu %0,   %1, 4;"
+		"sw    %3, 0(%1);"
+		"addiu %0,   %1, 4;"
+		"sw    %4, 0(%1);"
+		"addiu %0,   %1, 4;"
+		"sw    %5, 0(%1);"
+		"addiu %0,   %1, 4;"
+		"sw    %6, 0(%1);"
+		: "=r" (ptr)
+		: "0" (ptr), "r" (reg1), "r" (reg2), "r" (reg3), "r" (reg4), "r" (reg5)
+		: "memory"
+	);
+#else
+	*(ptr++) = reg1;
+	*(ptr++) = reg2;
+	*(ptr++) = reg3;
+	*(ptr++) = reg4;
+	*(ptr) = reg5;
+#endif
+	GPIO_pulse();
+
+	/* Read OTP values to internal registers */ //TODO: read ok?
+	ptr = (volatile uint32 *)(OTP_BASE + (uint32)offset);
+#if defined (SIRIUS) || defined (FPGA)
+	__asm__ __volatile__ (
+		"lw    %1, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %2, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %3, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %4, 0(%6);"
+		"addiu %0,   %6, 4;"
+		"lw    %5, 0(%6);"
+		: "=r" (ptr), "=r" (reg1), "=r" (reg2), "=r" (reg3), "=r" (reg4), "=r" (reg5)
+		: "0" (ptr)
+	);
+#else
+	reg1 = *(ptr++);
+	reg2 = *(ptr++);
+	reg3 = *(ptr++);
+	reg4 = *(ptr++);
+	reg5 = *(ptr);
+#endif
+	GPIO_toggle();
+
+	/* Copy from internal registers to response */
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX, reg1);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 4, reg2);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 8, reg3);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 12, reg4);
+	set_rsp_data_uint32(obuf, RSP_DATA_OUT_IDX + 16, reg5);
+
+	GPIO_toggle();
+
+	return sed_command_exit(obuf, C_HOST_OTP_WRITE, (OTP_CPU_INTERNAL_REGS << 2), sts);
+}
+

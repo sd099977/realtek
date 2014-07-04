@@ -1,0 +1,4 @@
+Market Segment ID=0x00000001
+Boot Mode Selection=BMDEFAULT
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT
+Key Ladder Deactivation Flag=SET

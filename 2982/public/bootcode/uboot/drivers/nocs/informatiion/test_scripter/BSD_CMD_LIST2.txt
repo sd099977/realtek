@@ -1,0 +1,119 @@
+This List is command line only
+if want to run test loop, reference "BSD_CMD_LIST"
+
+=====================================================================
+bsd -status -oc
+bsd -reset
+
+=====================================================================
+bsd -gpv MSID
+bsd -gpv STBCASN
+
+=====================================================================
+bsd -spv MSID -v 0x00005555
+bsd -spv MSID -v 0xAAAA0000
+bsd -spv STBCASN -v 0x00005555
+bsd -spv STBCASN -v 0xAAAA0000
+
+=====================================================================
+bsd -rand -n 0x40 -oc
+bsd -rand -n 0x400 -of /SECInOutDirName/CTCut_rng_out.bin
+bsd -rand -n 0x40  -of RootDirName/Otuput/Bin/rand_out_bsd.bin
+
+=====================================================================
+bsd -cn NUID -oc
+bsd -cn DINTEG -oc -tv /CSVInDirName/CTCut_CheckNumbers_3x.csv
+
+=====================================================================
+/***/
+bsd -r2r -enc -key CERT -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_CERTenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+bsd -r2r -dec -key CERT -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_CERTdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+
+bsd -r2r -enc -key CERT -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_CERTenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+bsd -r2r -dec -key CERT -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_CERTdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_AES_R2R_3x.csv
+
+bsd -r2r -enc -key CERT -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_CERTenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_TDES_R2R_3x.csv
+bsd -r2r -dec -key CERT -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_CERTdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_TDES_R2R_3x.csv
+
+bsd -r2r -enc -key CERT -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_CERTenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_TDES_R2R_3x.csv
+bsd -r2r -dec -key CERT -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_CERTdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CERT_TDES_R2R_3x.csv
+
+/***/
+bsd -r2r -enc -key KL -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_KLenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_KLdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key KL -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_KLenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_KLdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4026 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4026_KLdec_bsd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Emi0x4027_KLenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Emi0x4027_KLdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key KL -emi 0x4041 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4041_KLenc_bsd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+bsd -r2r -enc -key KL -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_KLenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_KLdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key KL -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_KLenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key KL -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_KLdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+
+/***/
+bsd -r2r -enc -key SW -emi 0x4021 -of /RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4021_SWenc_bsd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+bsd -r2r -enc -key SW -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_SWenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4021 -of /R2ROutDirName/CTCut_R2R_Emi0x4021_SWdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key SW -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_SWenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4026 -of /R2ROutDirName/CTCut_R2R_Emi0x4026_SWdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key SW -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Emi0x4027_SWenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4027 -of /R2ROutDirName/CTCut_R2R_Emi0x4027_SWdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key SW -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_SWenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4041 -of /R2ROutDirName/CTCut_R2R_Emi0x4041_SWdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -r2r -enc -key SW -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_SWenc_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4043 -of /R2ROutDirName/CTCut_R2R_Emi0x4043_SWdec_bsd.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -r2r -dec -key SW -emi 0x4043 -of /RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4043_SWdec_bsd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+
+=====================================================================
+bsd -fp DATA -enc -emi 0x4021 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4021_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -fp DATA -dec -emi 0x4021 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4021_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -fp DATA -enc -emi 0x4026 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4026_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -fp DATA -dec -emi 0x4026 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4026_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -fp DATA -enc -emi 0x4027 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4027_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+bsd -fp DATA -dec -emi 0x4027 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4027_data_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+bsd -fp DATA -enc -emi 0x4041 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4041_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+bsd -fp DATA -dec -emi 0x4041 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4041_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+
+bsd -fp DATA -enc -emi 0x4043 -of /SECInOutDirName/CTCut_bsd_fp_enc_0x4043_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+bsd -fp DATA -dec -emi 0x4043 -of /SECInOutDirName/CTCut_bsd_fp_dec_0x4043_data_out.bin -tv /CSVInDirName/CTCut_TDES_R2R_3x.csv
+
+bsd -fp KEY  -enc -of /SECInOutDirName/CTCut_bsd_fp_enc_key_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+
+=====================================================================
+bsd -sha SHA256 -if RootDirName/TestVectors/BinIn/sha256_in.bin -of RootDirName/Outputs/Bin/sha256_out_bsd.bin
+bsd -sha SHA256 -if /SECInOutDirName/sha256_in.bin -of /SECInOutDirName/sha256_out_bsd.bin
+
+=====================================================================
+bsd -hmac SHA256 -kf /SECInOutDirName/hmac_key.bin -if /SECInOutDirName/hmac_sha256_in.bin -of /SECInOutDirName/hmac_sha256_out_bsd.bin
+
+=========================================================================
+bsd -rsa -pub -dec -keysize 0x80 -expE 0x11 -modN RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of RootDirName/Output/Bin/rsa_padding_pkcs1_v1_5_pub_dec_out_bsd.bin
+
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_out.bin
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_out.bin
+
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_n.bin -pad OAEP_SHA1 -if /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_out.bin
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_n.bin -pad OAEP_SHA256 -if /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_out.bin
+
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_n.bin -pad OAEP_SHA1 -if /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_n.bin -pad OAEP_SHA256 -if /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_out.bin
+
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_no_padding_pub_dec_n.bin -pad NO -if /SECInOutDirName/rsa_padding_no_padding_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_no_padding_pub_dec_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_no_padding_pub_enc_n.bin -pad NO -if /SECInOutDirName/rsa_padding_no_padding_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_no_padding_pub_enc_out.bin
+

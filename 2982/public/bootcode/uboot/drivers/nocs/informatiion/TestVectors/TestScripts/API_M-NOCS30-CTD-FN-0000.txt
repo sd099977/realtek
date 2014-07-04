@@ -1,0 +1,21 @@
+# This script contains examples of command for the CTD App.
+# It does not replace any part of the NOCS3 validation. It is provided as an example of syntax for the CTD App.
+# Together with the Nagra test infrastruture (CTD App, communication, RPC server), it can be used as stimulus generator for CTD API and extended API test.
+#
+# If this script is not executed with N3XT, the following pattern shall be replaced before executing the command
+#   RootDirName = path to the root directory 
+#   StreamRootDirName = path to the root directory where streams are stored
+#   CTCut = <chipset name><chipset cut>
+#   _TunerType_ = Tuner type, could be T, C or S
+#   ctd = the leading one shall be replaced by the CTD App name 
+#
+ctd -status -oc
+ctd -gpv MSID
+ctd -frw read -ft SPI -a 0x00000000 -s 4
+ctd -sce -enc -keyemi 0x0001 -sceemi 0x4021 -of RootDirName/Outputs/Txt/CTCut_CTD_SCE_R2R_DVBv3RK_Emi0x4021_KLenc.txt -pecm FALSE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv3RK_AES_R2R_3x.csv
+ctd -sce -dec -keyemi 0x0020 -sceemi 0x0000 -if /StreamRootDirName/StreamIn/NoP_TunerType_DC_DSC_Emi0x0000_01.01.ts -of /StreamRootDirName/StreamOut/CTCut_CTD_SCE_NoP_TunerType_DC_Recorded_EMI0x0000_SvPid0x1130.ts -videoPid 0x1130 -audioPid 0x1132 -pcrPid 0x1130 -ecmPid 0x1136 -pecm TRUE -tv RootDirName/TestVectors/CSVIn/CTCut_AESRK_DVBv2_DSC_3x.csv
+ctd -sce -dec -keyemi 0x0000 -sceemi 0x0020 -if /StreamRootDirName/StreamIn/NoPzDA_SCR_Emi0x0020_01.02.ts -of /StreamRootDirName/StreamOut/NoPzDU_CTD_SCE_SCR_dec_Recorded_EMI0x0020.ts -pecm FALSE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv2RK_AES_SCR1_3x.csv
+ctd -sce -enc -keyemi 0x0000 -sceemi 0x4023 -if /StreamRootDirName/StreamIn/NoPzDU_ScrClearRef_Clear_01.01.ts -of /StreamRootDirName/StreamOut/NoPzDA_CTD_SCE_SCR_enc_Recorded_EMI0x4023.ts -pecm FALSE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv2RK_AES_SCR1_3x.csv
+ctd -rst HW
+ctd -suspend
+

@@ -1,0 +1,3 @@
+sec -fp KEY -enc -of /SECInOutDirName/CTCut_sec_fp_enc_key_out.bin -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+CTD -rst HW

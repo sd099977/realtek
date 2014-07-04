@@ -1,0 +1,15 @@
+N3XT -cfg CC_M-NOCS30-0003
+N3XT -UPDATECHIPDATABASE
+sec -r2r -enc -key SW -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_SWenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+sec -r2r -enc -key KL -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_KLenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -dec -key SW -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_SWdec_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+sec -r2r -dec -key KL -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_KLdec_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+sec -r2r -enc -key SW -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_SWenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORPASS
+sec -r2r -enc -key KL -emi 0x4024 -of /R2ROutDirName/CTCut_R2R_KLD_Emi0x4024_KLenc_sec.txt -mt -numbruns 1000 -tv /CSVInDirName/CTCut_AES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

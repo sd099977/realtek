@@ -1,0 +1,5 @@
+
+rtd_outl(0xb8021000, 0x80a30001);	// Disable SP auto run and ss sync input
+
+//rtd_outl(0xb802106c, 0x00000031);	// SP output = PTG data , HS/VS/Field source = PTG
+rtd_outl(0xb802106c, 0x00000001);	// SP output = PTG data 

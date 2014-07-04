@@ -1,0 +1,55 @@
+#
+# Applicable C files selection
+#   : This file was automatically generated
+#     Do not edit it manually
+#
+
+NHT_SRCS +=  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/TRACE_nhcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/_msgbuf_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CERT/TAGS/1.2.1/distrib/server/src/rpc_server_nhtcert_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/TRACE_nhtcsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/TRACE_p_nhtcsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/_msgbuf_nhtcsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/nhtcsd_r2r_test_algo.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/nv_nhtcsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/rpc_server_nhtcsd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CSD/TAGS/1.3.1/distrib/server/src/rpc_server_nhtcsd_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CTD/TAGS/1.1.2/distrib/server/src/TRACE_nhtctd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CTD/TAGS/1.1.2/distrib/server/src/_msgbuf_nhtctd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CTD/TAGS/1.1.2/distrib/server/src/nv_nhtctd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CTD/TAGS/1.1.2/distrib/server/src/rpc_server_nhtctd.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/CTD/TAGS/1.1.2/distrib/server/src/rpc_server_nhtctd_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/TRACE_nhtsec.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/_msgbuf_nhtsec.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/nhtsec_r2r_test_algo.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/nv_nhtsec.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/rpc_server_nhtsec.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/NOCS/SEC/TAGS/5.4.0/distrib/server/src/rpc_server_nhtsec_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/_msgbuf_nhtreport.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/nv_nht_report.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/rpc_server_nhtreport.c  \
+  $(NHT_ROOT)/chipset/res/RPCServices/report/TAGS/1.4.0/distrib/server/src/rpc_server_nhtreport_serviceWrapper.c  \
+  $(NHT_ROOT)/chipset/server/lib/CSD/TAGS/3.8.0/distrib/src/server_main.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/_msgbuf_rpcctrl.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_msgbuf_report.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/app_rpc_report.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/avlset.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/base_hndmng.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_alloc.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpack.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_rpc_service.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_size.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_strbuilder.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_sys_string.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/msgbuf_unpack.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/os_sys_malloc.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_hndmng.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_rpc_service.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_rpc_stdout_stderr_redirection.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/os/posix/posix_sys_mutex.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_ftrace.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/rpc_server_rpcctrl_serviceWrapper.c  \
+  $(NHT_ROOT)/msgbuf/RPC_kit/TAGS/1.5.1/distrib/server/src/tcpip/posix/posix_rpc_tcpip_server.c

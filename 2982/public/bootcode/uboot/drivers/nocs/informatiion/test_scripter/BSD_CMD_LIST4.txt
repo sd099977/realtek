@@ -1,0 +1,1243 @@
+This List is command line for RTK only
+print on STDOUT not output file.
+if want to run test loop, reference "BSD_CMD_LIST"
+
+../TestVectors/TestVectors/BinIn/
+../TestVectors/TestVectors/CSVIn/
+../TestVectors/TestVectors/BinOut/
+../TestVectors/TestVectors/CSVOut/
+../TestVectors/TestVectors/TxtOut/
+./TestOut
+
+=====================================================================
+./bsd -status -oc	==>PASS
+./bsd -reset		==> Pass
+
+=====================================================================
+./bsd -gpv MSID		==>PASS
+./bsd -gpv STBCASN	==>PASS
+
+=====================================================================
+./bsd -spv MSID -v 0x00005555		==>PASS
+./bsd -spv MSID -v 0xAAAA0000
+./bsd -spv STBCASN -v 0x00005555	==>PASS
+./bsd -spv STBCASN -v 0xAAAA0000
+
+=====================================================================
+./bsd -rand -n 0x40 -oc
+./bsd -rand -n 0x400 -of ./TestOut/rand_out_bsd_0x400.bin
+./bsd -rand -n 0x40  -of ./TestOut/rand_out_bsd_0x40.bin
+
+=====================================================================
+./bsd -cn NUID -oc  ==> Pass
+./bsd -cn DINTEG -oc -tv /CSVInDirName/siriusA0_CheckNumbers_3x.csv
+==> Linux RPC server not support
+
+=====================================================================
+/***/
+./bsd -r2r -enc -key CERT -emi 0x4021  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4021  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4026  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4026  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4041  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4041  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4043  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4043  -mt -numbruns 1000 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+/*===for test modify ==============================================*/
+./bsd -r2r -enc -key CERT -emi 0x4021  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4021  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4026  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4026  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4041  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4041  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4043  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4043  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+
+
+/***/
+./bsd -r2r -enc -key KL -emi 0x4021 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -dec -key KL -emi 0x4021 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -enc -key KL -emi 0x4026 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -dec -key KL -emi 0x4026 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -enc -key KL -emi 0x4027 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -dec -key KL -emi 0x4027 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+./bsd -r2r -enc -key KL -emi 0x4041 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> Pass
+./bsd -r2r -dec -key KL -emi 0x4041 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> Pass
+./bsd -r2r -enc -key KL -emi 0x4043 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> Pass
+./bsd -r2r -dec -key KL -emi 0x4043 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> Pass
+
+/***/
+./bsd -r2r -enc -key SW -emi 0x4021 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>Pass
+./bsd -r2r -dec -key SW -emi 0x4021 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>Pass (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -r2r -enc -key SW -emi 0x4026 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>Pass
+./bsd -r2r -dec -key SW -emi 0x4026 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>Pass (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -r2r -enc -key SW -emi 0x4027 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> No support
+./bsd -r2r -dec -key SW -emi 0x4027 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> No support
+./bsd -r2r -enc -key SW -emi 0x4041 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==>Pass
+./bsd -r2r -dec -key SW -emi 0x4041 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==>Pass (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -r2r -enc -key SW -emi 0x4043 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==>Pass
+./bsd -r2r -dec -key SW -emi 0x4043 -mt -numbruns 1000  -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==>Pass (skip bsdOpenRam2RamEncryptSession() issue)
+
+=====================================================================
+./bsd -fp DATA -enc -emi 0x4021 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>PASS
+./bsd -fp DATA -dec -emi 0x4021 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> PASS (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -fp DATA -enc -emi 0x4026 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==>PASS
+./bsd -fp DATA -dec -emi 0x4026 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> PASS (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -fp DATA -enc -emi 0x4027 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> NO support
+./bsd -fp DATA -dec -emi 0x4027 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> NO support
+./bsd -fp DATA -enc -emi 0x4041 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> NO support(beacuse MCP)
+./bsd -fp DATA -dec -emi 0x4041 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> NO support(beacuse MCP)
+./bsd -fp DATA -enc -emi 0x4043 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> NO support(beacuse MCP)
+./bsd -fp DATA -dec -emi 0x4043 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==> NO support(beacuse MCP)
+
+./bsd -fp KEY  -enc -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+==> Pass
+=====================================================================
+./bsd -sha SHA256 -if ../TestVectors/TestVectors/BinIn/sha256_in.bin
+==>PASS
+
+=====================================================================
+./bsd -hmac SHA256 -kf ../TestVectors/TestVectors/BinIn/hmac_key.bin -if ../TestVectors/TestVectors/BinIn/hmac_sha256_in.bin
+
+=========================================================================
+./bsd -rsa -pub -dec -keysize 0x80 -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin
+
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_n.bin   -pad NO          -if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_in.bin
+==>PASS
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_n.bin   -pad NO          -if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_in.bin
+==>PASS
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_n.bin   -pad PKCS1_5     -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_in.bin
+==>PASS
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin   -pad PKCS1_5     -if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin
+==>PASS
+
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_n.bin   -pad OAEP_SHA1   -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_in.bin
+==>Not support
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_n.bin   -pad OAEP_SHA1   -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_in.bin
+==>Not support
+./bsd -rsa -pub -enc -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_n.bin -pad OAEP_SHA256 -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_in.bin
+==>Not support
+./bsd -rsa -pub -dec -expE 0x11 -modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_n.bin -pad OAEP_SHA256 -if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_in.bin
+==>Not support
+
+============================
+RtSSl verify
+
+顯示命令說明
+ ./RtSSL enc -h
+
+/*******************************************************************/
+	FLASH PROTECTION KEY
+/*******************************************************************/
+===AES===============================================================
+直接用CSV檔中的資料輸入就可以得到正確的值
+---encrypt ECB-------------------------------------------------------
+==> Pass
+./bsd -r2r -key FLASH -emi 0x4021 -enc \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -e -aes_128_ecb -k 0 -i stdin -o stdout
+
+CW-Key
+01020506030407080a0b12340c0d5678
+
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -e -aes_128_ecb \
+	-k 01020506030407080a0b12340c0d5678 -i stdin -o stdout
+
+RTK Ans::
+e9a403216840fb76fb78806d3ae2d43a
+
+---encrypt CBC-------------------------------------------------------
+==> Pass
+./bsd -r2r -key FLASH -emi 0x4026 -enc \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -e -aes_128_cbc -k 0 	\
+	-iv 1B1EBD1FC45EC43037FD4844241A437F -i stdin -o stdout
+
+CW-Key
+01020506030407080a0b12340c0d5678
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -e -aes_128_cbc \
+	-k  01020506030407080a0b12340c0d5678 	\
+	-iv 1B1EBD1FC45EC43037FD4844241A437F -i stdin -o stdout
+
+RTK Ans:
+695ec87e4c032fd41e83ea48842ed903
+
+---Decrypt ECB-------------------------------------------------------
+==> PASS (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -r2r -key FLASH -emi 0x4021 -dec \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -d -aes_128_ecb \
+	-k 01020506030407080a0b12340c0d5678 	\
+	-i stdin -o stdout
+
+CW-Key
+01020506030407080a0b12340c0d5678
+
+
+
+RTK Ans:
+0x09E9F41697D6025FF0DEF2E5FE3E43DD
+
+
+---Decrypt CBC-------------------------------------------------------
+==> PASS (skip bsdOpenRam2RamEncryptSession() issue)
+./bsd -r2r -key FLASH -emi 0x4026 -dec \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+CW-Key
+01020506030407080a0b12340c0d5678
+
+echo C1B77ED52521525F0A4BA341BDAF51D9 | \
+	./RtSSL enc -d -aes_128_cbc -k 01020506030407080a0b12340c0d5678 	\
+	-iv 1B1EBD1FC45EC43037FD4844241A437F -i stdin -o stdout
+
+RTK Ans:
+0x12F749095388C66FC723BAA1DA2400A2
+
+===TDES==============================================================
+測試的結果
+使用指定vector可以work
+使用CW會fail
+==> 由於MCP的CW只支援一次存取2個entry,而TEDS的verctor是21 bytes,
+	所以無法支援.
+
+---encrypt ECB---
+
+./bsd -fp DATA -enc -emi 0x4041 -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+==>
+./bsd -r2r -key FLASH -emi 0x4041 -enc \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.cs
+
+==>0x018ABD173CDC55E4
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_ecb -k 0 -i stdin -o stdout
+
+---encrypt CBC---
+==> Pass
+./bsd -r2r -key FLASH -emi 0x4043 -enc \
+		-tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_cbc -k 0 	\
+	-iv 1234567890abcdef -i stdin -o stdout
+
+
+===Flash protection key==============================================================
+notes :
+method : AES_128_ECB
+address of plash_protect_root_key at CW SRAM : 126
+
+./bsd -fp KEY  -enc \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+CW-Key
+01020506030407080a0b12340c0d5678
+
+echo af10cd45e2b896730f1e2d3c4b5a6978 | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 01020506030407080a0b12340c0d5678 -i stdin -o stdout
+
+RTK Ans:
+f456df49e2bd18b2331d3b96eee4efc9
+f456df49e2bd18b2331d3b96eee4efc9
+
+
+
+
+bsdEncryptFlashProtKey(954)FLASH_PROTECT_ROOT KEY(126): 0ed535892e8d6bc5
+bsdEncryptFlashProtKey(970)FLASH_PROTECT_ROOT KEY(127): c8e63894a40cd86b
+CW-Key
+0ed535892e8d6bc5c8e63894a40cd86b
+
+echo af10cd45e2b896730f1e2d3c4b5a6978 | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 0ed535892e8d6bc5c8e63894a40cd86b -i stdin -o stdout
+
+===ClearTextKey key==============================================================
+---AES ECB Encrypt---
+Loop 1 time
+./bsd -r2r -enc -key SW \
+	-emi 0x4021 -mt -numbruns 1  \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+RTK Ans:
+0x09C9A977C869D108B92A299DA1721549
+
+
+K:0123456789abcdef23456789abcdef01
+D:c1b77ed52521525f0a4ba341bdaf51d9
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 -i stdin -o stdout
+
+-----------------
+Loop 3 time
+./bsd -r2r -enc -key SW \
+	-emi 0x4021 -mt -numbruns 3 \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+RTK Ans:
+K:0123456789abcdef23456789abcdef01
+
+D1:c1b77ed52521525f0a4ba341bdaf51d9
+	O1:09c9a977c869d108b92a299da1721549
+D2:09c9a977c869d108b92a299da1721549
+	O2:4343118dbf4546d47d696b000c05850e
+
+D3:4343118dbf4546d47d696b000c05850e
+ 	O3:3e1e51210c62723b5e293d1519a0483f
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 -i stdin -o stdout
+
+echo 09c9a977c869d108b92a299da1721549 | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 -i stdin -o stdout
+
+echo 4343118dbf4546d47d696b000c05850e | \
+./RtSSL enc -e -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 -i stdin -o stdout
+
+---------------------------
+Loop 1000 time
+./bsd -r2r -enc -key SW \
+	-emi 0x4021 -mt -numbruns 1000 \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+===ClearTextKey key==============================================================
+---AES CBC Encrypt---
+note : 這邊實驗發現 -numbruns  填1或2都會跑兩次??
+Loop 1 time
+./bsd -r2r -enc -key SW \
+	-emi 0x4026 -mt -numbruns 1  \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+
+////////
+
+K:0123456789abcdef23456789abcdef01
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+V0:1b1ebd1fc45ec43037fd4844241a437f
+	O0:ac297b42bb604217f82beecafcedfaa2
+
+D1:1b1ebd1fc45ec43037fd4844241a437f
+V1:ac297b42bb604217f82beecafcedfaa2
+	O1:63e75b15cbeb251bc0f1318dd4472331
+
+
+//////////////////////
+loop3次
+K:0123456789abcdef23456789abcdef01
+
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+V0:1b1ebd1fc45ec43037fd4844241a437f
+	O0:ac297b42bb604217f82beecafcedfaa2
+
+D1:1b1ebd1fc45ec43037fd4844241a437f
+V1:ac297b42bb604217f82beecafcedfaa2
+	O1:63e75b15cbeb251bc0f1318dd4472331
+
+D2:ac297b42bb604217f82beecafcedfaa2
+V2:63e75b15cbeb251bc0f1318dd4472331
+	O2:416e6c884f6e71c77f9f51eda205072b
+
+D3:63e75b15cbeb251bc0f1318dd4472331
+V3:416e6c884f6e71c77f9f51eda205072b
+	O3:3f0cc71b9bb6bf85e37a07eb0dbf19db
+
+
+
+
+-------------------------------------------
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+	./RtSSL enc -e -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 1b1ebd1fc45ec43037fd4844241a437f -i stdin -o stdout
+
+echo 1b1ebd1fc45ec43037fd4844241a437f | \
+	./RtSSL enc -e -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv ac297b42bb604217f82beecafcedfaa2 -i stdin -o stdout
+
+echo ac297b42bb604217f82beecafcedfaa2 | \
+	./RtSSL enc -e -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 63e75b15cbeb251bc0f1318dd4472331 -i stdin -o stdout
+
+echo 63e75b15cbeb251bc0f1318dd4472331 | \
+	./RtSSL enc -e -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 416e6c884f6e71c77f9f51eda205072b -i stdin -o stdout
+
+===ClearTextKey key==============================================================
+---TDES ECB Encrypt--------------------------------------------------------------
+Nagxx的sample命令
+不是	siriusA0_TDES_R2R_3x.csv
+而是用 	siriusA0_AES_R2R_3x.csv
+這邊改用siriusA0_TDES_R2R_3x.csv
+
+---loop1 time---
+./bsd -r2r -enc -key SW \
+	-emi 0x4041 -mt -numbruns 1  \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+
+K:0123456789abcdef23456789abcdef010123456789abcdef
+D0:4e6f772069732074
+	O0:b7835779ee26acb7
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+
+---loop3 time---
+./bsd -r2r -enc -key SW \
+	-emi 0x4041 -mt -numbruns 2  \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+RTK Ans:
+4ca412b66ba4982d
+
+
+K:
+0123456789abcdef23456789abcdef010123456789abcdef
+
+D0:4e6f772069732074
+	O0:b7835779ee26acb7
+
+D1:b7835779ee26acb7
+	O1:841aeeedf6e7ce6c
+
+D2:841aeeedf6e7ce6c
+	O2:4ca412b66ba4982d
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+echo b7835779ee26acb7 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+echo 841aeeedf6e7ce6c | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+---TDES CBC Encrypt---
+---loop 4 time---
+./bsd -r2r -enc -key SW \
+	-emi 0x4043 -mt -numbruns 4  \
+	-tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+RTK Ans:
+435c025feef77a56
+
+////////////
+K:
+0123456789abcdef23456789abcdef010123456789abcdef
+
+D0:4e6f772069732074
+V0:1234567890abcdef
+	O0:39439c02685fbe82
+
+D1:1234567890abcdef
+V1:39439c02685fbe82
+	O1:f0cf0f9cdd2efec1
+
+D2:9cb47e1f036f11ee
+V2:550cf4dd56e89345
+	O2:435c025feef77a56
+
+D3:435c025feef77a56
+V3:40cd5b7cf26ad5ce
+	O3:932db94eb01bcc46
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 1234567890abcdef -i stdin -o stdout
+==>134b98f8eeb3f607
+
+echo 1234567890abcdef | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 134b98f8eeb3f607 -i stdin -o stdout
+==>9cb47e1f036f11ee
+
+echo 9cb47e1f036f11ee | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 550cf4dd56e89345 -i stdin -o stdout
+==>435c025feef77a56
+
+echo 435c025feef77a56 | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 40cd5b7cf26ad5ce -i stdin -o stdout
+==>932db94eb01bcc46
+
+
+===ClearTextKey key==============================================================
+---AES ECB Decrypt---------------------------------------------------------------
+./bsd -r2r -dec -key SW \
+    -emi 0x4021 -mt -numbruns 3 \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+RTK Ans:
+e6db3f88ebf08fdab0a9cc6b71830694
+
+
+///////////////
+K:0123456789abcdef23456789abcdef01
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+    O0:5a30ba840294e981f51b10a2e048a444
+
+D1:5a30ba840294e981f51b10a2e048a444
+    O1:7b41ac618a7aadf18f1b6430ab43b815
+
+D2:7b41ac618a7aadf18f1b6430ab43b815
+    O2:e6db3f88ebf08fdab0a9cc6b71830694
+
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+	./RtSSL enc -d -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 	\
+	-i stdin -o stdout
+
+echo 5a30ba840294e981f51b10a2e048a444 | \
+	./RtSSL enc -d -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 	\
+	-i stdin -o stdout
+
+echo 7b41ac618a7aadf18f1b6430ab43b815 | \
+	./RtSSL enc -d -aes_128_ecb \
+	-k 0123456789abcdef23456789abcdef01 	\
+	-i stdin -o stdout
+
+==> e6db3f88ebf08fdab0a9cc6b71830694
+==> Pass
+
+===ClearTextKey key==============================================================
+---AES CBC Decrypt---------------------------------------------------------------
+./bsd -r2r -dec -key SW \
+    -emi 0x4026 -mt -numbruns 3 \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+RTK Ans:
+0x7202D985FFD633E8B9FB98663E3B62A8
+
+K:0123456789abcdef23456789abcdef01
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+V0:1b1ebd1fc45ec43037fd4844241a437f
+    O0:412e079bc6ca2db1c2e658e6c452e73b
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+	./RtSSL enc -d -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 1b1ebd1fc45ec43037fd4844241a437f 	\
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D1:1b1ebd1fc45ec43037fd4844241a437f
+V1:c1b77ed52521525f0a4ba341bdaf51d9
+    O1:fb98b7a59f6a9a511921fdda19111208
+
+echo 1b1ebd1fc45ec43037fd4844241a437f | \
+	./RtSSL enc -d -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv c1b77ed52521525f0a4ba341bdaf51d9 	\
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D2:412e079bc6ca2db1c2e658e6c452e73b
+V2:1b1ebd1fc45ec43037fd4844241a437f
+    O2:d840093dfc9d6bbb1e8b2181331ea559
+
+echo 412e079bc6ca2db1c2e658e6c452e73b | \
+	./RtSSL enc -d -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 1b1ebd1fc45ec43037fd4844241a437f 	\
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D3:fb98b7a59f6a9a511921fdda19111208
+V3:412e079bc6ca2db1c2e658e6c452e73b
+    O3:7202d985ffd633e8b9fb98663e3b62a8
+
+echo fb98b7a59f6a9a511921fdda19111208 | \
+	./RtSSL enc -d -aes_128_cbc \
+	-k  0123456789abcdef23456789abcdef01 	\
+	-iv 412e079bc6ca2db1c2e658e6c452e73b 	\
+	-i stdin -o stdout
+
+===ClearTextKey key==============================================================
+---TDES ECB Decrypt---------------------------------------------------------------
+./bsd -r2r -dec -key SW \
+    -emi 0x4041 -mt -numbruns 3 \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+K:
+0123456789abcdef23456789abcdef010123456789abcdef
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D0:4e6f772069732074
+    O0:fb72d15c6f5a5db6
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D0:fb72d15c6f5a5db6
+    O0:436dfd3319603b56
+
+echo fb72d15c6f5a5db6 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D0:436dfd3319603b56
+    O0:a2283e96fc861c84
+
+echo 436dfd3319603b56 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-i stdin -o stdout
+
+===ClearTextKey key==============================================================
+---TDES CBC Decrypt---------------------------------------------------------------
+./bsd -r2r -dec -key SW \
+    -emi 0x4043 -mt -numbruns 3 \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+RTK Ans:
+0xD3B3E23C7195A426
+
+K:
+0123456789abcdef23456789abcdef010123456789abcdef
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D0:4e6f772069732074
+V0:1234567890abcdef
+    O0:e9468724fff19059
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 1234567890abcdef    \
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D1:e9468724fff19059
+V1:4e6f772069732074
+    O0:a0a8f1c6dbdac5a3
+
+echo e9468724fff19059 | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv 4e6f772069732074    \
+	-i stdin -o stdout
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+D2:a0a8f1c6dbdac5a3
+V2:e9468724fff19059
+    O0:d3b3e23c7195a426
+
+echo a0a8f1c6dbdac5a3 | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0123456789abcdef23456789abcdef010123456789abcdef 	\
+	-iv e9468724fff19059    \
+	-i stdin -o stdout
+
+
+===CERT Key key==============================================================
+---AES ECB Encrypt---
+
+./bsd -r2r -enc -key CERT \
+    -emi 0x4021  -mt -numbruns 1 \
+    -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+
+
+
+
+=== Key Ladder ==============================================================
+
+Flash_Rootkey:                0E D5 35 89 2E 8D 6B C5 C8 E6 38 94 A4 0C D8 6B
+AES_Rootkey:                  EE 6A 1F EB 89 E4 C2 85 32 FE 75 2C E9 4A 2E 7C
+TDES_Rootkey:                 F9 B8 B7 26 89 D7 EB E5 2A 7F A2 77 CE C8 50 F1
+CSA2_Rootkey:                 D1 E4 2D 52 8A DB 99 1F FC 68 CF F8 D6 D7 A2 05
+CSA3_Rootkey:                 A3 34 C5 38 55 0E 8F E8 AC C5 76 90 23 D5 25 87
+
+=== 2KL AES Cypher =================================================
+./bsd -r2r -enc -key KL \
+    -emi 0x4021 -mt -numbruns 1  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+    XXXXXXXXXXXXXXXX
+/* generate Chpher key ***
+先由AES_Rootkey 求出 Chpher Key
+Chpher Key 是用TDES ECB演算法做 decrypt得到
+以下是用RtSSL的 計算流程
+
+ARK:EE6A1FEB89E4C28532FE752CE94A2E7C
+    EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+
+
+// Compute L2 : L2 = TDES_ECB_DEC(CL2, ARK)
+echo a9323031314e61677261766973696f6e | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285 \
+    -i stdin -o stdout
+==> 859b9d40f1992bbcc06b68c1463dd5e6
+
+
+// Compute L1 : L1 = TDES_ECB_DEC(CL1, L2)
+echo a9323031314e61677261766973696f6e | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k 859b9d40f1992bbcc06b68c1463dd5e6859b9d40f1992bbc \
+    -i stdin -o stdout
+==> 18d30d4073b9ab38615dae05c6dc9288
+
+
+// Compute CK : CK = TDES_ECB_DEC(CCK, L1)
+echo 2d0860dae7fdb0bd4bfab111f615227a | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k 18d30d4073b9ab38615dae05c6dc928818d30d4073b9ab38 \
+    -i stdin -o stdout
+==> ca48667ebd282330cf87ddbc73eb9f31
+
+/* generate Chpher key &&&
+
+--- 2KL AES ECB Encrypt---
+./bsd -r2r -enc -key KL \
+    -emi 0x4021 -mt -numbruns 1  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+ARK:EE6A1FEB89E4C28532FE752CE94A2E7C
+    EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+==> CK:ca48667ebd282330cf87ddbc73eb9f31
+
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+    O0:580a73fb83d078bba6f71754d0ed6b57
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+    ./RtSSL enc -e -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+
+
+D1:580a73fb83d078bba6f71754d0ed6b57
+    O1:f6fd87b60cbdcf9f1cfe97758f712893
+
+echo 580a73fb83d078bba6f71754d0ed6b57 | \
+    ./RtSSL enc -e -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+
+
+D2:f6fd87b60cbdcf9f1cfe97758f712893
+    O2:0f6e98abf4fc6dff9024b41b63c5fd31
+
+echo f6fd87b60cbdcf9f1cfe97758f712893 | \
+    ./RtSSL enc -e -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+
+
+--- 2KL AES ECB Decrypt -------------------------------------------------
+ARK:EE6A1FEB89E4C28532FE752CE94A2E7C
+    EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+==> CK:ca48667ebd282330cf87ddbc73eb9f31
+
+./bsd -r2r -dec -key KL \
+    -emi 0x4021 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+    O0:cbb6aed2affda87ef7611b4e23ad3698
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+    ./RtSSL enc -d -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+
+
+D1:e2cb3654c2e5306680c6977b6b0d3fed
+    O1:cb307e33cae21840b0ca1158ba8703c3
+
+echo e2cb3654c2e5306680c6977b6b0d3fed | \
+    ./RtSSL enc -d -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+
+D2:cb307e33cae21840b0ca1158ba8703c3
+    O2:225b71231b2fee86ca0c58b2caf634bc
+
+echo cb307e33cae21840b0ca1158ba8703c3 | \
+    ./RtSSL enc -d -aes_128_ecb \
+    -k ca48667ebd282330cf87ddbc73eb9f31 \
+    -i stdin -o stdout
+==> 225b71231b2fee86ca0c58b2caf634bc
+
+
+
+--- 2KL AES CBC Encrypt -------------------------------------------------
+./bsd -r2r -enc -key KL \
+    -emi 0x4026 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+ARK:EE6A1FEB89E4C28532FE752CE94A2E7C
+    EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+==> CK:ca48667ebd282330cf87ddbc73eb9f31
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+V0:1b1ebd1fc45ec43037fd4844241a437f
+    O0:a48abf3714c68e1fd764da993a4332d8
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+    ./RtSSL enc -e -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv 1b1ebd1fc45ec43037fd4844241a437f \
+    -i stdin -o stdout
+
+
+D1:1b1ebd1fc45ec43037fd4844241a437f
+V1:a48abf3714c68e1fd764da993a4332d8
+    O1:2039e62bb2aebebc02b979c0cede1b0f
+
+echo 1b1ebd1fc45ec43037fd4844241a437f | \
+    ./RtSSL enc -e -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv a48abf3714c68e1fd764da993a4332d8 \
+    -i stdin -o stdout
+==> 2039e62bb2aebebc02b979c0cede1b0f
+
+
+D2:a48abf3714c68e1fd764da993a4332d8
+V2:2039e62bb2aebebc02b979c0cede1b0f
+    O2:cb2f3f7359c07092e395dfcef70f1166
+
+echo a48abf3714c68e1fd764da993a4332d8 | \
+    ./RtSSL enc -e -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv 2039e62bb2aebebc02b979c0cede1b0f \
+    -i stdin -o stdout
+
+
+D3:2039e62bb2aebebc02b979c0cede1b0f
+V3:cb2f3f7359c07092e395dfcef70f1166
+    O3:4dca54df0336e033c2f33272d53357aa
+
+echo 2039e62bb2aebebc02b979c0cede1b0f | \
+    ./RtSSL enc -e -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv cb2f3f7359c07092e395dfcef70f1166 \
+    -i stdin -o stdout
+==> 4dca54df0336e033c2f33272d53357aa
+
+--- 2KL AES CBC Decrypt -------------------------------------------------
+ARK:EE6A1FEB89E4C28532FE752CE94A2E7C
+    EE6A1FEB89E4C28532FE752CE94A2E7CEE6A1FEB89E4C285
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+==> CK:ca48667ebd282330cf87ddbc73eb9f31
+
+./bsd -r2r -dec -key KL \
+    -emi 0x4026 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_AES_R2R_3x.csv
+
+D0:c1b77ed52521525f0a4ba341bdaf51d9
+V0:1b1ebd1fc45ec43037fd4844241a437f
+    O0:f9d58b4b06bbf456b73bdf3f4f177c92
+
+echo c1b77ed52521525f0a4ba341bdaf51d9 | \
+    ./RtSSL enc -d -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv 1b1ebd1fc45ec43037fd4844241a437f \
+    -i stdin -o stdout
+
+
+D1:1b1ebd1fc45ec43037fd4844241a437f
+V1:c1b77ed52521525f0a4ba341bdaf51d9
+    O1:c3b8483f04b1ec8a2acdca0db33d30e1
+
+echo 1b1ebd1fc45ec43037fd4844241a437f | \
+    ./RtSSL enc -d -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv c1b77ed52521525f0a4ba341bdaf51d9 \
+    -i stdin -o stdout
+
+
+D2:f9d58b4b06bbf456b73bdf3f4f177c92
+V2:1b1ebd1fc45ec43037fd4844241a437f
+    O2:3e9f5f2dd3f914195ce1031626fe213f
+
+echo f9d58b4b06bbf456b73bdf3f4f177c92 | \
+    ./RtSSL enc -d -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv 1b1ebd1fc45ec43037fd4844241a437f \
+    -i stdin -o stdout
+
+
+D3:c3b8483f04b1ec8a2acdca0db33d30e1
+V3:f9d58b4b06bbf456b73bdf3f4f177c92
+    O3:d88779338f5668cf1f58975452727213
+
+echo c3b8483f04b1ec8a2acdca0db33d30e1 | \
+    ./RtSSL enc -d -aes_128_cbc \
+    -k  ca48667ebd282330cf87ddbc73eb9f31 \
+    -iv f9d58b4b06bbf456b73bdf3f4f177c92 \
+    -i stdin -o stdout
+
+
+=== 2KL TDES Cypher =================================================
+/* generate Chpher key ***
+先由AES_Rootkey 求出 Chpher Key
+Chpher Key 是用TDES ECB演算法做 decrypt得到
+以下是用RtSSL的 計算流程
+
+TDES_Rootkey:                 F9 B8 B7 26 89 D7 EB E5 2A 7F A2 77 CE C8 50 F1
+
+ARK:F9B8B72689D7EBE52A7FA277CEC850F1
+    F9B8B72689D7EBE52A7FA277CEC850F1F9B8B72689D7EBE5
+CL2:a9323031314e61677261766973696f6e
+CL1:a9323031314e61677261766973696f6e
+CCK:2d0860dae7fdb0bd4bfab111f615227a
+==> CK:--------------------------------
+
+// Compute L2 : L2 = TDES_ECB_DEC(CL2, ARK)
+echo a9323031314e61677261766973696f6e | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k F9B8B72689D7EBE52A7FA277CEC850F1F9B8B72689D7EBE5 \
+    -i stdin -o stdout
+==> 015b2b59a67fa9834e96104c429e5814
+
+015b2b59a67fa9834e96104c429e5814015b2b59a67fa983
+// Compute L1 : L1 = TDES_ECB_DEC(CL1, L2)
+echo a9323031314e61677261766973696f6e | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k 015b2b59a67fa9834e96104c429e5814015b2b59a67fa983 \
+    -i stdin -o stdout
+==> 099a526465e1b927623b64362e8ac8b2
+
+099a526465e1b927623b64362e8ac8b2099a526465e1b927
+// Compute CK : CK = TDES_ECB_DEC(CCK, L1)
+echo 2d0860dae7fdb0bd4bfab111f615227a | \
+    ./RtSSL enc -d -tdes_ecb \
+    -k 099a526465e1b927623b64362e8ac8b2099a526465e1b927 \
+    -i stdin -o stdout
+==> 0ea1997f25e31d17053bfdefeba2dc23
+
+CK: 0ea1997f25e31d17053bfdefeba2dc23
+    0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17
+
+/* generate Chpher key &&&
+
+--- 2KL TDES ECB Encrypt---------------------------------------------
+./bsd -r2r -enc -key KL \
+    -emi 0x4041 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+CK: 0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17
+
+D0:4e6f772069732074
+    O0:27258824fd1d6874
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+
+
+D1:27258824fd1d6874
+    O1:da1ff45167f49ae6
+
+echo 27258824fd1d6874 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+
+
+D2:da1ff45167f49ae6
+    O2:4167c036be2abb2f
+
+echo da1ff45167f49ae6 | \
+	./RtSSL enc -e -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+==> 4167c036be2abb2f
+
+--- 2KL TDES ECB Decrypt---------------------------------------------
+./bsd -r2r -dec -key KL \
+    -emi 0x4041 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+CK: 0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17
+
+
+D0:4e6f772069732074
+    O0:bab95f7f2f2c5f65
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+
+
+D0:bab95f7f2f2c5f65
+    O0:9c0dd4abfd11a4d2
+
+echo bab95f7f2f2c5f65 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+
+D0:9c0dd4abfd11a4d2
+    O0:20af2b8755a0f358
+
+echo 9c0dd4abfd11a4d2 | \
+	./RtSSL enc -d -tdes_ecb \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-i stdin -o stdout
+
+--- 2KL TDES CBC Encrypt --------------------------------------------
+./bsd -r2r -enc -key KL \
+    -emi 0x4043 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+CK: 0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17
+
+
+D0:4e6f772069732074
+V0:1234567890abcdef
+    O0:765350248f180bce
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv 1234567890abcdef \
+	-i stdin -o stdout
+
+
+D1:1234567890abcdef
+V1:765350248f180bce
+    O1:c9706aa918ea4abe
+
+echo 1234567890abcdef | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv 765350248f180bce \
+	-i stdin -o stdout
+==> c9706aa918ea4abe
+
+D2:765350248f180bce
+V2:c9706aa918ea4abe
+    O2:38aa7ce496c9b15b
+
+echo 765350248f180bce | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv c9706aa918ea4abe \
+	-i stdin -o stdout
+==> 38aa7ce496c9b15b
+
+
+D3:c9706aa918ea4abe
+V3:38aa7ce496c9b15b
+    O3:cc99dd8bb3049ef4
+
+echo c9706aa918ea4abe | \
+	./RtSSL enc -e -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv 38aa7ce496c9b15b \
+	-i stdin -o stdout
+==> cc99dd8bb3049ef4
+
+--- 2KL TDES CBC Decrypt --------------------------------------------
+./bsd -r2r -dec -key KL \
+    -emi 0x4043 -mt -numbruns 3  \
+    -tv ../TestVectors/TestVectors/CSVIn/siriusA0_TDES_R2R_3x.csv
+
+CK: 0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17
+
+
+D0:4e6f772069732074
+V0:1234567890abcdef
+    O0:a88d0907bf87928a
+
+echo 4e6f772069732074 | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv 1234567890abcdef \
+	-i stdin -o stdout
+
+
+D1:a88d0907bf87928a
+V1:4e6f772069732074
+    O1:e306262165d065d2
+
+echo a88d0907bf87928a | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv 4e6f772069732074 \
+	-i stdin -o stdout
+
+
+D2:e306262165d065d2
+V2:a88d0907bf87928a
+    O2:dbbf1def49453d5a
+
+echo e306262165d065d2 | \
+	./RtSSL enc -d -tdes_cbc \
+	-k  0ea1997f25e31d17053bfdefeba2dc230ea1997f25e31d17 	\
+	-iv a88d0907bf87928a \
+	-i stdin -o stdout
+
+
+=== CERT Cypher =====================================================
+--- CERT AES ECB Decrypt --------------------------------------------
+./bsd -r2r -enc -key CERT \
+	-emi 0x4021  -mt -numbruns 1 \
+	-tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./bsd -r2r -enc -key CERT -emi 0x4021  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4021  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4026  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4026  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_AES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4041  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4041  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+./bsd -r2r -enc -key CERT -emi 0x4043  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+./bsd -r2r -dec -key CERT -emi 0x4043  -mt -numbruns 1 -tv ../TestVectors/TestVectors/CSVIn/CERT_TDES_R2R_3x.csv
+
+=== RSA Cypher ======================================================
+
+./bsd -rsa -pub -dec -keysize 0x80 -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin \
+	-pad PKCS1_5 \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin
+
+./bsd -rsa -pub -enc -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_n.bin \
+	-pad NO \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_enc_in.bin
+==>PASS
+
+./bsd -rsa -pub -dec -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_n.bin   \
+	-pad NO	\
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_no_padding_pub_dec_in.bin
+==>PASS
+
+./bsd -rsa -pub -enc -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_n.bin   \
+	-pad PKCS1_5     \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_enc_in.bin
+
+./bsd -rsa -pub -dec -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin   \
+	-pad PKCS1_5     \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin
+
+./bsd -rsa -pub -enc -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_n.bin   \
+	-pad OAEP_SHA1   \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_enc_in.bin\
+./bsd -rsa -pub -dec -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_n.bin   \
+	-pad OAEP_SHA1   \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_1_pub_dec_in.bin
+
+./bsd -rsa -pub -enc -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_n.bin \
+	-pad OAEP_SHA256 \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_enc_in.bin
+
+./bsd -rsa -pub -dec -expE 0x11 \
+	-modN ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_n.bin \
+	-pad OAEP_SHA256 \
+	-if ../TestVectors/TestVectors/BinIn/rsa_padding_oaep_sha_256_pub_dec_in.bin
+

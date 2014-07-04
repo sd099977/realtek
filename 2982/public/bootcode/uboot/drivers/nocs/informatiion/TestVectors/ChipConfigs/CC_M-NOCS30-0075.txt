@@ -1,0 +1,6 @@
+Market Segment ID=MSID_PROD
+Versioning=VER_PROD
+Boot Mode Selection=BMDEFAULT
+SCS Total Area Size=SCS_TOTALAREA_B
+Ram Scrambling Activation Flag=SET
+SCS Activation Flag=SET

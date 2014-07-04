@@ -1,0 +1,749 @@
+
+Discarded input sections
+
+ .reginfo       0x0000000000000000       0x18 big_int.o
+ .reginfo       0x0000000000000000       0x18 big_util.o
+ .reginfo       0x0000000000000000       0x18 ctype.o
+ .reginfo       0x0000000000000000       0x18 doprntx.o
+ .reginfo       0x0000000000000000       0x18 loader.o
+ .reginfo       0x0000000000000000       0x18 memchr.o
+ .reginfo       0x0000000000000000       0x18 otp_util.o
+ .reginfo       0x0000000000000000       0x18 printf.o
+ .reginfo       0x0000000000000000       0x18 rtaes_rtk.o
+ .reginfo       0x0000000000000000       0x18 rtaes_testapp.o
+ .reginfo       0x0000000000000000       0x18 sed_cert.o
+ .reginfo       0x0000000000000000       0x18 sed_char.o
+ .reginfo       0x0000000000000000       0x18 sed_common.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_gpio.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_pinmux.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_rng.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_sfc.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_timer.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_uart.o
+ .reginfo       0x0000000000000000       0x18 sed_drv_wdog.o
+ .reginfo       0x0000000000000000       0x18 sed_otp.o
+ .reginfo       0x0000000000000000       0x18 sed_r2r.o
+ .reginfo       0x0000000000000000       0x18 sed_rtk.o
+ .reginfo       0x0000000000000000       0x18 sed_setup.o
+ .reginfo       0x0000000000000000       0x18 strlen.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00000000a0020000 0x000000000000a800
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD app_main.o
+LOAD big_int.o
+LOAD big_util.o
+LOAD ctype.o
+LOAD doprntx.o
+LOAD loader.o
+LOAD memchr.o
+LOAD otp_util.o
+LOAD printf.o
+LOAD rtaes_rtk.o
+LOAD rtaes_testapp.o
+LOAD sed_cert.o
+LOAD sed_char.o
+LOAD sed_common.o
+LOAD sed_drv_gpio.o
+LOAD sed_drv_pinmux.o
+LOAD sed_drv_rng.o
+LOAD sed_drv_sfc.o
+LOAD sed_drv_timer.o
+LOAD sed_drv_uart.o
+LOAD sed_drv_wdog.o
+LOAD sed_otp.o
+LOAD sed_r2r.o
+LOAD sed_rtk.o
+LOAD sed_setup.o
+LOAD strlen.o
+
+.text_loader    0x00000000a0020000      0x148
+ loader.o(section0)
+ section0       0x00000000a0020000      0x148 loader.o
+                0x00000000a0020000                loader_asm_code0
+                0x00000000a0020000                RESET_EntryPoint
+
+.text           0x00000000a0020150     0x509c
+ *(.text)
+ .text          0x00000000a0020150       0xc4 app_main.o
+                0x00000000a0020150                app_main
+ .text          0x00000000a0020214     0x15e8 big_int.o
+                0x00000000a0020214                rsa_memcpy
+                0x00000000a0020244                Cmp
+                0x00000000a00202f0                isZero
+                0x00000000a0020314                Sub_p
+                0x00000000a00203f0                Add_p
+                0x00000000a0020428                Mul_p
+                0x00000000a00204c8                Div_p
+                0x00000000a00206a8                Mod_p
+                0x00000000a0020798                OutPutToAddr
+                0x00000000a002085c                BI_setbit
+                0x00000000a0020890                BI_chkmsbbit
+                0x00000000a0020914                BI_is_bit_set
+                0x00000000a002094c                Sub
+                0x00000000a0020af0                Add
+                0x00000000a0020bc0                init
+                0x00000000a0020c08                InPutFromAddr
+                0x00000000a0020cd0                InPutFromStr
+                0x00000000a0020df4                Mul
+                0x00000000a0020fe0                move_p
+                0x00000000a0021044                Mod
+                0x00000000a0021350                Div
+                0x00000000a002169c                move
+                0x00000000a00216e8                Exp_Mod
+ .text          0x00000000a00217fc      0x9b8 big_util.o
+                0x00000000a00217fc                copy_memory
+                0x00000000a0021830                compare_memory
+                0x00000000a0021888                my_malloc
+                0x00000000a00218fc                my_free
+                0x00000000a0021934                my_freeAll
+                0x00000000a002194c                rsa_strlen
+                0x00000000a0021984                set_memory
+                0x00000000a00219fc                skip_pkcs_v1_5_padding
+                0x00000000a0021ae4                get_RSA_memory_pool
+                0x00000000a0021aec                set_bit_p
+                0x00000000a0021d60                do_RSA
+ .text          0x00000000a00221b4        0x0 ctype.o
+ .text          0x00000000a00221b4      0x898 doprntx.o
+                0x00000000a00221b4                _doprntx
+ .text          0x00000000a0022a4c        0x0 loader.o
+ .text          0x00000000a0022a4c       0x34 memchr.o
+                0x00000000a0022a4c                memchr
+ .text          0x00000000a0022a80      0x2f0 otp_util.o
+                0x00000000a0022a80                otp_udelay
+                0x00000000a0022a88                _otp_get_bits
+                0x00000000a0022ae0                otp_read
+                0x00000000a0022b34                otp_read_bits
+                0x00000000a0022bc0                otp_write
+                0x00000000a0022d1c                otp_write_bits
+ .text          0x00000000a0022d70       0xc8 printf.o
+                0x00000000a0022d70                printf1
+                0x00000000a0022db0                printf
+ .text          0x00000000a0022e38      0x758 rtaes_rtk.o
+                0x00000000a0022e38                rsaSetKey
+                0x00000000a0022ed8                rsaSetData
+                0x00000000a0022f74                aesDecrypt
+                0x00000000a0022fa0                aesEncrypt
+                0x00000000a0022fcc                aesSetKey
+                0x00000000a0022ff8                aesSetData
+                0x00000000a0023024                tdesDecrypt
+                0x00000000a0023050                tdesEncrypt
+                0x00000000a002307c                tdesSetKey
+                0x00000000a00230a8                tdesSetData
+                0x00000000a00230d4                desDecrypt
+                0x00000000a0023100                desEncrypt
+                0x00000000a002312c                desSetKey
+                0x00000000a0023158                desSetData
+                0x00000000a0023184                writeOTP
+                0x00000000a00231b0                readOTP
+                0x00000000a00231dc                initBoard
+                0x00000000a0023250                initSerial
+                0x00000000a002326c                rtk_rsa_op
+                0x00000000a00234c0                rsaDecrypt
+                0x00000000a00234d4                rsaEncrypt
+                0x00000000a00234e8                disableTrigger
+                0x00000000a0023514                enableTrigger
+                0x00000000a0023540                serial_recv
+                0x00000000a0023564                serial_send
+ .text          0x00000000a0023590      0x904 rtaes_testapp.o
+                0x00000000a0023710                testapp
+ .text          0x00000000a0023e94        0x0 sed_cert.o
+ .text          0x00000000a0023e94        0x0 sed_char.o
+ .text          0x00000000a0023e94      0x134 sed_common.o
+                0x00000000a0023e94                sed_command_entry
+                0x00000000a0023e9c                sed_command_exit
+                0x00000000a0023eac                sed_format_print
+                0x00000000a0023eb4                get_cmd_data_len
+                0x00000000a0023ec8                get_cmd_data_uint32
+                0x00000000a0023ef8                get_cmd_data_addr64
+                0x00000000a0023f50                set_rsp_data_len
+                0x00000000a0023f64                set_rsp_data_uint32
+                0x00000000a0023f88                set_rsp_data_addr64
+ .text          0x00000000a0023fc8      0x114 sed_drv_gpio.o
+                0x00000000a0023fc8                sed_gpio_init
+                0x00000000a0023ffc                GPIO_reset
+                0x00000000a0024024                GPIO_toggle
+                0x00000000a0024080                GPIO_pulse
+ .text          0x00000000a00240dc       0xd4 sed_drv_pinmux.o
+                0x00000000a00240dc                sed_pinmux_spi
+                0x00000000a0024108                sed_pinmux_uart
+ .text          0x00000000a00241b0       0x58 sed_drv_rng.o
+                0x00000000a00241b0                sed_rng_init
+                0x00000000a00241e8                sed_rng_get
+ .text          0x00000000a0024208      0x478 sed_drv_sfc.o
+                0x00000000a0024208                sed_sfc_read
+                0x00000000a0024250                sed_sfc_write
+                0x00000000a0024354                sed_sfc_erase
+                0x00000000a00245e0                sed_sfc_init
+ .text          0x00000000a0024680       0xb4 sed_drv_timer.o
+                0x00000000a0024680                sed_timer_start
+                0x00000000a00246a4                sed_timer_getstamp
+                0x00000000a00246b8                sed_timer_stop
+                0x00000000a00246cc                sed_timer_1s_delay_example
+ .text          0x00000000a0024734      0x1c4 sed_drv_uart.o
+                0x00000000a0024734                rtk_getc
+                0x00000000a0024760                rtk_putc
+                0x00000000a002478c                sed_uart_write
+                0x00000000a00247c4                sed_uart_read
+                0x00000000a00247fc                sed_uart1_write
+                0x00000000a0024834                sed_uart1_read
+                0x00000000a002486c                sed_uart_init
+ .text          0x00000000a00248f8       0x24 sed_drv_wdog.o
+                0x00000000a00248f8                sed_wdog_reset
+ .text          0x00000000a002491c        0x0 sed_otp.o
+ .text          0x00000000a002491c        0x0 sed_r2r.o
+ .text          0x00000000a002491c        0x0 sed_rtk.o
+ .text          0x00000000a002491c      0x898 sed_setup.o
+                0x00000000a002491c                InitTimer
+                0x00000000a0024954                SystemTimeout
+                0x00000000a0024970                arom_mdelay
+                0x00000000a00249f0                arom_mask_register
+                0x00000000a0024a10                sed_ddr_init
+                0x00000000a0024fe4                sed_cmd_chip_rst_post
+                0x00000000a002501c                wait_loop
+                0x00000000a0025040                enable_clock
+                0x00000000a00250b8                sed_cert_reset
+                0x00000000a00250d4                sed_init_config
+ .text          0x00000000a00251b4       0x38 strlen.o
+                0x00000000a00251b4                strlen
+
+.rodata         0x00000000a00251f0      0x8c4
+ *(.rodata .rodata.*)
+ .rodata.str1.4
+                0x00000000a00251f0       0x4a app_main.o
+                                         0x54 (size before relaxing)
+ *fill*         0x00000000a002523a        0x2 00
+ .rodata        0x00000000a002523c        0xc app_main.o
+ .rodata.str1.4
+                0x00000000a0025248       0x82 big_util.o
+                                         0x88 (size before relaxing)
+ *fill*         0x00000000a00252ca        0x2 00
+ .rodata        0x00000000a00252cc       0x14 big_util.o
+ .rodata.str1.4
+                0x00000000a00252e0       0x2d doprntx.o
+                                         0x30 (size before relaxing)
+ *fill*         0x00000000a002530d        0x3 00
+ .rodata        0x00000000a0025310      0x1e4 doprntx.o
+ .rodata.str1.4
+                0x00000000a00254f4       0xf8 otp_util.o
+ .rodata.str1.4
+                0x00000000a00255ec       0xf1 rtaes_rtk.o
+                                        0x10c (size before relaxing)
+ *fill*         0x00000000a00256dd        0x3 00
+ .rodata        0x00000000a00256e0      0x100 rtaes_rtk.o
+ .rodata.str1.4
+                0x00000000a00257e0       0xf3 rtaes_testapp.o
+                                         0xf8 (size before relaxing)
+ *fill*         0x00000000a00258d3        0x1 00
+ .rodata        0x00000000a00258d4      0x1b0 rtaes_testapp.o
+ .rodata.str1.4
+                0x00000000a0025a84        0xa sed_drv_sfc.o
+                                          0xc (size before relaxing)
+ *fill*         0x00000000a0025a8e        0x2 00
+ .rodata        0x00000000a0025a90       0x18 sed_drv_sfc.o
+ .rodata.str1.4
+                0x00000000a0025aa8        0xc sed_drv_timer.o
+
+.data           0x00000000a0025ac0      0x110
+ *(.data .sdata)
+ .data          0x00000000a0025ac0        0x1 app_main.o
+                0x00000000a0025ac0                visualize_print_disable
+ .data          0x00000000a0025ac1        0x0 big_int.o
+ *fill*         0x00000000a0025ac1        0x3 00
+ .data          0x00000000a0025ac4        0x4 big_util.o
+                0x00000000a0025ac4                memory_pool
+ .data          0x00000000a0025ac8      0x100 ctype.o
+                0x00000000a0025ac8                _ctype
+ .data          0x00000000a0025bc8        0x0 doprntx.o
+ .data          0x00000000a0025bc8        0x0 loader.o
+ .data          0x00000000a0025bc8        0x0 memchr.o
+ .data          0x00000000a0025bc8        0x0 otp_util.o
+ .data          0x00000000a0025bc8        0x0 printf.o
+ .data          0x00000000a0025bc8        0x0 rtaes_rtk.o
+ .data          0x00000000a0025bc8        0x0 rtaes_testapp.o
+ .data          0x00000000a0025bc8        0x0 sed_cert.o
+ .data          0x00000000a0025bc8        0x0 sed_char.o
+ .data          0x00000000a0025bc8        0x0 sed_common.o
+ .data          0x00000000a0025bc8        0x0 sed_drv_gpio.o
+ .data          0x00000000a0025bc8        0x0 sed_drv_pinmux.o
+ .data          0x00000000a0025bc8        0x0 sed_drv_rng.o
+ .data          0x00000000a0025bc8        0x0 sed_drv_sfc.o
+ .data          0x00000000a0025bc8        0x0 sed_drv_timer.o
+ .data          0x00000000a0025bc8        0x8 sed_drv_uart.o
+                0x00000000a0025bc8                UartReg
+                0x00000000a0025bcc                Uart1Reg
+ .data          0x00000000a0025bd0        0x0 sed_drv_wdog.o
+ .data          0x00000000a0025bd0        0x0 sed_otp.o
+ .data          0x00000000a0025bd0        0x0 sed_r2r.o
+ .data          0x00000000a0025bd0        0x0 sed_rtk.o
+ .data          0x00000000a0025bd0        0x0 sed_setup.o
+ .data          0x00000000a0025bd0        0x0 strlen.o
+
+.bss            0x00000000a0025bd0     0x407c
+                0x00000000a0025bd0                __bss_start = .
+ *(.bss .sbss .scommon COMMON)
+ .bss           0x00000000a0025bd0        0x0 app_main.o
+ .bss           0x00000000a0025bd0        0x0 big_int.o
+ .bss           0x00000000a0025bd0        0x8 big_util.o
+ .bss           0x00000000a0025bd8        0x0 ctype.o
+ .bss           0x00000000a0025bd8        0x0 doprntx.o
+ .bss           0x00000000a0025bd8     0x4038 loader.o
+                0x00000000a0025bd8                _app_stack
+                0x00000000a0027bd8                _appisr_stack
+                0x00000000a0029bd8                _app_heap_start
+                0x00000000a0029bdc                _app_heap_end
+                0x00000000a0029be0                _isr_status_reg
+                0x00000000a0029be4                _isr_cause_reg
+                0x00000000a0029be8                _return_ra
+                0x00000000a0029bec                _return_s0
+                0x00000000a0029bf0                _return_s1
+                0x00000000a0029bf4                _return_s2
+                0x00000000a0029bf8                _return_s3
+                0x00000000a0029bfc                _return_s4
+                0x00000000a0029c00                _return_s5
+                0x00000000a0029c04                _return_s6
+                0x00000000a0029c08                _return_s7
+                0x00000000a0029c0c                _return_s8
+ .bss           0x00000000a0029c10        0x0 memchr.o
+ .bss           0x00000000a0029c10        0x0 otp_util.o
+ .bss           0x00000000a0029c10        0x0 printf.o
+ .bss           0x00000000a0029c10       0x1c rtaes_rtk.o
+ .bss           0x00000000a0029c2c        0x0 rtaes_testapp.o
+ .bss           0x00000000a0029c2c        0x0 sed_cert.o
+ .bss           0x00000000a0029c2c        0x0 sed_char.o
+ .bss           0x00000000a0029c2c        0x0 sed_common.o
+ .bss           0x00000000a0029c2c        0x1 sed_drv_gpio.o
+                0x00000000a0029c2c                GPIO
+ .bss           0x00000000a0029c2d        0x0 sed_drv_pinmux.o
+ .bss           0x00000000a0029c2d        0x0 sed_drv_rng.o
+ *fill*         0x00000000a0029c2d        0x3 00
+ .bss           0x00000000a0029c30       0x18 sed_drv_sfc.o
+ .bss           0x00000000a0029c48        0x0 sed_drv_timer.o
+ .bss           0x00000000a0029c48        0x0 sed_drv_uart.o
+ .bss           0x00000000a0029c48        0x0 sed_drv_wdog.o
+ .bss           0x00000000a0029c48        0x0 sed_otp.o
+ .bss           0x00000000a0029c48        0x0 sed_r2r.o
+ .bss           0x00000000a0029c48        0x0 sed_rtk.o
+ .bss           0x00000000a0029c48        0x2 sed_setup.o
+                0x00000000a0029c48                kcpu_m
+                0x00000000a0029c49                bus_m
+ .bss           0x00000000a0029c4a        0x0 strlen.o
+                0x00000000a0029c4c                . = ALIGN (0x4)
+ *fill*         0x00000000a0029c4a        0x2 00
+                0x00000000a0029c4c                __bss_end = .
+                0x00000000a0029c50                __heap_start_addr = ((((ADDR (.bss) + SIZEOF (.bss)) + 0x10) - 0x1) & 0xfffffffffffffff0)
+                0x00000000a00251f0                __gp = ADDR (.rodata)
+                0x000000000000a800                __Size_Of_SDRAM = 0xa800
+                0x00000000a0020000                __Start_Of_SDRAM = 0xa0020000
+OUTPUT(/home/alexkh/nfs/kernel/sirius/bootcode/RisApp/out/ap_template.elf elf32-littlemips)
+
+.reginfo        0x0000000000000000       0x18
+ .reginfo       0x0000000000000000       0x18 app_main.o
+
+.pdr            0x0000000000000000      0xf00
+ .pdr           0x0000000000000000       0x20 app_main.o
+ .pdr           0x0000000000000020      0x2e0 big_int.o
+ .pdr           0x0000000000000300      0x180 big_util.o
+ .pdr           0x0000000000000480        0x0 ctype.o
+ .pdr           0x0000000000000480       0x20 doprntx.o
+ .pdr           0x00000000000004a0       0x20 loader.o
+ .pdr           0x00000000000004c0       0x20 memchr.o
+ .pdr           0x00000000000004e0       0xc0 otp_util.o
+ .pdr           0x00000000000005a0       0x80 printf.o
+ .pdr           0x0000000000000620      0x320 rtaes_rtk.o
+ .pdr           0x0000000000000940       0x40 rtaes_testapp.o
+ .pdr           0x0000000000000980        0x0 sed_cert.o
+ .pdr           0x0000000000000980        0x0 sed_char.o
+ .pdr           0x0000000000000980      0x120 sed_common.o
+ .pdr           0x0000000000000aa0       0x80 sed_drv_gpio.o
+ .pdr           0x0000000000000b20       0x40 sed_drv_pinmux.o
+ .pdr           0x0000000000000b60       0x40 sed_drv_rng.o
+ .pdr           0x0000000000000ba0       0x80 sed_drv_sfc.o
+ .pdr           0x0000000000000c20       0x80 sed_drv_timer.o
+ .pdr           0x0000000000000ca0       0xe0 sed_drv_uart.o
+ .pdr           0x0000000000000d80       0x20 sed_drv_wdog.o
+ .pdr           0x0000000000000da0        0x0 sed_otp.o
+ .pdr           0x0000000000000da0        0x0 sed_r2r.o
+ .pdr           0x0000000000000da0        0x0 sed_rtk.o
+ .pdr           0x0000000000000da0      0x140 sed_setup.o
+ .pdr           0x0000000000000ee0       0x20 strlen.o
+
+.mdebug.abi32   0x0000000000000000        0x0
+ .mdebug.abi32  0x0000000000000000        0x0 app_main.o
+ .mdebug.abi32  0x0000000000000000        0x0 big_int.o
+ .mdebug.abi32  0x0000000000000000        0x0 big_util.o
+ .mdebug.abi32  0x0000000000000000        0x0 ctype.o
+ .mdebug.abi32  0x0000000000000000        0x0 doprntx.o
+ .mdebug.abi32  0x0000000000000000        0x0 memchr.o
+ .mdebug.abi32  0x0000000000000000        0x0 otp_util.o
+ .mdebug.abi32  0x0000000000000000        0x0 printf.o
+ .mdebug.abi32  0x0000000000000000        0x0 rtaes_rtk.o
+ .mdebug.abi32  0x0000000000000000        0x0 rtaes_testapp.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_cert.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_char.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_common.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_gpio.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_pinmux.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_rng.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_sfc.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_timer.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_uart.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_drv_wdog.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_otp.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_r2r.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_rtk.o
+ .mdebug.abi32  0x0000000000000000        0x0 sed_setup.o
+ .mdebug.abi32  0x0000000000000000        0x0 strlen.o
+
+.comment        0x0000000000000000       0x2b
+ .comment       0x0000000000000000       0x2b app_main.o
+                                         0x2c (size before relaxing)
+ .comment       0x0000000000000000       0x2c big_int.o
+ .comment       0x0000000000000000       0x2c big_util.o
+ .comment       0x0000000000000000       0x2c ctype.o
+ .comment       0x0000000000000000       0x2c doprntx.o
+ .comment       0x0000000000000000       0x2c memchr.o
+ .comment       0x0000000000000000       0x2c otp_util.o
+ .comment       0x0000000000000000       0x2c printf.o
+ .comment       0x0000000000000000       0x2c rtaes_rtk.o
+ .comment       0x0000000000000000       0x2c rtaes_testapp.o
+ .comment       0x0000000000000000       0x2c sed_cert.o
+ .comment       0x0000000000000000       0x2c sed_char.o
+ .comment       0x0000000000000000       0x2c sed_common.o
+ .comment       0x0000000000000000       0x2c sed_drv_gpio.o
+ .comment       0x0000000000000000       0x2c sed_drv_pinmux.o
+ .comment       0x0000000000000000       0x2c sed_drv_rng.o
+ .comment       0x0000000000000000       0x2c sed_drv_sfc.o
+ .comment       0x0000000000000000       0x2c sed_drv_timer.o
+ .comment       0x0000000000000000       0x2c sed_drv_uart.o
+ .comment       0x0000000000000000       0x2c sed_drv_wdog.o
+ .comment       0x0000000000000000       0x2c sed_otp.o
+ .comment       0x0000000000000000       0x2c sed_r2r.o
+ .comment       0x0000000000000000       0x2c sed_rtk.o
+ .comment       0x0000000000000000       0x2c sed_setup.o
+ .comment       0x0000000000000000       0x2c strlen.o
+
+.gnu.attributes
+                0x0000000000000000       0x10
+ .gnu.attributes
+                0x0000000000000000       0x10 app_main.o
+ .gnu.attributes
+                0x0000000000000010       0x10 big_int.o
+ .gnu.attributes
+                0x0000000000000020       0x10 big_util.o
+ .gnu.attributes
+                0x0000000000000030       0x10 ctype.o
+ .gnu.attributes
+                0x0000000000000040       0x10 doprntx.o
+ .gnu.attributes
+                0x0000000000000050       0x10 memchr.o
+ .gnu.attributes
+                0x0000000000000060       0x10 otp_util.o
+ .gnu.attributes
+                0x0000000000000070       0x10 printf.o
+ .gnu.attributes
+                0x0000000000000080       0x10 rtaes_rtk.o
+ .gnu.attributes
+                0x0000000000000090       0x10 rtaes_testapp.o
+ .gnu.attributes
+                0x00000000000000a0       0x10 sed_cert.o
+ .gnu.attributes
+                0x00000000000000b0       0x10 sed_char.o
+ .gnu.attributes
+                0x00000000000000c0       0x10 sed_common.o
+ .gnu.attributes
+                0x00000000000000d0       0x10 sed_drv_gpio.o
+ .gnu.attributes
+                0x00000000000000e0       0x10 sed_drv_pinmux.o
+ .gnu.attributes
+                0x00000000000000f0       0x10 sed_drv_rng.o
+ .gnu.attributes
+                0x0000000000000100       0x10 sed_drv_sfc.o
+ .gnu.attributes
+                0x0000000000000110       0x10 sed_drv_timer.o
+ .gnu.attributes
+                0x0000000000000120       0x10 sed_drv_uart.o
+ .gnu.attributes
+                0x0000000000000130       0x10 sed_drv_wdog.o
+ .gnu.attributes
+                0x0000000000000140       0x10 sed_otp.o
+ .gnu.attributes
+                0x0000000000000150       0x10 sed_r2r.o
+ .gnu.attributes
+                0x0000000000000160       0x10 sed_rtk.o
+ .gnu.attributes
+                0x0000000000000170       0x10 sed_setup.o
+ .gnu.attributes
+                0x0000000000000180       0x10 strlen.o
+
+.debug_abbrev   0x0000000000000000     0x187f
+ .debug_abbrev  0x0000000000000000       0xb5 app_main.o
+ .debug_abbrev  0x00000000000000b5      0x32b big_int.o
+ .debug_abbrev  0x00000000000003e0      0x367 big_util.o
+ .debug_abbrev  0x0000000000000747       0x4b ctype.o
+ .debug_abbrev  0x0000000000000792      0x13f doprntx.o
+ .debug_abbrev  0x00000000000008d1       0x14 loader.o
+ .debug_abbrev  0x00000000000008e5       0x92 memchr.o
+ .debug_abbrev  0x0000000000000977      0x152 otp_util.o
+ .debug_abbrev  0x0000000000000ac9       0xc1 printf.o
+ .debug_abbrev  0x0000000000000b8a      0x15c rtaes_rtk.o
+ .debug_abbrev  0x0000000000000ce6      0x20c rtaes_testapp.o
+ .debug_abbrev  0x0000000000000ef2       0x1f sed_cert.o
+ .debug_abbrev  0x0000000000000f11       0x1f sed_char.o
+ .debug_abbrev  0x0000000000000f30       0xce sed_common.o
+ .debug_abbrev  0x0000000000000ffe       0x87 sed_drv_gpio.o
+ .debug_abbrev  0x0000000000001085       0x63 sed_drv_pinmux.o
+ .debug_abbrev  0x00000000000010e8       0x70 sed_drv_rng.o
+ .debug_abbrev  0x0000000000001158      0x177 sed_drv_sfc.o
+ .debug_abbrev  0x00000000000012cf       0x9d sed_drv_timer.o
+ .debug_abbrev  0x000000000000136c      0x1fc sed_drv_uart.o
+ .debug_abbrev  0x0000000000001568       0x34 sed_drv_wdog.o
+ .debug_abbrev  0x000000000000159c       0x1f sed_otp.o
+ .debug_abbrev  0x00000000000015bb       0x1f sed_r2r.o
+ .debug_abbrev  0x00000000000015da       0x1f sed_rtk.o
+ .debug_abbrev  0x00000000000015f9      0x215 sed_setup.o
+ .debug_abbrev  0x000000000000180e       0x71 strlen.o
+
+.debug_info     0x0000000000000000     0x4713
+ .debug_info    0x0000000000000000       0xf1 app_main.o
+ .debug_info    0x00000000000000f1      0xfb6 big_int.o
+ .debug_info    0x00000000000010a7      0x922 big_util.o
+ .debug_info    0x00000000000019c9       0x52 ctype.o
+ .debug_info    0x0000000000001a1b      0x27e doprntx.o
+ .debug_info    0x0000000000001c99       0x65 loader.o
+ .debug_info    0x0000000000001cfe       0xd2 memchr.o
+ .debug_info    0x0000000000001dd0      0x29d otp_util.o
+ .debug_info    0x000000000000206d      0x195 printf.o
+ .debug_info    0x0000000000002202      0xa1b rtaes_rtk.o
+ .debug_info    0x0000000000002c1d      0x4f1 rtaes_testapp.o
+ .debug_info    0x000000000000310e       0x42 sed_cert.o
+ .debug_info    0x0000000000003150       0x42 sed_char.o
+ .debug_info    0x0000000000003192      0x2a4 sed_common.o
+ .debug_info    0x0000000000003436       0xd7 sed_drv_gpio.o
+ .debug_info    0x000000000000350d       0x7f sed_drv_pinmux.o
+ .debug_info    0x000000000000358c       0x8b sed_drv_rng.o
+ .debug_info    0x0000000000003617      0x29b sed_drv_sfc.o
+ .debug_info    0x00000000000038b2      0x100 sed_drv_timer.o
+ .debug_info    0x00000000000039b2      0x88f sed_drv_uart.o
+ .debug_info    0x0000000000004241       0x55 sed_drv_wdog.o
+ .debug_info    0x0000000000004296       0x42 sed_otp.o
+ .debug_info    0x00000000000042d8       0x42 sed_r2r.o
+ .debug_info    0x000000000000431a       0x42 sed_rtk.o
+ .debug_info    0x000000000000435c      0x344 sed_setup.o
+ .debug_info    0x00000000000046a0       0x73 strlen.o
+
+.debug_line     0x0000000000000000     0x17b4
+ .debug_line    0x0000000000000000       0x99 app_main.o
+ .debug_line    0x0000000000000099      0x3ce big_int.o
+ .debug_line    0x0000000000000467      0x20a big_util.o
+ .debug_line    0x0000000000000671       0x28 ctype.o
+ .debug_line    0x0000000000000699      0x1f8 doprntx.o
+ .debug_line    0x0000000000000891       0x6e loader.o
+ .debug_line    0x00000000000008ff       0x82 memchr.o
+ .debug_line    0x0000000000000981       0xd5 otp_util.o
+ .debug_line    0x0000000000000a56       0x97 printf.o
+ .debug_line    0x0000000000000aed      0x1b4 rtaes_rtk.o
+ .debug_line    0x0000000000000ca1      0x1d4 rtaes_testapp.o
+ .debug_line    0x0000000000000e75       0x1d sed_cert.o
+ .debug_line    0x0000000000000e92       0x1d sed_char.o
+ .debug_line    0x0000000000000eaf       0xb8 sed_common.o
+ .debug_line    0x0000000000000f67       0xad sed_drv_gpio.o
+ .debug_line    0x0000000000001014       0x9c sed_drv_pinmux.o
+ .debug_line    0x00000000000010b0       0x8a sed_drv_rng.o
+ .debug_line    0x000000000000113a      0x1a4 sed_drv_sfc.o
+ .debug_line    0x00000000000012de       0xa1 sed_drv_timer.o
+ .debug_line    0x000000000000137f      0x107 sed_drv_uart.o
+ .debug_line    0x0000000000001486       0x41 sed_drv_wdog.o
+ .debug_line    0x00000000000014c7       0x1d sed_otp.o
+ .debug_line    0x00000000000014e4       0x1d sed_r2r.o
+ .debug_line    0x0000000000001501       0x1d sed_rtk.o
+ .debug_line    0x000000000000151e      0x258 sed_setup.o
+ .debug_line    0x0000000000001776       0x3e strlen.o
+
+.debug_frame    0x0000000000000000      0xb98
+ .debug_frame   0x0000000000000000       0x30 app_main.o
+ .debug_frame   0x0000000000000030      0x244 big_int.o
+ .debug_frame   0x0000000000000274      0x108 big_util.o
+ .debug_frame   0x000000000000037c       0x44 doprntx.o
+ .debug_frame   0x00000000000003c0       0x20 memchr.o
+ .debug_frame   0x00000000000003e0       0x98 otp_util.o
+ .debug_frame   0x0000000000000478       0x70 printf.o
+ .debug_frame   0x00000000000004e8      0x274 rtaes_rtk.o
+ .debug_frame   0x000000000000075c       0x74 rtaes_testapp.o
+ .debug_frame   0x00000000000007d0       0xa0 sed_common.o
+ .debug_frame   0x0000000000000870       0x50 sed_drv_gpio.o
+ .debug_frame   0x00000000000008c0       0x30 sed_drv_pinmux.o
+ .debug_frame   0x00000000000008f0       0x30 sed_drv_rng.o
+ .debug_frame   0x0000000000000920       0x84 sed_drv_sfc.o
+ .debug_frame   0x00000000000009a4       0x50 sed_drv_timer.o
+ .debug_frame   0x00000000000009f4       0x88 sed_drv_uart.o
+ .debug_frame   0x0000000000000a7c       0x20 sed_drv_wdog.o
+ .debug_frame   0x0000000000000a9c       0xdc sed_setup.o
+ .debug_frame   0x0000000000000b78       0x20 strlen.o
+
+.debug_loc      0x0000000000000000     0x3358
+ .debug_loc     0x0000000000000000       0x45 app_main.o
+ .debug_loc     0x0000000000000045     0x13df big_int.o
+ .debug_loc     0x0000000000001424      0x4e8 big_util.o
+ .debug_loc     0x000000000000190c      0x767 doprntx.o
+ .debug_loc     0x0000000000002073       0x1e memchr.o
+ .debug_loc     0x0000000000002091      0x2e6 otp_util.o
+ .debug_loc     0x0000000000002377      0x106 printf.o
+ .debug_loc     0x000000000000247d      0x6ae rtaes_rtk.o
+ .debug_loc     0x0000000000002b2b      0x497 rtaes_testapp.o
+ .debug_loc     0x0000000000002fc2       0x98 sed_common.o
+ .debug_loc     0x000000000000305a       0x1e sed_drv_gpio.o
+ .debug_loc     0x0000000000003078      0x153 sed_drv_sfc.o
+ .debug_loc     0x00000000000031cb       0x31 sed_drv_timer.o
+ .debug_loc     0x00000000000031fc       0x45 sed_drv_uart.o
+ .debug_loc     0x0000000000003241      0x104 sed_setup.o
+ .debug_loc     0x0000000000003345       0x13 strlen.o
+
+.debug_pubnames
+                0x0000000000000000      0x8fc
+ .debug_pubnames
+                0x0000000000000000       0x3b app_main.o
+ .debug_pubnames
+                0x000000000000003b      0x11c big_int.o
+ .debug_pubnames
+                0x0000000000000157       0xd8 big_util.o
+ .debug_pubnames
+                0x000000000000022f       0x1d ctype.o
+ .debug_pubnames
+                0x000000000000024c       0x1f doprntx.o
+ .debug_pubnames
+                0x000000000000026b       0x1d memchr.o
+ .debug_pubnames
+                0x0000000000000288       0x73 otp_util.o
+ .debug_pubnames
+                0x00000000000002fb       0x29 printf.o
+ .debug_pubnames
+                0x0000000000000324      0x18c rtaes_rtk.o
+ .debug_pubnames
+                0x00000000000004b0       0x1e rtaes_testapp.o
+ .debug_pubnames
+                0x00000000000004ce       0xdc sed_common.o
+ .debug_pubnames
+                0x00000000000005aa       0x5b sed_drv_gpio.o
+ .debug_pubnames
+                0x0000000000000605       0x39 sed_drv_pinmux.o
+ .debug_pubnames
+                0x000000000000063e       0x33 sed_drv_rng.o
+ .debug_pubnames
+                0x0000000000000671       0x58 sed_drv_sfc.o
+ .debug_pubnames
+                0x00000000000006c9       0x6f sed_drv_timer.o
+ .debug_pubnames
+                0x0000000000000738       0xa3 sed_drv_uart.o
+ .debug_pubnames
+                0x00000000000007db       0x25 sed_drv_wdog.o
+ .debug_pubnames
+                0x0000000000000800       0xdf sed_setup.o
+ .debug_pubnames
+                0x00000000000008df       0x1d strlen.o
+
+.debug_aranges  0x0000000000000000      0x280
+ .debug_aranges
+                0x0000000000000000       0x20 app_main.o
+ .debug_aranges
+                0x0000000000000020       0x20 big_int.o
+ .debug_aranges
+                0x0000000000000040       0x20 big_util.o
+ .debug_aranges
+                0x0000000000000060       0x20 doprntx.o
+ .debug_aranges
+                0x0000000000000080       0x20 loader.o
+ .debug_aranges
+                0x00000000000000a0       0x20 memchr.o
+ .debug_aranges
+                0x00000000000000c0       0x20 otp_util.o
+ .debug_aranges
+                0x00000000000000e0       0x20 printf.o
+ .debug_aranges
+                0x0000000000000100       0x20 rtaes_rtk.o
+ .debug_aranges
+                0x0000000000000120       0x20 rtaes_testapp.o
+ .debug_aranges
+                0x0000000000000140       0x20 sed_common.o
+ .debug_aranges
+                0x0000000000000160       0x20 sed_drv_gpio.o
+ .debug_aranges
+                0x0000000000000180       0x20 sed_drv_pinmux.o
+ .debug_aranges
+                0x00000000000001a0       0x20 sed_drv_rng.o
+ .debug_aranges
+                0x00000000000001c0       0x20 sed_drv_sfc.o
+ .debug_aranges
+                0x00000000000001e0       0x20 sed_drv_timer.o
+ .debug_aranges
+                0x0000000000000200       0x20 sed_drv_uart.o
+ .debug_aranges
+                0x0000000000000220       0x20 sed_drv_wdog.o
+ .debug_aranges
+                0x0000000000000240       0x20 sed_setup.o
+ .debug_aranges
+                0x0000000000000260       0x20 strlen.o
+
+.debug_str      0x0000000000000000      0xdce
+ .debug_str     0x0000000000000000       0xbc app_main.o
+                                         0xce (size before relaxing)
+ .debug_str     0x00000000000000bc      0x15a big_int.o
+                                        0x216 (size before relaxing)
+ .debug_str     0x0000000000000216      0x1af big_util.o
+                                        0x2c6 (size before relaxing)
+ .debug_str     0x00000000000003c5        0xf ctype.o
+                                         0x53 (size before relaxing)
+ .debug_str     0x00000000000003d4       0x87 doprntx.o
+                                        0x17b (size before relaxing)
+ .debug_str     0x000000000000045b       0x17 memchr.o
+                                         0xd6 (size before relaxing)
+ .debug_str     0x0000000000000472       0x64 otp_util.o
+                                        0x12a (size before relaxing)
+ .debug_str     0x00000000000004d6       0x2a printf.o
+                                        0x10d (size before relaxing)
+ .debug_str     0x0000000000000500      0x1bf rtaes_rtk.o
+                                        0x291 (size before relaxing)
+ .debug_str     0x00000000000006bf      0x10a rtaes_testapp.o
+                                        0x1e3 (size before relaxing)
+ .debug_str     0x00000000000007c9        0xb sed_cert.o
+                                         0x8f (size before relaxing)
+ .debug_str     0x00000000000007d4        0xb sed_char.o
+                                         0x8f (size before relaxing)
+ .debug_str     0x00000000000007df       0xc4 sed_common.o
+                                        0x161 (size before relaxing)
+ .debug_str     0x00000000000008a3       0x58 sed_drv_gpio.o
+                                         0xe9 (size before relaxing)
+ .debug_str     0x00000000000008fb       0x38 sed_drv_pinmux.o
+                                         0xc3 (size before relaxing)
+ .debug_str     0x0000000000000933       0x2c sed_drv_rng.o
+                                         0xb7 (size before relaxing)
+ .debug_str     0x000000000000095f       0xb0 sed_drv_sfc.o
+                                        0x151 (size before relaxing)
+ .debug_str     0x0000000000000a0f       0x69 sed_drv_timer.o
+                                         0xf4 (size before relaxing)
+ .debug_str     0x0000000000000a78      0x1e3 sed_drv_uart.o
+                                        0x2f7 (size before relaxing)
+ .debug_str     0x0000000000000c5b       0x1e sed_drv_wdog.o
+                                         0xa2 (size before relaxing)
+ .debug_str     0x0000000000000c79        0xa sed_otp.o
+                                         0x8e (size before relaxing)
+ .debug_str     0x0000000000000c83        0xa sed_r2r.o
+                                         0x8e (size before relaxing)
+ .debug_str     0x0000000000000c8d        0xa sed_rtk.o
+                                         0x8e (size before relaxing)
+ .debug_str     0x0000000000000c97      0x12e sed_setup.o
+                                        0x22a (size before relaxing)
+ .debug_str     0x0000000000000dc5        0x9 strlen.o
+                                         0x54 (size before relaxing)
+
+.debug_ranges   0x0000000000000000      0x328
+ .debug_ranges  0x0000000000000000      0x168 big_int.o
+ .debug_ranges  0x0000000000000168       0x88 big_util.o
+ .debug_ranges  0x00000000000001f0       0x18 otp_util.o
+ .debug_ranges  0x0000000000000208       0xd8 rtaes_testapp.o
+ .debug_ranges  0x00000000000002e0       0x48 sed_setup.o

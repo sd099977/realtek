@@ -1,0 +1,15 @@
+#TEST rsa public decryption
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_dec_out.bin
+N3XT -cmp FILE CHECKFORPASS
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_n.bin -pad OAEP_SHA1 -if /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_1_pub_dec_out.bin
+N3XT -cmp FILE CHECKFORPASS
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_n.bin -pad OAEP_SHA256 -if /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_256_pub_dec_out.bin
+N3XT -cmp FILE CHECKFORPASS
+bsd -rsa -pub -dec -expE 0x11 -modN /SECInOutDirName/rsa_padding_no_padding_pub_dec_n.bin -pad NO -if /SECInOutDirName/rsa_padding_no_padding_pub_dec_in.bin -of /SECInOutDirName/rsa_padding_no_padding_pub_dec_out.bin
+N3XT -cmp FILE CHECKFORPASS
+#TEST rsa public encryption
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_n.bin -pad PKCS1_5 -if /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_pkcs1_v1_5_pub_enc_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_n.bin -pad OAEP_SHA1 -if /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_1_pub_enc_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_n.bin -pad OAEP_SHA256 -if /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_oaep_sha_256_pub_enc_out.bin
+bsd -rsa -pub -enc -expE 0x11 -modN /SECInOutDirName/rsa_padding_no_padding_pub_enc_n.bin -pad NO -if /SECInOutDirName/rsa_padding_no_padding_pub_enc_in.bin -of /SECInOutDirName/rsa_padding_no_padding_pub_enc_out.bin
+bsd -reset

@@ -1,0 +1,461 @@
+##############################
+# config file select
+##############################
+#menu "Package selection"
+choice
+  prompt "Package_Selection"
+	default QFP
+	---help---
+	  Select QFP
+
+	config QFP
+		bool "QFP"
+		---help---
+			QFP
+
+	config BGA
+		bool "BGA"
+		---help---
+			BGA
+   
+endchoice
+
+#endmenu
+
+##############################
+# DDR Type
+##############################
+menu "DDR_Type"
+
+#  prompt "DDR_type"
+#	default DDRx1
+#	---help---
+#	  Select number of DDR
+
+	config DDRx1
+		bool "DDRx1"
+		---help---
+			DDRx1
+
+	config DDRx2
+		bool "DDRx2 (include external DDR)"
+		---help---
+			DDRx2
+			
+menu	"External DDR size selection"
+
+config 2G
+	bool "2Gb"
+    ---help---
+       external DDR size is 2Gb
+       
+config 4G
+	bool "4Gb"
+    ---help---
+       external DDR size is 4Gb
+       
+config 8G
+	bool "8Gb"
+    ---help---
+       external DDR size is 8Gb
+       
+endmenu
+endmenu
+
+##############################
+# DDR Speed
+##############################
+choice
+	prompt "DDR Speed"
+	default DDR_675MHz
+	---help---
+	  Select Specific DDR Speed
+
+	config DDR_405MHz
+		bool "DDR 405MHz"
+		---help---
+			DDR 405MHz
+
+	config DDR_513MHz
+		bool "DDR 513MHz"
+		---help---
+			DDR 513MHz
+
+	config DDR_594MHz
+		bool "DDR 594MHz"
+		---help---
+			DDR 594MHz
+
+	config DDR_675MHz
+		bool "DDR 675MHz"
+		---help---
+			DDR 675MHz
+			
+	config DDR_702MHz
+		bool "DDR 702MHz"
+		---help---
+			DDR 702MHz
+
+	config DDR_715MHz
+		bool "DDR 715MHz"
+		---help---
+			DDR 715MHz
+
+	config DDR_729MHz
+		bool "DDR 729MHz"
+		---help---
+			DDR 729MHz
+			
+	config DDR_756MHz
+		bool "DDR 756MHz"
+		---help---
+			DDR 756MHz
+			
+	config DDR_769MHz
+		bool "DDR 769MHz"
+		---help---
+			DDR 769MHz
+			
+	config DDR_796MHz
+		bool "DDR 796MHz (default)"
+		---help---
+			DDR 796MHz
+
+	config DDR_810MHz
+		bool "DDR 810MHz"
+		---help---
+			DDR 810MHz
+			
+	config DDR_823MHz
+		bool "DDR 823MHz"
+		---help---
+			DDR 823MHz															
+
+	config DDR_850MHz
+		bool "DDR 850MHz"
+		---help---
+			DDR 850MHz
+
+endchoice
+
+##############################
+# Suspend to ram function
+##############################
+choice
+	prompt "Support suspend to ram"
+	default NO_STR
+		---help---
+			Choice support suspend to ram function
+	config STR
+		bool "Yes"
+		---help---
+			support suspend to ram		
+
+	config NO_STR
+		bool "No(default)"
+		---help---
+			Don't support suspend to ram
+			
+endchoice
+
+################################
+### PLL ACPU 
+###############################
+choice
+	prompt "ACPU_PLL"
+	default PLL_ACPU_500MHz
+	---help---
+	  Select Specific ACPU PLL
+
+	config PLL_ACPU_250MHz
+		bool "PLL ACPU 250MHz"
+		---help---
+			PLL VCPU 250MHz			
+
+	config PLL_ACPU_500MHz
+		bool "PLL ACPU 500MHz (default)"
+		---help---
+			PLL VCPU 500MHz					
+
+endchoice
+
+################################
+### PLL VCPU
+################################
+choice
+	prompt "VCPU_PLL"
+	default PLL_VCPU_472MHz
+	---help---
+	  Select Specific VCPU PLL
+
+	config PLL_VCPU_202MHz
+		bool "PLL VCPU 202MHz"
+		---help---
+			PLL VCPU 202MHz
+			
+	config PLL_VCPU_297MHz
+		bool "PLL VCPU 297MHz"
+		---help---
+			PLL VCPU 297MHz
+			
+	config PLL_VCPU_405MHz
+		bool "PLL VCPU 405MHz"
+		---help---
+			PLL VCPU 405MHz						
+
+	config PLL_VCPU_472MHz
+		bool "PLL VCPU 472MHz (default)"
+		---help---
+			PLL VCPU 472MHz
+
+	config PLL_VCPU_500MHz
+		bool "PLL VCPU 500MHz"
+		---help---
+			PLL VCPU 500MHz
+			
+	config PLL_VCPU_550MHz
+		bool "PLL VCPU 550MHz"
+		---help---
+			PLL VCPU 550MHz
+					
+	config PLL_VCPU_600MHz
+		bool "PLL VCPU 600MHz"
+		---help---
+			PLL VCPU 600MHz
+
+	config PLL_VCPU_650MHz
+		bool "PLL VCPU 650MHz"
+	---help---
+			PLL VCPU 650MHz
+
+	config PLL_VCPU_700MHz
+		bool "PLL VCPU 700MHz"
+		---help---
+			PLL VCPU 700MHz												
+
+endchoice
+
+################################
+### PLL SCPU
+################################
+choice
+	prompt "SCPU_PLL"
+	default PLL_SCPU_900MHz
+	---help---
+	  Select Specific SCPU PLL
+
+	config PLL_SCPU_603MHz
+		bool "PLL SCPU 603MHz"
+		---help---
+			PLL SCPU 603MHz
+			
+	config PLL_SCPU_702MHz
+		bool "PLL SCPU 702MHz"
+		---help---
+			PLL SCPU 702MHz
+			
+	config PLL_SCPU_810MHz
+		bool "PLL SCPU 810MHz"
+		---help---
+			PLL SCPU 810MHz						
+
+	config PLL_SCPU_850MHz
+		bool "PLL SCPU 850MHz (QFP default)"
+		---help---
+			PLL SCPU 850MHz		
+
+	config PLL_SCPU_855MHz
+		bool "PLL SCPU 855MHz"
+		---help---
+			PLL SCPU 855MHz		
+
+	config PLL_SCPU_900MHz
+		bool "PLL SCPU 900MHz (BGA default)"
+		---help---
+			PLL SCPU 900MHz
+
+	config PLL_SCPU_1000MHz
+		bool "PLL SCPU 1000MHz"
+		---help---
+			PLL SCPU 1000MHz
+			
+	config PLL_SCPU_1100MHz
+		bool "PLL SCPU 1100MHz"
+		---help---
+			PLL SCPU 1100MHz
+			
+	config PLL_SCPU_1200MHz
+		bool "PLL SCPU 1200MHz"
+		---help---
+			PLL SCPU 1200MHz
+			
+	config PLL_SCPU_1300MHz
+		bool "PLL SCPU 1300MHz"
+		---help---
+			PLL SCPU 1300MHz									
+
+	config PLL_SCPU_1400MHz
+		bool "PLL SCPU 1400MHz"
+		---help---
+			PLL SCPU 1400MHz			
+
+endchoice
+
+################################
+### PLL GPU
+################################
+choice
+	prompt "GPU_PLL"
+	default PLL_GPU_351MHz
+	---help---
+	  Select Specific GPU PLL
+
+	config PLL_GPU_202MHz
+		bool "PLL GPU 202MHz"
+	---help---
+			PLL GPU 202MHz
+			
+	config PLL_GPU_252MHz
+		bool "PLL GPU 252MHz"
+	---help---
+			PLL GPU 252MHz
+			
+	config PLL_GPU_297MHz
+		bool "PLL GPU 297MHz"
+	---help---
+			PLL GPU 297MHz						
+
+	config PLL_GPU_351MHz
+		bool "PLL GPU 351MHz (default)"
+		---help---
+			PLL GPU 351MHz
+
+	config PLL_GPU_400MHz
+		bool "PLL GPU 400MHz"
+	---help---
+			PLL GPU 400MHz
+
+	config PLL_GPU_450MHz
+		bool "PLL GPU 450MHz"
+		---help---
+			PLL GPU 450MHz
+
+	config PLL_GPU_500MHz
+		bool "PLL GPU 500MHz"
+	---help---
+			PLL GPU 500MHz
+
+	config PLL_GPU_550MHz
+		bool "PLL GPU 550MHz"
+		---help---
+			PLL GPU 550MHz									
+
+endchoice
+
+################################
+### PLL GPU_L2
+################################
+##choice
+##	prompt "GPU_L2_PLL"
+##	default PLL_GPU_L2_351MHz
+##	---help---
+##	  Select Specific GPU L2 PLL
+##
+##	config PLL_GPU_L2_351MHz
+##		bool "PLL GPU L2 351MHz"
+##		---help---
+##			PLL GPU L2 351MHz
+##
+##endchoice
+##
+################################
+### PLL BUS
+################################
+choice
+	prompt "BUS_PLL"
+	default PLL_BUS_381MHz
+	---help---
+	  Select Specific BUS PLL
+
+	config PLL_BUS_202MHz
+		bool "PLL BUS 202MHz"
+		---help---
+			PLL BUS 202MHz
+
+	config PLL_BUS_252MHz
+		bool "PLL BUS 252MHz"
+		---help---
+			PLL BUS 252MHz
+			
+	config PLL_BUS_270MHz
+		bool "PLL BUS 270MHz"
+		---help---
+			PLL BUS 270MHz	
+			
+	config PLL_BUS_297MHz
+		bool "PLL BUS 297MHz"
+		---help---
+			PLL BUS 297MHz			
+
+	config PLL_BUS_351MHz
+		bool "PLL BUS 351MHz"
+		---help---
+			PLL BUS 351MHz
+
+	config PLL_BUS_381MHz
+		bool "PLL BUS 381MHz"
+		---help---
+			PLL BUS 381MHz
+
+	config PLL_BUS_405MHz
+		bool "PLL BUS 405MHz (default)"
+		---help---
+			PLL BUS 405MHz
+
+endchoice
+
+################################
+### PLL BUSH
+################################
+choice
+	prompt "BUSH_PLL"
+	default PLL_BUSH_381MHz
+	---help---
+	  Select Specific BUSH PLL
+
+	config PLL_BUSH_202MHz
+		bool "PLL BUSH 202MHz"
+		---help---
+			PLL BUSH 202MHz
+
+	config PLL_BUSH_252MHz
+		bool "PLL BUSH 252MHz (QFP default)"
+		---help---
+			PLL BUSH 252MHz
+			
+	config PLL_BUSH_270MHz
+		bool "PLL BUSH 270MHz"
+		---help---
+			PLL BUSH 270MHz	
+			
+	config PLL_BUSH_297MHz
+		bool "PLL BUSH 297MHz"
+		---help---
+			PLL BUSH 297MHz			
+
+	config PLL_BUSH_351MHz
+		bool "PLL BUSH 351MHz"
+		---help---
+			PLL BUSH 351MHz
+
+	config PLL_BUSH_381MHz
+		bool "PLL BUSH 381MHz (BGA default)"
+		---help---
+			PLL BUSH 381MHz
+
+	config PLL_BUSH_405MHz
+		bool "PLL BUSH 405MHz"
+		---help---
+			PLL BUSH 405MHz
+
+endchoice

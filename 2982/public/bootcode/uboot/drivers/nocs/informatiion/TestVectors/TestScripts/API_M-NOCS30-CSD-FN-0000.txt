@@ -1,0 +1,27 @@
+# This script contains examples of command for the CSD App.
+# It does not replace any part of the NOCS3 validation. It is provided as an example of syntax for the CSD App.
+# Together with the Nagra test infrastruture (CSD App, communication, RPC server), it can be used as stimulus generator for CSD API and extended API test.
+#
+# If this script is not executed with N3XT, the following pattern shall be replaced before executing the command
+#   RootDirName = path to the root directory 
+#   StreamRootDirName = path to the root directory where streams are stored
+#   CTCut = <chipset name><chipset cut>
+#   _TunerType_ = Tuner type, could be T, C or S
+#   csd = the leading one shall be replaced by the CSD App name 
+#
+csd -status -oc
+csd -cn NUID -oc
+csd -cn STBCASN -oc -tv RootDirName/TestVectors/CSVIn/CTCut_CheckNumbers_3x.csv
+csd -cn DINTEG -oc -tv RootDirName/TestVectors/CSVIn/CTCut_CheckNumbers_3x.csv
+csd -cn CSCD -oc -tv RootDirName/TestVectors/CSVIn/CTCut_CheckNumbers_3x.csv
+csd -r2r -enc -key SW -emi 0x4021 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4021_SWenc_csd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+csd -r2r -dec -key SW -emi 0x4043 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4043_SWdec_csd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+csd -r2r -enc -key KL -emi 0x4041 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4041_KLenc_csd.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+csd -r2r -dec -key KL -emi 0x4026 -of RootDirName/Outputs/Txt/CTCut_R2R_Emi0x4026_KLdec_csd.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+csd -dsc -emi 0x0000 -if StreamRootDirName/StreamIn/NoP_TunerType_DC_DSC_Emi0x0000_01.01.ts -of StreamRootDirName/StreamOut/NoP_TunerType_DC_Recorded_EMI0x0000_SvPid0x1120FN.ts -videoPid 0x1120 -audioPid 0x1122 -pcrPid 0x1120 -ecmPid 0x1126 -pecm TRUE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv2_DSC_3x.csv
+csd -dsc -emi 0x0001 -if StreamRootDirName/StreamIn/NoP_TunerType_D3_DSC_Emi0x0001_01.02.ts -of StreamRootDirName/StreamOut/NoP_TunerType_D3_Recorded_EMI0x0001_SvPid0x1120FN.ts -videoPid 0x1120 -audioPid 0x1122 -pcrPid 0x1120 -ecmPid 0x1126 -pecm TRUE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv3_DSC_3x.csv
+csd -dsc -emi 0x0020 -if StreamRootDirName/StreamIn/NoP_TunerType_DA_DSC_Emi0x0020_01.01.ts -of StreamRootDirName/StreamOut/NoP_TunerType_DA_Recorded_EMI0x0020_SvPid0x1120FN.ts -videoPid 0x1120 -audioPid 0x1122 -pcrPid 0x1120 -ecmPid 0x1126 -pecm TRUE -tv RootDirName/TestVectors/CSVIn/CTCut_AES_DSC_3x.csv
+csd -scr -enc  -key SW -emi 0x0022 -if StreamRootDirName/StreamIn/NoPzDU_ScrClearRef_Clear_01.01.ts -of StreamRootDirName/StreamOut/NoPzDA_SCR_Recorded_EMI0x0022_SW_PVR_REC.ts -tv RootDirName/TestVectors/CSVIn/CTCut_AES_SCR1_3x.csv
+csd -scr -dec  -key SW -emi 0x4021 -if StreamRootDirName/StreamIn/NoPzDA_SCR_Emi0x4021_01.01.ts -of StreamRootDirName/StreamOut/NoPzDU_SCR_Recorded_EMI0x4021_SW_VOD_PB.ts -tv RootDirName/TestVectors/CSVIn/CTCut_AES_SCR1_3x.csv
+csd -gpv MSID
+csd -spv MSID -v 0x00005555

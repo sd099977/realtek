@@ -1,0 +1,11 @@
+//for VGIP setting
+rtd_outl(0xb8022210, 0x90050001);	//001:ADC/YPbPr (incluing Pattern Generator),analog mode , Inter field signal
+//rtd_outl(0xb8022210, 0x10000003);	//001:ADC/YPbPr (incluing Pattern Generator),digital mode
+rtd_outl(0xb802221c, 0x000D021C);	//27:16==>Ch1_iv_act_sta/11:0==>Ch1_iv_act_len
+//rtd_outl(0xb8022218, 0x00e00780);	//27:16==>Ch1_ih_act_sta/11:0==>Ch1_ih_act_wid
+//rtd_outl(0xb8022218, 0x01000780);	//27:16==>Ch1_ih_act_sta/11:0==>Ch1_ih_act_wid
+rtd_outl(0xb8022218, 0x00fe0780);
+rtd_outl(0xb8022220, 0x00000000);	//27:16==>Ch1_IHS_DLY/11:0==>Ch1_IVS_DLY
+rtd_outl(0xb8022284, 0x0000000E);	//from vgip/ch1/DI enable
+rtd_outl(0xb8022290, 0x00000606);	//CTS FIFO 
+

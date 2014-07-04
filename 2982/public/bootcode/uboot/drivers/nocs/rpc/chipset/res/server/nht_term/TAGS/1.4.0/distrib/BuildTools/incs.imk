@@ -1,0 +1,11 @@
+#
+# Source compilation mandatory include pathes
+#
+#  This file contains all include pathes required for well compiling
+#  C-files associated to this module
+#
+#  PS: This file was automatically generated. Do not edit it by hand
+#
+
+NHT_CC_INC_DIRS +=  \
+  $(NHT_ROOT)/chipset/res/server/nht_term/TAGS/1.4.0/distrib

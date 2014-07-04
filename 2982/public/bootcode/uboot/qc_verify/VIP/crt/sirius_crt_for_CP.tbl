@@ -1,0 +1,152 @@
+//-------- PLL ETN -------------------------------------------------
+rtd_outl(0xb8016d00,0x0230370a); // 25M
+rtd_outl(0xb8016d04,0x00008035); // power on	
+rtd_outl(0xb8016d04,0x00008037); // release reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8016d04,0x00008033); // PLLETN output enable
+
+//-------- BUS/BUSH/ACPU clock source select to 27MHz ------------------------
+rtd_outl(0xb8060050,0x00000001);
+ScalerTimer_DelayXms(1);
+
+//-------- SPI clk -------------------------------------------------
+rtd_outl(0xb801a808,0x9); // fdiv, clk_sf = clk_sys / (fdiv+1)
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb801a814,0); // latch data at the falling edge
+rtd_outl(0xb801a80c,0x00202020);
+
+//-------- PLL ACPU -------------------------------------------------
+rtd_outl(0xb8000108,0x000A3600); // max 850, set 27*37/2 = 499.5MHz
+rtd_outl(0xb800010c,0x00000325); // PLLACPU power on
+rtd_outl(0xb800010c,0x00000327); // release PLLACPU reset
+
+//-------- PLL BUS -------------------------------------------------
+rtd_outl(0xb8000130,0x00351B52); // max 405, set 27*15 = 405MHz
+rtd_outl(0xb8000138,0x00000005); // PLLBUS power on
+rtd_outl(0xb8000138,0x00000007); // release PLL reset
+
+//-------- PLL BUSH -------------------------------------------------
+rtd_outl(0xb8000140,0x17BD1B52); // max 384, set 27*113/2/4 = 381.375MHz
+rtd_outl(0xb8000148,0x00000005);  // PLLBUSH power on
+rtd_outl(0xb8000148,0x00000007);  // release PLLBUSH reset
+
+ScalerTimer_DelayXms(1); // wait at least > 5us
+rtd_outl(0xb800010c,0x00000323); // PLLACPU output enable
+rtd_outl(0xb8000138,0x00000003); // PLLBUS output enable
+rtd_outl(0xb8000148,0x00000003); // PLLBUSH output enable
+
+//-------- BUS/BUSH/ACPU clock source select to PLLBUS/PLLBUSH/PLLACPU ------------------------
+rtd_outl(0xb8060050,0x00000000); 
+ScalerTimer_DelayXms(1); 
+
+//-------- PLL SCPU -------------------------------------------------
+//rtd_outl(0xb8000100,0x00262400); // max 1000, set 27*100/3= 900MHz
+//rtd_outl(0xb8000104,0x00000325); // PLLSCPU  power on
+//rtd_outl(0xb8000104,0x00000327); // release SCPU PLL reset
+
+//-------- PLL VCPU -------------------------------------------------
+rtd_outl(0xb8000110,0x00350A00); // target 472, set 27*37/2=472.5MHz
+rtd_outl(0xb8000114,0x00000325); // PLLVCPU power on
+rtd_outl(0xb8000114,0x00000327); // release VCPU PLL reset
+
+//-------- PLL VODMA -----------------------------------------------
+rtd_outl(0xb8000160,0x00222613); // max 450, set 27*36/3=324MHz
+rtd_outl(0xb8000164,0x00000005); // PLLVODMA power on
+rtd_outl(0xb8000164,0x00000007); // release VODMA PLL reset
+
+//-------- PLLDDS/PSAUD----------------------------------------
+rtd_outl(0xb8000170,0x0727D244); // target 432, set 27*16 = 432MHz
+rtd_outl(0xb8000178,0x22800005); // Phase shifter enable, release PSAUD1&2 reset,
+//rtd_outl(0xb800017c,0x00000005); // PLLDDS power on
+//rtd_outl(0xb800017c,0x00000007); // release PLLDDS reset
+
+//-------- PLL DISP -------------------------------------------------
+rtd_outl(0xb8000190,0x02601336);	// max 540, set 360MHz
+rtd_outl(0xb8000194,0x11020001);	// DPLL power on
+rtd_outl(0xb8000194,0x11020043);	// release DPLL reset
+
+//-------- PLL GPU1-------------------------------------------------
+rtd_outl(0xb80001E0,0x00098600); // max 450, set 351MHz
+rtd_outl(0xb80001E4,0x00000325); // PLLGPU1 power on
+rtd_outl(0xb80001E4,0x00000327); // release PLLGPU1 reset
+
+//-------- PLL GPU2-------------------------------------------------
+rtd_outl(0xb80001E8,0x00098600); // max 450, set 351MHz
+rtd_outl(0xb80001Ec,0x00000325); // PLLGPU2 power on
+rtd_outl(0xb80001Ec,0x00000327); // release PLLGPU2 reset
+
+//-------- PLL 512FS -------------------------------------------------
+//(set M/N code as you need)
+rtd_outl(0xb8000204,0x00000005); // PLL512FS power on
+rtd_outl(0xb8000204,0x00000007); // release PLL512FS reset
+
+//-------- PLL DIF -------------------------------------------------
+//(set M/N code as you need)
+rtd_outl(0xb8000228,0x00000001); // PLLDIF VCO power on
+rtd_outl(0xb8000228,0x00000007); // release reset
+
+//-------- PLL 27X -------------------------------------------------
+rtd_outl(0xb8000240,0x0225000E); // max = 432, set 27*16 = 432MHz 
+rtd_outl(0xb8000244,0x00105401); // 1.1V LDO power on & output 1.0V, LDO XTAL power on & output 1.76V
+rtd_outl(0xb8000248,0x00000001); // release PLL_27X & VCO reset & power on
+rtd_outl(0xb8000248,0x00000007); // release PLL_27X & VCO reset & power on
+
+//-------- PLL AUD -------------------------------------------------
+rtd_outl(0xb8000264,0x00000008);	// release PLLAUD reset, PLLAUD_CK196&295M output enable,Audio PLL on
+
+ScalerTimer_DelayXms(1); // at least > 5us
+rtd_outl(0xb8000104,0x00000323); // PLLSCPU CKOUT enable
+rtd_outl(0xb8000114,0x00000323); // PLLVCPU CKOUT enable
+rtd_outl(0xb8000164,0x00000003); // PLLVODMA CKOUT enable
+rtd_outl(0xb800017c,0x00000003); // PLLDDS output enable
+rtd_outl(0xb80001E4,0x00000323); // PLLGPU1 output enable
+rtd_outl(0xb80001Ec,0x00000323); // PLLGPU2 output enable
+rtd_outl(0xb8000204,0x00000003); // PLL512FS output enable
+
+
+//-------- Disable write merger, Multi write, Bypass Read ----------- price
+//rtd_outl(0xb801a018, 0x00002888); // disable A/VCPU write merge, bypass read
+//rtd_outl(0xb8008f04, 0x00000000);// dsiable SCPU write merge, bypass read
+
+//-------- Module Clock & Reset Enable ---------
+rtd_outl(0xb800000c, 0xFFFFFFFF);
+rtd_outl(0xb8000010, 0xFFFFFFFF);
+rtd_outl(0xb8000014, 0xFFFFFFFF);
+
+//rtd_outl(0xb800000c, 0x00040000);
+//rtd_outl(0xb8000010, 0x90000000);
+//rtd_outl(0xb8000014, 0x00001507);
+
+//rtd_outl(0xb8000000, 0x01800000);
+//rtd_outl(0xb8000004, 0x90002023);
+//rtd_outl(0xb8000008, 0x00001507);
+
+rtd_outl(0xb8000000, 0xFFFFFFFF);
+rtd_outl(0xb8000004, 0xFFFFFFFF);
+rtd_outl(0xb8000008, 0xFFFFFFFF);
+
+rtd_outl(0xb800000c, 0xFFFFFFFF);
+rtd_outl(0xb8000010, 0xFFFFFFFF);
+rtd_outl(0xb8000014, 0xFFFFFFFF);
+
+//-------- STANDBY Module Clock & Reset Enable ----------
+rtd_outl(0xb8060040, 0xFFFFFFFF);
+rtd_outl(0xb8060044, 0xFFFFFFFF);
+
+//rtd_outl(0xb8060040, 0);
+//rtd_outl(0xb8060044, 0);
+
+//rtd_outl(0xb8060030, 0);
+//rtd_outl(0xb8060034, 0);
+
+rtd_outl(0xb8060030, 0xFFFFFFFF);
+rtd_outl(0xb8060034, 0xFFFFFFFF);
+
+rtd_outl(0xb8060040, 0xFFFFFFFF);
+rtd_outl(0xb8060044, 0xFFFFFFFF);
+
+//-------- HDMI bandgap power---------
+rtd_maskl(0xb8007B40, 0xFDFFFFFF,0x02000000); // HDMI bandgap power 1:on 0:off
+rtd_maskl(0xb8033110, 0xFFFFFEFF,0x00000100); // IFD MBIAS power on
+ScalerTimer_DelayXms(1);
+

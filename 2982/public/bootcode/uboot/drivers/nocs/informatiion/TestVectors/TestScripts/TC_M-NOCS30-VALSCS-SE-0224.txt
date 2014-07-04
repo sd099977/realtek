@@ -1,0 +1,14 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv MSID
+n3xt -cmp PV MSID 0x00000000
+n3xt -user "Please place another chipset on the board"
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv MSID
+n3xt -cmp PV MSID 0x00000000
+n3xt -user "Please place another chipset on the board"
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv MSID
+n3xt -cmp PV MSID 0x00000000

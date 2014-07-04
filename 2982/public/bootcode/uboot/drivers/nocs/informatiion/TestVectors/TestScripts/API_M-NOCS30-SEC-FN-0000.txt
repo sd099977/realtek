@@ -1,0 +1,26 @@
+# This script contains examples of command for the SEC App.
+# It does not replace any part of the NOCS3 validation. It is provided as an example of syntax for the SEC App.
+# Together with the Nagra test infrastruture (SEC App, communication, RPC server), it can be used as stimulus generator for SEC API and extended API test.
+#
+# If this script is not executed with N3XT, the following pattern shall be replaced before executing the command
+#   RootDirName = path to the root directory 
+#   StreamRootDirName = path to the root directory where streams are stored
+#   CTCut = <chipset name><chipset cut>
+#   _TunerType_ = Tuner type, could be T, C or S
+#   sec = the leading one shall be replaced by the SEC App name 
+#
+sec -chipid
+sec -rand -n 0x40 -of RootDirName/Otuput/Bin/rand_out_1.bin
+sec -sha SHA256 -if RootDirName/TestVectors/BinIn/sha256_in.bin -of RootDirName/Outputs/Bin/sha256_out.bin
+sec -hmac SHA256 -kf RootDirName/TestVectors/BinIn/hmac_key.bin -if RootDirName/TestVectors/BinIn/hmac_sha256_in.bin -of RootDirName/Output/Bin/hmac_sha256_out.bin
+sec -rsa -pub -dec -keysize 0x80 -expE 0x11 -modN RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_n.bin -pad PKCS1_5 -if RootDirName/TestVectors/BinIn/rsa_padding_pkcs1_v1_5_pub_dec_in.bin -of RootDirName/Output/Bin/rsa_padding_pkcs1_v1_5_pub_dec_out.bin
+sec -rsa -pvt -enc -keysize 0x80 -expE 0x11 -modN RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_n.bin -xP RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_p.bin -xQ RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_q.bin -xDP RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_dp.bin -xDQ RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_dq.bin -xQInv RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_qinv.bin -pad OAEP_SHA256 -if RootDirName/TestVectors/BinIn/rsa_padding_oaep_sha_256_priv_enc_in.bin -of RootDirName/Output/Bin/rsa_padding_oaep_sha_256_priv_enc_out.bin
+sec -dh -com -P RootDirName/TestVectors/BinIn/dh_comp_p.bin -keysize 0x100 -ipvtk  RootDirName/TestVectors/BinIn/dh_priv_key_01_out.bin -ppubk  RootDirName/TestVectors/BinIn/dh_pub_key_02_out.bin -ss RootDirName/Output/Bin/dh_comp_shared_secret_01out.bin 
+sec -r2r -dec -key SW -emi 0x4026 -of RootDirName/Output/Txt/CTCut_R2R_Emi0x4026_SWdec_sec.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+sec -r2r -enc -key SW -emi 0x4041 -of RootDirName/Output/Txt/CTCut_R2R_Emi0x4041_SWenc_sec.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_TDES_R2R_3x.csv
+sec -r2r -dec -key KL -emi 0x4043 -of RootDirName/Output/Txt/CTCut_R2R_Emi0x4043_KLdec_sec.txt -mt -numbruns 10000 -tv RootDirName/TestVectors/CSVIn/CTCut_TDES_R2R_3x.csv
+sec -r2r -enc -key KL -emi 0x4021 -of RootDirName/Output/Txt/CTCut_R2R_Emi0x4021_KLenc_sec.txt -mt -numbruns 1000 -tv RootDirName/TestVectors/CSVIn/CTCut_AES_R2R_3x.csv
+# The following commands are supported only with NOCSAPI version 4.1.1 or more recent
+# sec -dsc -emi 0x0000 -if StreamRootDirName/StreamIn/NoP_TunerType_DC_DSC_Emi0x0000_01.01.ts -of StreamRootDirName/StreamOut/NoP_TunerType_DC_Recorded_EMI0x0000_SvPid0x1120FN.ts -videoPid 0x1120 -audioPid 0x1122 -pcrPid 0x1120 -ecmPid 0x1126 -pecm TRUE -tv RootDirName/TestVectors/CSVIn/CTCut_DVBv2_DSC_3x.csv
+# sec -scr -enc  -key SW -emi 0x0022 -if StreamRootDirName/StreamIn/NoPzDU_ScrClearRef_Clear_01.01.ts -of StreamRootDirName/StreamOut/NoPzDA_SCR_Recorded_EMI0x0022_SW_PVR_REC.ts -tv RootDirName/TestVectors/CSVIn/CTCut_AES_SCR1_3x.csv
+# sec -scr -dec  -key SW -emi 0x4021 -if StreamRootDirName/StreamIn/NoPzDA_SCR_Emi0x4021_01.01.ts -of StreamRootDirName/StreamOut/NoPzDU_SCR_Recorded_EMI0x4021_SW_VOD_PB.ts -tv RootDirName/TestVectors/CSVIn/CTCut_AES_SCR1_3x.csv

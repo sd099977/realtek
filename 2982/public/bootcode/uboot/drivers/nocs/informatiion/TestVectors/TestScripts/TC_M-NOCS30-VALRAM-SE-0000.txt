@@ -1,0 +1,8 @@
+n3xt -cfg CC_M-NOCS30-0000
+ctd -mrw write -cl RAMREADWRITEVAL -a RAMWRITEADDRESS -s 0x4
+ctd -mrw read -cl -a RAMWRITEADDRESS -s 0x4
+n3xt -cmp VAL RAMREADWRITEVAL CHECKFORPASS
+ctd -ramscramb on
+ctd -mrw read -cl -a RAMWRITEADDRESS -s 0x4
+n3xt -cmp VAL RAMREADWRITEVAL CHECKFORFAIL
+

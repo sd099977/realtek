@@ -1,0 +1,27 @@
+// --------------- 444/10-bit (1920x1080)---------------------------------------
+
+//rtd_outl(0xb8027200, 0x00400002);	// water level=64 , num=2
+rtd_outl(0xb8027200, 0x0020000D);	// water level=32 , num=13
+rtd_outl(0xb8027204, 0x00004044);	// len=64 , rem=68
+rtd_outl(0xb8027208, 0x00500000);	// start address
+rtd_outl(0xb802720c, 0x00001C20);	// line step=900*8
+rtd_outl(0xb8027210, 0x0076A700);	// block step = 900*1080*8
+//rtd_outl(0xb8027214, 0x00a00000);	// 2nd block address	
+rtd_outl(0xb8027214, 0x00f00000);	// 2nd block address	
+rtd_outl(0xb802721c, 0x00000438);	// line mode , line num=1080
+rtd_outl(0xb8027220, 0x000000a1);       // double buffer , disable 3rd buffer
+rtd_outl(0xb8027228, 0x00000001);	// enable cap
+
+rtd_outl(0xb8027300, 0x00000009);	// pre-read
+//rtd_outl(0xb8027304, 0x0002d040);	// water level=64 , pixel=720	
+rtd_outl(0xb8027304, 0x00078020);	// water level=32 , pixel=1920	
+rtd_outl(0xb8027308, 0x000D4044);	// // len=64 , rem=68 , num=13
+rtd_outl(0xb802730c, 0x00500000);	// start address	
+rtd_outl(0xb8027314, 0x00001C20);	// line step=900*8
+rtd_outl(0xb8027318, 0x0076A700);	// block step
+//rtd_outl(0xb802731c, 0x00a00000);	// 2nd block address	
+rtd_outl(0xb802731c, 0x00f00000);	// 2nd block address	
+rtd_outl(0xb8027324, 0x00000438);	// line num=1080
+rtd_outl(0xb8027328, 0x00030040);	// 444,10-bit , double buffer enable		
+rtd_outl(0xb802732c, 0x00000001);	// Disp enable	
+rtd_outl(0xb8027334, 0x00000007);

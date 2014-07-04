@@ -1,0 +1,5 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+ctd -sce -enc -keyemi 0x0001 -sceemi 0x4041 -of /R2ROutDirName/CTCut_CTD_SCE_R2R_DVBv3RK_Emi0x4041_KLenc.txt -pecm FALSE -tv /CSVInDirName/CTCut_DVBv3RK_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

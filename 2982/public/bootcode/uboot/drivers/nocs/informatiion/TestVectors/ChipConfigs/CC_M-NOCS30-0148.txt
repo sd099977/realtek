@@ -1,0 +1,3 @@
+Key Ladder Deactivation Flag=SET
+Boot Mode Selection=BMDEFAULT
+SCS Total Area Size=SCS_TOTALAREA_DEFAULT

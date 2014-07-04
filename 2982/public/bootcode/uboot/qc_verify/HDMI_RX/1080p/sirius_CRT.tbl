@@ -1,0 +1,8 @@
+//-------- BUS/BUSH/ACPU clock source select to PLLBUS/PLLBUSH/PLLACPU ------------------------
+rtd_outl(0xb8060050,0x00000000);
+udelay(100); 
+
+//-------- PLL DISP -------------------------------------------------
+rtd_outl(0xb8000190,0x02601336);	// max 540, set 360MHz
+rtd_outl(0xb8000194,0x11020001);	// DPLL power on
+rtd_outl(0xb8000194,0x11020043);	// release DPLL reset

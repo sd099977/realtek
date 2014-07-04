@@ -1,0 +1,11 @@
+n3xt -cfg CC_M-NOCS30-0001
+n3xt -UPDATECHIPDATABASE
+sec -dh -com -P /SECInOutDirName/dh_comp_p.bin -keysize 0x100 -ipvtk /SECInOutDirName/dh_comp_priv_key.bin -ppubk /SECInOutDirName/dh_comp_pub_key.bin -ss /SECInOutDirName/dh_comp_shared_secret_out.bin
+N3XT -cmp FILE CHECKFORPASS
+ctd -rst HW
+sec -dh -gen -G /SECInOutDirName/dh_gen_g.bin -P /SECInOutDirName/dh_gen_p.bin -keysize 0x100 -opvtk /SECInOutDirName/dh_priv_key_01_out.bin -opubk /SECInOutDirName/dh_pub_key_01_out.bin
+sec -dh -gen -G /SECInOutDirName/dh_gen_g.bin -P /SECInOutDirName/dh_gen_p.bin -keysize 0x100 -opvtk /SECInOutDirName/dh_priv_key_02_out.bin -opubk /SECInOutDirName/dh_pub_key_02_out.bin
+sec -dh -com -P /SECInOutDirName/dh_comp_p.bin -keysize 0x100 -ipvtk  /SECInOutDirName/dh_priv_key_01_out.bin -ppubk  /SECInOutDirName/dh_pub_key_02_out.bin -ss /SECInOutDirName/dh_comp_shared_secret_01out.bin 
+sec -dh -com -P /SECInOutDirName/dh_comp_p.bin -keysize 0x100 -ipvtk  /SECInOutDirName/dh_priv_key_02_out.bin -ppubk  /SECInOutDirName/dh_pub_key_01_out.bin -ss /SECInOutDirName/dh_comp_shared_secret_02out.bin 
+N3XT -COMPARETWOFILEs CHECKFORPASS -ref /SECInOutDirName/dh_comp_shared_secret_01out.bin -of /SECInOutDirName/dh_comp_shared_secret_02out.bin 
+ctd -rst HW

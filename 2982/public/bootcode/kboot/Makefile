@@ -1,0 +1,107 @@
+################################################################################
+#                                                                              #
+# compile option for different environment                                     #
+#
+
+DEFINE_OPTS = -DCONFIG_CHIP_SIRIUS
+
+ifeq ($(origin secure), command line)
+
+ifeq ($(secure), none)
+	DEFINE_OPTS += -DCONFIG_NONE_SECURE
+endif
+
+ifeq ($(secure), rtk)
+	DEFINE_OPTS += -DCONFIG_RTK_SECURE
+endif
+
+endif
+
+ifeq ($(origin secure), undefined)
+	DEFINE_OPTS += -DCONFIG_NONE_SECURE
+endif
+
+#                                                                              #
+#                                                                              #
+################################################################################
+
+
+SRC_DIR = $(PWD)/src
+OBJ_DIR	 = $(PWD)/obj
+OUT_DIR	 = $(PWD)/out
+INCLUDE_DIR = $(PWD)/include
+ALL_OBJ = $(notdir $(wildcard $(OBJ_DIR)/*.o))
+
+# Tool-chain used for compilation of target code.
+BOOTCODE_ROOT := $(PWD)/..
+TOOLCHAIN_PREFIX := rsdk-1.5.9
+TOOLCHAIN_READY := $(wildcard ../tmp/$(TOOLCHAIN_PREFIX))
+ifeq ($(strip $(TOOLCHAIN_READY)),)
+   $(warning toolchain $(TOOLCHAIN_PREFIX) is not ready, installing...)
+   $(shell mkdir -p ../tmp)
+   $(shell tar xfj $(BOOTCODE_ROOT)/toolchain/$(TOOLCHAIN_PREFIX)-linux-newlib.tar.bz2 -C $(BOOTCODE_ROOT)/tmp)
+endif
+
+TOOLCHAIN_PATH = $(BOOTCODE_ROOT)/tmp/$(TOOLCHAIN_PREFIX)/linux/newlib/bin
+
+GCC = $(TOOLCHAIN_PATH)/mips-elf-gcc
+OBJCOPY = $(TOOLCHAIN_PATH)/mips-elf-objcopy
+OBJDUMP = $(TOOLCHAIN_PATH)/mips-elf-objdump
+NM = $(TOOLCHAIN_PATH)/mips-elf-nm
+#DBGINFO = -gdwarf-2 -Wa,--gdwarf2 -g
+DBGINFO = -gdwarf-2
+
+LINKER_SCRIPT = $(PWD)/link.ld.ram
+
+APP = kboot
+ELF_FILE = $(OUT_DIR)/$(APP).elf
+MAP_FILE = $(OUT_DIR)/$(APP).map
+BIN_FILE = $(OUT_DIR)/$(APP).bin
+DIS_FILE = $(OUT_DIR)/$(APP).dis
+NM_FILE  = $(OUT_DIR)/$(APP).nm
+
+ENDIAN = EL
+#ENDIAN = EB
+
+
+BASICFLAGS = -march=4181 -G0 -fno-builtin -nostdinc -I. -I$(INCLUDE_DIR) -c -$(ENDIAN) -Wall $(DBGINFO)
+AS = $(CYGWINPATH)$(GCC) $(BASICFLAGS) -x assembler-with-cpp
+GCCFLAGS = -mno-gpopt -msoft-float -DTEST_PRINTF
+CC = $(CYGWINPATH)$(GCC) $(BASICFLAGS) $(GCCFLAGS)
+LD = $(CYGWINPATH)$(GCC) -nostartfiles -nostdlib --oformat=elf32-tradlittlemips -T$(LINKER_SCRIPT) -Wl,-Map $(MAP_FILE) -$(ENDIAN)
+AFLAG       = $(BASICFLAGS)
+CFLAG       = $(BASICFLAGS) #-mips16
+CDEF        = -D$(ENDIAN) -DSIRIUS -DENABLE_DDR $(DEFINE_OPTS)
+ADEF        = $(CDEF) -D_ASSEMBLER_
+
+$(ELF_FILE): clean src
+	@touch $(MAP_FILE)
+#	$(LD) $? -o $@
+	cd $(OBJ_DIR); \
+	$(LD) $(ALL_OBJ) -o $(ELF_FILE)
+	$(CYGWINPATH)$(OBJCOPY) -O binary $@ $(BIN_FILE)
+	$(CYGWINPATH)$(OBJDUMP) -S -D $@ > $(DIS_FILE)
+	$(CYGWINPATH)$(NM) $@ | sort $1 > $(NM_FILE)
+	@echo
+	@echo "Output binary =====>" \"$(notdir $(BIN_FILE))\"
+
+.s.o:
+	$(AS) -o $(OBJ_DIR)/$@ $<
+
+.S.o:
+	$(AS) -o $(OBJ_DIR)/$@ $<
+
+.c.o:
+	$(CC) -o $(OBJ_DIR)/$@ $<
+
+.PHONY: clean src
+clean:
+	rm -f $(ELF_FILE) $(DIS_FILE) $(MAP_FILE) $(BIN_FILE) $(NM_FILE)
+	rm -f *.o *.cdb *.rc *~ src/*.bak include/*.bak src/*~ include/*~
+	rm -f $(OBJ_DIR)/*.o
+
+src:
+	cd $(SRC_DIR);\
+	make CC=$(GCC) CFLAG='$(CFLAG)' AFLAG='$(AFLAG)' CDEF='$(CDEF)' ADEF='$(ADEF)' OBJ_DIR='$(OBJ_DIR)'\
+    	 INCLUDE='-I$(PWD) -I. -I$(INCLUDE_DIR)'
+

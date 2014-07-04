@@ -1,0 +1,5 @@
+N3XT -cfg CC_M-NOCS30-0000
+N3XT -UPDATECHIPDATABASE
+ctd -sce -dec -keyemi 0x0020 -sceemi 0x4041 -of /R2ROutDirName/CTCut_CTD_SCE_R2R_AESRK_Emi0x4041_KLdec.txt -pecm FALSE -tv /CSVInDirName/CTCut_AESRK_TDES_R2R_3x.csv
+N3XT -cmp FILE CHECKFORFAIL
+CTD -rst HW

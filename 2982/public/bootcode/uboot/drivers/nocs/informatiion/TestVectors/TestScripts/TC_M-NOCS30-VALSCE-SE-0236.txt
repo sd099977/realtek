@@ -1,0 +1,22 @@
+# TC_M-NOCS30-VALSCE-SE-0236
+# Configuration
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+csd -gpv KLD
+n3xt -cmp PV KLD NOT SET CHECKFORPASS
+# set the fuse
+csd -spv KLD
+ctd -rst HW
+csd -gpv KLD
+n3xt -cmp PV KLD SET CHECKFORPASS
+# try to reset the KL deactivation flag
+ctd -spv KLD -v 0x0 
+n3xt -cmd CHECKFORFAIL
+csd -gpv KLD
+n3xt -cmp PV KLD NOT SET CHECKFORFAIL
+ctd -rst SW
+csd -gpv KLD
+n3xt -cmp PV KLD NOT SET CHECKFORFAIL
+ctd -rst HW
+csd -gpv KLD
+n3xt -cmp PV KLD NOT SET CHECKFORFAIL

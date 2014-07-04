@@ -1,0 +1,99 @@
+//------------------------------------------------------------------------------------------------------------
+//DCLK DIV
+//------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8028294, 0x00000001);	// DCLK = DPLL_Clock div 2
+
+//------------------------------------------------------------------------------------------------------------
+//SFG, 1 Pixel Mode, DH_ST_END = 0x008C080C, DTG_HS_Width = 16, DTG_VS_Width = 6
+//------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb802D100, 0x00001840);	//8-bit Mode, Dout Enable
+rtd_outl(0xb802D104, 0x4000FFFF);	//PIF_Clock = Dclk/2, Force to background enable
+rtd_outl(0xb802D108, 0x01234567);	//Port A~H mapping
+rtd_outl(0xb802D12C, 0x00000000);	//NO sub-Pixel shift
+rtd_outl(0xb802D130, 0x00000000);	//SEG 0, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D134, 0x00000000);	//SEG 0, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D138, 0x00000000);	//SEG 1, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D13C, 0x00000000);	//SEG 1, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D140, 0x00000000);	//SEG 2, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D144, 0x00000000);	//SEG 2, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D148, 0x00000000);	//SEG 3, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D14C, 0x00000000);	//SEG 3, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D150, 0x00000000);	//SEG 4, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D154, 0x00000000);	//SEG 4, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D158, 0x00000000);	//SEG 5, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D15C, 0x00000000);	//SEG 5, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D160, 0x00000000);	//SEG 6, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D164, 0x00000000);	//SEG 6, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D168, 0x00000000);	//SEG 7, Front/End, 4n+0/4n+1 Line, no dummy pixel
+rtd_outl(0xb802D16C, 0x00000000);	//SEG 7, Front/End, 4n+2/4n+3 Line, no dummy pixel
+rtd_outl(0xb802D170, 0x00000001);	//Normal Data Mapping, 1-SEG, 2-Port, No H-Flip
+rtd_outl(0xb802D174, 0x00000000);	//start address of SEG 0/1 , residue of SEG 0/1 
+rtd_outl(0xb802D178, 0x00000000);	//start address of SEG 2/3 , residue of SEG 2/3 
+rtd_outl(0xb802D17C, 0x00000000);	//start address of SEG 4/5 , residue of SEG 4/5 
+rtd_outl(0xb802D180, 0x00000000);	//start address of SEG 6/7 , residue of SEG 6/7 
+rtd_outl(0xb802D188, 0x40000000);	//Disable ByPass Mode, Auto config mode enable
+rtd_outl(0xb802D18C, 0x000F080C);	//HS_Width = 16 dclk; hsync_delay = DH_DEN_END = 2060;
+rtd_outl(0xb802D190, 0x00050000);	//VS_ST = 0; VS_END = 6;
+rtd_outl(0xb802D194, 0x008C0086);	//sfg_dh_den_sta = DH_DEN_ST = 140;
+					//req_st = hs_back_porch - 6 = 134;
+rtd_outl(0xb802D198, 0x00000000);	//Hs_distance for DRD Mode (no USE)
+rtd_outl(0xb802D19C, 0x07800000);	//final_line_length = 1920, hsync_threshold = 0
+rtd_outl(0xb802D1A0, 0x00000000);	//Residue_pix_div_12_split_mode &
+					//Final_addr_split_mode for Tri-gate Mode (no USE)
+rtd_outl(0xb802D1A4, 0x0008C812);	//hs_den_io_dist = req_st + 6 = 140; (for EPI)
+					//hs_io_dist = hs_delay + 6 = 2060 + 6 = 2066; (for EPI)
+rtd_outl(0xb802D1EC, 0x00000000);	//SEG 0/1, middle, no dummy pixel
+rtd_outl(0xb802D1F0, 0x00000000);	//SEG 2/3, middle, no dummy pixel
+rtd_outl(0xb802D1F4, 0x00000000);	//SEG 4/5, middle, no dummy pixel
+rtd_outl(0xb802D1F8, 0x00000000);	//SEG 6/7, middle, no dummy pixel
+rtd_outl(0xb802D1FC, 0x00000000);	//Active_pixel_RGB & Last_ext_pixel for DRD
+
+//------------------------------------------------------------------------------------------------------------
+//PIF
+//------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb802D000, 0x00000000);	//Select LVDS(Mini-LVDS) clock & data
+rtd_outl(0xb802D010, 0x000002C0);	//PN not Swap, LVDS not Mirror, LVDS Mapping Table1, LVDS Port Enable
+
+//------------------------------------------------------------------------------------------------------------
+//LVDS Pin Share
+//------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8000890, 0x00000000);	//A-Port LVDS pin share
+rtd_outl(0xb8000894, 0x00000000);	//A-Port LVDS pin share
+rtd_outl(0xb8000898, 0x00000000);	//B-Port LVDS pin share
+rtd_outl(0xb800089C, 0x00000000);	//B-Port LVDS pin share
+
+//------------------------------------------------------------------------------------------------------------
+//LVDS/mini-LVDS TX PHY
+//------------------------------------------------------------------------------------------------------------
+rtd_outl(0xb8000C00, 0xEC000000);	//Currcnt Source, PLL Power, LDO Power Enable; CM Select non-EPI;
+rtd_outl(0xb8000C04, 0x8DD65B20);	//IBHN = 40uA; IBHX = 40uA; CML Pre-Driver = 70uA;; PI_Disable
+					//PLL_CP = 3pF; PLL_CS = 63pF; PLL_Icp = 20uA;
+					//PLL_PI_Bais = 180uA; PLL_PI_RS = 4kohm;
+					//VCM_SELL = x3; IBTX = x2;
+rtd_outl(0xb8000C08, 0x000CFF3F);	//PI Phase0
+rtd_outl(0xb8000C0C, 0x0880B800);	//PLL_RS = 6kohm; PLL_PI_RL = 2.6kohm;
+					//PLL_M = 7; PLL_N = 1; PLL_K = 1;
+					//PLL_LDO = 1.84V (for VCO, CP)
+rtd_outl(0xb8000C10, 0x7FFFAA00);	//All Pair Not through PI; CMI_Pre Driver Enable; 
+					//1.1V (for Digital) & 2.1V (CML) LDO Enable;
+rtd_outl(0xb8000C14, 0x2AAAAAAA);	//Internel Resistor = 100ohm
+rtd_outl(0xb8000C18, 0x7FFF0000);	//P2S Reset Normal
+rtd_outl(0xb8000C1C, 0x01111111);	//Pre-emphasis Swing = 0.5mA
+rtd_outl(0xb8000C20, 0x11111111);	//Pre-emphasis Swing = 0.5mA
+rtd_outl(0xb8000C24, 0x00000000);	//Pre-emphasis Disable
+rtd_outl(0xb8000C30, 0x00000000);	//Internel Resistor Disable; CLK_LAG Disable
+rtd_outl(0xb8000C34, 0x00007FFF);	//The fastest shape for NMOS
+rtd_outl(0xb8000C38, 0x3FFFFFFF);	//The fastest shape for NMOS
+rtd_outl(0xb8000C3C, 0x00007FFF);	//The stongest shape for PMOS
+rtd_outl(0xb8000C40, 0x3FFFFFFF);	//The stongest shape for PMOS
+rtd_outl(0xb8000C44, 0x3FFFFFFF);	//The faster segmented_transition_timing by td
+rtd_outl(0xb8000C48, 0x00000000);	//MSB First for LVDS Mode
+rtd_outl(0xb8000C4C, 0x01CE739C);	//SL = 5'b11100 => 3*13 = x39
+rtd_outl(0xb8000C50, 0x01CE739C);	//SL = 5'b11100 => 3*13 = x39
+rtd_outl(0xb8000C54, 0x01CE739C);	//SL = 5'b11100 => 3*13 = x39
+rtd_outl(0xb8000C58, 0x00000000);	//Small td
+rtd_outl(0xb8000C5C, 0x00000000);	//TTLI Mode disable
+rtd_outl(0xb8000C60, 0x00000000);	//TTLO Mode disable
+rtd_outl(0xb8000C64, 0x00007FFF);	//Segmented_transition disable
+rtd_outl(0xb8000C68, 0x00000000);	//Double driving disable
+rtd_outl(0xb8000C6C, 0x00007FFF);	//Differential Mode Enable

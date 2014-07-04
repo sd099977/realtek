@@ -1,0 +1,38 @@
+n3xt -cfg CC_M-NOCS30-0000
+n3xt -UPDATECHIPDATABASE
+# Set Debug Interface in Open mode
+csd -spv DIFOPEN
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv DIF
+n3xt -cmp PV DIF OPEN CHECKFORPASS
+# Set Debug Interface in Password mode
+csd -spv DIFPWD
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv DIF
+n3xt -cmp PV DIF PWD CHECKFORPASS
+# Try to set Debug Interface in Open mode
+n3xt NEXTCMDSHOULDFAIL
+csd -spv DIFOPEN
+ctd -rst HW
+csd -gpv DIF
+n3xt -cmp PV DIF PWD CHECKFORPASS
+# Set Debug Interface in Closed mode
+csd -spv DIFCLOSE
+ctd -rst HW
+n3xt -UPDATECHIPDATABASE
+csd -gpv DIF
+n3xt -cmp PV DIF CLOSE CHECKFORPASS
+# Try to set Debug Interface in Password mode
+n3xt NEXTCMDSHOULDFAIL
+csd -spv DIFPWD
+ctd -rst HW
+csd -gpv DIF
+n3xt -cmp PV DIF CLOSE CHECKFORPASS
+# Try to set Debug Interface in Open mode
+n3xt NEXTCMDSHOULDFAIL
+csd -spv DIFOPEN
+ctd -rst HW
+csd -gpv DIF
+n3xt -cmp PV DIF CLOSE CHECKFORPASS

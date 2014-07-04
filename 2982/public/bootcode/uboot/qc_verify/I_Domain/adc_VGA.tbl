@@ -1,0 +1,14 @@
+		rtd_outl(0xb8020000, 0x000000ff);  
+		rtd_outl(0xb8020004, 0x00000000); // VIN0p VIN1p VIN2p RN,GN,BN,
+		rtd_outl(0xb8020008, 0x01030000);  // LDO power1.05V(default1.1V)
+		rtd_outl(0xb8020010, 0x00210001); // clock polarity divider
+ 		rtd_outl(0xb8020018, 0x001f0007); // LPF = by pass, DCRestore=Vin0,1,2
+		rtd_outl(0xb802001c, 0x0c410000); // RGB 01=DAC mode
+		rtd_outl(0xb8020024, 0x44000000); // soy0,1 from VIN4
+		rtd_outl(0xb8020040, 0x03980398); // RG+=400,RG-=800
+		rtd_outl(0xb8020044, 0x00000398); // B+=400,B-=800
+		//rtd_outl(0xb8020064, 0x000000C5); // Pad power on deault
+		rtd_outl(0xb8020068, 0x00000000); // clk div=0
+		
+
+

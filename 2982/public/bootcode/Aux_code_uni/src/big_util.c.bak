@@ -1,0 +1,505 @@
+
+/************************************************************************
+ *  Include files
+ ************************************************************************/
+#include <sysdefs.h>
+#include "big_util.h"
+#include "big_int.h"
+#include "reset_def.h"
+//#include "uart.h"
+//#include "uart_reg.h"
+#include "otp_reg.h"
+
+/************************************************************************
+ *  Definitions
+ ************************************************************************/
+#if defined(MEMORY_POOL)
+//used for  RSA
+#define MEMORY_POOL_SIZE	(5*1024)
+
+// Aux code decryption will reuse this memory for original data
+// I would like it align the the _f_data_cp_sram address. (It is 0xb8079000 now)
+unsigned char memory_pool[MEMORY_POOL_SIZE];
+#define MAX_ALLOC_SIZE MEMORY_POOL_SIZE
+#define MALLOC_BASE (UINT32)memory_pool
+#else
+#define MAX_ALLOC_SIZE	32*1024*1024
+#define MALLOC_BASE 0x82000000
+#endif
+
+/************************************************************************
+ *  Public variables
+ ************************************************************************/
+static UINT32 alloc_count = 0;
+
+/************************************************************************
+ *  Static variables
+ ************************************************************************/
+static UINT32 alloc_current;
+
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+static UINT32 cpu_clock;
+static UINT32 alloc_max;
+#endif
+
+/************************************************************************
+ *  External function prototypes
+ ************************************************************************/
+extern int compare_memory(void *s1, void *s2, unsigned int size);
+extern void copy_memory(void *dst, void *src, unsigned int size);
+
+/************************************************************************
+ *  Function body
+ ************************************************************************/
+void *my_malloc(UINT32 NBYTES)
+{
+	void *p;
+	if ((alloc_count + NBYTES) > MAX_ALLOC_SIZE) {	// exceed limit
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+		printf("exceed limit!\n");
+#endif
+		//print_val(NBYTES);
+		return NULL;
+	}
+
+	if (alloc_count == 0)
+		alloc_current = MALLOC_BASE;
+
+	p = (void *)(alloc_current);
+	// always aligned to word boundary
+	if (NBYTES & 0x3)
+		NBYTES = ((NBYTES >> 2) << 2) + 0x4;
+
+	alloc_current += NBYTES;
+	alloc_count += NBYTES;
+	//print_val((UINT32)p);
+
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+	if (alloc_current > alloc_max)
+		alloc_max = alloc_current;
+
+	//printf("alloc addr(");
+	//print_hex(alloc_current);
+	//printf("), count(");
+	//print_hex(alloc_count);
+	//printf(")\n");
+#endif
+
+	return p;
+}
+
+//dennistuan add start 20130222
+void my_free(UINT32 NBYTES)
+{
+	// always aligned to word boundary
+	if (NBYTES & 0x3)
+		NBYTES = ((NBYTES >> 2) << 2) + 0x4;
+
+	alloc_count -= NBYTES;
+	alloc_current -= NBYTES;
+}
+//dennistuan add end 20130222
+
+void my_freeAll(void)
+{
+	// reset all memory allocated by my_malloc()
+	alloc_count = 0;
+	alloc_current = MALLOC_BASE;
+}
+#if 0
+int strlen(const char *str)
+{
+	int count = 0;
+	while (*str++ != '\0')
+		count++;
+
+	return count;
+}
+
+void set_memory(void *dst, UINT8 value, UINT32 size)
+{
+	UINT32 i;
+
+	// write faster if both start address and size are word-aligned
+	if ( (((UINT32)dst & 0x3) == 0) && ((size & 0x3) == 0) ) {
+		// fill with word value
+		UINT32 word = (value << 8) | value;
+
+		word = (word << 16) | word;
+		for (i=0; i<size; i+=4)
+			REG32(((UINT32)dst) + i) = word;
+	}
+	else {
+		for (i=0; i<size; i++)
+			REG8(((UINT32)dst) + i) = value;
+	}
+}
+#endif
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+static void __attribute__ ((nomips16)) show_current_time(const char *str)
+{
+#if 0
+	__asm__ __volatile__ ( \
+		"mfc0	%0, $9\n"
+		: "=r" (cpu_clock) \
+		: \
+		: \
+		"memory" \
+	);
+#else
+	// read from MISC timer6
+	cpu_clock = REG32(0xb801b638);
+#endif
+	printf("[");
+	printf(str);
+	printf("] ");
+	print_hex(cpu_clock);
+	printf("\n");
+}
+#endif
+
+//For HW RSA utility function===========================================
+//-----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+#define TYPE_HW_MONT	0
+#define TYPE_HW_IMONT	1
+static void hwsu_get_data (void *addr, BI *bi, UINT8 type)
+{
+	int i, j, max_idx;
+	unsigned int *reg = (unsigned int *) addr;
+
+	if (type == TYPE_HW_MONT)
+		max_idx = 63; //Max: 64 * 32 = 2048 bit
+	else
+		max_idx = 12; //Max: 13 * 32 = 416 bit
+
+	/* Skip MSB zero */
+	i = max_idx;
+	while (i && (REG32(reg + i) == 0)) {
+		i--;
+	}
+
+	/* Fill BI */
+	bi->m_nLength = i + 1;
+	j = 1;
+	for (; i >= 0; i--) {
+		bi->m_ulValue[bi->m_nLength - j] = REG32(reg + i);
+		j++;
+	}
+
+	return;
+}
+//-----------------------------------------------------------------------------
+static void hwsu_set_data (void *addr, BI *bi, UINT8 type)
+{
+	int i, max_idx;
+	unsigned int *reg = (unsigned int *) addr;
+
+	if (type == TYPE_HW_MONT)
+		max_idx = 63; //Max: 64 * 32 = 2048 bit
+	else
+		max_idx = 12; //Max: 13 * 32 = 416 bit
+
+	for (i = 0; i < bi->m_nLength; i++)
+		REG32(reg + i) = bi->m_ulValue[i];
+
+	/* Handle rest bytes (clear to 0) */
+	for (; i <= max_idx; i++)
+		REG32(reg + i) = 0x0;
+
+	return;
+}
+//-----------------------------------------------------------------------------
+static void hwsu_set_bitnum (unsigned int bsize)
+{
+	REG32(REG_RSA_CTRL1) = (bsize >> 2) - 1;
+}
+//-----------------------------------------------------------------------------
+static void hwsu_chk_mont_engine_ready (void)
+{
+	while (REG32(REG_RSA_CTRL) == 1);
+}
+//-----------------------------------------------------------------------------
+static void hwsu_mont_engine_go (void)
+{
+	REG32(REG_RSA_CTRL) = 1;
+}
+//-----------------------------------------------------------------------------
+static void hwsu_mont (BI *resl, BI *a, BI *b, BI *m, UINT32 bsize)
+{
+	hwsu_chk_mont_engine_ready();
+
+	hwsu_set_data((void *)REG_RSA_X, a, TYPE_HW_MONT);
+	hwsu_set_data((void *)REG_RSA_Y, b, TYPE_HW_MONT);
+	hwsu_set_data((void *)REG_RSA_M, m, TYPE_HW_MONT);
+
+	hwsu_set_bitnum(bsize);
+
+	hwsu_mont_engine_go();
+
+	hwsu_chk_mont_engine_ready();
+
+	hwsu_get_data((void *)REG_RSA_A, resl, TYPE_HW_MONT);
+
+	return;
+}
+
+//-----------------------------------------------------------------------------
+static void hwsu_mul_mod (BI *resl, BI *r2, BI *x, BI *y, BI *m, UINT32 bsize)
+{
+	hwsu_mont (resl, x, y, m, bsize);
+	hwsu_mont (resl, resl, r2, m, bsize);
+
+	return;
+}
+//-----------------------------------------------------------------------------
+//End of HW RSA utility funciton=========================================
+#if 1
+//Use hardware RSA to speedup.
+unsigned int do_RSA(const unsigned int signature_addr, const unsigned int rsa_key_addr, const unsigned int r2_addr,
+	const unsigned int output_addr)
+{
+	BI *sig, *exp, *mod, *r2, *c;
+	unsigned int t1, tmp,count,space;
+	int i;
+
+//	unsigned char R2[256];
+//	unsigned char publicExponent_[] = { 0x00, 0x01, 0x00, 0x01 };//exp = 65537
+
+//	unsigned int exp_addr = 65537;
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+	printf("do_RSA(");
+	print_hex(signature_addr);
+	printf(", ");
+	print_hex(rsa_key_addr);
+	printf(", ");
+	print_hex(output_addr);
+	printf(")\n");
+
+	// observe memory pool usage
+	set_memory(memory_pool, 0xa5, sizeof(memory_pool));
+	alloc_max = 0;
+
+	// init MISC timer6 to measure do_RSA time
+	REG32(0xb801b618) = 0xffffffff;
+	REG32(0xb801b658) = 0x80000000;
+	show_current_time("before RSA");
+#endif
+
+	sig = InPutFromAddr((unsigned char *)signature_addr, RSA_SIGNATURE_LENGTH);
+	mod = InPutFromAddr((unsigned char *)rsa_key_addr, RSA_2048_KEY_LENGTH);
+	r2 = InPutFromAddr((unsigned char *)r2_addr, RSA_2048_KEY_LENGTH);
+	// Sample:
+	//base = InPutFromStr("64712C6494BC4F9318475FB68868BFA3CA3B22450315A9E23F21A383AFB91754E330FA40FB76C06FFE68968E0D7E6E0E0EB4AADFDA953DAAE7C75EDFCF36AE95E05AE6BE1482DBB36D2E5C51CA686D645207451115AB650E766AA04CDFA26C556C6C9D9109D839761B1E634C0B2BE98CF7F054DEB38F4D978EDCE887D4B51C198AB3FF9C5A0A5618519C1160E67AFAE56F5358058A18591A24288AEA85F9116393B28A698467D8ECB7AC78DEDE9B6518062E01493A7663AE98CD89A9F48DAAB3459C0A66FD5D13C1F854564FB7056E7253E058B819E09E21B7F35AF206705E4E7FAF0CB498BD9F614274BBF632F966F3CA05A07183DAC7953CF4B079B60BB9AD", HEX);
+	//mod = InPutFromStr("B9975438AF3F83EB3F74DBA10DB8B8C3DAD35F89AB81B7EC7A64A9A841054302F148B0B72A5E716511FD65C89374B09CA8C593D32EC53A8183944DBFDEF72263FA80CB0FA86D03D4DB14383925D2F0666EEEE2649D305A0EA8AF95BE629DD42548D88A99642F509C8A24E3112618C91B56CF0EE80CDE44D9486BE9A4675E00481579EC0A62C0FF8838C2CCFAAD9060F376ED8476894305D8FFEF1D469EF62B743DBA11FA5481C3828EC0883F12FF9440FCBFC6A418F463030C3D19711719B66E9F9B925AACF87A982710E6621F9473D801E5958F7C2C34C7304C7F481D77452BEC2A71C3D2FE52AC00DB5C17E32EE3DFBD4FA5DD8465BB720016E5DDEC39E4AF", HEX);
+
+	// public exponent is always 65537
+	exp = move_p(65537);
+	c = move_p(1);
+
+#if 0 //Test pattern alexchang verified!!!!
+    sig = InPutFromStr("C9CCBCF2E9D8E63A0FD57F7F903EC8090CB99A5DAAE36549E760D762847572AF18F7D4CCBB5B4804EBEBB9503FD5912B2BE9DB67AC13D18485782BC0FF8EEE8028996AF1C16D4656530C35CE159267E6AF0FA319A13E273A553B92550CF62209CD73FFD0370602EB73921DFD2588DCE010D844E4172689FB6E68D7238BCF985A8AE2A425E0D6931D6625D84B3FBEEE8833D01CCE35A773BEB644B146448CF0F092D7D73CB2226D03D6D9EDE81647920FDD6522D9EECB5A63A1395237FD1096161389B11573F9806DBDBBFAB972ADE96BC2898BA02D628D97576B8E8842986E8D6BDFBADDC641CA0835B79B0E2D5D1AC1024137FF36781A499E3B9586F701F48A", HEX);
+	mod = InPutFromStr("F3793BCAA51612A5C3B7C7A9526D9037A5C9FFB61B1968F48E098943CF7E8CBCD22A77E4F30021E91918944D40A75529846E0D12D7B4A4E615B43FADFAFBFD3A53A34215D891DB6FDCD942668AEABA16A510C52DD7001239EF0090EF42E6899271F1BE1190E343BA13D2AD6F3A6BBC68AA7A812496AD00EF06A46C265DF211AEA3B0D92392E9D1BD89A307CD3FA0E590ECDDBDDC3D22C32D37096E3E1C23B0171E4A2987AE4568FB8C190B07A1BCFC0C1838CDB44174B847D3B5208283CA3FF28F88B3A96E9EEDCFA7E5921C95D4C0000E1D5B1DBCD413A0C12C0EBCC045F70A74EF8A01DEE10A49F0A416858354C77F4EEB3C75BF5E99D28916D375FBB3FCF9", HEX);
+	r2 = InPutFromStr("4F99C304C0572909B351F8B327D15F1632AC2417C931AE30E46F373060DB1A19B09F7049A26CF65DF026245D9F71BBF8ED1936A32F9A9639D61D7B192CB946246C98EF3130E840DE5BD1FAAE3CCA04F5DAE3DDC7892DF11C03A67589E25EF0BBFAA10ED5C1C4957CFD62DF2D043AEA159E1FF530DA192FC3093036A4E36ABB8756FA74C98AD71100E1DA646B946D78E4B64B742F4B754673D5F372BEEFBA55F1487850F1C07AFCA5E38D92122FD3EAA05C8232CE384BADDE73E5130451316FFB75DEBD0F8827E0488A32EF74B27DB7524A6B531AA4D23D985DC4DD25BB94D16FFCD4ECC2E2279447DC639575431198681BB34963987F63A082392736FFEC8E71",HEX);
+	OutPutToAddr(r2, (unsigned char *)output_addr, 1);
+	hexdump("HW output_addr R2", (unsigned char *)output_addr, RSA_SIGNATURE_LENGTH);
+
+//Please Note reerse!!!
+//ANS:AD 15 00 F2 61 FF 10 B4 9C 7A 17 96 A3 61 03 B0
+//    23 22 AE 5D DE 40 41 41 EA CF 01 8F BF 16 78 BA
+#endif
+
+#if 0
+#if  1// MONT parameter  from OTP
+			char* p_mont_para = (char *)OTP_MONT_PARA; // key from OTP
+			r2 = InPutFromAddr((unsigned char *)p_mont_para, RSA_SIGNATURE_LENGTH);
+
+#else
+			//char* p_mont_para = (char *)test_r2_para;  // test RSA root key
+			r2 = InPutFromStr("A9FB565AAFCE235D5FC1D7CD1818E1C24F480BC314B3776AB1BB3DD9C5C7CD9A6310F4015F9BBF097A958531E0D50BC8088AD4994BED2EA73D2F97DC6BF09730CF5ACC6255366FB48ABCBCFF88CB550425F8DA384B30B3D019AFDB77B58BA4CA58F334A0C7E1B5A410437C593A99FBB34BF21C49547193912E38805D1C89161D6123ACB1F19E00D697385DE63D19C5DD129E8E0B74EA409E0FCD13317B769E4C3B312215C2365561B3EE02A7F8766B0E3C8210AEDE19352338EFC49F768EC499B6D6BB90A490EB6025267469D9FE5943877AB0161567CE5A386E92A7A9A2E2149A1A34310BB6F1B419C1AE288AD9A0C89A53CA6D4A44933A7ACDFA679F504F6D",HEX);
+			OutPutToAddr(mod, (unsigned char *)output_addr, 1);
+			hexdump("HW output_addr R2", (unsigned char *)output_addr, RSA_SIGNATURE_LENGTH);
+#endif
+
+#endif
+
+	for ( i = BI_chkmsbbit (exp); i >= 0; i-- )
+    {
+        hwsu_mul_mod ( c, r2, c, c, mod, RSA_SIGNATURE_LENGTH);
+
+        if ( BI_is_bit_set (exp, i) == 1 )
+        {
+            //hwsu_mont ( c, c, sig, mod, RSA_SIGNATURE_LENGTH);
+			hwsu_mul_mod ( c, r2, c, sig, mod, RSA_SIGNATURE_LENGTH);
+        }
+    }
+
+	OutPutToAddr(c, (unsigned char *)output_addr, 1);
+
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+	show_current_time("after RSA");
+	// disable MISC timer6
+	REG32(0xb801b658) = 0;
+	REG32(0xb801b618) = 0;
+	printf("\nalloc_count: 0x");
+	print_hex(alloc_count);
+#if defined(MEMORY_POOL)
+	printf("\nmemory pool usage: 0x");
+	print_hex(alloc_max - (UINT32)memory_pool);
+#endif
+	printf("\n");
+	//debug(res);
+#endif
+
+	// bypass PKCS#1 v1.5 block format
+	t1 = output_addr;
+	tmp = skip_pkcs_v1_5_padding((char *)output_addr);
+	t1 += tmp;
+
+	my_freeAll();
+	// RSA result address (without padding bytes)
+	return t1;
+}
+
+
+#else
+unsigned int do_RSA(const unsigned int signature_addr, const unsigned int rsa_key_addr,
+	const unsigned int output_addr)
+{
+	BI *base, *exp, *mod, *res;
+	unsigned int t1, tmp;
+	//int i;
+#if 0
+	unsigned char *ptr;
+	const char algo_id[19] = {
+		0x30, 0x31, 0x30, 0x0d, 0x06, 0x09, 0x60, 0x86,
+		0x48, 0x01, 0x65, 0x03, 0x04, 0x02, 0x01, 0x05,
+		0x00, 0x04, 0x20};
+#endif
+
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+	printf("do_RSA(");
+	print_hex(signature_addr);
+	printf(", ");
+	print_hex(rsa_key_addr);
+	printf(", ");
+	print_hex(output_addr);
+	printf(")\n");
+
+	// observe memory pool usage
+	set_memory(memory_pool, 0xa5, sizeof(memory_pool));
+	alloc_max = 0;
+
+	// init MISC timer6 to measure do_RSA time
+	REG32(0xb801b618) = 0xffffffff;
+	REG32(0xb801b658) = 0x80000000;
+	show_current_time("before RSA");
+#endif
+
+	base = InPutFromAddr((unsigned char *)signature_addr, RSA_SIGNATURE_LENGTH);
+	mod = InPutFromAddr((unsigned char *)rsa_key_addr, RSA_2048_KEY_LENGTH);
+	// Sample:
+	//base = InPutFromStr("64712C6494BC4F9318475FB68868BFA3CA3B22450315A9E23F21A383AFB91754E330FA40FB76C06FFE68968E0D7E6E0E0EB4AADFDA953DAAE7C75EDFCF36AE95E05AE6BE1482DBB36D2E5C51CA686D645207451115AB650E766AA04CDFA26C556C6C9D9109D839761B1E634C0B2BE98CF7F054DEB38F4D978EDCE887D4B51C198AB3FF9C5A0A5618519C1160E67AFAE56F5358058A18591A24288AEA85F9116393B28A698467D8ECB7AC78DEDE9B6518062E01493A7663AE98CD89A9F48DAAB3459C0A66FD5D13C1F854564FB7056E7253E058B819E09E21B7F35AF206705E4E7FAF0CB498BD9F614274BBF632F966F3CA05A07183DAC7953CF4B079B60BB9AD", HEX);
+	//mod = InPutFromStr("B9975438AF3F83EB3F74DBA10DB8B8C3DAD35F89AB81B7EC7A64A9A841054302F148B0B72A5E716511FD65C89374B09CA8C593D32EC53A8183944DBFDEF72263FA80CB0FA86D03D4DB14383925D2F0666EEEE2649D305A0EA8AF95BE629DD42548D88A99642F509C8A24E3112618C91B56CF0EE80CDE44D9486BE9A4675E00481579EC0A62C0FF8838C2CCFAAD9060F376ED8476894305D8FFEF1D469EF62B743DBA11FA5481C3828EC0883F12FF9440FCBFC6A418F463030C3D19711719B66E9F9B925AACF87A982710E6621F9473D801E5958F7C2C34C7304C7F481D77452BEC2A71C3D2FE52AC00DB5C17E32EE3DFBD4FA5DD8465BB720016E5DDEC39E4AF", HEX);
+
+	// public exponent is always 65537
+	exp = move_p(65537);
+
+#if 1
+	res = Exp_Mod(base, exp, mod);
+#else
+	res = move_p(1);
+	res = Mod(res, mod);
+	while (!isZero(exp)) {
+		printf("=> 1, ");
+		t1 = Mod_p(exp, 2);
+		//print_val(alloc_count);
+		//printf("\n");
+
+		if (t1 != 0) {
+			printf("2, ");
+			res = Mul(res, base);
+			//debug(res);
+			printf("3, ");
+			res = Mod(res, mod);
+			//debug(res);
+		}
+
+		printf("4, ");
+		base = Mul(base, base);
+		//printf("base**:\n");
+		//debug(base);
+		printf("5, ");
+		base = Mod(base, mod);
+		//printf("after mod:\n");
+		//debug(base);
+		printf("6\n");
+		exp = Div_p(exp, 2);
+		//debug(exp);
+	}
+
+#endif
+	OutPutToAddr(res, (unsigned char *)output_addr, 1);
+
+#if defined(ROM_DEBUG) || defined(CONFIG_DEBUG_UART_PRINT)
+	show_current_time("after RSA");
+	// disable MISC timer6
+	REG32(0xb801b658) = 0;
+	REG32(0xb801b618) = 0;
+	printf("\nalloc_count: 0x");
+	print_hex(alloc_count);
+#if defined(MEMORY_POOL)
+	printf("\nmemory pool usage: 0x");
+	print_hex(alloc_max - (UINT32)memory_pool);
+#endif
+	printf("\n");
+	//debug(res);
+#endif
+
+	// bypass PKCS#1 v1.5 block format
+	t1 = output_addr;
+#if 1
+	tmp = skip_pkcs_v1_5_padding((char *)output_addr);
+	t1 += tmp;
+#else
+	ptr = (unsigned char *)t1;
+	if ((*ptr == 0) && (*(ptr+1) == 0x1)) {
+		// skip padding
+		// (padding format: 00 01 ff ff ff ... 00)
+		t1 += 2;
+		ptr += 2;
+
+		while (*ptr == 0xff) {
+			ptr++;
+			t1++;
+		}
+
+		if (*ptr == 0) {
+			ptr++;
+			t1++;
+		}
+
+		tmp = t1;
+		// skip digest algorithm identifier
+		for (i = 0; i < sizeof(algo_id); i++) {
+			if (*ptr != algo_id[i]) {
+				t1 = tmp;	// restore to previous postition
+				break;
+			}
+
+			ptr++;
+			t1++;
+		}
+	}
+#endif
+
+	my_freeAll();
+	// RSA result address (without padding bytes)
+	return t1;
+}
+#endif
+
+void *get_RSA_memory_pool(void)
+{
+	return (void *)MALLOC_BASE;
+}

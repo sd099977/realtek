@@ -1,0 +1,103 @@
+##############################################################################
+# The confidential and proprietary information contained in this file may
+# only be used by a person authorised under and to the extent permitted
+# by a subsisting licensing agreement from ARM Limited.
+#
+#                 (C) COPYRIGHT 2007-2010 ARM Limited.
+#                       ALL RIGHTS RESERVED
+#
+# This entire notice must be reproduced on all copies of this file
+# and copies of this file may only be made by a person if such person is
+# permitted to do so under the terms of a subsisting license agreement
+# from ARM Limited.
+#
+#      RCS Information
+#
+#      RCS Filename	   : $RCSfile$
+#
+#      Checked In	   : $Date$
+#
+#      Revision 	   : $Revision: 73865 $
+#
+#      Release Information : r3p0-00rel0
+##############################################################################
+
+
+#
+# Note: This makefile expects following variables to be defined:
+# 	- INCDIRS   A list of directories to look for include files into
+#		- TESTNAME  The name of the exectuable and binaries to be generated
+#		- ASMOBJS   A list of object files to compiled from assembly sources
+#		- COBJS 	  A list of object files to compiled from c sources
+#
+#	Possibly, we could also have these variables defined:
+#		- ASFLAGS
+#		- CCFLAGS
+#		- LDFLAGS
+#
+#	This makefile is supposed to be included by test specific Makefile with all the
+#	variables correctly defined.
+#
+
+TESTDIR = ../tests
+
+# ARM Compilation Chain
+AS = armasm
+CC = armcc
+LD = armlink
+# asdk
+OBJCOPY = arm-elf-objcopy
+OBJDUMP = arm-elf-objdump
+IMG2B	= /home/STools/RLX/rsdk-1.3/linux/newlib/bin/img2bin -l
+
+DUMPFLAGS = -h -S -l --show-raw-insn
+ED_BINFLAGS =
+
+# Default: Generate disass and memory image in 64-bit format
+
+VPATH = $(TESTDIR)/$(TESTNAME)
+
+#all: $(TESTNAME).disass image68.hex
+#all: $(TESTNAME).bin $(TESTNAME).text
+all: $(TESTNAME)
+
+
+# Object generation rules
+
+$(ASMOBJS): %.o: %.s
+	$(AS) $(ASFLAGS) $(INCDIRS:%=-I%) -o $@ $^
+
+$(COBJS): %.o: %.c
+	$(CC) $(CCFLAGS) $(INCDIRS:%=-I%) -c -o $@ $^
+
+$(TESTNAME).elf: $(ASMOBJS) $(COBJS)
+	$(LD) $(LDFLAGS) -o $@ $^
+
+$(TESTNAME).out: $(ASMOBJS) $(COBJS)
+	$(LD) $(LDFLAGS) -o $@ $^
+
+$(TESTNAME): $(TESTNAME).elf
+	fromelf --bin --output $@ $^
+
+$(TESTNAME).disass: $(TESTNAME).elf
+	fromelf -c --output $@ $^
+
+image36.hex: $(TESTNAME).elf
+	elf2hex -o $@ -e $< -s 32
+
+image68.hex: $(TESTNAME).elf
+	elf2hex -o $@ -e $< -s 64
+
+$(TESTNAME).img : $(TESTNAME).out
+		$(OBJCOPY) -O binary $< $@
+
+$(TESTNAME).bin : $(TESTNAME).img
+		$(IMG2B) $(ED_BINFLAGS) $< $@
+
+$(TESTNAME).text : $(TESTNAME).out
+		$(OBJDUMP) $(DUMPFLAGS) $< > $@
+
+clean:
+	@echo "Cleaning binary outputs"
+	rm -f $(ASMOBJS) $(COBJS) $(TESTNAME).elf $(TESTNAME) $(TESTNAME).disass image36.hex image68.hex
+

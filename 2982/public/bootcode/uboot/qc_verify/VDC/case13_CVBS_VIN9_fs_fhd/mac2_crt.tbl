@@ -1,0 +1,167 @@
+rtd_outl(0xb8060050,0x00000001); //ST_BUS = 27 MHz
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000200,0x00000001); //ACPU_clk=27 MHz
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000204,0x00000001); //Main UART Clock Source Select = 27 MHz
+ScalerTimer_DelayXms(1);
+
+rtd_outl(0xB801A808,0xF);//fdiv, clk_sf = clk_sys / (fdiv+1)
+
+//rtd_outl(0xb801a674,0x000000ff); 
+//rtd_inl(0xb801a60c);	//0x00000000
+//rtd_outl(0xb801a60c,0xb801a60c); 
+//rtd_outl(0xb801a070,0x00000001); 
+//rtd_outl(0xb801a808,0x00000006); 
+//rtd_outl(0xb801a814,0x00000000); 
+
+//-------- PLL ACPU -------------------------------------------------
+rtd_outl(0xb8000408,0x00123613); //max 500, set 27*37/2 = 499.5MHz
+rtd_outl(0xb800040c,0x00000005); //PLLACPU power on
+rtd_outl(0xb800040c,0x00000007);//release PLLACPU reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb800040c,0x00000003);// release PLL reset & enable PLLACPU power
+
+//-------- PLL BUS -------------------------------------------------
+rtd_outl(0xb8000420,0x00350B52);	//max 405, set 27*15 = 405MHz
+//rtd_outl(0xb8000420,0x06191b52);	//27MHz  
+//rtd_outl(0xb8000420,0x00411b52);	//test  
+rtd_outl(0xb8000424,0x0001102b);
+rtd_outl(0xb8000428,0x00000005);// PLL power on
+rtd_outl(0xb8000428,0x00000007);// release PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000428,0x00000003);// CLK_PLLBUS output enable
+
+//-------- PLL BUSH -------------------------------------------------
+rtd_outl(0xb8000430,0x001D1B52);  //max 250, set 27*9 = 243MHz
+rtd_outl(0xb8000434,0x0001102b);
+rtd_outl(0xb8000438,0x00000005);// PLLH power on
+rtd_outl(0xb8000438,0x00000007);// release PLLH reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000438,0x00000003);  // CLK_PLLBUSH output enable
+
+//-------- PLL BUS2 -------------------------------------------------
+//rtd_outl(0xb8000440,0x04a91352);	//396MHz 
+//rtd_outl(0xb8000444,0x0001102b);
+//rtd_outl(0xb8000448,0x00000005);
+//rtd_outl(0xb8000448,0x00000007);
+//ScalerTimer_DelayXms(1);
+//rtd_outl(0xb8000448,0x00000003); 
+
+//-------- PLL SCPU -------------------------------------------------
+rtd_outl(0xb8000400,0x00935413);// max 750, set 27*55/2= 742.5MHz
+rtd_outl(0xb8000404,0x00000005);// SCPU PLL power on
+rtd_outl(0xb8000404,0x00000007);// release SCPU PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000404,0x00000003);// PLLSCPU CKOUT enable
+
+//-------- PLL VCPU -------------------------------------------------
+rtd_outl(0xb8000410,0x00008613);// max 270, set 270MHz
+rtd_outl(0xb8000414,0x00000005);// PLLVCPU power on
+rtd_outl(0xb8000414,0x00000007);// release VCPU PLL reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000414,0x00000003);// PLLVCPU CKOUT enable
+
+//-------- PLL DISP -------------------------------------------------
+//rtd_outl(0xb8000490,0x01f0142a);// default setting 
+//rtd_outl(0xb8000494,0x0000000d);// use plldds clock divide by 16 for PCR tracking as clock source
+//DPLL Output Freeze, hold VCO reset
+
+//rtd_outl(0xb8000494,0x0152000F);// 0152(default setting),release VCO reset
+rtd_outl(0xb8000494,0x01520007);// 0152(default setting),release VCO reset
+ScalerTimer_DelayXms(1);
+rtd_outl(0xb8000494,0x01520003);// DPLL Output dis-freeze, use crystal as clock source
+rtd_outl(0xb8000494,0x01520042);// release DPLL reset, Power on DPLL
+
+//-------- PLL DIF -------------------------------------------------
+//rtd_outl(0xb80004c0,0x00e5a000);// SYS 172.8MHz	ADC 28.8MHz
+//rtd_outl(0xb80004c4,0x00000001);// PLLDIF DIV_ADC division = 15
+//maintain default setting
+rtd_outl(0xb80004c8,0x0000000e);// PLLDIF VCO D2S power down, release PLLDIF & VCO reset
+rtd_outl(0xb80004c8,0x00000007);// PLLDIF VCO D2S power on, Power-on PLLDIF
+
+//-------- PLL VODMA -------------------------------------------------
+rtd_outl(0xb8000464,0x00000005);// PLLVODMA power on
+rtd_outl(0xb8000464,0x00000007);// release PLLVODMA reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb8000464,0x00000003);// PLLVODMA CKOUT enable
+
+//-------- PLL DDS -------------------------------------------------
+//rtd_outl(0xb8000478,0x02080005);// Phase shifter enable, release PSAUD1&2 reset, 
+//rtd_outl(0xb8000478,0x02000005);// Phase shifter enable, release PSAUD1&2 reset,
+rtd_outl(0xb8000478,0x22800005);// Phase shifter enable, release PSAUD1&2 reset,
+rtd_outl(0xb800047c,0x00000005);// PLLDDS power on
+rtd_outl(0xb800047c,0x00000007);// release PLLDDS reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb800047c,0x00000003);// CLK_PLLDDS output enable
+
+//-------- PLL 512FS -------------------------------------------------
+rtd_outl(0xb80004b4,0x00000005);// PLL512FS power on
+rtd_outl(0xb80004b4,0x00000007);// release PLL512FS reset
+ScalerTimer_DelayXms(1); 
+rtd_outl(0xb80004b4,0x00000003);// CKOUT output enable 
+
+//-------- PLL AUD -------------------------------------------------
+rtd_outl(0xb80004e4,0x00000008);// release PLLAUD reset, PLLAUD_CK196&295M output enable, Audio PLL on
+
+//-------- PLL 27X -------------------------------------------------
+rtd_outl(0xb80004d0,0x02250010);// max = 432, set 27*16 = 432MHz 
+//rtd_outl(0xb80004d4,0x00006500);// 1.1V LDO power on & output 1.04V, LDO power on & output 1.6V
+rtd_outl(0xb80004d4,0x00005500);// 1.1V LDO power on & output 1.04V, LDO power on & output 1.6V
+//rtd_outl(0xb80004dc,0x00000000);// as default setting
+rtd_outl(0xb80004d8,0x00000007);// release PLL_27X & VCO reset & power on
+
+//-------- Module Clock & Reset --------------------------------------
+rtd_outl(0xb8000104,0x02000000); // why release DCPHY only
+//rtd_outl(0xb8000104,0x00000000);
+//rtd_outl(0xb800010c,0x02000000); 
+rtd_outl(0xb800010c,0x00000000);// default setting
+rtd_outl(0xb8000114,0x02000000);// why enable DCPHY only
+//rtd_outl(0xb800011c,0x02000000);// default setting
+rtd_outl(0xb800011c,0x00000000);// default setting
+//rtd_outl(0xb8000100,0x0000008b); 
+rtd_outl(0xb8000100,0x0000000B);// default setting
+
+//-------- ACPU clock source select to PLLACPU ------------------------
+rtd_outl(0xb8000200,0x00000000); 
+//-------- BUS/H clock source select to PLLBUS ------------------------
+rtd_outl(0xb8060050,0x00000000); 
+
+//-------- DDR clock source select to PLLDDR ------------------------
+rtd_outl(0xb8000500,0x000000fc);// PLLDDR disable
+rtd_outl(0xb8000504,0xfe013018); 
+rtd_outl(0xb8000508,0x03081810); 
+rtd_outl(0xb800050c,0x23001803); 
+//rtd_outl(0xb8000514,0x01e00000);	//432MHz 
+//rtd_outl(0xb8000514,0x01c00000);	//405MHz 
+//rtd_outl(0xb8000514,0x01800000);	//351MHz 
+//rtd_outl(0xb8000514,0x01600000);	//324MHz 
+rtd_outl(0xb8000514,0x01400000);	//297MHz 
+rtd_outl(0xb8000518,0x030d00c0); 
+rtd_outl(0xb8000500,0x000000fe);// release PLLDDR, 
+rtd_outl(0xb8000500,0x000000ff);// PLL ENABLE,
+rtd_outl(0xb8000500,0x00000003);// disable 'Output enable for CLK[0~5]', whats this for?
+
+//-------- Module Clock Enable --------------------------------------
+rtd_outl(0xb8000110,0x00000331); 
+rtd_outl(0xb8000114,0xffffffff); 
+rtd_outl(0xb8000118,0xffffffff); 
+rtd_outl(0xb800011c,0xffffffff); 
+rtd_outl(0xb8000110,0x00000001); 
+rtd_outl(0xb8000114,0x00000000); 
+rtd_outl(0xb8000118,0x00000000); 
+rtd_outl(0xb800011c,0x00000000); 
+rtd_outl(0xb8000100,0xffffffff); 
+rtd_outl(0xb8000104,0xffffffff); 
+rtd_outl(0xb8000108,0xffffffff); 
+rtd_outl(0xb800010c,0xffffffff); 
+rtd_outl(0xb8060044,0xffffffff); 
+rtd_outl(0xb8000114,0xffffffff); 
+rtd_outl(0xb8000118,0xffffffff); 
+rtd_outl(0xb800011c,0xffffffff); 
+rtd_outl(0xb8000110,0xffffffff); 
+
+//-----------------release ST_SRST0 & enable ST_CLKEN0
+rtd_inl(0xb8060040);	//0x00000000
+rtd_inl(0xb8060030);	//0x00000000 
+rtd_outl(0xb8060040,0x000007F);
+rtd_outl(0xb8060030,0x0000007F); 
